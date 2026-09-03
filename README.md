@@ -1,51 +1,39 @@
 # Crystal Basket
 
-Storefront for **Crystal Basket**, a Dubai-based crystal bracelet brand. Static site built with [Astro 5](https://astro.build), Tailwind CSS v4 and a few React islands. No backend: card checkout runs on payment links, and every product has a pre-filled WhatsApp order button.
+Storefront for **Crystal Basket**, a Dubai crystal bracelet brand. Next.js 15 static export served from GitHub Pages, content as validated JSON, orders via WhatsApp and payment links.
+
+**Live:** https://yegorkonyakhin2505-pixel.github.io/crystal-basket/
 
 ## Quick start
 
 ```bash
-npm install
-npm run dev        # http://localhost:4321
-npm run build      # static output in dist/
-npm run preview    # serve dist/ locally
-npm run check      # type-check .astro/.tsx files
+pnpm install
+make dev          # http://localhost:3000
+make check        # tests + typecheck + build (the CI gate)
 ```
 
-Node 22 or newer.
+Node 22+, pnpm 10.
 
-## What's inside
+## Module status
 
-| Path | What it is |
-|---|---|
-| `src/content/products/*.json` | One file per bracelet. **The only place the owner needs to edit to add or change a product.** |
-| `src/content/stones/*.json` | Stone library (meaning, chakra, zodiac, care flags). |
-| `src/content/intentions/*.json` | The eight shop-by-intention categories. |
-| `src/content/stacks/*.json` | Curated three-piece sets. |
-| `src/content.config.ts` | Zod schemas. A typo in a product file fails the build with a readable error. |
-| `src/data/site.json` | Brand name, WhatsApp number, delivery copy, discount %, review numbers. |
-| `src/styles/global.css` | The six colour themes and the semantic token bridge into Tailwind. |
-| `src/lib/themes.ts` | Theme metadata used by the switcher and `/themes`. |
-| `src/components/` | Astro components + React islands (`BuyBox`, `StackBuilder`, `ThemeSwitcher`). |
-| `public/images/products/<slug>/` | Real product photos go here. Until then a generated bracelet illustration is used. |
-| `CONTENT-GUIDE.md` | Step-by-step for the shop owner: add a bracelet, change prices, set the WhatsApp number, enable card checkout, swap themes. |
+| ID | Module | Status | Notes |
+|---|---|---|---|
+| M1 | Catalog | ✅ | 14 products, 16 stones, 8 intentions, 3 stacks. Zod-validated, cross-referenced, tested. |
+| M2 | Storefront pages | ✅ | Home, shop, product, intention ×8, stone ×16, stacks, about, size guide, care, FAQ, disclaimer, wishlist. |
+| M3 | Design system | ✅ | Light only. Cormorant + Jost. `DESIGN.md`. |
+| M4 | Filter & sort | ✅ | Client-side over data attributes; phase 2 swaps to API. |
+| M5 | Buy flow | ⚠️ | WhatsApp live with placeholder number (N01). Card checkout needs payment links (N02). |
+| M6 | Stack builder | ✅ | WhatsApp only until payment links exist. |
+| M7 | Wishlist | ✅ | localStorage. |
+| M8 | Newsletter | ⏳ | Flag off; falls back to mailto (N04). |
+| M9 | Deploy | ✅ | Push to `main` → GitHub Pages. |
+| M10 | Real photography | ⏳ | AI placeholders in place (N05). |
+| M11 | API + admin (phase 2) | 📋 | Not started. See `docs/decisions/0001-tech-stack.md`. |
 
-## Themes
+## How the owner edits products
 
-Six palettes, each with a light and dark variant, switchable live from the floating **Theme** button, from `/themes`, or by URL: `?theme=midnight&mode=dark`.
+See `packages/catalog/README.md`. Short version: copy a JSON file in `packages/catalog/content/products/`, edit the fields, drop photos in `apps/web/public/images/products/<slug>/`, commit. The build fails loudly on any mistake.
 
-`ivory` (default) · `midnight` · `eucalyptus` · `rose` · `obsidian` · `moonstone`
+## Repo layout
 
-Components never contain hex values. They use semantic tokens (`bg-bg`, `text-muted`, `bg-accent`, `border-border`, `rounded-brand`, `font-display`) that resolve per theme. To make a theme the permanent default, change the fallback in the inline boot script in `src/layouts/BaseLayout.astro` and the `:root` block in `global.css`.
-
-## Commerce
-
-- **WhatsApp**: `wa.me` deep links with a pre-filled order message. Set the number in `src/data/site.json`.
-- **Card checkout**: paste a Stripe / Ziina / Tap / PayTabs payment link into `stripePaymentLink` on any product and the "Buy now" button turns on. Selected bead size and wrist size are appended as `client_reference_id`.
-- Later, when volume justifies a cart and order dashboard, Snipcart can sit on top of the same JSON with `data-item-*` attributes.
-
-## Deploying
-
-Output is plain static files, so any host works. Recommended: Cloudflare Pages (free, commercial use allowed, unlimited bandwidth). Build command `npm run build`, output directory `dist`. GitHub Pages and Netlify also work. Vercel's Hobby plan does not allow commercial sites.
-
-Set `site` in `astro.config.mjs` to the final domain before going live.
+See `CLAUDE.md`. Full route/component inventory in `PLATFORM.md`. Outstanding owner inputs in `NEEDED.md`.

@@ -1,0 +1,22 @@
+"use client";
+import { useEffect } from "react";
+
+/** Adds .is-visible to .reveal elements as they enter the viewport. Above-the-fold items are shown synchronously. */
+export function ScrollReveal() {
+  useEffect(() => {
+    document.documentElement.classList.add("js");
+    const els = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
+    const vh = window.innerHeight;
+    els.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < vh && r.bottom > 0) el.classList.add("is-visible");
+    });
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); } }),
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.08 },
+    );
+    els.forEach((el) => { if (!el.classList.contains("is-visible")) io.observe(el); });
+    return () => io.disconnect();
+  }, []);
+  return null;
+}

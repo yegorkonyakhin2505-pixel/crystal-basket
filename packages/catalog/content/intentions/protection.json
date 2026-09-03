@@ -1,0 +1,20 @@
+{
+  "name": "Protection",
+  "short": "Protection",
+  "tagline": "An energetic boundary you can wear.",
+  "triad": [
+    "Shield",
+    "Boundary",
+    "Strength"
+  ],
+  "description": "For the days you walk into rooms that take more than they give. Protection stones are traditionally worn to deflect what isn't yours and keep your own energy close.",
+  "chakra": [
+    "Root"
+  ],
+  "palette": [
+    "#1a1a1f",
+    "#4a4a55"
+  ],
+  "order": 1,
+  "image": "protection.jpg"
+}

@@ -1,0 +1,35 @@
+{
+  "name": "The Lionheart",
+  "subtitle": "Confidence Bracelet · Tiger's Eye & Carnelian",
+  "intention": "confidence",
+  "secondaryIntentions": [
+    "abundance"
+  ],
+  "stones": [
+    "tigers-eye",
+    "carnelian"
+  ],
+  "priceAED": 229,
+  "beadSizes": [
+    8,
+    10
+  ],
+  "goldAccent": false,
+  "style": "unisex",
+  "triad": [
+    "Courage",
+    "Fire",
+    "Drive"
+  ],
+  "promise": "Nerve for the meeting, the pitch, the hard conversation.",
+  "body": "Golden tiger's eye and burnt-orange carnelian, both solar plexus stones. Worn for willpower, physical energy and the courage to start before you feel ready.",
+  "affirmation": "I am bold. I back myself.",
+  "bestseller": true,
+  "tags": [
+    "bestseller",
+    "men"
+  ],
+  "images": [
+    "main.jpg"
+  ]
+}

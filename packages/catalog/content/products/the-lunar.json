@@ -1,0 +1,39 @@
+{
+  "name": "The Lunar",
+  "subtitle": "Sleep Bracelet · Moonstone, Howlite & Amethyst",
+  "intention": "sleep",
+  "secondaryIntentions": [
+    "calm"
+  ],
+  "stones": [
+    "moonstone",
+    "howlite",
+    "amethyst"
+  ],
+  "priceAED": 279,
+  "beadSizes": [
+    6,
+    8
+  ],
+  "goldAccent": true,
+  "style": "women",
+  "triad": [
+    "Rest",
+    "Dream",
+    "Release"
+  ],
+  "promise": "Quiet the last hour of the day.",
+  "body": "Blue-sheen moonstone, porcelain howlite and lilac amethyst with gold-filled spacers. Worn in the evening to mark the edge of the day and invite deeper sleep.",
+  "affirmation": "I rest. Tomorrow can wait.",
+  "featured": true,
+  "isNew": true,
+  "tags": [
+    "gift",
+    "gold",
+    "new",
+    "recipe"
+  ],
+  "images": [
+    "main.jpg"
+  ]
+}

@@ -1,0 +1,20 @@
+/*
+  Crystal Basket design tokens — light theme only, by decision (2026-09-03).
+  Referenced from globals.css via @theme. Components use the Tailwind
+  utilities (bg-cb-*, text-cb-*), never raw hex. See components/ui/DESIGN.md.
+*/
+:root {
+  --cb-bg: #ffffff;
+  --cb-band: #f6f3ee;      /* warm beige bands: filter bar, category grid, footer */
+  --cb-band-2: #efeae2;    /* deeper beige for hover rows */
+  --cb-ink: #1a1a1a;
+  --cb-muted: #6b6b6b;
+  --cb-faint: #a3a3a3;
+  --cb-line: #e6e2dc;
+  --cb-rose: #8f5f66;      /* dusty rose accent — AA on white */
+  --cb-rose-hover: #74484f;
+  --cb-rose-soft: #f4e9ea; /* tint fills */
+  --cb-gold: #c9a961;      /* decorative hairlines and the gold bead only */
+  --cb-success: #5b8d5b;
+  --cb-danger: #a3472f;
+}

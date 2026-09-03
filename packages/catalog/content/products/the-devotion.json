@@ -1,0 +1,36 @@
+{
+  "name": "The Devotion",
+  "subtitle": "Love Bracelet · Rose Quartz & Moonstone",
+  "intention": "love",
+  "secondaryIntentions": [
+    "sleep"
+  ],
+  "stones": [
+    "rose-quartz",
+    "moonstone"
+  ],
+  "priceAED": 289,
+  "beadSizes": [
+    6,
+    8
+  ],
+  "goldAccent": true,
+  "style": "women",
+  "triad": [
+    "Tenderness",
+    "Intuition",
+    "Grace"
+  ],
+  "promise": "For love that is chosen, daily, on purpose.",
+  "body": "Blush rose quartz alternating with blue-sheen moonstone and three gold-filled beads. Worn for open-heartedness paired with the intuition to know what the heart actually wants.",
+  "affirmation": "I trust my heart and I follow it gently.",
+  "isNew": true,
+  "tags": [
+    "gift",
+    "gold",
+    "new"
+  ],
+  "images": [
+    "main.jpg"
+  ]
+}

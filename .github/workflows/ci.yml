@@ -1,24 +1,32 @@
 name: CI
 
+# Hard gates: catalog content tests, TypeScript, and a full static build.
 on:
   push:
     branches: [main]
   pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run check
-      - run: npm run build
-      - uses: actions/upload-artifact@v4
-        with:
-          name: site
-          path: dist
-          retention-days: 7
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Catalog tests (hard gate)
+        run: pnpm --filter @crystal-basket/catalog test
+      - name: Typecheck (hard gate)
+        run: pnpm -r typecheck
+      - name: Build (hard gate)
+        run: pnpm --filter web build

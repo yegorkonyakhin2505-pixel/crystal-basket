@@ -1,0 +1,37 @@
+{
+  "name": "The Still Mind",
+  "subtitle": "Calm Bracelet · Amethyst",
+  "intention": "calm",
+  "secondaryIntentions": [
+    "sleep"
+  ],
+  "stones": [
+    "amethyst"
+  ],
+  "priceAED": 209,
+  "beadSizes": [
+    6,
+    8,
+    10
+  ],
+  "goldAccent": true,
+  "style": "unisex",
+  "triad": [
+    "Ease",
+    "Breath",
+    "Stillness"
+  ],
+  "promise": "Turn the volume down on a loud mind.",
+  "body": "Deep lilac amethyst with a single gold-filled bead. The classic calming stone, worn to quiet overthinking, ease anxiety and support deeper sleep.",
+  "affirmation": "I am calm. I can hear myself think.",
+  "featured": true,
+  "bestseller": true,
+  "tags": [
+    "bestseller",
+    "gold",
+    "gift"
+  ],
+  "images": [
+    "main.jpg"
+  ]
+}
