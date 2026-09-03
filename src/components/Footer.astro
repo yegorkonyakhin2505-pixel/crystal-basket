@@ -1,4 +1,5 @@
 ---
+import { u } from '../lib/url';
 import { getCollection } from 'astro:content';
 import site from '../data/site.json';
 import Logo from './Logo.astro';
@@ -8,7 +9,7 @@ const year = new Date().getFullYear();
 <footer class="border-t border-border mt-24">
   <div class="container-x py-14 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
     <div>
-      <a href="/" class="flex items-center gap-2.5 mb-4"><Logo class="w-6 h-6" /><span class="font-display text-xl">{site.name}</span></a>
+      <a href={u('/')} class="flex items-center gap-2.5 mb-4"><Logo class="w-6 h-6" /><span class="font-display text-xl">{site.name}</span></a>
       <p class="text-muted text-[0.92rem] max-w-xs">{site.description}</p>
       <div class="flex gap-4 mt-5 text-[0.85rem]">
         <a class="hover:text-accent" href={`https://instagram.com/${site.instagram}`} target="_blank" rel="noopener">Instagram</a>
@@ -19,33 +20,33 @@ const year = new Date().getFullYear();
     <div>
       <p class="eyebrow mb-3">Intentions</p>
       <ul class="space-y-1.5 text-[0.9rem]">
-        {intentions.map((i) => <li><a class="text-muted hover:text-text" href={`/intentions/${i.id}`}>{i.data.name}</a></li>)}
+        {intentions.map((i) => <li><a class="text-muted hover:text-text" href={u(`/intentions/${i.id}`)}>{i.data.name}</a></li>)}
       </ul>
     </div>
     <div>
       <p class="eyebrow mb-3">Shop</p>
       <ul class="space-y-1.5 text-[0.9rem]">
-        <li><a class="text-muted hover:text-text" href="/shop">All bracelets</a></li>
-        <li><a class="text-muted hover:text-text" href="/stacks">Stacks & sets</a></li>
-        <li><a class="text-muted hover:text-text" href="/stones">Stone library</a></li>
-        <li><a class="text-muted hover:text-text" href="/size-guide">Size guide</a></li>
-        <li><a class="text-muted hover:text-text" href="/care">Cleanse & care</a></li>
+        <li><a class="text-muted hover:text-text" href={u('/shop')}>All bracelets</a></li>
+        <li><a class="text-muted hover:text-text" href={u('/stacks')}>Stacks & sets</a></li>
+        <li><a class="text-muted hover:text-text" href={u('/stones')}>Stone library</a></li>
+        <li><a class="text-muted hover:text-text" href={u('/size-guide')}>Size guide</a></li>
+        <li><a class="text-muted hover:text-text" href={u('/care')}>Cleanse & care</a></li>
       </ul>
     </div>
     <div>
       <p class="eyebrow mb-3">Help</p>
       <ul class="space-y-1.5 text-[0.9rem]">
-        <li><a class="text-muted hover:text-text" href="/faq">FAQ</a></li>
-        <li><a class="text-muted hover:text-text" href="/about">Our story</a></li>
-        <li><a class="text-muted hover:text-text" href="/disclaimer">Wellness disclaimer</a></li>
-        <li><a class="text-muted hover:text-text" href="/themes">Colour themes</a></li>
+        <li><a class="text-muted hover:text-text" href={u('/faq')}>FAQ</a></li>
+        <li><a class="text-muted hover:text-text" href={u('/about')}>Our story</a></li>
+        <li><a class="text-muted hover:text-text" href={u('/disclaimer')}>Wellness disclaimer</a></li>
+        <li><a class="text-muted hover:text-text" href={u('/themes')}>Colour themes</a></li>
       </ul>
     </div>
   </div>
   <div class="border-t border-border">
     <div class="container-x py-5 flex flex-col sm:flex-row gap-2 justify-between text-[0.78rem] text-muted">
       <p>© {year} {site.name}. {site.city}, UAE.</p>
-      <p>Crystal meanings reflect traditional beliefs and are not medical advice. <a href="/disclaimer" class="underline">Read more</a>.</p>
+      <p>Crystal meanings reflect traditional beliefs and are not medical advice. <a href={u('/disclaimer')} class="underline">Read more</a>.</p>
     </div>
   </div>
 </footer>

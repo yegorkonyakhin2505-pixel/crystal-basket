@@ -1,4 +1,5 @@
 ---
+import { u } from '../lib/url';
 import { getCollection } from 'astro:content';
 interface Props { limit?: number; compact?: boolean }
 const { limit, compact = false } = Astro.props;
@@ -10,7 +11,7 @@ const count = (id: string) => products.filter((p) => p.data.intention.id === id 
 <div class:list={['grid gap-3 md:gap-4', compact ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2 md:grid-cols-4']}>
   {intentions.map((i, idx) => (
     <a
-      href={`/intentions/${i.id}`}
+      href={u(`/intentions/${i.id}`)}
       class="group relative overflow-hidden rounded-brand border border-border bg-surface p-5 md:p-6 aspect-[4/5] md:aspect-[5/6] flex flex-col justify-end reveal"
       style={`transition-delay:${idx * 40}ms`}
     >

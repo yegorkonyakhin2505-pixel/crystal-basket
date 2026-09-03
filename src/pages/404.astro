@@ -1,10 +1,11 @@
 ---
+import { u } from '../lib/url';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Not found">
   <section class="container-x py-32 text-center">
     <p class="eyebrow mb-3">404</p>
     <h1 class="text-4xl md:text-6xl">That page slipped off the wrist.</h1>
-    <a href="/shop" class="btn btn-primary mt-8">Back to the shop</a>
+    <a href={u('/shop')} class="btn btn-primary mt-8">Back to the shop</a>
   </section>
 </BaseLayout>

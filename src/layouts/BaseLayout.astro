@@ -1,4 +1,5 @@
 ---
+import { u } from '../lib/url';
 import '../styles/global.css';
 import site from '../data/site.json';
 import Header from '../components/Header.astro';
@@ -23,7 +24,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).toString()
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={u('/favicon.svg')} type="image/svg+xml" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />

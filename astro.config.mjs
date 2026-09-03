@@ -5,7 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://crystalbasket.ae',
+  site: 'https://yegorkonyakhin2505-pixel.github.io',
+  base: '/crystal-basket',
   output: 'static',
   trailingSlash: 'never',
   integrations: [react()],

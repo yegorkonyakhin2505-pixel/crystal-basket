@@ -1,4 +1,5 @@
 ---
+import { u } from '../lib/url';
 import { getCollection, getEntries } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
@@ -24,21 +25,21 @@ const stones = (await getCollection('stones')).slice(0, 8);
   <TrustStrip />
 
   <section class="container-x py-20 md:py-24">
-    <SectionHead eyebrow="Shop by intention" title="What do you need more of?" text="Every bracelet in the basket is strung around one intention. Start there, not with the stone." href="/intentions" linkLabel="All intentions" />
+    <SectionHead eyebrow="Shop by intention" title="What do you need more of?" text="Every bracelet in the basket is strung around one intention. Start there, not with the stone." href={u('/intentions')} linkLabel="All intentions" />
     <IntentionGrid />
   </section>
 
   <section class="container-x pb-20 md:pb-24">
-    <SectionHead eyebrow="Bestsellers" title="The ones that leave first" href="/shop" linkLabel="Shop all bracelets" />
+    <SectionHead eyebrow="Bestsellers" title="The ones that leave first" href={u('/shop')} linkLabel="Shop all bracelets" />
     <ProductGrid products={bestsellers} />
   </section>
 
   <section class="bg-surface border-y border-border">
     <div class="container-x py-20 md:py-24">
-      <SectionHead eyebrow="Stacks & sets" title={`Three pieces, ${site.stackDiscountPct}% off`} text="Curated stacks for one intention, or build your own from any three bracelets." href="/stacks" linkLabel="Build a stack" />
+      <SectionHead eyebrow="Stacks & sets" title={`Three pieces, ${site.stackDiscountPct}% off`} text="Curated stacks for one intention, or build your own from any three bracelets." href={u('/stacks')} linkLabel="Build a stack" />
       <div class="grid md:grid-cols-3 gap-4">
         {stacks.map((s, i) => (
-          <a href="/stacks" class="group rounded-brand border border-border bg-bg overflow-hidden reveal" style={`transition-delay:${i * 60}ms`}>
+          <a href={u('/stacks')} class="group rounded-brand border border-border bg-bg overflow-hidden reveal" style={`transition-delay:${i * 60}ms`}>
             <div class="grid grid-cols-3 gap-1 p-1">
               {stackProducts[i].map((p) => <div class="rounded-[calc(var(--radius)-2px)] overflow-hidden"><ProductImage product={p} ratio="1/1" /></div>)}
             </div>
@@ -61,11 +62,11 @@ const stones = (await getCollection('stones')).slice(0, 8);
       <p class="eyebrow mb-3">Our story</p>
       <h2 class="text-3xl md:text-[2.6rem] leading-tight">Chosen by hand. Strung one at a time. Cleansed before they leave.</h2>
       <p class="text-muted mt-5">Crystal Basket started as a basket of stones on a kitchen table in {site.city}, strung for friends who wanted something meaningful on their wrist without the mall markup. Every bracelet is still made the same way: natural beads only, graded by eye, strung on premium cord, then rested on selenite for two days before it goes into a linen pouch with its meaning card.</p>
-      <a href="/about" class="inline-block mt-6 text-[0.9rem] underline underline-offset-4 decoration-border hover:decoration-text">Read the whole story →</a>
+      <a href={u('/about')} class="inline-block mt-6 text-[0.9rem] underline underline-offset-4 decoration-border hover:decoration-text">Read the whole story →</a>
     </div>
     <div class="grid grid-cols-4 gap-2 reveal" style="transition-delay:100ms">
       {stones.map((s) => (
-        <a href={`/stones/${s.id}`} class="aspect-square rounded-brand border border-border flex items-end p-2.5 hover:-translate-y-0.5 transition-transform" style={`background: radial-gradient(circle at 35% 30%, ${s.data.palette[0]}, ${s.data.palette[1]});`}>
+        <a href={u(`/stones/${s.id}`)} class="aspect-square rounded-brand border border-border flex items-end p-2.5 hover:-translate-y-0.5 transition-transform" style={`background: radial-gradient(circle at 35% 30%, ${s.data.palette[0]}, ${s.data.palette[1]});`}>
           <span class="text-[0.62rem] tracking-wider uppercase bg-bg/85 text-text px-1.5 py-0.5 rounded-full">{s.data.name}</span>
         </a>
       ))}
@@ -74,7 +75,7 @@ const stones = (await getCollection('stones')).slice(0, 8);
 
   {fresh.length > 0 && (
     <section class="container-x pb-20 md:pb-24">
-      <SectionHead eyebrow="New in" title="Just strung" href="/shop" />
+      <SectionHead eyebrow="New in" title="Just strung" href={u('/shop')} />
       <ProductGrid products={fresh} />
     </section>
   )}

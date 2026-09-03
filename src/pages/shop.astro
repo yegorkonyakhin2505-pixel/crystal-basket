@@ -1,4 +1,5 @@
 ---
+import { u } from '../lib/url';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductGrid from '../components/ProductGrid.astro';
@@ -26,7 +27,7 @@ const styles = [
     </div>
     <div class="flex flex-wrap gap-2 mb-10">
       {intentions.map((i) => (
-        <a href={`/intentions/${i.id}`} class="px-3.5 py-1.5 rounded-full border border-border text-[0.82rem] text-muted hover:text-text hover:border-text">{i.data.short}</a>
+        <a href={u(`/intentions/${i.id}`)} class="px-3.5 py-1.5 rounded-full border border-border text-[0.82rem] text-muted hover:text-text hover:border-text">{i.data.short}</a>
       ))}
     </div>
     <div id="shop-grid">
@@ -36,7 +37,7 @@ const styles = [
   <script>
     // Lightweight client-side filter over data attributes rendered in the grid.
     const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chip');
-    const cards = document.querySelectorAll<HTMLElement>('#shop-grid a[href^="/products/"]');
+    const cards = document.querySelectorAll<HTMLElement>('#shop-grid a[data-tags]');
     chips.forEach((c) =>
       c.addEventListener('click', () => {
         chips.forEach((x) => x.removeAttribute('data-active'));

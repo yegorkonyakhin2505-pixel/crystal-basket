@@ -1,4 +1,5 @@
 ---
+import { u } from '../lib/url';
 import type { CollectionEntry } from 'astro:content';
 import { getEntries, getEntry } from 'astro:content';
 import ProductImage from './ProductImage.astro';
@@ -12,7 +13,7 @@ const d = product.data;
 const badge = d.isNew ? 'New' : d.bestseller ? 'Bestseller' : null;
 const tags = [d.style, d.goldAccent ? 'gold' : null, d.isNew ? 'new' : null, d.bestseller ? 'bestseller' : null, ...d.tags].filter(Boolean).join(' ');
 ---
-<a href={`/products/${product.id}`} class="group block reveal" data-tags={tags}>
+<a href={u(`/products/${product.id}`)} class="group block reveal" data-tags={tags}>
   <div class="relative overflow-hidden rounded-brand bg-surface-2 border border-border">
     <div class="transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.02]">
       <ProductImage product={product} ratio="4/5" eager={eager} />

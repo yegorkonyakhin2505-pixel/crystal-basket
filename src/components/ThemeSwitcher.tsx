@@ -1,3 +1,4 @@
+import { u } from '../lib/url';
 import { useEffect, useState } from 'react';
 import { THEMES, type Mode, type ThemeId } from '../lib/themes';
 
@@ -89,7 +90,7 @@ export default function ThemeSwitcher() {
               {copied ? 'Copied' : 'Copy link'}
             </button>
           </div>
-          <a href="/themes" className="block mt-3 text-[0.75rem] text-accent hover:underline">Compare all themes →</a>
+          <a href={u('/themes')} className="block mt-3 text-[0.75rem] text-accent hover:underline">Compare all themes →</a>
         </div>
       )}
       <button

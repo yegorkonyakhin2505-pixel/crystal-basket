@@ -1,4 +1,5 @@
 ---
+import { u } from '../../lib/url';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import IntentionGrid from '../../components/IntentionGrid.astro';
@@ -13,7 +14,7 @@ const intentions = (await getCollection('intentions')).sort((a, b) => a.data.ord
   <section class="container-x pb-16"><IntentionGrid /></section>
   <section class="container-x pb-20 grid md:grid-cols-2 gap-x-10 gap-y-8">
     {intentions.map((i) => (
-      <a href={`/intentions/${i.id}`} class="reveal border-t border-border pt-5 group">
+      <a href={u(`/intentions/${i.id}`)} class="reveal border-t border-border pt-5 group">
         <div class="flex items-center gap-3">
           <span class="w-3 h-3 rounded-full" style={`background: linear-gradient(135deg, ${i.data.palette[0]}, ${i.data.palette[1]})`}></span>
           <h2 class="text-2xl group-hover:text-accent transition-colors">{i.data.name}</h2>

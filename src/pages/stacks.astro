@@ -1,4 +1,5 @@
 ---
+import { u } from '../lib/url';
 import { getCollection, getEntries } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductImage from '../components/ProductImage.astro';
@@ -34,7 +35,7 @@ const builder = products.map((p) => ({
     {stacks.map((s, i) => (
       <div class="rounded-brand border border-border bg-surface overflow-hidden reveal" style={`transition-delay:${i * 60}ms`}>
         <div class="grid grid-cols-3 gap-1 p-1">
-          {stackProducts[i].map((p) => <a href={`/products/${p.id}`} class="rounded-[calc(var(--radius)-2px)] overflow-hidden"><ProductImage product={p} ratio="1/1" /></a>)}
+          {stackProducts[i].map((p) => <a href={u(`/products/${p.id}`)} class="rounded-[calc(var(--radius)-2px)] overflow-hidden"><ProductImage product={p} ratio="1/1" /></a>)}
         </div>
         <div class="p-5">
           <p class="eyebrow mb-1">{stackIntentions[i].data.short}</p>

@@ -1,4 +1,5 @@
 ---
+import { u } from '../../lib/url';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 const stones = (await getCollection('stones')).sort((a, b) => a.data.name.localeCompare(b.data.name));
@@ -13,7 +14,7 @@ const count = (id: string) => products.filter((p) => p.data.stones.some((s) => s
   </section>
   <section class="container-x pb-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
     {stones.map((s, i) => (
-      <a href={`/stones/${s.id}`} class="group rounded-brand border border-border bg-surface overflow-hidden reveal" style={`transition-delay:${(i % 4) * 40}ms`}>
+      <a href={u(`/stones/${s.id}`)} class="group rounded-brand border border-border bg-surface overflow-hidden reveal" style={`transition-delay:${(i % 4) * 40}ms`}>
         <div class="aspect-[4/3] relative" style={`background: radial-gradient(circle at 40% 35%, ${s.data.palette[0]}, ${s.data.palette[1]});`}>
           <span class="absolute inset-0 opacity-30 mix-blend-overlay" style="background: radial-gradient(circle at 30% 25%, #fff, transparent 50%);"></span>
           {s.data.tier !== 'classic' && <span class="absolute top-3 left-3 text-[0.62rem] tracking-[0.14em] uppercase bg-bg/85 text-text px-2 py-0.5 rounded-full">{s.data.tier}</span>}

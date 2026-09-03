@@ -1,4 +1,5 @@
 ---
+import { u } from '../../lib/url';
 import { getCollection, getEntries, getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductImage from '../../components/ProductImage.astro';
@@ -40,8 +41,8 @@ const jsonLd = {
 ---
 <BaseLayout title={`${d.name} · ${d.subtitle}`} description={`${d.promise} ${d.body}`} jsonLd={jsonLd}>
   <nav class="container-x pt-6 text-[0.78rem] text-muted" aria-label="Breadcrumb">
-    <a href="/shop" class="hover:text-text">Shop</a> <span class="mx-1.5">/</span>
-    <a href={`/intentions/${intention.id}`} class="hover:text-text">{intention.data.name}</a> <span class="mx-1.5">/</span>
+    <a href={u('/shop')} class="hover:text-text">Shop</a> <span class="mx-1.5">/</span>
+    <a href={u(`/intentions/${intention.id}`)} class="hover:text-text">{intention.data.name}</a> <span class="mx-1.5">/</span>
     <span class="text-text">{d.name}</span>
   </nav>
 
@@ -65,8 +66,8 @@ const jsonLd = {
       <p class="text-muted mt-2">{d.subtitle}</p>
       <p class="font-display text-[1.35rem] mt-5 italic max-w-md">{d.promise}</p>
       <div class="flex flex-wrap gap-1.5 mt-4">
-        <a href={`/intentions/${intention.id}`} class="px-2.5 py-1 rounded-full bg-accent text-on-accent text-[0.72rem] tracking-wide">{intention.data.short}</a>
-        {secondary.map((s) => <a href={`/intentions/${s.id}`} class="px-2.5 py-1 rounded-full border border-border text-[0.72rem] tracking-wide hover:border-text">{s.data.short}</a>)}
+        <a href={u(`/intentions/${intention.id}`)} class="px-2.5 py-1 rounded-full bg-accent text-on-accent text-[0.72rem] tracking-wide">{intention.data.short}</a>
+        {secondary.map((s) => <a href={u(`/intentions/${s.id}`)} class="px-2.5 py-1 rounded-full border border-border text-[0.72rem] tracking-wide hover:border-text">{s.data.short}</a>)}
         {d.goldAccent && <span class="px-2.5 py-1 rounded-full border border-border text-[0.72rem] tracking-wide">14k gold-filled accent</span>}
         <span class="px-2.5 py-1 rounded-full border border-border text-[0.72rem] tracking-wide capitalize">{d.style}</span>
       </div>
@@ -101,7 +102,7 @@ const jsonLd = {
         <p class="eyebrow mb-4">Stones in this bracelet</p>
         <div class="grid sm:grid-cols-2 gap-3">
           {stones.map((s) => (
-            <a href={`/stones/${s.id}`} class="flex gap-4 p-4 rounded-brand border border-border bg-surface hover:border-text transition-colors">
+            <a href={u(`/stones/${s.id}`)} class="flex gap-4 p-4 rounded-brand border border-border bg-surface hover:border-text transition-colors">
               <span class="w-12 h-12 rounded-full shrink-0 ring-1 ring-black/10" style={`background: radial-gradient(circle at 35% 30%, ${s.data.palette[0]}, ${s.data.palette[1]})`}></span>
               <span>
                 <span class="block font-display text-[1.15rem] leading-tight">{s.data.name}</span>
@@ -147,7 +148,7 @@ const jsonLd = {
           <p>Cleanse on arrival and about once a month: overnight in moonlight, on a selenite plate, or with smoke.</p>
           {anyWaterUnsafe ? <p><strong class="text-text">Keep this one dry.</strong> One of its stones does not like water. Skip rinsing and use smoke, selenite or moonlight.</p> : <p>A quick rinse in plain water is fine. Dry it straight away.</p>}
           {anySunUnsafe && <p><strong class="text-text">Avoid long sun.</strong> One of these stones fades in sunlight. Charge it under the moon instead.</p>}
-          <p>Roll it on and off rather than stretching over the hand. Remove before showers, sport and perfume. <a href="/care" class="underline text-text">Full care guide</a>.</p>
+          <p>Roll it on and off rather than stretching over the hand. Remove before showers, sport and perfume. <a href={u('/care')} class="underline text-text">Full care guide</a>.</p>
         </div>
       </details>
       <details class="group border border-border rounded-brand bg-surface p-5">
@@ -157,12 +158,12 @@ const jsonLd = {
           <p>Wrong size? Swap it within 14 days, unworn, and we cover the courier once. Free re-string for life.</p>
         </div>
       </details>
-      <p class="text-[0.72rem] text-muted pt-2">Natural stone varies. Colour, banding and flash will differ from the picture; that variation is proof it is real. Crystal meanings reflect traditional beliefs and are not medical advice. <a href="/disclaimer" class="underline">Disclaimer</a>.</p>
+      <p class="text-[0.72rem] text-muted pt-2">Natural stone varies. Colour, banding and flash will differ from the picture; that variation is proof it is real. Crystal meanings reflect traditional beliefs and are not medical advice. <a href={u('/disclaimer')} class="underline">Disclaimer</a>.</p>
     </div>
   </section>
 
   <section class="container-x pb-16">
-    <SectionHead eyebrow="Complete the stack" title="Worn well together" href="/stacks" linkLabel="Build a stack" />
+    <SectionHead eyebrow="Complete the stack" title="Worn well together" href={u('/stacks')} linkLabel="Build a stack" />
     <ProductGrid products={related} />
   </section>
 

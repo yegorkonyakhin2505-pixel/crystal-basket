@@ -1,3 +1,4 @@
+import { u } from '../lib/url';
 import { useMemo, useState } from 'react';
 import { buildWhatsAppUrl } from '../lib/whatsapp';
 import { WRIST_SIZES } from '../lib/format';
@@ -60,7 +61,7 @@ export default function BuyBox(p: Props) {
       <div>
         <div className="flex justify-between items-baseline mb-2">
           <span className="eyebrow">Wrist size</span>
-          <a href="/size-guide" className="text-[0.75rem] text-accent hover:underline">How to measure</a>
+          <a href={u('/size-guide')} className="text-[0.75rem] text-accent hover:underline">How to measure</a>
         </div>
         <div className="flex gap-2">
           {p.sizes.map((s) => (
