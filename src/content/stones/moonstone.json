@@ -1,0 +1,26 @@
+{
+  "name": "Moonstone",
+  "keywords": [
+    "Intuition",
+    "Cycles",
+    "New beginnings"
+  ],
+  "chakra": [
+    "Crown",
+    "Sacral"
+  ],
+  "zodiac": [
+    "Cancer",
+    "Libra",
+    "Scorpio"
+  ],
+  "color": "Milky white with a blue glow",
+  "palette": [
+    "#eef0f6",
+    "#b7c2e0"
+  ],
+  "description": "A soft blue sheen that moves under the surface. Moonstone is worn for intuition, feminine cycles and fresh starts.",
+  "waterSafe": true,
+  "sunSafe": true,
+  "tier": "select"
+}

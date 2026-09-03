@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+<BaseLayout title="Wellness disclaimer" description="Crystal properties described on this site reflect traditional beliefs and are not medical advice.">
+  <section class="container-x pt-12 md:pt-20 pb-20 max-w-3xl prose-like">
+    <p class="eyebrow mb-3">Legal</p>
+    <h1 class="text-4xl md:text-5xl leading-[1]">Wellness disclaimer</h1>
+    <div class="text-muted mt-6 space-y-4 text-[0.95rem]">
+      <p>Crystal properties described on this website reflect traditional and metaphysical beliefs and are provided for informational and inspirational purposes only.</p>
+      <p>{site.name} products are not medical devices. They are not intended to diagnose, treat, cure or prevent any disease or condition, physical or mental. Nothing on this site is a substitute for professional medical, psychological, legal or financial advice. If you have a health concern, please speak to a qualified professional.</p>
+      <p>Individual experiences vary and no specific outcome is guaranteed.</p>
+      <p>All stones are natural. Colour, banding, inclusions and flash vary from piece to piece and from the photographs shown. This variation is a characteristic of natural stone, not a defect.</p>
+      <p>Bracelets contain small parts. Keep away from children under three years of age.</p>
+    </div>
+  </section>
+</BaseLayout>

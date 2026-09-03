@@ -1,0 +1,25 @@
+{
+  "name": "Lapis Lazuli",
+  "keywords": [
+    "Truth",
+    "Wisdom",
+    "Expression"
+  ],
+  "chakra": [
+    "Third Eye",
+    "Throat"
+  ],
+  "zodiac": [
+    "Sagittarius",
+    "Libra"
+  ],
+  "color": "Deep royal blue with gold pyrite flecks",
+  "palette": [
+    "#2b4a9a",
+    "#1a2b5c"
+  ],
+  "description": "The stone of kings and scribes. Lapis is worn for honest speech, wisdom and a clear inner vision.",
+  "waterSafe": false,
+  "sunSafe": true,
+  "tier": "select"
+}

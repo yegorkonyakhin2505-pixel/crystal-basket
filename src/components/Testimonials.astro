@@ -1,0 +1,25 @@
+---
+import site from '../data/site.json';
+/** Placeholder reviews. Replace with real ones in CONTENT-GUIDE.md step 5. */
+const reviews = [
+  { q: 'I bought The Still Mind for my exams and wore it every day. Whether it is the stone or the reminder, I felt calmer.', n: 'Mariam A.', c: 'Dubai', p: 'The Still Mind' },
+  { q: 'Gifted The Tender Heart to my sister. The card and the pouch made it feel like a real present, not an Instagram order.', n: 'Sara K.', c: 'Abu Dhabi', p: 'The Tender Heart' },
+  { q: 'Finally a men’s bracelet that is not shiny plastic. Heavy, matte, sized right the first time.', n: 'Omar H.', c: 'Sharjah', p: 'The Anchor' },
+];
+---
+<section class="container-x py-20 md:py-24">
+  <div class="reveal text-center mb-10">
+    <p class="text-accent-2 tracking-[0.3em]">★★★★★</p>
+    <h2 class="text-3xl md:text-[2.6rem] mt-3">{site.reviews.average} from {site.reviews.count} wrists</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-4">
+    {reviews.map((r, i) => (
+      <figure class="bg-surface border border-border rounded-brand p-6 reveal" style={`transition-delay:${i * 60}ms`}>
+        <blockquote class="font-display text-[1.3rem] leading-snug">“{r.q}”</blockquote>
+        <figcaption class="mt-5 text-[0.8rem] text-muted">
+          <span class="text-text">{r.n}</span> · {r.c} · <span class="italic">{r.p}</span>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</section>

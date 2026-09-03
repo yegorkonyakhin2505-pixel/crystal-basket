@@ -1,0 +1,67 @@
+---
+import { getCollection, getEntries } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductImage from '../components/ProductImage.astro';
+import StackBuilder from '../components/StackBuilder';
+import site from '../data/site.json';
+import { formatAED } from '../lib/format';
+
+const stacks = await getCollection('stacks');
+const stackProducts = await Promise.all(stacks.map((s) => getEntries(s.data.products)));
+const stackIntentions = await Promise.all(stacks.map(async (s) => (await getCollection('intentions')).find((i) => i.id === s.data.intention.id)!));
+const intentions = (await getCollection('intentions')).sort((a, b) => a.data.order - b.data.order);
+const stones = await getCollection('stones');
+const products = await getCollection('products');
+const builder = products.map((p) => ({
+  id: p.id,
+  name: p.data.name,
+  intention: p.data.intention.id,
+  intentionName: intentions.find((i) => i.id === p.data.intention.id)!.data.short,
+  stones: p.data.stones.map((s) => stones.find((x) => x.id === s.id)!.data.name).join(' · '),
+  priceAED: p.data.priceAED,
+  palettes: p.data.stones.map((s) => stones.find((x) => x.id === s.id)!.data.palette),
+  gold: p.data.goldAccent,
+}));
+---
+<BaseLayout title="Stacks & sets" description={`Curated three-piece crystal bracelet stacks by intention, or build your own from any three bracelets and save ${site.stackDiscountPct}%.`}>
+  <section class="container-x pt-12 md:pt-16 pb-10">
+    <p class="eyebrow mb-2">Stacks & sets</p>
+    <h1 class="text-4xl md:text-6xl max-w-3xl leading-[1]">Three pieces. One wrist. {site.stackDiscountPct}% off.</h1>
+    <p class="text-muted mt-4 max-w-xl">Start from a curated stack, or build your own below. Any three bracelets unlock the stack price.</p>
+  </section>
+
+  <section class="container-x pb-16 grid md:grid-cols-3 gap-4">
+    {stacks.map((s, i) => (
+      <div class="rounded-brand border border-border bg-surface overflow-hidden reveal" style={`transition-delay:${i * 60}ms`}>
+        <div class="grid grid-cols-3 gap-1 p-1">
+          {stackProducts[i].map((p) => <a href={`/products/${p.id}`} class="rounded-[calc(var(--radius)-2px)] overflow-hidden"><ProductImage product={p} ratio="1/1" /></a>)}
+        </div>
+        <div class="p-5">
+          <p class="eyebrow mb-1">{stackIntentions[i].data.short}</p>
+          <p class="font-display text-[1.5rem] leading-tight">{s.data.name}</p>
+          <p class="text-[0.85rem] text-muted mt-2">{s.data.description}</p>
+          <ul class="text-[0.82rem] mt-3 space-y-0.5">{stackProducts[i].map((p) => <li class="flex justify-between"><span>{p.data.name}</span><span class="price text-muted">{formatAED(p.data.priceAED)}</span></li>)}</ul>
+          <div class="flex items-baseline gap-2 mt-4">
+            <span class="price text-xl">{formatAED(s.data.priceAED)}</span>
+            <span class="price text-[0.8rem] text-muted line-through">{formatAED(stackProducts[i].reduce((t, p) => t + p.data.priceAED, 0))}</span>
+          </div>
+          <a
+            href={`https://wa.me/${site.whatsapp}?text=${encodeURIComponent(`${site.whatsappGreeting}\n• ${s.data.name} (${stackProducts[i].map((p) => p.data.name).join(', ')}) — AED ${s.data.priceAED}\nSizes: \nDelivery address:`)}`}
+            target="_blank" rel="noopener"
+            class="btn btn-primary w-full mt-4"
+          >Order on WhatsApp</a>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <section class="bg-surface border-y border-border">
+    <div class="container-x py-16">
+      <div class="mb-8 reveal">
+        <p class="eyebrow mb-2">Build your own</p>
+        <h2 class="text-3xl md:text-[2.6rem]">Pick any three</h2>
+      </div>
+      <StackBuilder client:visible products={builder} intentions={intentions.map((i) => ({ id: i.id, name: i.data.short }))} discountPct={site.stackDiscountPct} />
+    </div>
+  </section>
+</BaseLayout>

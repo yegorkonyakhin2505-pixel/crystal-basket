@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+const stones = await getCollection('stones');
+const noWater = stones.filter((s) => !s.data.waterSafe).map((s) => s.data.name);
+const noSun = stones.filter((s) => !s.data.sunSafe).map((s) => s.data.name);
+---
+<BaseLayout title="Cleanse & care" description="How to cleanse, charge and care for your crystal bracelet, and which stones should stay out of water and sun.">
+  <section class="container-x pt-12 md:pt-20 pb-12 max-w-3xl">
+    <p class="eyebrow mb-3">Cleanse & care</p>
+    <h1 class="text-4xl md:text-6xl leading-[1]">A monthly ritual, five minutes long.</h1>
+    <p class="text-muted mt-6">Cleansing is the habit of resetting a stone. Whatever you believe it does energetically, it is also when you check the cord, wipe the beads and remember why you bought it.</p>
+  </section>
+  <section class="container-x pb-12 grid md:grid-cols-3 gap-4 max-w-5xl">
+    {[['Moonlight', 'Leave the bracelet on a windowsill overnight, ideally around the full moon. Safe for every stone.'], ['Selenite', 'Rest it on a selenite plate or next to a selenite stick for a few hours. Our studio method.'], ['Smoke', 'Pass it through the smoke of palo santo, sage or oud a few times. Fast and traditional.']].map(([t, s]) => (
+      <div class="p-6 rounded-brand border border-border bg-surface"><p class="font-display text-2xl">{t}</p><p class="text-[0.9rem] text-muted mt-2">{s}</p></div>
+    ))}
+  </section>
+  <section class="container-x pb-12 max-w-5xl grid md:grid-cols-2 gap-4">
+    <div class="p-6 rounded-brand border border-border bg-surface">
+      <p class="eyebrow mb-2">Keep out of water</p>
+      <p class="text-[0.95rem]">{noWater.join(', ')}</p>
+      <p class="text-[0.82rem] text-muted mt-2">These are softer or layered stones. Water dulls them over time. Cleanse with smoke, selenite or moonlight.</p>
+    </div>
+    <div class="p-6 rounded-brand border border-border bg-surface">
+      <p class="eyebrow mb-2">Keep out of long sun</p>
+      <p class="text-[0.95rem]">{noSun.join(', ')}</p>
+      <p class="text-[0.82rem] text-muted mt-2">Colour fades with hours of direct sun. A few minutes is fine; a windowsill in July is not.</p>
+    </div>
+  </section>
+  <section class="container-x pb-20 max-w-3xl">
+    <p class="eyebrow mb-4">Everyday care</p>
+    <ul class="space-y-2 text-[0.95rem]">
+      {['Roll the bracelet on and off over the hand instead of stretching it wide.', 'Take it off for showers, swimming, the gym and the beach.', 'Put it on after perfume, sunscreen and lotion, not before.', 'Store it flat in its pouch, away from other jewellery that could scratch it.', 'Stretch cord is a wear part. If it ever gives, we restring it for free.'].map((t) => <li>· {t}</li>)}
+    </ul>
+  </section>
+</BaseLayout>

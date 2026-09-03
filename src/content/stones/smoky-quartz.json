@@ -1,0 +1,24 @@
+{
+  "name": "Smoky Quartz",
+  "keywords": [
+    "Grounding",
+    "Release",
+    "Detox"
+  ],
+  "chakra": [
+    "Root"
+  ],
+  "zodiac": [
+    "Scorpio",
+    "Capricorn"
+  ],
+  "color": "Translucent smoky brown",
+  "palette": [
+    "#7a6a5a",
+    "#3d3129"
+  ],
+  "description": "Quartz tinted by the earth. Smoky quartz is worn to release what is heavy and settle back into steadiness.",
+  "waterSafe": true,
+  "sunSafe": false,
+  "tier": "classic"
+}

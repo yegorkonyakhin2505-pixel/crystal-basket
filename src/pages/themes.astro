@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { THEMES } from '../lib/themes';
+---
+<BaseLayout title="Colour themes" description="Preview the six Crystal Basket colour themes.">
+  <section class="container-x pt-12 md:pt-20 pb-10 max-w-3xl">
+    <p class="eyebrow mb-3">Design preview</p>
+    <h1 class="text-4xl md:text-6xl leading-[1]">Six themes. Same shop.</h1>
+    <p class="text-muted mt-5">Click any card to switch the whole site. Use the toggle in the header for dark mode. The floating “Theme” button works on every page, and a link with <code class="text-[0.85em] bg-surface-2 px-1.5 py-0.5 rounded">?theme=rose&amp;mode=dark</code> opens the site in that theme for anyone.</p>
+  </section>
+  <section class="container-x pb-20 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {THEMES.map((t) => (
+      <button type="button" data-theme-pick={t.id} class="theme-card text-left rounded-brand border border-border bg-surface overflow-hidden hover:-translate-y-0.5 transition-transform">
+        <div class="grid grid-cols-2">
+          <div class="p-5 h-40 flex flex-col justify-between" style={`background:${t.swatch[0]}; color:${t.swatch[1]}`}>
+            <span class="text-[0.62rem] tracking-[0.18em] uppercase opacity-70">Light</span>
+            <span class="flex gap-1.5">{t.swatch.map((c) => <span class="w-6 h-6 rounded-full ring-1 ring-black/10" style={`background:${c}`}></span>)}</span>
+            <span class="font-display text-2xl">Aa</span>
+          </div>
+          <div class="p-5 h-40 flex flex-col justify-between" style={`background:${t.darkSwatch[0]}; color:${t.darkSwatch[1]}`}>
+            <span class="text-[0.62rem] tracking-[0.18em] uppercase opacity-70">Dark</span>
+            <span class="flex gap-1.5">{t.darkSwatch.map((c) => <span class="w-6 h-6 rounded-full ring-1 ring-white/10" style={`background:${c}`}></span>)}</span>
+            <span class="font-display text-2xl">Aa</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <p class="font-display text-[1.4rem] leading-tight">{t.name}</p>
+          <p class="text-[0.85rem] text-muted mt-1">{t.mood}</p>
+          <p class="text-[0.72rem] text-muted mt-2 uppercase tracking-wider">{t.fonts}</p>
+        </div>
+      </button>
+    ))}
+  </section>
+  <script>
+    document.querySelectorAll<HTMLButtonElement>('[data-theme-pick]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const t = b.dataset.themePick!;
+        document.documentElement.setAttribute('data-theme', t);
+        try { localStorage.setItem('cb-theme', t); } catch {}
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }),
+    );
+  </script>
+</BaseLayout>

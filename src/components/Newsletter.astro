@@ -1,0 +1,16 @@
+---
+import site from '../data/site.json';
+---
+<section class="container-x">
+  <div class="rounded-brand border border-border bg-surface p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center reveal">
+    <div>
+      <p class="eyebrow mb-2">Full-moon reminders</p>
+      <h2 class="text-3xl md:text-[2.4rem]">10% off your first bracelet</h2>
+      <p class="text-muted mt-3">One email a month: when to cleanse your stones, plus new pieces before Instagram sees them.</p>
+    </div>
+    <form class="flex flex-col sm:flex-row gap-2" action={`mailto:${site.email}?subject=Newsletter%20signup`} method="post" enctype="text/plain">
+      <input type="email" name="email" required placeholder="you@email.com" class="flex-1 bg-bg border border-border rounded-brand px-4 py-3 text-[0.95rem] focus:outline-none focus:border-text" />
+      <button type="submit" class="btn btn-primary">Join</button>
+    </form>
+  </div>
+</section>

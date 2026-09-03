@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+const steps = [
+  ['Sourced', 'We buy whole strands from graders we know, not marketplace lots. Every strand is checked bead by bead for dye, glass and glue.'],
+  ['Strung', 'Each bracelet is strung by hand on 1mm premium stretch cord, double-knotted and hidden inside a bead.'],
+  ['Cleansed', 'Finished pieces rest on a selenite slab for 48 hours before they are packed.'],
+  ['Packed', 'Linen pouch, a printed meaning and affirmation card, and a cleanse-and-care card. Ready to gift.'],
+];
+---
+<BaseLayout title="Our story" description={`How ${site.name} bracelets are sourced, strung and cleansed in ${site.city}.`}>
+  <section class="container-x pt-12 md:pt-20 pb-12 max-w-3xl">
+    <p class="eyebrow mb-3">Our story</p>
+    <h1 class="text-4xl md:text-6xl leading-[1]">A basket of stones on a kitchen table.</h1>
+    <p class="text-lg text-muted mt-6">{site.name} started in {site.city} with a bowl of loose beads and a few friends who kept asking for “the calm one”. It is still a small studio. Every bracelet is chosen, strung and cleansed by one pair of hands, and every stone is natural and undyed.</p>
+    <p class="text-muted mt-4">We do not promise the stones will change your life. We promise they are real, they are strung to last, and they will remind you of the intention you set when you put them on.</p>
+  </section>
+  <section class="container-x pb-20 grid md:grid-cols-4 gap-4">
+    {steps.map(([t, s], i) => (
+      <div class="p-6 rounded-brand border border-border bg-surface reveal" style={`transition-delay:${i * 60}ms`}>
+        <span class="font-display text-3xl text-accent-2">0{i + 1}</span>
+        <p class="font-display text-[1.4rem] mt-2">{t}</p>
+        <p class="text-[0.9rem] text-muted mt-2">{s}</p>
+      </div>
+    ))}
+  </section>
+  <section class="container-x pb-20 max-w-3xl">
+    <p class="eyebrow mb-3">What’s next</p>
+    <p class="text-muted">Bracelets first. Raw crystals, tumbled stones, clusters and towers are coming to the basket later this year, organised by the same eight intentions.</p>
+  </section>
+</BaseLayout>

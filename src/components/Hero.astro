@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import site from '../data/site.json';
+import ProductImage from './ProductImage.astro';
+const products = await getCollection('products');
+const feature = products.filter((p) => p.data.featured).sort((a, b) => Number(b.data.bestseller) - Number(a.data.bestseller));
+const [a, b, c] = feature;
+---
+<section class="relative overflow-hidden hero-wash">
+  <div class="container-x grid lg:grid-cols-[1.05fr_1fr] gap-10 lg:gap-16 items-center py-16 md:py-24 lg:py-28">
+    <div class="max-w-xl">
+      <p class="eyebrow mb-5 reveal">Hand-strung in {site.city} · Natural stones only</p>
+      <h1 class="text-[2.9rem] leading-[0.98] sm:text-6xl lg:text-[4.6rem] reveal" style="transition-delay:60ms">
+        Energy you can <em class="not-italic text-accent">wear.</em>
+      </h1>
+      <p class="text-muted text-lg mt-6 max-w-md reveal" style="transition-delay:120ms">
+        Crystal bracelets chosen by intention, not by trend. Protection, calm, love, abundance. Cleansed and charged before they leave our hands.
+      </p>
+      <div class="flex flex-wrap gap-3 mt-8 reveal" style="transition-delay:180ms">
+        <a href="/shop" class="btn btn-primary !px-7 !py-3.5">Shop bracelets</a>
+        <a href="/intentions" class="btn btn-outline !px-7 !py-3.5">Find your intention</a>
+      </div>
+      <div class="flex items-center gap-5 mt-10 text-[0.8rem] text-muted reveal" style="transition-delay:240ms">
+        <span class="flex items-center gap-1.5"><span class="text-accent-2">★★★★★</span> {site.reviews.average} · {site.reviews.count} reviews</span>
+        <span class="hidden sm:inline">·</span>
+        <span class="hidden sm:inline">{site.deliveryCopy}</span>
+      </div>
+    </div>
+
+    <div class="relative grid grid-cols-[1fr_0.8fr] gap-3 md:gap-4 reveal" style="transition-delay:150ms">
+      <a href={`/products/${a.id}`} class="row-span-2 rounded-brand overflow-hidden border border-border bg-surface-2 shadow-xl shadow-black/5">
+        <ProductImage product={a} ratio="4/5" eager />
+      </a>
+      <a href={`/products/${b.id}`} class="rounded-brand overflow-hidden border border-border bg-surface-2 shadow-lg shadow-black/5 mt-8">
+        <ProductImage product={b} ratio="1/1" eager />
+      </a>
+      <a href={`/products/${c.id}`} class="rounded-brand overflow-hidden border border-border bg-surface-2 shadow-lg shadow-black/5 -mt-8">
+        <ProductImage product={c} ratio="1/1" eager />
+      </a>
+      <div class="absolute -bottom-4 -left-4 md:-left-8 bg-surface border border-border rounded-brand px-4 py-3 shadow-lg shadow-black/10 text-[0.8rem]">
+        <p class="eyebrow !text-[0.62rem]">Most gifted</p>
+        <p class="font-display text-lg leading-tight">{a.data.name}</p>
+      </div>
+    </div>
+  </div>
+</section>

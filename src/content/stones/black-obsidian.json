@@ -1,0 +1,24 @@
+{
+  "name": "Black Obsidian",
+  "keywords": [
+    "Shielding",
+    "Truth",
+    "Release"
+  ],
+  "chakra": [
+    "Root"
+  ],
+  "zodiac": [
+    "Scorpio",
+    "Sagittarius"
+  ],
+  "color": "Glossy volcanic black",
+  "palette": [
+    "#2a2a2e",
+    "#0a0a0c"
+  ],
+  "description": "Volcanic glass with a mirror-like polish. Obsidian is worn as a shield and for the honesty to see what needs releasing.",
+  "waterSafe": true,
+  "sunSafe": true,
+  "tier": "classic"
+}

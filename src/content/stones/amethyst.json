@@ -1,0 +1,26 @@
+{
+  "name": "Amethyst",
+  "keywords": [
+    "Calm",
+    "Intuition",
+    "Sleep"
+  ],
+  "chakra": [
+    "Third Eye",
+    "Crown"
+  ],
+  "zodiac": [
+    "Pisces",
+    "Aquarius",
+    "Virgo"
+  ],
+  "color": "Lilac to deep violet",
+  "palette": [
+    "#b79ce0",
+    "#5d3a9c"
+  ],
+  "description": "The classic calming stone. Amethyst is traditionally worn to quiet an overactive mind, support restful sleep and open intuition.",
+  "waterSafe": true,
+  "sunSafe": false,
+  "tier": "classic"
+}

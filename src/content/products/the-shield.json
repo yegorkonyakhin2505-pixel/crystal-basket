@@ -1,0 +1,29 @@
+{
+  "name": "The Shield",
+  "subtitle": "Protection Bracelet · Black Obsidian",
+  "intention": "protection",
+  "secondaryIntentions": [],
+  "stones": [
+    "black-obsidian"
+  ],
+  "priceAED": 219,
+  "beadSizes": [
+    8,
+    10
+  ],
+  "defaultBead": 10,
+  "goldAccent": false,
+  "style": "men",
+  "triad": [
+    "Strength",
+    "Truth",
+    "Release"
+  ],
+  "promise": "One stone, one purpose. A clean black line around the wrist.",
+  "body": "Ten-millimetre polished obsidian, nothing else. Volcanic glass with a deep mirror finish, worn as a shield and for the honesty to see what needs to go.",
+  "affirmation": "I release what no longer serves me.",
+  "tags": [
+    "men",
+    "minimal"
+  ]
+}

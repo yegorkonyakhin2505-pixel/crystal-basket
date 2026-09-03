@@ -1,0 +1,84 @@
+---
+import { getCollection, getEntries } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import IntentionGrid from '../components/IntentionGrid.astro';
+import ProductGrid from '../components/ProductGrid.astro';
+import SectionHead from '../components/SectionHead.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Newsletter from '../components/Newsletter.astro';
+import ProductImage from '../components/ProductImage.astro';
+import site from '../data/site.json';
+import { formatAED } from '../lib/format';
+
+const all = await getCollection('products');
+const bestsellers = all.filter((p) => p.data.bestseller).slice(0, 6);
+const fresh = all.filter((p) => p.data.isNew).slice(0, 3);
+const stacks = (await getCollection('stacks')).filter((s) => s.data.featured);
+const stackProducts = await Promise.all(stacks.map((s) => getEntries(s.data.products)));
+const stones = (await getCollection('stones')).slice(0, 8);
+---
+<BaseLayout>
+  <Hero />
+  <TrustStrip />
+
+  <section class="container-x py-20 md:py-24">
+    <SectionHead eyebrow="Shop by intention" title="What do you need more of?" text="Every bracelet in the basket is strung around one intention. Start there, not with the stone." href="/intentions" linkLabel="All intentions" />
+    <IntentionGrid />
+  </section>
+
+  <section class="container-x pb-20 md:pb-24">
+    <SectionHead eyebrow="Bestsellers" title="The ones that leave first" href="/shop" linkLabel="Shop all bracelets" />
+    <ProductGrid products={bestsellers} />
+  </section>
+
+  <section class="bg-surface border-y border-border">
+    <div class="container-x py-20 md:py-24">
+      <SectionHead eyebrow="Stacks & sets" title={`Three pieces, ${site.stackDiscountPct}% off`} text="Curated stacks for one intention, or build your own from any three bracelets." href="/stacks" linkLabel="Build a stack" />
+      <div class="grid md:grid-cols-3 gap-4">
+        {stacks.map((s, i) => (
+          <a href="/stacks" class="group rounded-brand border border-border bg-bg overflow-hidden reveal" style={`transition-delay:${i * 60}ms`}>
+            <div class="grid grid-cols-3 gap-1 p-1">
+              {stackProducts[i].map((p) => <div class="rounded-[calc(var(--radius)-2px)] overflow-hidden"><ProductImage product={p} ratio="1/1" /></div>)}
+            </div>
+            <div class="p-5">
+              <p class="font-display text-[1.4rem] leading-tight">{s.data.name}</p>
+              <p class="text-[0.85rem] text-muted mt-1.5">{s.data.description}</p>
+              <div class="flex items-baseline gap-2 mt-3">
+                <span class="price">{formatAED(s.data.priceAED)}</span>
+                <span class="price text-[0.8rem] text-muted line-through">{formatAED(stackProducts[i].reduce((t, p) => t + p.data.priceAED, 0))}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-x py-20 md:py-24 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <div class="reveal">
+      <p class="eyebrow mb-3">Our story</p>
+      <h2 class="text-3xl md:text-[2.6rem] leading-tight">Chosen by hand. Strung one at a time. Cleansed before they leave.</h2>
+      <p class="text-muted mt-5">Crystal Basket started as a basket of stones on a kitchen table in {site.city}, strung for friends who wanted something meaningful on their wrist without the mall markup. Every bracelet is still made the same way: natural beads only, graded by eye, strung on premium cord, then rested on selenite for two days before it goes into a linen pouch with its meaning card.</p>
+      <a href="/about" class="inline-block mt-6 text-[0.9rem] underline underline-offset-4 decoration-border hover:decoration-text">Read the whole story →</a>
+    </div>
+    <div class="grid grid-cols-4 gap-2 reveal" style="transition-delay:100ms">
+      {stones.map((s) => (
+        <a href={`/stones/${s.id}`} class="aspect-square rounded-brand border border-border flex items-end p-2.5 hover:-translate-y-0.5 transition-transform" style={`background: radial-gradient(circle at 35% 30%, ${s.data.palette[0]}, ${s.data.palette[1]});`}>
+          <span class="text-[0.62rem] tracking-wider uppercase bg-bg/85 text-text px-1.5 py-0.5 rounded-full">{s.data.name}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {fresh.length > 0 && (
+    <section class="container-x pb-20 md:pb-24">
+      <SectionHead eyebrow="New in" title="Just strung" href="/shop" />
+      <ProductGrid products={fresh} />
+    </section>
+  )}
+
+  <Testimonials />
+  <Newsletter />
+</BaseLayout>

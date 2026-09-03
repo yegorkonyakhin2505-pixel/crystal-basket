@@ -1,0 +1,25 @@
+{
+  "name": "Carnelian",
+  "keywords": [
+    "Vitality",
+    "Creativity",
+    "Drive"
+  ],
+  "chakra": [
+    "Sacral"
+  ],
+  "zodiac": [
+    "Aries",
+    "Leo",
+    "Virgo"
+  ],
+  "color": "Burnt orange",
+  "palette": [
+    "#e07a3a",
+    "#a33f14"
+  ],
+  "description": "Warm and energising. Carnelian is worn for creative fire, physical energy and the courage to start.",
+  "waterSafe": true,
+  "sunSafe": false,
+  "tier": "classic"
+}

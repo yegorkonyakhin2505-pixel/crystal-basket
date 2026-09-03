@@ -1,0 +1,24 @@
+{
+  "name": "Hematite",
+  "keywords": [
+    "Grounding",
+    "Focus",
+    "Steadiness"
+  ],
+  "chakra": [
+    "Root"
+  ],
+  "zodiac": [
+    "Aries",
+    "Aquarius"
+  ],
+  "color": "Metallic silver-grey",
+  "palette": [
+    "#9a9aa3",
+    "#4a4a52"
+  ],
+  "description": "Heavy, cool and mirror-bright. Hematite is worn to feel anchored and to draw scattered focus back into the body.",
+  "waterSafe": false,
+  "sunSafe": true,
+  "tier": "classic"
+}

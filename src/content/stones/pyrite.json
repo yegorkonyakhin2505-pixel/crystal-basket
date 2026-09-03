@@ -1,0 +1,23 @@
+{
+  "name": "Pyrite",
+  "keywords": [
+    "Wealth",
+    "Action",
+    "Willpower"
+  ],
+  "chakra": [
+    "Solar Plexus"
+  ],
+  "zodiac": [
+    "Leo"
+  ],
+  "color": "Brassy gold",
+  "palette": [
+    "#d4b04a",
+    "#8a6a1e"
+  ],
+  "description": "Fool's gold that behaves like the real thing. Pyrite is worn for wealth, drive and getting things done.",
+  "waterSafe": false,
+  "sunSafe": true,
+  "tier": "select"
+}

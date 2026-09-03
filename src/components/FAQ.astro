@@ -1,0 +1,22 @@
+---
+export interface QA { q: string; a: string }
+interface Props { items: QA[]; schema?: boolean }
+const { items, schema = false } = Astro.props;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((i) => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })),
+};
+---
+<div class="divide-y divide-border border-y border-border">
+  {items.map((i) => (
+    <details class="group py-4">
+      <summary class="flex justify-between items-center gap-4 cursor-pointer list-none text-[1.02rem]">
+        {i.q}
+        <span class="text-muted transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+      </summary>
+      <p class="text-muted mt-3 text-[0.95rem] max-w-2xl">{i.a}</p>
+    </details>
+  ))}
+</div>
+{schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

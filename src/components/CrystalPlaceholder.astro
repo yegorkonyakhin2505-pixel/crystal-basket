@@ -1,0 +1,56 @@
+---
+/**
+ * Generated bracelet artwork. Replace with a real photo by adding files to
+ * public/images/products/<slug>/ and listing them in the product JSON.
+ */
+import { beadRing } from '../lib/placeholder';
+interface Props {
+  seed: string;
+  palettes: [string, string][];
+  wash?: [string, string];
+  goldAccent?: boolean;
+  beadMm?: number;
+  ratio?: '4/5' | '1/1' | '3/2';
+  class?: string;
+}
+const { seed, palettes, wash = ['#eee', '#ddd'], goldAccent = false, beadMm = 8, ratio = '4/5', class: cls = '' } = Astro.props;
+const dims = ratio === '1/1' ? [400, 400] : ratio === '3/2' ? [450, 300] : [400, 500];
+const [w, h] = dims;
+const beads = beadRing({ seed, palettes, goldAccent, beadMm, width: w, height: h });
+const uid = seed.replace(/[^a-z0-9]/gi, '') + Math.abs(w * 7 + h);
+---
+<svg class={`block w-full h-full ${cls}`} viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="xMidYMid slice" role="img" aria-label="Bracelet illustration" style={`aspect-ratio: ${w} / ${h};`}>
+  <defs>
+    <radialGradient id={`wash-${uid}`} cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color={wash[1]} stop-opacity="0.55" />
+      <stop offset="100%" stop-color={wash[0]} stop-opacity="0.15" />
+    </radialGradient>
+    <filter id={`grain-${uid}`}>
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
+      <feColorMatrix type="saturate" values="0" />
+      <feComponentTransfer><feFuncA type="table" tableValues="0 0.05" /></feComponentTransfer>
+    </filter>
+    <filter id={`shadow-${uid}`} x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-opacity="0.18" />
+    </filter>
+    {beads.map((b, i) => (
+      <radialGradient id={`b-${uid}-${i}`} cx="35%" cy="32%" r="70%">
+        <stop offset="0%" stop-color={b.gold ? '#f6e3a1' : b.from} />
+        <stop offset="70%" stop-color={b.gold ? '#c9a24a' : b.to} />
+        <stop offset="100%" stop-color={b.gold ? '#8a6a2b' : b.to} stop-opacity="0.9" />
+      </radialGradient>
+    ))}
+  </defs>
+  <rect width={w} height={h} fill="var(--surface-2)" />
+  <rect width={w} height={h} fill={`url(#wash-${uid})`} />
+  <ellipse cx={w / 2} cy={h / 2 + 8} rx={Math.min(w, h) * 0.36} ry={Math.min(w, h) * 0.34} fill="none" stroke="var(--border)" stroke-width="1" opacity="0.6" />
+  <g filter={`url(#shadow-${uid})`}>
+    {beads.map((b, i) => (
+      <circle cx={b.cx} cy={b.cy} r={b.r} fill={`url(#b-${uid}-${i})`} />
+    ))}
+    {beads.map((b) => (
+      <ellipse cx={b.cx - b.r * 0.3} cy={b.cy - b.r * 0.38} rx={b.r * 0.28} ry={b.r * 0.18} fill="#fff" opacity="0.55" />
+    ))}
+  </g>
+  <rect width={w} height={h} filter={`url(#grain-${uid})`} opacity="0.7" />
+</svg>

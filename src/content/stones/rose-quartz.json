@@ -1,0 +1,24 @@
+{
+  "name": "Rose Quartz",
+  "keywords": [
+    "Love",
+    "Compassion",
+    "Self-worth"
+  ],
+  "chakra": [
+    "Heart"
+  ],
+  "zodiac": [
+    "Taurus",
+    "Libra"
+  ],
+  "color": "Pale blush pink",
+  "palette": [
+    "#f3cdd3",
+    "#e0a3ae"
+  ],
+  "description": "The stone of the heart. Rose quartz is worn for compassion, tenderness and the everyday practice of self-love.",
+  "waterSafe": true,
+  "sunSafe": false,
+  "tier": "classic"
+}

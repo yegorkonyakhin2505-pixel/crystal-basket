@@ -1,0 +1,34 @@
+{
+  "name": "The Tender Heart",
+  "subtitle": "Love Bracelet · Rose Quartz",
+  "intention": "love",
+  "secondaryIntentions": [
+    "calm"
+  ],
+  "stones": [
+    "rose-quartz"
+  ],
+  "priceAED": 199,
+  "beadSizes": [
+    6,
+    8
+  ],
+  "defaultBead": 6,
+  "goldAccent": true,
+  "style": "women",
+  "triad": [
+    "Softness",
+    "Worth",
+    "Warmth"
+  ],
+  "promise": "A reminder, worn on the wrist, that you are easy to love.",
+  "body": "Slim six-millimetre rose quartz in a soft blush, finished with a gold-filled spacer. The stone of the heart, worn for compassion, tenderness and self-worth.",
+  "affirmation": "I am worthy of the love I give.",
+  "featured": true,
+  "bestseller": true,
+  "tags": [
+    "bestseller",
+    "gift",
+    "gold"
+  ]
+}

@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntries, getEntry } from 'astro:content';
+import ProductImage from './ProductImage.astro';
+import { formatAED } from '../lib/format';
+
+interface Props { product: CollectionEntry<'products'>; eager?: boolean }
+const { product, eager = false } = Astro.props;
+const stones = await getEntries(product.data.stones);
+const intention = await getEntry(product.data.intention);
+const d = product.data;
+const badge = d.isNew ? 'New' : d.bestseller ? 'Bestseller' : null;
+const tags = [d.style, d.goldAccent ? 'gold' : null, d.isNew ? 'new' : null, d.bestseller ? 'bestseller' : null, ...d.tags].filter(Boolean).join(' ');
+---
+<a href={`/products/${product.id}`} class="group block reveal" data-tags={tags}>
+  <div class="relative overflow-hidden rounded-brand bg-surface-2 border border-border">
+    <div class="transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.02]">
+      <ProductImage product={product} ratio="4/5" eager={eager} />
+    </div>
+    {badge && <span class="absolute top-3 left-3 bg-bg/90 text-text text-[0.66rem] tracking-[0.14em] uppercase px-2.5 py-1 rounded-full border border-border">{badge}</span>}
+    {d.goldAccent && <span class="absolute top-3 right-3 w-2.5 h-2.5 rounded-full bg-accent-2 ring-2 ring-bg" title="14k gold-filled accent"></span>}
+  </div>
+  <div class="pt-3.5 flex justify-between items-start gap-3">
+    <div class="min-w-0">
+      <p class="font-display text-[1.2rem] leading-tight">{d.name}</p>
+      <p class="text-[0.8rem] text-muted truncate">{stones.map((s) => s.data.name).join(' · ')}</p>
+      <p class="text-[0.72rem] text-accent mt-0.5">{intention.data.short}</p>
+    </div>
+    <p class="price text-[0.95rem] shrink-0">{formatAED(d.priceAED)}</p>
+  </div>
+</a>

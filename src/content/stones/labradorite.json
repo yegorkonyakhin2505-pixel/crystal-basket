@@ -1,0 +1,26 @@
+{
+  "name": "Labradorite",
+  "keywords": [
+    "Transformation",
+    "Magic",
+    "Aura shield"
+  ],
+  "chakra": [
+    "Third Eye",
+    "Throat"
+  ],
+  "zodiac": [
+    "Leo",
+    "Scorpio",
+    "Sagittarius"
+  ],
+  "color": "Grey with flashes of blue and gold",
+  "palette": [
+    "#5e6d86",
+    "#8a7a4a"
+  ],
+  "description": "Grey until it catches the light, then flashes blue, gold and green. Labradorite is worn for transformation and protection of the aura.",
+  "waterSafe": true,
+  "sunSafe": true,
+  "tier": "rare"
+}
