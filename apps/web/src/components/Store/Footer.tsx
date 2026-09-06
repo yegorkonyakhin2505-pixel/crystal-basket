@@ -3,6 +3,7 @@ import { getIntentions } from "@crystal-basket/catalog";
 import { site } from "@/lib/site";
 import { routes } from "@/lib/paths";
 import { Wordmark } from "./Wordmark";
+import { LogoBadge } from "./LogoBadge";
 
 export function Footer() {
   const intentions = getIntentions();
@@ -28,7 +29,7 @@ export function Footer() {
         ))}
       </div>
       <div className="container-x border-t border-cb-line pt-6 flex flex-col md:flex-row gap-3 items-start md:items-center justify-between text-[11px] text-cb-muted">
-        <Wordmark className="text-[0.9rem]" />
+        <span className="flex items-center gap-2"><LogoBadge className="h-7 w-7" /><Wordmark className="text-[0.9rem]" /></span>
         <p>© {year} {site.name}, {site.city}. Crystal meanings reflect traditional beliefs and are not medical advice.</p>
       </div>
     </footer>

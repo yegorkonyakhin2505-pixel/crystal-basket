@@ -7,6 +7,7 @@ import { cn } from "@/components/ui";
 import { routes } from "@/lib/paths";
 import { useWishlist } from "@/hooks/useWishlist";
 import { Wordmark } from "./Wordmark";
+import { LogoBadge } from "./LogoBadge";
 import { BagButton } from "./BagButton";
 
 interface NavItem { href: string; label: string; menu?: "intentions" | "stones" }
@@ -54,8 +55,9 @@ export function HeaderClient({ nav, intentions, stones, whatsappUrl, siteName, c
       {/* Wordmark row */}
       <div className={cn("container-x relative flex items-center justify-between lg:justify-center transition-all duration-300", compact ? "h-14" : "h-16 lg:h-24")}>
         <button className="lg:hidden p-2 -ml-2" aria-label="Open menu" onClick={() => setOpen(true)}><Menu className="h-5 w-5" /></button>
-        <Link href={routes.home} aria-label={`${siteName} home`} className="block">
-          <Wordmark className={cn("transition-all duration-300", compact ? "text-[1.2rem] lg:text-[1.6rem]" : "text-[1.35rem] lg:text-[2.6rem]")} />
+        <Link href={routes.home} aria-label={`${siteName} home`} className="flex items-center gap-3 lg:gap-4 text-cb-ink">
+          <LogoBadge className={cn("transition-all duration-300 shrink-0", compact ? "h-9 w-9 lg:h-10 lg:w-10" : "h-10 w-10 lg:h-16 lg:w-16")} />
+          <Wordmark className={cn("transition-all duration-300", compact ? "text-[1.2rem] lg:text-[1.6rem]" : "text-[1.35rem] lg:text-[2.4rem]")} />
         </Link>
         <div className="flex items-center gap-1 lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2">
           <Link href={routes.shop} className="p-2 hover:text-cb-rose" aria-label="Search"><Search className="h-5 w-5" strokeWidth={1.5} /></Link>
@@ -107,7 +109,7 @@ export function HeaderClient({ nav, intentions, stones, whatsappUrl, siteName, c
           <div className="absolute inset-0 bg-black/30" onClick={() => setOpen(false)} />
           <div className="absolute inset-y-0 left-0 w-[86%] max-w-sm bg-white p-6 overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
-              <Wordmark className="text-[1.2rem]" />
+              <span className="flex items-center gap-2"><LogoBadge className="h-8 w-8" /><Wordmark className="text-[1.1rem]" /></span>
               <button className="p-2 -mr-2" aria-label="Close menu" onClick={() => setOpen(false)}><X className="h-5 w-5" /></button>
             </div>
             <nav className="flex flex-col">

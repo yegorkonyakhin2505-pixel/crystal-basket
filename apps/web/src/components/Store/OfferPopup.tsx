@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import { flags, site } from "@/lib/site";
 import { asset } from "@/lib/paths";
 import { dismissOffer, isOfferDismissed, isSubscribed, markSubscribed } from "@/lib/subscribe";
+import { LogoBadge } from "./LogoBadge";
 
 /**
  * Welcome-offer modal. Opens once per browser after the visitor's first
@@ -60,6 +61,7 @@ export function OfferPopup() {
           <button type="button" onClick={close} aria-label="Close" className="absolute right-3 top-3 p-2 text-cb-muted hover:text-cb-ink"><X className="h-5 w-5" /></button>
           {!done ? (
             <>
+              <LogoBadge className="h-14 w-14 mb-4 text-cb-ink" />
               <p className="label-caps mb-3">Welcome to {site.name}</p>
               <h2 id="offer-title" className="text-[2.2rem] md:text-[2.6rem] leading-[1.05]">{site.welcome.pct}% off your first bracelet.</h2>
               <p className="text-cb-muted text-[14px] mt-4">Leave your email and we&apos;ll send your code, plus one note a month: when to cleanse your stones, and new pieces before Instagram sees them.</p>
