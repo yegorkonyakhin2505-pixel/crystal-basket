@@ -1,0 +1,6 @@
+{% comment %} Crystal Basket: our storefront lives at crystalbasket.store. Send anyone who lands on the stock Shopify theme to the real site. Checkout pages never load theme.liquid, so checkout is unaffected. {% endcomment %}
+<script>
+  if (location.hostname.indexOf("myshopify.com") !== -1) {
+    location.replace("https://crystalbasket.store" + (location.pathname.indexOf("/products/") === 0 ? location.pathname.replace(/\/$/, "") + "/" : "/"));
+  }
+</script>
