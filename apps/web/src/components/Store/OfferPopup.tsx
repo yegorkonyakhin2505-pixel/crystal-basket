@@ -23,10 +23,8 @@ export function OfferPopup() {
     let armed = false;
     const show = () => { if (!armed) { armed = true; timer = window.setTimeout(() => setOpen(true), 1500); cleanup(); } };
     const idle = window.setTimeout(show, 12000);
-    const cleanup = () => { window.removeEventListener("scroll", show); window.removeEventListener("click", show); window.removeEventListener("keydown", show); };
+    const cleanup = () => { window.removeEventListener("scroll", show); };
     window.addEventListener("scroll", show, { passive: true, once: true });
-    window.addEventListener("click", show, { once: true });
-    window.addEventListener("keydown", show, { once: true });
     return () => { cleanup(); window.clearTimeout(idle); if (timer) window.clearTimeout(timer); };
   }, []);
 

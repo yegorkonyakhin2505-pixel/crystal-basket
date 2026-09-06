@@ -20,9 +20,9 @@ jobs:
     env:
       # Custom domain crystalbasket.store is attached (N07), so the site lives at the root.
       NEXT_PUBLIC_BASE_PATH: ""
-      # Shopify Storefront (N11). Domain is a repo variable, token a repo secret. Both empty = WhatsApp/payment-link mode.
+      # Shopify Storefront (N11). Public (client-side) token and domain are repo variables. Both empty = WhatsApp/payment-link mode.
       NEXT_PUBLIC_SHOPIFY_DOMAIN: ${{ vars.SHOPIFY_DOMAIN }}
-      NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN: ${{ secrets.SHOPIFY_STOREFRONT_TOKEN }}
+      NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN: ${{ vars.SHOPIFY_STOREFRONT_PUBLIC_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
