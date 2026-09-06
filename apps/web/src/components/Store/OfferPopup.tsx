@@ -18,11 +18,14 @@ export function OfferPopup() {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    if (!flags.offerPopup || isSubscribed() || isOfferDismissed()) return;
+    if (!flags.offerPopup) return;
+    const force = new URLSearchParams(window.location.search).get("offer") === "1";
+    if (!force && (isSubscribed() || isOfferDismissed())) return;
+    if (force) { setOpen(true); return; }
     let timer: number | undefined;
     let armed = false;
     const show = () => { if (!armed) { armed = true; timer = window.setTimeout(() => setOpen(true), 1500); cleanup(); } };
-    const idle = window.setTimeout(show, 12000);
+    const idle = window.setTimeout(show, 4000);
     const cleanup = () => { window.removeEventListener("scroll", show); };
     window.addEventListener("scroll", show, { passive: true, once: true });
     return () => { cleanup(); window.clearTimeout(idle); if (timer) window.clearTimeout(timer); };
