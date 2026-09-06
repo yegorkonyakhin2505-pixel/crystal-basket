@@ -3,7 +3,7 @@ export function TrustStrip() {
   const items = [
     ["100% natural stones", "Never dyed, never glass. Variation is proof."],
     ["Cleansed & charged", "48 hours on selenite before it ships."],
-    [`Same-day in ${site.city}`, "Next-day UAE. Cash on delivery available."],
+    ["Next-day delivery", "Across the UAE. Cash on delivery available."],
     ["Free re-string, for life", "If the cord ever gives, we fix it."],
   ];
   return (

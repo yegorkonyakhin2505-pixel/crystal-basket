@@ -70,34 +70,41 @@ export function FilterBar({ intentions, stones, total, gridId }: { intentions: F
   const activeCount = Object.values(state).reduce((n, a) => n + a.length, 0);
 
   return (
-    <div data-filter-root className="sticky top-[56px] lg:top-[88px] z-30">
+    <div data-filter-root className="sticky top-[64px] lg:top-[96px] z-30">
       <div className="bg-white/95 backdrop-blur-sm border-y border-cb-line">
         <div className="container-x flex items-center justify-start lg:justify-center gap-2 lg:gap-10 overflow-x-auto py-3 text-[14px]">
           {groups.map((g) => {
             const n = state[g.key].length;
             return (
-              <div key={g.key} className="relative shrink-0">
-                <button type="button" onClick={() => setOpen(open === g.key ? null : g.key)} className={cn("inline-flex items-center gap-1.5 py-1.5 px-2 whitespace-nowrap hover:text-cb-rose", n > 0 && "text-cb-rose")} aria-expanded={open === g.key}>
-                  {g.label}{n > 0 && ` (${n})`} <ChevronDown className={cn("h-4 w-4 transition-transform", open === g.key && "rotate-180")} />
-                </button>
-                {open === g.key && (
-                  <div className="absolute left-0 top-full mt-2 min-w-[240px] max-h-[360px] overflow-y-auto bg-white border border-cb-line shadow-xl shadow-black/5 p-3 z-40">
-                    {g.options.map((o) => {
-                      const on = state[g.key].includes(o.id);
-                      return (
-                        <label key={o.id} className="flex items-center gap-3 px-2 py-2 cursor-pointer hover:bg-cb-band text-[14px]">
-                          <span className={cn("h-4 w-4 border flex items-center justify-center", on ? "bg-cb-ink border-cb-ink text-white" : "border-cb-line")}>{on && "✓"}</span>
-                          <input type="checkbox" className="sr-only" checked={on} onChange={() => toggle(g.key, o.id)} />
-                          {o.label}
-                        </label>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
+              <button key={g.key} type="button" onClick={() => setOpen(open === g.key ? null : g.key)} className={cn("inline-flex items-center gap-1.5 py-1.5 px-2 whitespace-nowrap shrink-0 hover:text-cb-rose", (n > 0 || open === g.key) && "text-cb-rose")} aria-expanded={open === g.key}>
+                {g.label}{n > 0 && ` (${n})`} <ChevronDown className={cn("h-4 w-4 transition-transform", open === g.key && "rotate-180")} />
+              </button>
             );
           })}
         </div>
+        {open && (() => {
+          const g = groups.find((x) => x.key === open)!;
+          return (
+            <div className="border-t border-cb-line bg-white">
+              <div className="container-x py-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-1 max-h-[50vh] overflow-y-auto">
+                {g.options.map((o) => {
+                  const on = state[g.key].includes(o.id);
+                  return (
+                    <label key={o.id} className="flex items-center gap-3 px-2 py-2 cursor-pointer hover:bg-cb-band text-[14px]">
+                      <span className={cn("h-4 w-4 border flex items-center justify-center text-[10px]", on ? "bg-cb-ink border-cb-ink text-white" : "border-cb-line")}>{on && "✓"}</span>
+                      <input type="checkbox" className="sr-only" checked={on} onChange={() => toggle(g.key, o.id)} />
+                      {o.label}
+                    </label>
+                  );
+                })}
+              </div>
+              <div className="container-x pb-3 flex justify-end gap-4 text-[12px]">
+                {state[g.key].length > 0 && <button type="button" onClick={() => setState((s) => ({ ...s, [g.key]: [] }))} className="underline underline-offset-4 text-cb-muted hover:text-cb-ink">Clear {g.label.toLowerCase()}</button>}
+                <button type="button" onClick={() => setOpen(null)} className="underline underline-offset-4 hover:text-cb-rose">Done</button>
+              </div>
+            </div>
+          );
+        })()}
       </div>
       <div className="bg-cb-band border-b border-cb-line">
         <div className="container-x flex items-center justify-between py-3 text-[13px]">

@@ -17,8 +17,9 @@ export function Header() {
     { href: routes.about, label: "Our story" },
   ];
   return (
-    <header className="relative z-40 bg-white">
+    <>
       <div className="bg-cb-ink text-white text-[11px] tracking-[0.12em] uppercase text-center py-2 px-4">{site.announcement}</div>
+      <header className="sticky top-0 z-40 bg-white">
       <HeaderClient
         nav={nav}
         intentions={intentions.map((i) => ({ id: i.id, name: i.data.name, short: i.data.short, tagline: i.data.tagline }))}
@@ -27,6 +28,7 @@ export function Header() {
         siteName={site.name}
         city={site.city}
       />
-    </header>
+      </header>
+    </>
   );
 }

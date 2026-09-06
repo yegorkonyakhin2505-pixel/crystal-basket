@@ -17,7 +17,7 @@ export const site = {
   instagram: "crystalbasket.ae",
   tiktok: "crystalbasket.ae",
   freeDeliveryAED: 250,
-  deliveryCopy: "Same-day delivery in Dubai, next-day across the UAE.",
+  deliveryCopy: "Next-day delivery across the UAE.",
   announcement: "Free UAE delivery over 250 AED · Every piece cleansed & charged before it ships",
   stackDiscountPct: 15,
   /** TODO[NEEDED:N03] replace with real review numbers. */

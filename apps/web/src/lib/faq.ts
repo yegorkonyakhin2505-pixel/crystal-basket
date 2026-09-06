@@ -10,7 +10,7 @@ export const productFaq: QA[] = [
 ];
 export const orderingFaq: QA[] = [
   { q: "How do I pay?", a: "Card checkout through our secure payment links where available, or order on WhatsApp and pay by card link, bank transfer or cash on delivery." },
-  { q: "How fast is delivery?", a: "Same-day in Dubai, next-day across the UAE. Free over 250 AED." },
+  { q: "How fast is delivery?", a: "Next-day across the UAE, once your order is confirmed. Free over 250 AED." },
   { q: "Can I exchange the size?", a: "Yes. Unworn, within 14 days. We cover the courier once. Send us your wrist measurement first and we will string it to size." },
   { q: "Do you gift-wrap?", a: "Every bracelet ships in a linen pouch with its meaning card. Add a note in the WhatsApp order and we will include a handwritten card." },
 ];

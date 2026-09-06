@@ -36,7 +36,7 @@ export function HeaderClient({ nav, intentions, stones, whatsappUrl, siteName, c
   const active = (href: string) => (href === "/" ? path === "/" : path.startsWith(href.replace(/\/$/, "")));
 
   return (
-    <div className={cn("sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-cb-line transition-[padding] duration-300")}>
+    <div className="bg-white/95 backdrop-blur-sm border-b border-cb-line">
       {/* Utility row */}
       <div className={cn("container-x hidden lg:flex items-center justify-between text-[12px] text-cb-muted transition-all duration-300 overflow-hidden", compact ? "h-0 opacity-0" : "h-9 opacity-100")}>
         <div className="flex items-center gap-4">
