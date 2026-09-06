@@ -8,6 +8,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { Header } from "@/components/Store/Header";
 import { Footer } from "@/components/Store/Footer";
 import { NewsletterBar } from "@/components/Store/NewsletterBar";
+import { OfferPopup } from "@/components/Store/OfferPopup";
 import { asset } from "@/lib/paths";
 
 const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"], variable: "--font-cormorant", display: "swap" });
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <main className="flex-1">{children}</main>
             <Footer />
             <NewsletterBar />
+            <OfferPopup />
           </SmoothScroll>
           <ScrollReveal />
         </QueryProvider>

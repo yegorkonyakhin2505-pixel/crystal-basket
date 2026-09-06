@@ -29,13 +29,13 @@
 
 **`components/ui`** (design system, see `DESIGN.md`): `Button`, `ButtonLink`, `buttonClasses`, `Badge`, `Input`, `AccordionItem`, `SectionTitle`, `cn`.
 
-**`components/Store`:** `Header` (server) + `HeaderClient` (sticky, compact on scroll, mega-menus, mobile drawer) · `Wordmark` · `Footer` · `NewsletterBar` (client, dismissable) · `Hero` · `ListingHero` · `CategoryGrid` · `ProductGrid` · `ProductTile` · `BeadRing` (SVG fallback art) · `FilterBar` (client) · `BuyBox` (client) · `StackBuilder` (client) · `WishlistButton` · `WishlistClient` · `TrustStrip` · `Testimonials`.
+**`components/Store`:** `Header` (server) + `HeaderClient` (sticky, compact on scroll, mega-menus, mobile drawer) · `Wordmark` · `Footer` · `NewsletterBar` (client, dismissable) · `OfferPopup` (client, welcome-offer modal after first interaction) · `Hero` · `ListingHero` · `CategoryGrid` · `ProductGrid` · `ProductTile` · `BeadRing` (SVG fallback art) · `FilterBar` (client) · `BuyBox` (client) · `StackBuilder` (client) · `WishlistButton` · `WishlistClient` · `TrustStrip` · `Testimonials`.
 
 **Root:** `Img` (base-path aware `<img>`), `QueryProvider`, `SmoothScroll` (Lenis), `ScrollReveal`.
 
 ## Lib & hooks
 
-`lib/site.ts` (site config + feature flags) · `lib/paths.ts` (`routes`, `asset`, `BASE`) · `lib/whatsapp.ts` · `lib/images.ts` · `lib/sizes.ts` · `lib/faq.ts` · `hooks/useWishlist.ts`.
+`lib/site.ts` (site config + feature flags) · `lib/paths.ts` (`routes`, `asset`, `BASE`) · `lib/whatsapp.ts` · `lib/images.ts` · `lib/sizes.ts` · `lib/faq.ts` · `lib/subscribe.ts` (shared email-capture state) · `hooks/useWishlist.ts`.
 
 ## Catalog API (`@crystal-basket/catalog`)
 

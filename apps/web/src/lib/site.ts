@@ -23,6 +23,8 @@ export const site = {
   /** TODO[NEEDED:N03] replace with real review numbers. */
   reviews: { average: 4.9, count: 312 },
   whatsappGreeting: "Hi Crystal Basket! I'd like to order:",
+  /** Welcome offer shown in the popup and newsletter bar. */
+  welcome: { pct: 10, code: "WELCOME10" },
 } as const;
 
 /** Feature flags. Default off. Flip once the matching NEEDED item is done. */
@@ -33,4 +35,6 @@ export const flags = {
   newsletter: false,
   /** Wishlist persisted in localStorage (no account needed). */
   wishlist: true,
+  /** Welcome-offer popup after the first interaction. */
+  offerPopup: true,
 } as const;

@@ -45,7 +45,7 @@ crystal-basket/
 | M5 | Buy flow (bead/size → payment link / WhatsApp) | `apps/web/src/components/Store/BuyBox.tsx`, `src/lib/whatsapp.ts` |
 | M6 | Stack builder | `apps/web/src/components/Store/StackBuilder.tsx` |
 | M7 | Wishlist (localStorage) | `apps/web/src/hooks/useWishlist.ts` |
-| M8 | Newsletter bar (flag-gated) | `apps/web/src/components/Store/NewsletterBar.tsx` |
+| M8 | Email capture: welcome-offer popup + bottom bar (flag-gated) | `apps/web/src/components/Store/OfferPopup.tsx`, `NewsletterBar.tsx`, `src/lib/subscribe.ts` |
 | M9 | Deploy (GitHub Pages) | `.github/workflows/deploy.yml` |
 
 ## Critical rules
