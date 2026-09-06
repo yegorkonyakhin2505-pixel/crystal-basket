@@ -7,6 +7,7 @@ import { WRIST_SIZES, type WristSizeKey } from "@/lib/sizes";
 import { routes } from "@/lib/paths";
 import { flags } from "@/lib/site";
 import { WishlistButton } from "./WishlistButton";
+import { useCart } from "@/hooks/useCart";
 
 interface Props {
   id: string; name: string; priceAED: number; compareAtAED?: number;
@@ -18,6 +19,7 @@ export function BuyBox(p: Props) {
   const [bead, setBead] = useState(p.defaultBead);
   const [size, setSize] = useState<WristSizeKey>(p.sizes.includes("M") ? "M" : p.sizes[0]);
   const waUrl = useMemo(() => buildWhatsAppUrl([{ name: p.name, bead, size, priceAED: p.priceAED }]), [p.name, bead, size, p.priceAED]);
+  const cart = useCart();
   const stripeUrl = flags.cardCheckout && p.stripePaymentLink ? `${p.stripePaymentLink}${p.stripePaymentLink.includes("?") ? "&" : "?"}client_reference_id=${encodeURIComponent(`${bead}mm-${size}`)}` : undefined;
   const opt = (on: boolean) => cn("flex-1 border py-3 text-[13px] text-center transition-colors", on ? "border-cb-ink bg-cb-ink text-white" : "border-cb-line hover:border-cb-ink");
 
@@ -43,13 +45,18 @@ export function BuyBox(p: Props) {
         </div>
       </div>
       <div className="grid gap-2.5">
-        {stripeUrl ? (
+        {cart.enabled ? (
+          <button type="button" onClick={() => cart.add([{ handle: p.id, beadMm: bead, size }])} disabled={cart.busy} className="inline-flex h-13 items-center justify-center bg-cb-ink text-white text-[13px] uppercase tracking-[0.14em] hover:bg-black transition-colors disabled:opacity-60">
+            {cart.busy ? "Adding…" : `Add to bag · ${p.priceAED} AED`}
+          </button>
+        ) : stripeUrl ? (
           <a href={stripeUrl} target="_blank" rel="noopener" className="inline-flex h-13 items-center justify-center bg-cb-ink text-white text-[13px] uppercase tracking-[0.14em] hover:bg-black transition-colors">Buy now · {p.priceAED} AED</a>
         ) : (
           <Button size="lg" disabled title="Card checkout link not set yet">Card checkout · coming soon</Button>
         )}
         <a href={waUrl} target="_blank" rel="noopener" className="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Order on WhatsApp</a>
         <div className="flex justify-center"><WishlistButton id={p.id} label /></div>
+        {cart.error && <p className="text-[12px] text-cb-danger text-center">{cart.error}</p>}
         {!p.inStock && <p className="text-[12px] text-cb-muted text-center">Currently made to order. Message us for the wait time.</p>}
       </div>
       <ul className="text-[12px] text-cb-muted space-y-1.5 border-t border-cb-line pt-5">

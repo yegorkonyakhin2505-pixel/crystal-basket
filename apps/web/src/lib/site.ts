@@ -8,7 +8,7 @@ export const site = {
   tagline: "Energy you can wear.",
   description:
     "Hand-strung crystal bracelets chosen by intention. Natural stones, cleansed and charged before they leave Dubai.",
-  url: "https://yegorkonyakhin2505-pixel.github.io/crystal-basket",
+  url: "https://crystalbasket.store",
   city: "Dubai",
   currency: "AED",
   /** TODO[NEEDED:N01] real WhatsApp business number, digits only. */
@@ -37,4 +37,6 @@ export const flags = {
   wishlist: true,
   /** Welcome-offer popup after the first interaction. */
   offerPopup: true,
+  /** Shopify cart + checkout switches on automatically when NEXT_PUBLIC_SHOPIFY_DOMAIN and
+   *  NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN are present at build time. See lib/shopify.ts. */
 } as const;

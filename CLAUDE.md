@@ -14,7 +14,7 @@ You are working on **Crystal Basket**, a Dubai-based crystal bracelet brand's st
 
 - **Monorepo:** pnpm workspaces. `apps/web` (Next.js 15 App Router, React 19, TypeScript strict, Tailwind v4) + `packages/catalog` (zod-validated content + typed queries).
 - **Phase 1 (now):** fully static export → GitHub Pages under `/crystal-basket`. No backend. Card checkout = payment links in product JSON. Orders = WhatsApp deep links.
-- **Phase 2 (planned):** `apps/api` (FastAPI + Postgres) for orders, customers, admin panel and WhatsApp order intake. `next.config.ts` already documents the same-origin `/api/*` proxy pattern to adopt; `QueryProvider` is already mounted.
+- **Commerce (decided 2026-09-06, ADR 0002):** Shopify is the back office. Our site stays the storefront; the Storefront API drives the bag and hands off to Shopify checkout. Store `utx8rj-t3.myshopify.com`. Product handles = catalog slugs; variant options "Bead size" / "Wrist size" match the CSV import. No custom backend planned while Shopify covers orders, inventory, payments and BNPL apps.
 - **Design:** light theme only, Swarovski-style layout (centered wordmark, nav row beneath, photo hero, beige bands, 4-up white grid with hairline dividers). Tokens in `apps/web/src/styles/tokens.css`; rules in `apps/web/src/components/ui/DESIGN.md`.
 - **Images:** AI-generated placeholders (Higgsfield, 2026-09-03) in `apps/web/public/images`. Replace with real photography without changing code.
 
@@ -46,7 +46,8 @@ crystal-basket/
 | M6 | Stack builder | `apps/web/src/components/Store/StackBuilder.tsx` |
 | M7 | Wishlist (localStorage) | `apps/web/src/hooks/useWishlist.ts` |
 | M8 | Email capture: welcome-offer popup + bottom bar (flag-gated) | `apps/web/src/components/Store/OfferPopup.tsx`, `NewsletterBar.tsx`, `src/lib/subscribe.ts` |
-| M9 | Deploy (GitHub Pages) | `.github/workflows/deploy.yml` |
+| M9 | Deploy (GitHub Pages, crystalbasket.store) | `.github/workflows/deploy.yml`, `apps/web/public/CNAME` |
+| M10 | Shopify cart + checkout (env-gated) | `apps/web/src/lib/shopify.ts`, `hooks/useCart.ts`, `components/Store/CartDrawer.tsx` |
 
 ## Critical rules
 

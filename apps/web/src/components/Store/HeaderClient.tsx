@@ -7,6 +7,7 @@ import { cn } from "@/components/ui";
 import { routes } from "@/lib/paths";
 import { useWishlist } from "@/hooks/useWishlist";
 import { Wordmark } from "./Wordmark";
+import { BagButton } from "./BagButton";
 
 interface NavItem { href: string; label: string; menu?: "intentions" | "stones" }
 interface Props {
@@ -62,6 +63,7 @@ export function HeaderClient({ nav, intentions, stones, whatsappUrl, siteName, c
             <Heart className="h-5 w-5" strokeWidth={1.5} />
             {count > 0 && <span className="absolute -right-0.5 -top-0.5 rounded-full bg-cb-ink text-white text-[9px] px-1.5 py-0.5 leading-none">{count}</span>}
           </Link>
+          <BagButton />
         </div>
       </div>
 

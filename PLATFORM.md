@@ -33,6 +33,8 @@
 
 **Root:** `Img` (base-path aware `<img>`), `QueryProvider`, `SmoothScroll` (Lenis), `ScrollReveal`.
 
+**Commerce (Shopify Storefront, env-gated):** `lib/shopify.ts` (GraphQL client: variant lookup by handle + options, cart create/add/remove/fetch) · `hooks/useCart.ts` (shared cart state, localStorage cart id) · `components/Store/CartDrawer.tsx` · `BagButton.tsx` · "Add to bag" paths in `BuyBox` and `StackBuilder`. Off when `NEXT_PUBLIC_SHOPIFY_*` are empty; then payment links + WhatsApp apply.
+
 ## Lib & hooks
 
 `lib/site.ts` (site config + feature flags) · `lib/paths.ts` (`routes`, `asset`, `BASE`) · `lib/whatsapp.ts` · `lib/images.ts` · `lib/sizes.ts` · `lib/faq.ts` · `lib/subscribe.ts` (shared email-capture state) · `hooks/useWishlist.ts`.
@@ -47,4 +49,4 @@
 
 ## Workflows
 
-`ci.yml`: catalog tests → typecheck → build, on push/PR. `deploy.yml`: build with `NEXT_PUBLIC_BASE_PATH=/crystal-basket` → GitHub Pages, on push to `main`.
+`ci.yml`: catalog tests → typecheck → build, on push/PR. `deploy.yml`: build at root path for crystalbasket.store (`public/CNAME`), Shopify domain/token from repo var + secret → GitHub Pages, on push to `main`.

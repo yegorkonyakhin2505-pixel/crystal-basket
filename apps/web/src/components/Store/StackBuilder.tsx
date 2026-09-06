@@ -2,12 +2,14 @@
 import { useMemo, useState } from "react";
 import { cn } from "@/components/ui";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { useCart } from "@/hooks/useCart";
 
 export interface BuilderProduct { id: string; name: string; intention: string; intentionName: string; stones: string; priceAED: number; image: string | null; palettes: [string, string][] }
 
 export function StackBuilder({ products, intentions, discountPct }: { products: BuilderProduct[]; intentions: { id: string; name: string }[]; discountPct: number }) {
   const [filter, setFilter] = useState("all");
   const [picked, setPicked] = useState<string[]>([]);
+  const cart = useCart();
   const list = filter === "all" ? products : products.filter((p) => p.intention === filter);
   const chosen = picked.map((id) => products.find((p) => p.id === id)!).filter(Boolean);
   const subtotal = chosen.reduce((s, p) => s + p.priceAED, 0);
@@ -52,8 +54,13 @@ export function StackBuilder({ products, intentions, discountPct }: { products: 
         <div className="flex justify-between text-[13px]"><span className="text-cb-muted">Subtotal</span><span className="price text-[14px]">{subtotal} AED</span></div>
         <div className="flex justify-between text-[13px] mt-1"><span className="text-cb-muted">Stack of 3 · {discountPct}% off</span><span className={cn("price text-[14px]", complete ? "text-cb-rose" : "text-cb-faint")}>{complete ? `− ${subtotal - total} AED` : "add 3 to unlock"}</span></div>
         <div className="flex justify-between mt-3 text-[16px] font-medium"><span>Total</span><span className="price text-[18px]">{total} AED</span></div>
-        <a href={chosen.length ? waUrl : undefined} target="_blank" rel="noopener" aria-disabled={!chosen.length} className={cn("mt-5 inline-flex h-12 w-full items-center justify-center bg-cb-ink text-white text-[12px] uppercase tracking-[0.14em] hover:bg-black", !chosen.length && "pointer-events-none opacity-50")}>Order this stack on WhatsApp</a>
-        <p className="text-[11px] text-cb-faint mt-3">Card checkout for custom stacks arrives with our payment links. WhatsApp orders are confirmed within the hour.</p>
+        {cart.enabled && (
+          <button type="button" disabled={!complete || cart.busy} onClick={() => cart.add(chosen.map((c) => ({ handle: c.id, beadMm: 8, size: "M" })))} className={cn("mt-5 inline-flex h-12 w-full items-center justify-center bg-cb-ink text-white text-[12px] uppercase tracking-[0.14em] hover:bg-black disabled:opacity-50")}>
+            {cart.busy ? "Adding…" : "Add stack to bag · 8 mm, size M"}
+          </button>
+        )}
+        <a href={chosen.length ? waUrl : undefined} target="_blank" rel="noopener" aria-disabled={!chosen.length} className={cn("mt-3 inline-flex h-12 w-full items-center justify-center text-[12px] uppercase tracking-[0.14em]", cart.enabled ? "border border-cb-ink hover:bg-cb-ink hover:text-white" : "bg-cb-ink text-white hover:bg-black", !chosen.length && "pointer-events-none opacity-50")}>Order this stack on WhatsApp</a>
+        <p className="text-[11px] text-cb-faint mt-3">{cart.enabled ? "Change bead or wrist size in the bag before checkout. The stack discount is applied automatically at checkout." : "Card checkout for custom stacks arrives with our payment links. WhatsApp orders are confirmed within the hour."}</p>
       </aside>
     </div>
   );
