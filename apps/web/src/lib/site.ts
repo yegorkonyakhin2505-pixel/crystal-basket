@@ -13,7 +13,7 @@ export const site = {
   currency: "AED",
   /** TODO[NEEDED:N01] real WhatsApp business number, digits only. */
   whatsapp: "971500000000",
-  email: "hello@crystalbasket.ae",
+  email: "hello@crystalbasket.store",
   instagram: "crystalbasket.ae",
   tiktok: "crystalbasket.ae",
   freeDeliveryAED: 250,
