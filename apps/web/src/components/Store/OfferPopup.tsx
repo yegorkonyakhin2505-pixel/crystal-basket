@@ -26,7 +26,7 @@ export function OfferPopup() {
     let timer: number | undefined;
     let armed = false;
     const show = () => { if (!armed) { armed = true; timer = window.setTimeout(() => setOpen(true), 1500); cleanup(); } };
-    const idle = window.setTimeout(show, 4000);
+    const idle = window.setTimeout(show, 3000);
     const cleanup = () => { window.removeEventListener("scroll", show); };
     window.addEventListener("scroll", show, { passive: true, once: true });
     return () => { cleanup(); window.clearTimeout(idle); if (timer) window.clearTimeout(timer); };
