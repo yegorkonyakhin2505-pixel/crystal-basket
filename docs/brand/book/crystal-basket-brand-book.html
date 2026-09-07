@@ -1,0 +1,2409 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Crystal Basket Brand Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+  :root{--ink:#1a1a1a;--muted:#6b6b6b;--faint:#a3a3a3;--line:#e6e2dc;--band:#f6f3ee;--band2:#efeae2;--rose:#8f5f66;--rosesoft:#f4e9ea;--gold:#c9a961;--white:#fff}
+  *{box-sizing:border-box} html,body{margin:0;background:#e9e6e0;color:var(--ink);font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:11.5pt;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;margin:0 auto 12mm;background:var(--white);position:relative;padding:22mm 20mm 20mm;overflow:hidden;page-break-after:always;break-after:page;display:flex;flex-direction:column}
+  @media print{html,body{background:#fff} .page{margin:0;box-shadow:none} }
+  @page{size:A4;margin:0}
+  .display{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:-.01em;line-height:1.05}
+  .eyebrow{font-size:8pt;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:400}
+  h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:34pt;line-height:1.02;margin:6pt 0 10pt;letter-spacing:-.01em}
+  h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:17pt;margin:14pt 0 5pt}
+  p{margin:0 0 8pt;max-width:66ch}
+  .foot{position:absolute;left:20mm;right:20mm;bottom:11mm;display:flex;justify-content:space-between;font-size:7.5pt;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:12mm} .cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8mm}
+  .cover{background:var(--white);justify-content:space-between}
+  .cover .badge{width:82mm;height:82mm;margin:18mm auto 0}
+  .cover h1{font-size:46pt;text-align:center;margin:10mm 0 3mm} .cover .sub{text-align:center;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;font-size:9pt}
+  .toc{list-style:none;padding:0;margin:0;columns:2;column-gap:12mm} .toc li{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:5pt 0;font-size:10.5pt;break-inside:avoid} .toc li span:last-child{color:var(--faint);font-variant-numeric:tabular-nums}
+  .quote{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:19pt;line-height:1.25;border-left:2px solid var(--gold);padding-left:10pt;margin:10pt 0 12pt;max-width:60ch}
+  .logobox{border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:8mm;background:#fff} .logobox.dark{background:#1a1a1a} .logobox.band{background:var(--band)}
+  .cap{font-size:8.5pt;color:var(--muted);margin-top:5pt;text-align:center}
+  .lockup{display:flex;align-items:center;gap:6mm;justify-content:center} .lockup .wm{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:.28em;text-transform:uppercase;font-size:22pt}
+  .sw{display:inline-block;width:11mm;height:11mm;border-radius:50%;border:1px solid rgba(0,0,0,.08);flex:none}
+  .swatch{display:grid;grid-template-columns:1fr;gap:0;border:1px solid var(--line)} .swatch .chip{height:26mm} .swatch .info{padding:6pt 8pt;font-size:9pt;line-height:1.35} .swatch .info b{display:block;font-weight:500;font-family:"Jost";} .swatch .info code{display:block;margin:2pt 0 3pt;font-family:ui-monospace,Menlo,monospace;font-size:8.5pt;color:var(--muted)}
+  .pal{display:grid;grid-template-columns:repeat(4,1fr);gap:5mm}
+  .type-sample{border-top:1px solid var(--line);padding:8pt 0} .type-sample .lbl{font-size:8pt;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:3pt}
+  .dont{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm} .dont div{border:1px solid var(--line);padding:5mm;text-align:center;font-size:8.5pt;color:var(--muted)} .dont svg{width:26mm;height:26mm;display:block;margin:0 auto 4pt}
+  .irow{display:flex;gap:4mm;align-items:flex-start;border-bottom:1px solid var(--line);padding:5pt 0} .irow b{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:13pt;display:block;line-height:1.1} .irow .triad{font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--rose)} .irow p{font-size:9.5pt;color:var(--muted);margin:2pt 0 0}
+  .card{border:1px solid var(--line);padding:7mm;background:#fff} .card.band{background:var(--band)}
+  .tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:2pt 8pt;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;margin:0 3pt 3pt 0} .tag.ink{background:var(--ink);color:#fff;border-color:var(--ink)}
+  table{width:100%;border-collapse:collapse;font-size:9.5pt} th,td{text-align:left;padding:5pt 6pt;border-bottom:1px solid var(--line);vertical-align:top} th{font-weight:500;font-size:8pt;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  ul.clean{padding-left:14pt;margin:0} ul.clean li{margin:0 0 4pt}
+  .phone{border:1px solid var(--line);border-radius:14pt;padding:6mm 5mm;background:#fff;width:52mm} .phone .av{width:22mm;height:22mm;border-radius:50%;background:#fff;border:1px solid var(--line);margin:0 auto 4pt;display:grid;place-items:center} .phone .av svg{width:18mm;height:18mm} .phone .h{text-align:center;font-weight:500;font-size:9pt} .phone .b{text-align:center;font-size:8pt;color:var(--muted)}
+  .msg{background:#e7f8e3;border-radius:10pt;padding:6pt 8pt;font-size:9pt;max-width:70mm;margin:3pt 0}
+  .pouch{width:60mm;height:70mm;border-radius:8mm 8mm 3mm 3mm;background:#efe9df;display:grid;place-items:center;margin:0 auto} .pouch svg{width:24mm;height:24mm;color:#1a1a1a}
+  .mcard{width:60mm;height:90mm;border:1px solid var(--line);padding:6mm;display:flex;flex-direction:column;justify-content:space-between;background:#fff;margin:0 auto} .mcard svg{width:16mm;height:16mm}
+</style></head><body>
+
+<section class="page cover">
+  <div class="eyebrow" style="text-align:center">Brand book · edition 1 · September 2026</div>
+  <div class="badge"><svg viewBox="0 0 400 400" class="" style="color:currentColor" >
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#9c4f66"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg></div>
+  <div><h1>Crystal Basket</h1><div class="sub">Energy you can wear · Dubai</div></div>
+  <div class="foot"><span>Crystal Basket</span><span>crystalbasket.store</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">Contents</div><h1>What this book is for</h1>
+  <p>One place for everything that makes Crystal Basket look and sound like itself: the mark, the colours, the type, the voice, the photographs, and the small rules that keep them consistent across the website, Instagram, WhatsApp and the box that arrives at someone's door.</p>
+  <p>It is written for Alya and for anyone who helps her: a photographer, a printer, a friend posting stories. If a choice isn't covered here, choose the quieter option.</p>
+  <ul class="toc">
+    <li><span>01 The brand</span><span>3</span></li><li><span>02 The logo</span><span>4</span></li><li><span>03 Logo rules</span><span>5</span></li>
+    <li><span>04 Colour</span><span>6</span></li><li><span>05 Typography</span><span>7</span></li><li><span>06 Voice and words</span><span>8</span></li>
+    <li><span>07 The eight intentions</span><span>9</span></li><li><span>08 Photography</span><span>10</span></li><li><span>09 Packaging and print</span><span>11</span></li>
+    <li><span>10 Social and WhatsApp</span><span>12</span></li><li><span>11 Files and where they live</span><span>13</span></li>
+  </ul>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>2</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">01 · The brand</div><h1>Energy you can wear.</h1>
+  <div class="quote">Natural crystal bracelets, chosen by intention, hand-strung in Dubai, cleansed before they leave our hands.</div>
+  <div class="cols">
+    <div><h2>Who it is for</h2><p>Women in the UAE, mostly 22 to 40, who buy for a feeling, not a trend: calm before exams, confidence before a meeting, something soft for a sister. They shop on Instagram and TikTok, pay with a card or cash on delivery, and gift as often as they treat themselves.</p>
+    <h2>What we promise</h2><p>Real stone, never dyed or glass. Strung to last, on premium cord, re-strung free if it ever gives. Chosen by intention, so the first question is always "what do you need more of?", never "which stone is trending?".</p></div>
+    <div><h2>How it feels</h2><p>Quiet luxury with warmth. Think of a jeweller's counter in daylight, not a crystal shop at night: white surfaces, ivory linen, one gold bead, one rose accent. Feminine without being pink, spiritual without being mystical.</p>
+    <h2>What we never say</h2><p>We do not promise that a stone cures, heals or makes anyone rich. Stones are <em>traditionally worn for</em> something. The reminder on the wrist does the work; we say so honestly and it reads as more premium, not less.</p></div>
+  </div>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>3</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">02 · The logo</div><h1>The bead badge</h1>
+  <p>Two rings of beads, a faceted crystal at the centre, the name curving inside, and one rose bead in the outer ring. It reads as a bracelet and a seal at the same time, which is exactly what the brand is: something worn, and something stamped on a box.</p>
+  <div class="cols" style="margin-top:6mm">
+    <div><div class="logobox"><svg viewBox="0 0 400 400" class="" style="color:#1a1a1a" width="62mm" height="62mm">
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#9c4f66"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg></div><div class="cap">Primary badge · ink on white</div></div>
+    <div><div class="logobox dark"><svg viewBox="0 0 400 400" class="" style="color:#f5f1e9" width="62mm" height="62mm">
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#d98ba1"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg></div><div class="cap">Reverse · ivory on ink, for photos and dark packaging</div></div>
+  </div>
+  <div class="cols" style="margin-top:6mm">
+    <div><div class="logobox band"><div class="lockup"><svg viewBox="0 0 400 400" class="" style="color:#1a1a1a" width="22mm" height="22mm">
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#9c4f66"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg><span class="wm">Crystal Basket</span></div></div><div class="cap">Horizontal lockup · website header, email signature</div></div>
+    <div><div class="logobox"><svg viewBox="0 0 400 400" class="" style="color:#1a1a1a" width="30mm" height="30mm">
+<circle cx="200.0" cy="28.0" r="7.5" fill="currentColor"/>
+<circle cx="218.0" cy="28.9" r="7.5" fill="currentColor"/>
+<circle cx="235.8" cy="31.8" r="7.5" fill="currentColor"/>
+<circle cx="253.2" cy="36.4" r="7.5" fill="currentColor"/>
+<circle cx="270.0" cy="42.9" r="7.5" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="7.5" fill="currentColor"/>
+<circle cx="301.1" cy="60.8" r="7.5" fill="currentColor"/>
+<circle cx="315.1" cy="72.2" r="7.5" fill="currentColor"/>
+<circle cx="327.8" cy="84.9" r="7.5" fill="currentColor"/>
+<circle cx="339.2" cy="98.9" r="7.5" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="7.5" fill="currentColor"/>
+<circle cx="357.1" cy="130.0" r="7.5" fill="currentColor"/>
+<circle cx="363.6" cy="146.8" r="7.5" fill="currentColor"/>
+<circle cx="368.2" cy="164.2" r="7.5" fill="currentColor"/>
+<circle cx="371.1" cy="182.0" r="7.5" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="7.5" fill="currentColor"/>
+<circle cx="371.1" cy="218.0" r="7.5" fill="currentColor"/>
+<circle cx="368.2" cy="235.8" r="7.5" fill="currentColor"/>
+<circle cx="363.6" cy="253.2" r="7.5" fill="currentColor"/>
+<circle cx="357.1" cy="270.0" r="7.5" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="7.5" fill="currentColor"/>
+<circle cx="339.2" cy="301.1" r="7.5" fill="currentColor"/>
+<circle cx="327.8" cy="315.1" r="7.5" fill="currentColor"/>
+<circle cx="315.1" cy="327.8" r="7.5" fill="currentColor"/>
+<circle cx="301.1" cy="339.2" r="7.5" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="7.5" fill="currentColor"/>
+<circle cx="270.0" cy="357.1" r="7.5" fill="currentColor"/>
+<circle cx="253.2" cy="363.6" r="7.5" fill="currentColor"/>
+<circle cx="235.8" cy="368.2" r="7.5" fill="currentColor"/>
+<circle cx="218.0" cy="371.1" r="7.5" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="7.5" fill="currentColor"/>
+<circle cx="182.0" cy="371.1" r="7.5" fill="currentColor"/>
+<circle cx="164.2" cy="368.2" r="7.5" fill="currentColor"/>
+<circle cx="146.8" cy="363.6" r="7.5" fill="currentColor"/>
+<circle cx="130.0" cy="357.1" r="7.5" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="7.5" fill="currentColor"/>
+<circle cx="98.9" cy="339.2" r="7.5" fill="currentColor"/>
+<circle cx="84.9" cy="327.8" r="7.5" fill="currentColor"/>
+<circle cx="72.2" cy="315.1" r="7.5" fill="currentColor"/>
+<circle cx="60.8" cy="301.1" r="7.5" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="7.5" fill="currentColor"/>
+<circle cx="42.9" cy="270.0" r="7.5" fill="currentColor"/>
+<circle cx="36.4" cy="253.2" r="7.5" fill="currentColor"/>
+<circle cx="31.8" cy="235.8" r="7.5" fill="currentColor"/>
+<circle cx="28.9" cy="218.0" r="7.5" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="7.5" fill="currentColor"/>
+<circle cx="28.9" cy="182.0" r="7.5" fill="currentColor"/>
+<circle cx="31.8" cy="164.2" r="7.5" fill="currentColor"/>
+<circle cx="36.4" cy="146.8" r="7.5" fill="currentColor"/>
+<circle cx="42.9" cy="130.0" r="7.5" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="7.5" fill="currentColor"/>
+<circle cx="60.8" cy="98.9" r="10.9" fill="#9c4f66"/>
+<circle cx="72.2" cy="84.9" r="7.5" fill="currentColor"/>
+<circle cx="84.9" cy="72.2" r="7.5" fill="currentColor"/>
+<circle cx="98.9" cy="60.8" r="7.5" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="7.5" fill="currentColor"/>
+<circle cx="130.0" cy="42.9" r="7.5" fill="currentColor"/>
+<circle cx="146.8" cy="36.4" r="7.5" fill="currentColor"/>
+<circle cx="164.2" cy="31.8" r="7.5" fill="currentColor"/>
+<circle cx="182.0" cy="28.9" r="7.5" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+</svg></div><div class="cap">Mark only · favicon, app icon, anything under 20 mm</div></div>
+  </div>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>4</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">03 · Logo rules</div><h1>Keep it clean</h1>
+  <div class="cols">
+    <div><h2>Clear space</h2><p>Leave empty space around the badge equal to the width of the crystal on every side. Nothing sits inside that space: no text, no other logos, no photo edges.</p>
+    <h2>Minimum size</h2><p>Full badge: 24 mm in print, 96 px on screen. Below that the name inside is unreadable, so switch to the mark-only version, which holds down to 8 mm or 32 px.</p>
+    <h2>Colour</h2><p>Ink on white or ivory. Ivory on ink or on a photograph with a dark area. The rose bead stays rose in both. Never gold, never a gradient, never on a busy photo.</p></div>
+    <div><h2>Don't</h2>
+      <div class="dont">
+        <div><svg viewBox="0 0 400 400" class="" style="color:#c9a961" >
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#9c4f66"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg>Print it in gold</div>
+        <div><svg viewBox="0 0 400 400" class="" style="color:#1a1a1a" style="transform:scaleX(1.35);color:#1a1a1a">
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#9c4f66"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg>Stretch or squash it</div>
+        <div><div style="background:linear-gradient(135deg,#d98ba1,#c9a961);padding:2mm"><svg viewBox="0 0 400 400" class="" style="color:#1a1a1a" >
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#9c4f66"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg></div>Put it on a gradient</div>
+        <div><svg viewBox="0 0 400 400" class="" style="color:#1a1a1a" style="transform:rotate(-12deg)">
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#9c4f66"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg>Rotate it</div>
+        <div><div style="position:relative"><svg viewBox="0 0 400 400" class="" style="color:#1a1a1a" >
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#9c4f66"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg><span style="position:absolute;inset:auto 0 30% 0;font-size:7pt;color:var(--rose)">SALE 50%</span></div>Write over it</div>
+        <div><svg viewBox="0 0 400 400" class="" style="color:#8f5f66" >
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#9c4f66"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg>Recolour the whole mark</div>
+      </div></div>
+  </div>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>5</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">04 · Colour</div><h1>White, ink, one rose bead</h1>
+  <p>The palette is deliberately plain so the stones carry the colour. White is the ground, warm beige is the band that sections the page, ink is for words. Rose is the single accent, used like the one bead in the logo: rarely, and on purpose. Gold is a material, not a colour: it appears as a bead, a hairline or foil, never as text.</p>
+  <div class="pal" style="margin-top:6mm">
+    <div class="swatch"><div class="chip" style="background:#ffffff;border-bottom:1px solid var(--line)"></div><div class="info"><b>White</b><code>#FFFFFF</code>Page, product tiles, packaging card</div></div>
+    <div class="swatch"><div class="chip" style="background:#f6f3ee"></div><div class="info"><b>Linen</b><code>#F6F3EE</code>Bands, filter bar, footer, pouch</div></div>
+    <div class="swatch"><div class="chip" style="background:#efeae2"></div><div class="info"><b>Linen deep</b><code>#EFEAE2</code>Hover states, second surface</div></div>
+    <div class="swatch"><div class="chip" style="background:#1a1a1a"></div><div class="info"><b>Ink</b><code>#1A1A1A</code>Text, buttons, the logo</div></div>
+    <div class="swatch"><div class="chip" style="background:#6b6b6b"></div><div class="info"><b>Muted</b><code>#6B6B6B</code>Secondary text, captions</div></div>
+    <div class="swatch"><div class="chip" style="background:#e6e2dc"></div><div class="info"><b>Hairline</b><code>#E6E2DC</code>Every rule and divider</div></div>
+    <div class="swatch"><div class="chip" style="background:#8f5f66"></div><div class="info"><b>Rose</b><code>#8F5F66</code>The accent: intention labels, saved hearts, one bead</div></div>
+    <div class="swatch"><div class="chip" style="background:#c9a961"></div><div class="info"><b>Gold</b><code>#C9A961</code>Material only: bead, foil, hairline. Never text</div></div>
+  </div>
+  <h2>Proportions</h2><p style="max-width:none">On any page or post: about 80% white and linen, 15% ink, 4% muted, 1% rose. If rose is noticeable, there is too much of it.</p>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>6</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">05 · Typography</div><h1>Cormorant for the poetry, Jost for the facts</h1>
+  <div class="cols">
+    <div>
+      <div class="type-sample"><div class="lbl">Display · Cormorant Garamond 500</div><div class="display" style="font-size:30pt">Turn the volume down on a loud mind.</div></div>
+      <div class="type-sample"><div class="lbl">Product name · Cormorant 500, 22pt</div><div class="display" style="font-size:22pt">The Still Mind</div></div>
+      <div class="type-sample"><div class="lbl">Price · Cormorant 400, lining numerals</div><div class="display" style="font-size:18pt;font-weight:400">209 AED</div></div>
+      <div class="type-sample"><div class="lbl">Pull quote · Cormorant italic</div><div class="display" style="font-size:16pt;font-style:italic;font-weight:400">“I am calm. I can hear myself think.”</div></div>
+    </div>
+    <div>
+      <div class="type-sample"><div class="lbl">Body · Jost 300, 11pt</div><p>Deep lilac amethyst with a single gold-filled bead. The classic calming stone, worn to quiet overthinking, ease anxiety and support deeper sleep.</p></div>
+      <div class="type-sample"><div class="lbl">Labels · Jost 400, 8pt, +0.16em, caps</div><div class="eyebrow" style="color:var(--ink)">Bead size · Wrist size · Shop by intention</div></div>
+      <div class="type-sample"><div class="lbl">Buttons · Jost 500, 9pt, +0.14em, caps</div><span style="display:inline-block;background:#1a1a1a;color:#fff;padding:7pt 14pt;font-size:9pt;letter-spacing:.14em;text-transform:uppercase;font-weight:500">Add to bag</span></div>
+      <h2>Rules</h2><ul class="clean"><li>Serif only for headlines, product names, prices and quotes. Everything else is Jost.</li><li>Never bold Cormorant. Weight 500 is the maximum.</li><li>Sentence case for headlines. Caps only for small labels.</li><li>Both fonts are free on Google Fonts: <code style="font-family:ui-monospace,Menlo">Cormorant Garamond</code> and <code style="font-family:ui-monospace,Menlo">Jost</code>.</li></ul>
+    </div>
+  </div>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>7</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">06 · Voice and words</div><h1>Warm, plain, honest</h1>
+  <div class="cols">
+    <div><h2>How we sound</h2><p>Like a friend who knows stones, not a guru. Short sentences. Second person. We describe what a stone is <em>traditionally worn for</em> and how it feels to wear, then we stop.</p>
+    <h2>Say</h2><p>worn for · supports · invites · a reminder on the wrist · natural, undyed · hand-strung in Dubai · cleansed before it ships · re-strung free, for life</p>
+    <h2>Never say</h2><p>cures · heals · guaranteed · manifest money · detox · miracle · 100% effective · medical anything</p>
+    <h2>Naming a bracelet</h2><p>The [Archetype] — [Intention] Bracelet · [Stones]. The name carries the poetry, the subtitle carries the keywords. <em>The Guardian — Protection Bracelet · Black Tourmaline &amp; Hematite.</em></p></div>
+    <div><h2>Every product, four lines</h2>
+      <table><tr><th>Part</th><th>Rule</th><th>Example</th></tr>
+      <tr><td>Triad</td><td>Three words, dot-separated</td><td>Ease · Breath · Stillness</td></tr>
+      <tr><td>Promise</td><td>One line, second person, under 14 words</td><td>Turn the volume down on a loud mind.</td></tr>
+      <tr><td>Body</td><td>Two sentences: tradition, then feeling</td><td>The classic calming stone, worn to quiet overthinking…</td></tr>
+      <tr><td>Affirmation</td><td>First person, present tense, printed on the card</td><td>I am calm. I can hear myself think.</td></tr></table>
+      <h2>Tagline</h2><p class="display" style="font-size:20pt">Energy you can wear.</p><p>Use it on the hero, the pouch and the bio. Don't add a second one.</p>
+      <h2>The disclaimer</h2><p>Every product page and the box card carry one line: <em>Crystal meanings reflect traditional beliefs and are not medical advice.</em> Keep it. It protects Alya and it reads as confidence.</p></div>
+  </div>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>8</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">07 · The eight intentions</div><h1>Start with the feeling</h1>
+  <p>Every bracelet belongs to one intention. It is how the shop is organised, how the meaning card opens, and how a customer describes what she bought. Each intention has a colour cue drawn from its stones; use it in photos and props, never as a flat fill.</p>
+  <div class="cols" style="margin-top:4mm"><div class="irow"><span class="sw" style="background:linear-gradient(135deg,#1a1a1f,#4a4a55)"></span><div><b>Protection</b><span class="triad">Shield · Boundary · Strength</span><p>An energetic boundary you can wear.</p></div></div><div class="irow"><span class="sw" style="background:linear-gradient(135deg,#f2c4c9,#d98a97)"></span><div><b>Love & Self-Love</b><span class="triad">Softness · Worth · Warmth</span><p>Open the heart, to others and to yourself first.</p></div></div><div class="irow"><span class="sw" style="background:linear-gradient(135deg,#d9a53a,#7a9a5a)"></span><div><b>Abundance & Wealth</b><span class="triad">Prosperity · Momentum · Luck</span><p>Magnetise opportunity, then hold onto what you build.</p></div></div><div class="irow"><span class="sw" style="background:linear-gradient(135deg,#c9b6e6,#efe9f7)"></span><div><b>Calm & Anxiety Relief</b><span class="triad">Ease · Breath · Stillness</span><p>Turn the volume down on a loud mind.</p></div></div><div class="irow"><span class="sw" style="background:linear-gradient(135deg,#c9842e,#8f4a1a)"></span><div><b>Confidence & Courage</b><span class="triad">Courage · Fire · Drive</span><p>Stand in your own power without apology.</p></div></div><div class="irow"><span class="sw" style="background:linear-gradient(135deg,#2a4b8f,#dfe8f5)"></span><div><b>Focus & Clarity</b><span class="triad">Clarity · Truth · Vision</span><p>Cut the noise. Think one clean thought at a time.</p></div></div><div class="irow"><span class="sw" style="background:linear-gradient(135deg,#5a3f30,#8c8c92)"></span><div><b>Grounding & Stability</b><span class="triad">Roots · Steady · Present</span><p>Come back into your body and into the present.</p></div></div><div class="irow"><span class="sw" style="background:linear-gradient(135deg,#e9e6f2,#8f86b8)"></span><div><b>Sleep & Rest</b><span class="triad">Rest · Dream · Release</span><p>Quiet the last hour of the day.</p></div></div></div>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>9</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">08 · Photography</div><h1>Daylight, skin, linen, one bead of gold</h1>
+  <div class="cols">
+    <div><h2>Three shots per bracelet</h2>
+      <table><tr><th>Shot</th><th>Frame</th><th>Why</th></tr>
+      <tr><td>On the wrist</td><td>3:4, natural window light, hand relaxed on linen or marble</td><td>Answers "how big is it?", the number one reason for returns</td></tr>
+      <tr><td>Product on white</td><td>1:1, flat circle, soft shadow, centred</td><td>The shop tile and the Shopify listing</td></tr>
+      <tr><td>Macro</td><td>3:2, beads filling the frame, inclusions visible</td><td>Proof it is real stone; sells the material</td></tr></table>
+    <h2>Always</h2><ul class="clean"><li>One light recipe for every product: soft key from a window, white bounce, no hard flash.</li><li>Real inclusions, banding and flash left in. Do not retouch the stone to look "perfect"; perfect looks like plastic.</li><li>Ivory, white and skin tones dominate. Colour comes from the stone.</li></ul></div>
+    <div><h2>Never</h2><ul class="clean"><li>Neon backdrops, smoke, candles, tarot props, purple gel lighting.</li><li>Stock photos of other people's bracelets.</li><li>Text on the photo itself. Words live next to the image.</li><li>Heavy filters. If a filter is needed, the light was wrong.</li></ul>
+    <h2>Props that work</h2><p>Linen, unglazed ceramic, marble, a single flower, a handwritten card, the pouch. One prop per photo, never a pile.</p>
+    <h2>Until real photos exist</h2><p>The site runs on AI-generated placeholders made to this brief. Replace them one product at a time; the file names and folders are listed on page 13.</p></div>
+  </div>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>10</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">09 · Packaging and print</div><h1>What arrives at the door</h1>
+  <div class="cols3">
+    <div><div class="pouch"><svg viewBox="0 0 400 400" class="" style="color:currentColor" >
+<circle cx="200.0" cy="28.0" r="7.5" fill="currentColor"/>
+<circle cx="218.0" cy="28.9" r="7.5" fill="currentColor"/>
+<circle cx="235.8" cy="31.8" r="7.5" fill="currentColor"/>
+<circle cx="253.2" cy="36.4" r="7.5" fill="currentColor"/>
+<circle cx="270.0" cy="42.9" r="7.5" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="7.5" fill="currentColor"/>
+<circle cx="301.1" cy="60.8" r="7.5" fill="currentColor"/>
+<circle cx="315.1" cy="72.2" r="7.5" fill="currentColor"/>
+<circle cx="327.8" cy="84.9" r="7.5" fill="currentColor"/>
+<circle cx="339.2" cy="98.9" r="7.5" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="7.5" fill="currentColor"/>
+<circle cx="357.1" cy="130.0" r="7.5" fill="currentColor"/>
+<circle cx="363.6" cy="146.8" r="7.5" fill="currentColor"/>
+<circle cx="368.2" cy="164.2" r="7.5" fill="currentColor"/>
+<circle cx="371.1" cy="182.0" r="7.5" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="7.5" fill="currentColor"/>
+<circle cx="371.1" cy="218.0" r="7.5" fill="currentColor"/>
+<circle cx="368.2" cy="235.8" r="7.5" fill="currentColor"/>
+<circle cx="363.6" cy="253.2" r="7.5" fill="currentColor"/>
+<circle cx="357.1" cy="270.0" r="7.5" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="7.5" fill="currentColor"/>
+<circle cx="339.2" cy="301.1" r="7.5" fill="currentColor"/>
+<circle cx="327.8" cy="315.1" r="7.5" fill="currentColor"/>
+<circle cx="315.1" cy="327.8" r="7.5" fill="currentColor"/>
+<circle cx="301.1" cy="339.2" r="7.5" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="7.5" fill="currentColor"/>
+<circle cx="270.0" cy="357.1" r="7.5" fill="currentColor"/>
+<circle cx="253.2" cy="363.6" r="7.5" fill="currentColor"/>
+<circle cx="235.8" cy="368.2" r="7.5" fill="currentColor"/>
+<circle cx="218.0" cy="371.1" r="7.5" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="7.5" fill="currentColor"/>
+<circle cx="182.0" cy="371.1" r="7.5" fill="currentColor"/>
+<circle cx="164.2" cy="368.2" r="7.5" fill="currentColor"/>
+<circle cx="146.8" cy="363.6" r="7.5" fill="currentColor"/>
+<circle cx="130.0" cy="357.1" r="7.5" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="7.5" fill="currentColor"/>
+<circle cx="98.9" cy="339.2" r="7.5" fill="currentColor"/>
+<circle cx="84.9" cy="327.8" r="7.5" fill="currentColor"/>
+<circle cx="72.2" cy="315.1" r="7.5" fill="currentColor"/>
+<circle cx="60.8" cy="301.1" r="7.5" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="7.5" fill="currentColor"/>
+<circle cx="42.9" cy="270.0" r="7.5" fill="currentColor"/>
+<circle cx="36.4" cy="253.2" r="7.5" fill="currentColor"/>
+<circle cx="31.8" cy="235.8" r="7.5" fill="currentColor"/>
+<circle cx="28.9" cy="218.0" r="7.5" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="7.5" fill="currentColor"/>
+<circle cx="28.9" cy="182.0" r="7.5" fill="currentColor"/>
+<circle cx="31.8" cy="164.2" r="7.5" fill="currentColor"/>
+<circle cx="36.4" cy="146.8" r="7.5" fill="currentColor"/>
+<circle cx="42.9" cy="130.0" r="7.5" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="7.5" fill="currentColor"/>
+<circle cx="60.8" cy="98.9" r="10.9" fill="#9c4f66"/>
+<circle cx="72.2" cy="84.9" r="7.5" fill="currentColor"/>
+<circle cx="84.9" cy="72.2" r="7.5" fill="currentColor"/>
+<circle cx="98.9" cy="60.8" r="7.5" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="7.5" fill="currentColor"/>
+<circle cx="130.0" cy="42.9" r="7.5" fill="currentColor"/>
+<circle cx="146.8" cy="36.4" r="7.5" fill="currentColor"/>
+<circle cx="164.2" cy="31.8" r="7.5" fill="currentColor"/>
+<circle cx="182.0" cy="28.9" r="7.5" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+</svg></div><div class="cap">Linen pouch, ink stamp of the mark, 24 mm</div></div>
+    <div><div class="mcard"><svg viewBox="0 0 400 400" class="" style="color:currentColor" >
+<circle cx="200.0" cy="28.0" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="103.1" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="371.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="370.1" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="367.7" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="364.4" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="360.1" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="355.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="342.1" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="334.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="326.1" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="317.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="307.2" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="296.9" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="274.6" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="262.8" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="250.7" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="238.3" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="225.6" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="212.9" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="371.5" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="370.1" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="367.7" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="364.4" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="360.1" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="355.0" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="342.1" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="334.5" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="326.1" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="317.0" r="4.2" fill="currentColor"/>
+<circle cx="65.5" cy="307.2" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="296.9" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="274.6" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="262.8" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="250.7" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="238.3" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="225.6" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="212.9" r="4.2" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="4.2" fill="currentColor"/>
+<circle cx="28.5" cy="187.1" r="4.2" fill="currentColor"/>
+<circle cx="29.9" cy="174.4" r="4.2" fill="currentColor"/>
+<circle cx="32.3" cy="161.7" r="4.2" fill="currentColor"/>
+<circle cx="35.6" cy="149.3" r="4.2" fill="currentColor"/>
+<circle cx="39.9" cy="137.2" r="4.2" fill="currentColor"/>
+<circle cx="45.0" cy="125.4" r="4.2" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="4.2" fill="currentColor"/>
+<circle cx="57.9" cy="103.1" r="6.1" fill="#9c4f66"/>
+<circle cx="65.5" cy="92.8" r="4.2" fill="currentColor"/>
+<circle cx="73.9" cy="83.0" r="4.2" fill="currentColor"/>
+<circle cx="83.0" cy="73.9" r="4.2" fill="currentColor"/>
+<circle cx="92.8" cy="65.5" r="4.2" fill="currentColor"/>
+<circle cx="103.1" cy="57.9" r="4.2" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="4.2" fill="currentColor"/>
+<circle cx="125.4" cy="45.0" r="4.2" fill="currentColor"/>
+<circle cx="137.2" cy="39.9" r="4.2" fill="currentColor"/>
+<circle cx="149.3" cy="35.6" r="4.2" fill="currentColor"/>
+<circle cx="161.7" cy="32.3" r="4.2" fill="currentColor"/>
+<circle cx="174.4" cy="29.9" r="4.2" fill="currentColor"/>
+<circle cx="187.1" cy="28.5" r="4.2" fill="currentColor"/>
+<circle cx="200.0" cy="49.0" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="49.6" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="351.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="350.4" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="348.7" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="345.9" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="341.9" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="336.9" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="330.8" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="323.7" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="315.7" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="306.8" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="297.1" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="286.6" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="275.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="263.8" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="251.6" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="239.1" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="226.2" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="213.2" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="200.0" cy="351.0" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="350.4" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="348.7" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="345.9" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="341.9" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="336.9" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="330.8" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="323.7" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="315.7" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="306.8" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="297.1" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="286.6" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="275.5" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="263.8" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="251.6" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="239.1" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="226.2" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="213.2" r="3.6" fill="currentColor"/>
+<circle cx="49.0" cy="200.0" r="3.6" fill="currentColor"/>
+<circle cx="49.6" cy="186.8" r="3.6" fill="currentColor"/>
+<circle cx="51.3" cy="173.8" r="3.6" fill="currentColor"/>
+<circle cx="54.1" cy="160.9" r="3.6" fill="currentColor"/>
+<circle cx="58.1" cy="148.4" r="3.6" fill="currentColor"/>
+<circle cx="63.1" cy="136.2" r="3.6" fill="currentColor"/>
+<circle cx="69.2" cy="124.5" r="3.6" fill="currentColor"/>
+<circle cx="76.3" cy="113.4" r="3.6" fill="currentColor"/>
+<circle cx="84.3" cy="102.9" r="3.6" fill="currentColor"/>
+<circle cx="93.2" cy="93.2" r="3.6" fill="currentColor"/>
+<circle cx="102.9" cy="84.3" r="3.6" fill="currentColor"/>
+<circle cx="113.4" cy="76.3" r="3.6" fill="currentColor"/>
+<circle cx="124.5" cy="69.2" r="3.6" fill="currentColor"/>
+<circle cx="136.2" cy="63.1" r="3.6" fill="currentColor"/>
+<circle cx="148.4" cy="58.1" r="3.6" fill="currentColor"/>
+<circle cx="160.9" cy="54.1" r="3.6" fill="currentColor"/>
+<circle cx="173.8" cy="51.3" r="3.6" fill="currentColor"/>
+<circle cx="186.8" cy="49.6" r="3.6" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+<defs>
+  <path id="cb-top" d="M 88 200 A 112 112 0 0 1 312 200"/>
+  <path id="cb-bottom" d="M 96 200 A 104 104 0 0 0 304 200"/>
+</defs>
+<g font-family="'Cormorant Garamond', Cormorant, Georgia, 'Times New Roman', serif" font-weight="500" font-size="36" letter-spacing="9" fill="currentColor">
+  <text><textPath href="#cb-top" startOffset="50%" text-anchor="middle">CRYSTAL</textPath></text>
+  <text><textPath href="#cb-bottom" startOffset="50%" text-anchor="middle">BASKET</textPath></text>
+</g>
+</svg><div><div class="eyebrow">The Still Mind</div><div class="display" style="font-size:13pt;margin-top:3pt">Ease · Breath · Stillness</div><p style="font-size:8.5pt;margin-top:4pt">Amethyst is traditionally worn to quiet an overactive mind and support restful sleep.</p><p class="display" style="font-style:italic;font-size:11pt">“I am calm. I can hear myself think.”</p></div><div style="font-size:7pt;color:var(--faint)">Cleanse on arrival, then monthly. Keep dry. Roll on and off. crystalbasket.store</div></div><div class="cap">Meaning card, A7, 300 gsm uncoated</div></div>
+    <div><div class="card band" style="height:90mm;display:flex;flex-direction:column;justify-content:space-between"><div class="eyebrow">Care card · reverse</div><div style="font-size:9pt"><b style="font-weight:500">Cleanse</b><br>Moonlight overnight, a selenite plate, or smoke. Monthly.<br><br><b style="font-weight:500">Care</b><br>Off for showers, sport and perfume. Store flat in the pouch.<br><br><b style="font-weight:500">Promise</b><br>Cord gives? We re-string it free, for life. WhatsApp us.</div><div style="font-size:7pt;color:var(--faint)">Crystal meanings reflect traditional beliefs and are not medical advice.</div></div><div class="cap">Care card, same stock, printed both sides</div></div>
+  </div>
+  <h2>Print specifications</h2>
+  <table><tr><th>Item</th><th>Spec</th><th>Artwork</th></tr>
+  <tr><td>Pouch</td><td>Natural linen, 10 × 14 cm, drawstring</td><td>Mark only, black ink or blind emboss, 24 mm</td></tr>
+  <tr><td>Meaning + care card</td><td>A7 (74 × 105 mm), 300 gsm uncoated, no lamination</td><td>Badge 16 mm top left; Cormorant + Jost</td></tr>
+  <tr><td>Box (gifting)</td><td>Rigid white, 12 × 12 × 4 cm</td><td>Badge 40 mm centred, blind emboss preferred, black foil second</td></tr>
+  <tr><td>Sticker</td><td>40 mm round, uncoated paper</td><td>Badge in ink on white</td></tr>
+  <tr><td>Thank-you note</td><td>Handwritten on the care card, one line</td><td>—</td></tr></table>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>11</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">10 · Social and WhatsApp</div><h1>The same brand in a 4-inch frame</h1>
+  <div class="cols3">
+    <div><div class="phone"><div class="av"><svg viewBox="0 0 400 400" class="" style="color:currentColor" >
+<circle cx="200.0" cy="28.0" r="7.5" fill="currentColor"/>
+<circle cx="218.0" cy="28.9" r="7.5" fill="currentColor"/>
+<circle cx="235.8" cy="31.8" r="7.5" fill="currentColor"/>
+<circle cx="253.2" cy="36.4" r="7.5" fill="currentColor"/>
+<circle cx="270.0" cy="42.9" r="7.5" fill="currentColor"/>
+<circle cx="286.0" cy="51.0" r="7.5" fill="currentColor"/>
+<circle cx="301.1" cy="60.8" r="7.5" fill="currentColor"/>
+<circle cx="315.1" cy="72.2" r="7.5" fill="currentColor"/>
+<circle cx="327.8" cy="84.9" r="7.5" fill="currentColor"/>
+<circle cx="339.2" cy="98.9" r="7.5" fill="currentColor"/>
+<circle cx="349.0" cy="114.0" r="7.5" fill="currentColor"/>
+<circle cx="357.1" cy="130.0" r="7.5" fill="currentColor"/>
+<circle cx="363.6" cy="146.8" r="7.5" fill="currentColor"/>
+<circle cx="368.2" cy="164.2" r="7.5" fill="currentColor"/>
+<circle cx="371.1" cy="182.0" r="7.5" fill="currentColor"/>
+<circle cx="372.0" cy="200.0" r="7.5" fill="currentColor"/>
+<circle cx="371.1" cy="218.0" r="7.5" fill="currentColor"/>
+<circle cx="368.2" cy="235.8" r="7.5" fill="currentColor"/>
+<circle cx="363.6" cy="253.2" r="7.5" fill="currentColor"/>
+<circle cx="357.1" cy="270.0" r="7.5" fill="currentColor"/>
+<circle cx="349.0" cy="286.0" r="7.5" fill="currentColor"/>
+<circle cx="339.2" cy="301.1" r="7.5" fill="currentColor"/>
+<circle cx="327.8" cy="315.1" r="7.5" fill="currentColor"/>
+<circle cx="315.1" cy="327.8" r="7.5" fill="currentColor"/>
+<circle cx="301.1" cy="339.2" r="7.5" fill="currentColor"/>
+<circle cx="286.0" cy="349.0" r="7.5" fill="currentColor"/>
+<circle cx="270.0" cy="357.1" r="7.5" fill="currentColor"/>
+<circle cx="253.2" cy="363.6" r="7.5" fill="currentColor"/>
+<circle cx="235.8" cy="368.2" r="7.5" fill="currentColor"/>
+<circle cx="218.0" cy="371.1" r="7.5" fill="currentColor"/>
+<circle cx="200.0" cy="372.0" r="7.5" fill="currentColor"/>
+<circle cx="182.0" cy="371.1" r="7.5" fill="currentColor"/>
+<circle cx="164.2" cy="368.2" r="7.5" fill="currentColor"/>
+<circle cx="146.8" cy="363.6" r="7.5" fill="currentColor"/>
+<circle cx="130.0" cy="357.1" r="7.5" fill="currentColor"/>
+<circle cx="114.0" cy="349.0" r="7.5" fill="currentColor"/>
+<circle cx="98.9" cy="339.2" r="7.5" fill="currentColor"/>
+<circle cx="84.9" cy="327.8" r="7.5" fill="currentColor"/>
+<circle cx="72.2" cy="315.1" r="7.5" fill="currentColor"/>
+<circle cx="60.8" cy="301.1" r="7.5" fill="currentColor"/>
+<circle cx="51.0" cy="286.0" r="7.5" fill="currentColor"/>
+<circle cx="42.9" cy="270.0" r="7.5" fill="currentColor"/>
+<circle cx="36.4" cy="253.2" r="7.5" fill="currentColor"/>
+<circle cx="31.8" cy="235.8" r="7.5" fill="currentColor"/>
+<circle cx="28.9" cy="218.0" r="7.5" fill="currentColor"/>
+<circle cx="28.0" cy="200.0" r="7.5" fill="currentColor"/>
+<circle cx="28.9" cy="182.0" r="7.5" fill="currentColor"/>
+<circle cx="31.8" cy="164.2" r="7.5" fill="currentColor"/>
+<circle cx="36.4" cy="146.8" r="7.5" fill="currentColor"/>
+<circle cx="42.9" cy="130.0" r="7.5" fill="currentColor"/>
+<circle cx="51.0" cy="114.0" r="7.5" fill="currentColor"/>
+<circle cx="60.8" cy="98.9" r="10.9" fill="#9c4f66"/>
+<circle cx="72.2" cy="84.9" r="7.5" fill="currentColor"/>
+<circle cx="84.9" cy="72.2" r="7.5" fill="currentColor"/>
+<circle cx="98.9" cy="60.8" r="7.5" fill="currentColor"/>
+<circle cx="114.0" cy="51.0" r="7.5" fill="currentColor"/>
+<circle cx="130.0" cy="42.9" r="7.5" fill="currentColor"/>
+<circle cx="146.8" cy="36.4" r="7.5" fill="currentColor"/>
+<circle cx="164.2" cy="31.8" r="7.5" fill="currentColor"/>
+<circle cx="182.0" cy="28.9" r="7.5" fill="currentColor"/>
+<g fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="round">
+  <polygon points="200,128 236,150 236,250 200,272 164,250 164,150"/>
+  <polyline points="164,150 184,172 216,172 236,150"/>
+  <polyline points="164,250 184,228 216,228 236,250"/>
+  <line x1="184" y1="172" x2="184" y2="228"/>
+  <line x1="216" y1="172" x2="216" y2="228"/>
+  <line x1="200" y1="128" x2="184" y2="172"/>
+  <line x1="200" y1="128" x2="216" y2="172"/>
+  <line x1="200" y1="272" x2="184" y2="228"/>
+  <line x1="200" y1="272" x2="216" y2="228"/>
+  <line x1="164" y1="150" x2="164" y2="250"/>
+  <line x1="236" y1="150" x2="236" y2="250"/>
+</g>
+</svg></div><div class="h">crystalbasket.ae</div><div class="b">Energy you can wear.<br>Natural crystal bracelets, chosen by intention.<br>Hand-strung in Dubai · next-day UAE delivery<br>crystalbasket.store</div></div><div class="cap">Instagram and TikTok: mark-only avatar, this bio</div></div>
+    <div><h2>Stories and posts</h2><ul class="clean"><li>Photos follow page 10. No template frames.</li><li>Text overlays in Jost, white or ink, small, one line.</li><li>Highlights: Intentions · Stones · Care · Reviews · Gifting. Cover icons are the mark on linen.</li><li>Caption formula: promise line, one sentence of stone tradition, the affirmation, then "Link in bio". No hashtag walls; five relevant tags at most.</li></ul>
+    <h2>Discount codes</h2><p>WELCOME10 for the sign-up popup. Any other code is a word, not a number: CALM, GIFT, EID.</p></div>
+    <div><h2>WhatsApp voice</h2><div class="msg">Hi! Thank you for your order 🤍 The Still Mind, 8 mm, size M. It's cleansed and packed. Your courier will reach you tomorrow between 10 and 6. Anything I should add to the card?</div><div class="msg">The cord gave? Send it back to us, we'll re-string it free and post it the same day.</div><p style="font-size:9pt;margin-top:6pt">First name, plain sentences, one emoji at most, always the next step. Reply within the hour during the day.</p></div>
+  </div>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>12</span></div>
+</section>
+
+<section class="page">
+  <div class="eyebrow">11 · Files</div><h1>Where everything lives</h1>
+  <p>All brand files are in the website repository so they can never be lost. Send this table to any printer or photographer.</p>
+  <table><tr><th>What</th><th>File</th><th>Use</th></tr>
+  <tr><td>Badge, ink</td><td>apps/web/public/brand/logo-badge.svg</td><td>Print, web, anything on white or linen</td></tr>
+  <tr><td>Badge, ivory</td><td>apps/web/public/brand/logo-badge-dark.svg</td><td>On ink, on photos</td></tr>
+  <tr><td>Mark only</td><td>apps/web/public/brand/logo-mark.svg</td><td>Avatar, favicon, pouch stamp, under 20 mm</td></tr>
+  <tr><td>Favicon</td><td>apps/web/public/favicon.svg</td><td>Browser tab</td></tr>
+  <tr><td>All ten logo concepts</td><td>docs/brand/logos/</td><td>Reference only; 05 is the chosen mark</td></tr>
+  <tr><td>Product photos</td><td>apps/web/public/images/products/&lt;bracelet&gt;/main.jpg</td><td>Replace with real photos, same file name</td></tr>
+  <tr><td>Intention photos</td><td>apps/web/public/images/intentions/&lt;intention&gt;.jpg</td><td>3:4 lifestyle shot per intention</td></tr>
+  <tr><td>Product copy and prices</td><td>packages/catalog/content/products/</td><td>Names, triads, promises, affirmations</td></tr>
+  <tr><td>Fonts</td><td>fonts.google.com: Cormorant Garamond, Jost</td><td>Free for print and web</td></tr>
+  <tr><td>Colours</td><td>apps/web/src/styles/tokens.css</td><td>The eight values on page 6</td></tr>
+  <tr><td>This book</td><td>docs/brand/book/crystal-basket-brand-book.pdf</td><td>Share with anyone who works on the brand</td></tr></table>
+  <h2>Keeping it consistent</h2><p>When something new is needed, a sticker, a story template, a pop-up sign, start from the badge, white and ink, Cormorant and Jost, and one rose accent. If it looks like a page from this book, it is right.</p>
+  <div class="foot"><span>Crystal Basket · Brand book</span><span>13</span></div>
+</section>
+</body></html>
