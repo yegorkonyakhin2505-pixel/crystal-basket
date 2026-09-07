@@ -13,7 +13,7 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | ✅ | Bag + checkout wired (Storefront API), verified end to end | `apps/web/src/lib/shopify.ts` |
 | ✅ | Cash on Delivery active, UAE shipping 25 AED / free over 250 AED, private mode off | Shopify → Settings |
 | ✅ | Stock Shopify storefront redirects to crystalbasket.store | theme.liquid |
-| ✅ | Welcome popup (10% code WELCOME10), wishlist, stack builder, filters | site |
+| ✅ | Welcome popup + WELCOME10 discount live in Shopify (10% off order, one per customer), wishlist, stack builder, filters | site · Shopify → Discounts |
 | ✅ | Email DNS records in place (Forward Email) | GoDaddy DNS |
 
 ## Blocking launch (cannot take real money without these)
@@ -22,7 +22,6 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 |---|---|---|---|
 | ⏳ | **Trade license** (Dubai e-Trader / freelance permit / free-zone) | Alya | Required by every card gateway and BNPL provider |
 | ⏳ | **Card payments**: Tap Payments (or PayTabs / Telr) merchant account | Alya applies with license + bank account | Then Shopify → Settings → Payments → Choose a provider → activate |
-| ⏳ | **Discount code WELCOME10** created in Shopify (10% off, first order) | 🔧 Claude, 2 min | Shopify → Discounts |
 | ⏳ | **WhatsApp business number** | Alya gives the number | 🔧 Claude puts it in `site.ts`; every order button uses it |
 
 ## Should be done before the first Instagram post
