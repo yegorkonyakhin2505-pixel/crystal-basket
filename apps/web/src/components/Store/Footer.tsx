@@ -15,14 +15,14 @@ export function Footer() {
     { title: "Crystal Basket", links: [[routes.about, "Our story"], [`https://instagram.com/${site.instagram}`, "Instagram"], [`https://tiktok.com/@${site.tiktok}`, "TikTok"], [`mailto:${site.email}`, "Email us"]] },
   ];
   return (
-    <footer className="bg-cb-band border-t border-cb-line mt-24 pb-24 lg:pb-20">
+    <footer className="bg-cb-band border-t border-cb-line mt-24 pb-8">
       <div className="container-x py-14 grid gap-10 md:grid-cols-4">
         {cols.map((c) => (
           <div key={c.title}>
             <p className="label-caps mb-4">{c.title}</p>
             <ul className="space-y-2 text-[13px]">
               {c.links.map(([href, label]) => (
-                <li key={href}>{href.startsWith("http") || href.startsWith("mailto") ? <a href={href} target="_blank" rel="noopener" className="hover:text-cb-rose">{label}</a> : <Link href={href} className="hover:text-cb-rose">{label}</Link>}</li>
+                <li key={href}>{href.startsWith("http") ? <a href={href} target="_blank" rel="noopener" className="hover:text-cb-rose">{label}</a> : href.startsWith("mailto") ? <a href={href} className="hover:text-cb-rose">{label}</a> : <Link href={href} className="hover:text-cb-rose">{label}</Link>}</li>
               ))}
             </ul>
           </div>

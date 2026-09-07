@@ -8,7 +8,8 @@
     "dev": "pnpm --filter web dev",
     "build": "pnpm --filter web build",
     "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r test",
+    "test": "pnpm --filter @crystal-basket/catalog test",
+    "check:tokens": "bash scripts/check-tokens.sh",
     "lint": "pnpm --filter web lint"
   }
 }

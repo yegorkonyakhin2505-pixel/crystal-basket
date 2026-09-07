@@ -9,11 +9,7 @@
     "rose-quartz",
     "moonstone"
   ],
-  "priceAED": 289,
-  "beadSizes": [
-    6,
-    8
-  ],
+  "priceAED": 90,
   "goldAccent": true,
   "style": "women",
   "triad": [
@@ -28,9 +24,11 @@
   "tags": [
     "gift",
     "gold",
-    "new"
+    "new",
+    "bestseller"
   ],
   "images": [
     "main.jpg"
-  ]
+  ],
+  "bestseller": true
 }

@@ -8,12 +8,7 @@
   "stones": [
     "rose-quartz"
   ],
-  "priceAED": 199,
-  "beadSizes": [
-    6,
-    8
-  ],
-  "defaultBead": 6,
+  "priceAED": 65,
   "goldAccent": true,
   "style": "women",
   "triad": [
@@ -22,12 +17,11 @@
     "Warmth"
   ],
   "promise": "A reminder, worn on the wrist, that you are easy to love.",
-  "body": "Slim six-millimetre rose quartz in a soft blush, finished with a gold-filled spacer. The stone of the heart, worn for compassion, tenderness and self-worth.",
+  "body": "Soft eight-millimetre rose quartz in a soft blush, finished with a gold-filled spacer. The stone of the heart, worn for compassion, tenderness and self-worth.",
   "affirmation": "I am worthy of the love I give.",
   "featured": true,
-  "bestseller": true,
+  "bestseller": false,
   "tags": [
-    "bestseller",
     "gift",
     "gold"
   ],

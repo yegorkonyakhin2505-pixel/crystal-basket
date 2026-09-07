@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/lib/site";
-export const metadata: Metadata = { title: "Wellness disclaimer" };
+export const metadata: Metadata = { title: "Wellness disclaimer", description: "Crystal meanings on this site reflect traditional beliefs. Our bracelets are jewellery, not medical devices." };
 export default function DisclaimerPage() {
   return (
     <section className="container-x pt-12 md:pt-20 pb-20 max-w-3xl">

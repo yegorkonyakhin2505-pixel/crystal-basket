@@ -1,0 +1,24 @@
+{
+  "name": "Red Jasper",
+  "keywords": [
+    "Stamina",
+    "Grounding",
+    "Courage"
+  ],
+  "chakra": [
+    "Root"
+  ],
+  "zodiac": [
+    "Aries",
+    "Scorpio"
+  ],
+  "color": "Brick red with darker veining",
+  "palette": [
+    "#b5473a",
+    "#6e2418"
+  ],
+  "description": "Opaque, earthy and warm. Red jasper is traditionally worn for stamina and a steady, grounded kind of courage; the classic root-chakra stone.",
+  "waterSafe": true,
+  "sunSafe": true,
+  "tier": "classic"
+}

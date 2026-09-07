@@ -17,15 +17,18 @@ export default async function IntentionPage({ params }: { params: Promise<Params
   const { slug } = await params;
   const intention = getIntentions().find((x) => x.id === slug);
   if (!intention) notFound();
-  const primary = productsForIntention(intention.id);
-  const secondary = getProducts().filter((p) => p.data.secondaryIntentions.includes(intention.id));
+  const own = productsForIntention(intention.id);
+  const alsoWorn = getProducts().filter((p) => p.data.secondaryIntentions.includes(intention.id));
+  // An intention with no piece of its own (e.g. sleep) shows the pieces also worn for it as the main grid.
+  const primary = own.length ? own : alsoWorn;
+  const secondary = own.length ? alsoWorn : [];
   const stoneIds = new Set(primary.flatMap((p) => p.data.stones));
   const stones = getStones().filter((s) => stoneIds.has(s.id));
   const others = getIntentions().filter((i) => i.id !== intention.id);
   return (
     <>
       <ListingHero image={intention.data.image ? `/images/intentions/${intention.data.image}` : null} palette={intention.data.palette} crumbs={[[routes.intentions, "Intentions"], ["", intention.data.name]]} title={intention.data.name} text={`${intention.data.tagline} ${intention.data.description}`} />
-      <div className="bg-cb-band border-b border-cb-line">
+      <div className="bg-cb-band">
         <div className="container-x flex flex-wrap items-center gap-2 py-3 text-[13px]">
           <span className="text-cb-muted mr-2">Stones:</span>
           {stones.map((s) => <Link key={s.id} href={routes.stone(s.id)} className="inline-flex items-center gap-2 bg-white border border-cb-line px-3 py-1 hover:border-cb-ink"><span className="h-2.5 w-2.5 rounded-full" style={{ background: `radial-gradient(circle at 35% 30%, ${s.data.palette[0]}, ${s.data.palette[1]})` }} />{s.data.name}</Link>)}

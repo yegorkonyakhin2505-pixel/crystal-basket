@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getStones } from "@crystal-basket/catalog";
-export const metadata: Metadata = { title: "Cleanse & care" };
+export const metadata: Metadata = { title: "Cleanse & care", description: "How to cleanse, charge and look after a crystal bracelet: moonlight, selenite, smoke, and which stones to keep out of water and sun." };
 export default function CarePage() {
   const stones = getStones();
   const noWater = stones.filter((s) => !s.data.waterSafe).map((s) => s.data.name);
@@ -13,7 +13,7 @@ export default function CarePage() {
         <div className="bg-white p-6"><p className="label-caps mb-2">Keep out of water</p><p className="text-[14px]">{noWater.join(", ")}</p><p className="text-[12px] text-cb-muted mt-2">Softer or layered stones. Cleanse with smoke, selenite or moonlight.</p></div>
         <div className="bg-white p-6"><p className="label-caps mb-2">Keep out of long sun</p><p className="text-[14px]">{noSun.join(", ")}</p><p className="text-[12px] text-cb-muted mt-2">Colour fades with hours of direct sun. A few minutes is fine.</p></div>
       </section>
-      <section className="container-x pb-20 max-w-3xl"><p className="label-caps mb-4">Everyday care</p><ul className="space-y-2 text-[14px]">{["Roll the bracelet on and off over the hand instead of stretching it wide.", "Take it off for showers, swimming, the gym and the beach.", "Put it on after perfume, sunscreen and lotion, not before.", "Store it flat in its pouch, away from jewellery that could scratch it.", "Stretch cord is a wear part. If it ever gives, we restring it for free."].map((t) => <li key={t}>· {t}</li>)}</ul></section>
+      <section className="container-x pb-20 max-w-3xl"><p className="label-caps mb-4">Everyday care</p><ul className="space-y-2 text-[14px] list-disc list-outside pl-5">{["Roll the bracelet on and off over the hand instead of stretching it wide.", "Take it off for showers, swimming, the gym and the beach.", "Put it on after perfume, sunscreen and lotion, not before.", "Store it flat in its pouch, away from jewellery that could scratch it.", "Stretch cord is a wear part. If it ever gives, we restring it for free."].map((t) => <li key={t}>{t}</li>)}</ul></section>
     </>
   );
 }

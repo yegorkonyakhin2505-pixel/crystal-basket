@@ -10,7 +10,8 @@ import { z } from "zod";
 
 export const Slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "kebab-case slug");
 export const Hex = z.string().regex(/^#[0-9a-fA-F]{6}$/);
-export const BeadMm = z.union([z.literal(6), z.literal(8), z.literal(10)]);
+/** Every bracelet is strung on 8 mm beads (decided 2026-09-07); wrist size is the only variant. */
+export const BEAD_MM = 8;
 export const WristSize = z.enum(["S", "M", "L"]);
 
 export const IntentionSchema = z.object({
@@ -47,8 +48,6 @@ export const ProductSchema = z.object({
   stones: z.array(Slug).min(1),
   priceAED: z.number().int().positive(),
   compareAtAED: z.number().int().positive().optional(),
-  beadSizes: z.array(BeadMm).min(1),
-  defaultBead: BeadMm.default(8),
   sizes: z.array(WristSize).default(["S", "M", "L"]),
   goldAccent: z.boolean().default(false),
   style: z.enum(["unisex", "women", "men"]).default("unisex"),

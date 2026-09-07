@@ -4,7 +4,7 @@ import { ListingHero } from "@/components/Store/ListingHero";
 import { FilterBar } from "@/components/Store/FilterBar";
 import { ProductGrid } from "@/components/Store/ProductGrid";
 
-export const metadata: Metadata = { title: "All bracelets", description: "Every Crystal Basket bracelet: natural crystal beads strung by intention, 6mm to 10mm, delivered across the UAE." };
+export const metadata: Metadata = { title: "All bracelets", description: "Every Crystal Basket bracelet: natural 8 mm crystal beads strung by intention, delivered next day across the UAE." };
 
 export default function ShopPage() {
   const products = getProducts().sort((a, b) => Number(b.data.bestseller) - Number(a.data.bestseller) || Number(b.data.featured) - Number(a.data.featured));

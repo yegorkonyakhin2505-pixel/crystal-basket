@@ -1,6 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { BEAD_MM } from "@crystal-basket/catalog/schemas";
 import { Button, cn } from "@/components/ui";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { WRIST_SIZES, type WristSizeKey } from "@/lib/sizes";
@@ -11,17 +12,16 @@ import { useCart } from "@/hooks/useCart";
 
 interface Props {
   id: string; name: string; priceAED: number; compareAtAED?: number;
-  beadSizes: number[]; defaultBead: number; sizes: WristSizeKey[]; inStock: boolean;
+  sizes: WristSizeKey[]; inStock: boolean;
   stripePaymentLink?: string; freeDeliveryAED: number; deliveryCopy: string;
 }
 
+/** Price, wrist size, add to bag / WhatsApp. Every bracelet is 8 mm, so wrist size is the only choice. */
 export function BuyBox(p: Props) {
-  const [bead, setBead] = useState(p.defaultBead);
   const [size, setSize] = useState<WristSizeKey>(p.sizes.includes("M") ? "M" : p.sizes[0]);
-  const waUrl = useMemo(() => buildWhatsAppUrl([{ name: p.name, bead, size, priceAED: p.priceAED }]), [p.name, bead, size, p.priceAED]);
+  const waUrl = useMemo(() => buildWhatsAppUrl([{ name: p.name, bead: BEAD_MM, size, priceAED: p.priceAED }]), [p.name, size, p.priceAED]);
   const cart = useCart();
-  const stripeUrl = flags.cardCheckout && p.stripePaymentLink ? `${p.stripePaymentLink}${p.stripePaymentLink.includes("?") ? "&" : "?"}client_reference_id=${encodeURIComponent(`${bead}mm-${size}`)}` : undefined;
-  const opt = (on: boolean) => cn("flex-1 border py-3 text-[13px] text-center transition-colors", on ? "border-cb-ink bg-cb-ink text-white" : "border-cb-line hover:border-cb-ink");
+  const stripeUrl = flags.cardCheckout && p.stripePaymentLink ? `${p.stripePaymentLink}${p.stripePaymentLink.includes("?") ? "&" : "?"}client_reference_id=${encodeURIComponent(`${BEAD_MM}mm-${size}`)}` : undefined;
 
   return (
     <div className="space-y-7">
@@ -30,23 +30,26 @@ export function BuyBox(p: Props) {
         {p.compareAtAED && <span className="price text-cb-faint line-through text-base">{p.compareAtAED.toLocaleString()} AED</span>}
       </div>
       <div>
-        <div className="flex justify-between mb-2"><span className="label-caps">Bead size</span><span className="text-[12px] text-cb-muted">{bead === 6 ? "Slim, stacks well" : bead === 8 ? "Classic, most popular" : "Statement"}</span></div>
-        <div className="flex gap-2">{p.beadSizes.map((b) => <button key={b} type="button" onClick={() => setBead(b)} aria-pressed={bead === b} className={opt(bead === b)}>{b} mm</button>)}</div>
-      </div>
-      <div>
-        <div className="flex justify-between mb-2"><span className="label-caps">Wrist size</span><Link href={routes.sizeGuide} className="text-[12px] underline underline-offset-4 hover:text-cb-rose">Size guide</Link></div>
-        <div className="flex gap-2">
-          {p.sizes.map((s) => (
-            <button key={s} type="button" onClick={() => setSize(s)} aria-pressed={size === s} className={cn(opt(size === s), "text-left px-3")}>
-              <span className="block">{s} · {WRIST_SIZES[s].cm} cm</span>
-              <span className={cn("block text-[11px]", size === s ? "opacity-80" : "text-cb-muted")}>{WRIST_SIZES[s].fits}</span>
-            </button>
-          ))}
+        <div className="flex justify-between mb-2">
+          <span className="label-caps">Wrist size</span>
+          <Link href={routes.sizeGuide} className="text-[12px] underline underline-offset-4 hover:text-cb-rose">Size guide</Link>
         </div>
+        <div className="flex gap-2">
+          {p.sizes.map((s) => {
+            const on = size === s;
+            return (
+              <button key={s} type="button" onClick={() => setSize(s)} aria-pressed={on} className={cn("flex-1 border py-3 px-3 text-left text-[13px] transition-colors", on ? "border-cb-ink bg-cb-ink text-white" : "border-cb-line hover:border-cb-ink")}>
+                <span className="block">{s} · {WRIST_SIZES[s].cm} cm</span>
+                <span className={cn("block text-[11px]", on ? "opacity-80" : "text-cb-muted")}>{WRIST_SIZES[s].fits}</span>
+              </button>
+            );
+          })}
+        </div>
+        <p className="text-[12px] text-cb-muted mt-2">{BEAD_MM} mm beads on 1 mm stretch cord. Between sizes? Go up.</p>
       </div>
       <div className="grid gap-2.5">
         {cart.enabled ? (
-          <button type="button" onClick={() => cart.add([{ handle: p.id, beadMm: bead, size }])} disabled={cart.busy} className="inline-flex h-13 items-center justify-center bg-cb-ink text-white text-[13px] uppercase tracking-[0.14em] hover:bg-black transition-colors disabled:opacity-60">
+          <button type="button" onClick={() => cart.add([{ handle: p.id, size }])} disabled={cart.busy} className="inline-flex h-13 items-center justify-center bg-cb-ink text-white text-[13px] uppercase tracking-[0.14em] hover:bg-black transition-colors disabled:opacity-60">
             {cart.busy ? "Adding…" : `Add to bag · ${p.priceAED} AED`}
           </button>
         ) : stripeUrl ? (

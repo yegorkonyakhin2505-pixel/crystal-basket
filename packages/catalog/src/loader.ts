@@ -46,7 +46,9 @@ function loadCollection<S extends z.ZodTypeAny>(folder: string, schema: S): Entr
     .filter((f) => f.endsWith(".json"))
     .sort()
     .map((file) => {
-      const raw = JSON.parse(readFileSync(join(dir, file), "utf8"));
+      let raw: unknown;
+      try { raw = JSON.parse(readFileSync(join(dir, file), "utf8")); }
+      catch (e) { throw new CatalogError(`${folder}/${file}`, `  • invalid JSON: ${(e as Error).message}`); }
       const parsed = schema.safeParse(raw);
       if (!parsed.success) {
         throw new CatalogError(

@@ -6,12 +6,7 @@
   "stones": [
     "black-obsidian"
   ],
-  "priceAED": 219,
-  "beadSizes": [
-    8,
-    10
-  ],
-  "defaultBead": 10,
+  "priceAED": 65,
   "goldAccent": false,
   "style": "men",
   "triad": [
@@ -20,13 +15,15 @@
     "Release"
   ],
   "promise": "One stone, one purpose. A clean black line around the wrist.",
-  "body": "Ten-millimetre polished obsidian, nothing else. Volcanic glass with a deep mirror finish, worn as a shield and for the honesty to see what needs to go.",
+  "body": "Polished eight-millimetre obsidian, nothing else. Volcanic glass with a deep mirror finish, worn as a shield and for the honesty to see what needs to go.",
   "affirmation": "I release what no longer serves me.",
   "tags": [
     "men",
-    "minimal"
+    "minimal",
+    "bestseller"
   ],
   "images": [
     "main.jpg"
-  ]
+  ],
+  "bestseller": true
 }

@@ -24,6 +24,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Catalog tests (hard gate)
         run: pnpm --filter @crystal-basket/catalog test
+      - name: Design tokens (rule 3, hard gate)
+        run: bash scripts/check-tokens.sh
       - name: Typecheck (hard gate)
         run: pnpm -r typecheck
       - name: Build (hard gate)

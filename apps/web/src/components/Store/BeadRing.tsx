@@ -8,7 +8,7 @@ export function BeadRing({ palettes, gold = false, count = 22 }: { palettes: [st
         {palettes.map((p, i) => (
           <radialGradient key={i} id={`br-${i}-${p[0].slice(1)}`} cx="35%" cy="32%" r="70%"><stop offset="0%" stopColor={p[0]} /><stop offset="100%" stopColor={p[1]} /></radialGradient>
         ))}
-        <radialGradient id="br-gold" cx="35%" cy="32%" r="70%"><stop offset="0%" stopColor="#f6e3a1" /><stop offset="100%" stopColor="#8a6a2b" /></radialGradient>
+        <radialGradient id="br-gold" cx="35%" cy="32%" r="70%"><stop offset="0%" stopColor="color-mix(in srgb, var(--cb-gold) 45%, white)" /><stop offset="100%" stopColor="color-mix(in srgb, var(--cb-gold) 60%, black)" /></radialGradient>
       </defs>
       {Array.from({ length: count }).map((_, i) => {
         const a = (i / count) * Math.PI * 2 - Math.PI / 2;

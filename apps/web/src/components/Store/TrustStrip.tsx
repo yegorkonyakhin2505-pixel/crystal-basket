@@ -1,4 +1,3 @@
-import { site } from "@/lib/site";
 export function TrustStrip() {
   const items = [
     ["100% natural stones", "Never dyed, never glass. Variation is proof."],
@@ -8,7 +7,7 @@ export function TrustStrip() {
   ];
   return (
     <section className="border-y border-cb-line bg-white">
-      <div className="container-x grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-cb-line">
+      <div className="container-x grid grid-cols-2 lg:grid-cols-4 gap-px bg-cb-line">
         {items.map(([t, s]) => (
           <div key={t} className="py-6 lg:px-8 first:pl-0 last:pr-0 text-center lg:text-left">
             <p className="text-[13px] font-medium tracking-wide">{t}</p>

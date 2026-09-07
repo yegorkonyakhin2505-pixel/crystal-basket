@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
@@ -19,9 +19,15 @@ export const metadata: Metadata = {
   title: { default: `${site.name} — ${site.tagline}`, template: `%s · ${site.name}` },
   description: site.description,
   metadataBase: new URL(site.url),
-  icons: { icon: asset("/favicon.svg") },
-  openGraph: { siteName: site.name, type: "website", locale: "en_AE" },
+  alternates: { canonical: "./" },
+  icons: {
+    icon: [{ url: asset("/favicon.svg"), type: "image/svg+xml" }, { url: asset("/favicon.ico"), sizes: "32x32" }, { url: asset("/icon-192.png"), sizes: "192x192", type: "image/png" }],
+    apple: asset("/apple-touch-icon.png"),
+  },
+  openGraph: { siteName: site.name, type: "website", locale: "en_GB", images: [{ url: asset("/images/hero/hero-1.jpg"), width: 2000, height: 1125, alt: site.tagline }] },
+  twitter: { card: "summary_large_image" },
 };
+export const viewport: Viewport = { themeColor: "#ffffff", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

@@ -8,7 +8,7 @@ export function isSubscribed(): boolean {
     const v = localStorage.getItem(SUB_KEY);
     if (!v) return false;
     const until = Number(v);
-    if (!Number.isFinite(until)) { localStorage.removeItem(SUB_KEY); return false; } // clear legacy "1" values from testing
+    if (!Number.isFinite(until) || until < 1e12) { localStorage.removeItem(SUB_KEY); return false; } // legacy "1" flag from early testing
     return Date.now() < until;
   } catch { return false; }
 }

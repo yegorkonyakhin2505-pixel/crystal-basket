@@ -29,8 +29,11 @@ test:
 typecheck:
 	pnpm -r typecheck
 
-check: test typecheck build
+check: test tokens typecheck build
 	@echo "✓ all green"
+
+tokens: ## Fail on raw hex colours or dark-mode variants inside components (rule 3)
+	bash scripts/check-tokens.sh
 
 clean:
 	rm -rf apps/web/.next apps/web/out

@@ -8,12 +8,13 @@ import { Testimonials } from "@/components/Store/Testimonials";
 import { SectionTitle, ButtonLink } from "@/components/ui";
 import { Img } from "@/components/Img";
 import { routes, asset } from "@/lib/paths";
-import { site } from "@/lib/site";
+import { flags, site } from "@/lib/site";
 import { stackImage } from "@/lib/images";
 
 export default function HomePage() {
   const products = getProducts();
-  const bestsellers = products.filter((p) => p.data.bestseller).slice(0, 8);
+  // Four tiles: bestsellers first, then featured pieces so the row is never left half empty.
+  const bestsellers = [...products.filter((p) => p.data.bestseller), ...products.filter((p) => p.data.featured && !p.data.bestseller)].slice(0, 4);
   const fresh = products.filter((p) => p.data.isNew).slice(0, 4);
   const stacks = getStacks().filter((s) => s.data.featured);
   return (
@@ -73,7 +74,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {fresh.length > 0 && (
+      {fresh.length >= 2 && (
         <section className="container-x py-16 md:py-24">
           <SectionTitle eyebrow="New in" title="Just strung" />
           <ProductGrid products={fresh} />
@@ -90,7 +91,7 @@ export default function HomePage() {
         <div className="order-1 lg:order-2 aspect-[4/3] overflow-hidden reveal"><Img src={asset("/images/about/studio.jpg")} alt="Stringing gemstone beads at the studio table" /></div>
       </section>
 
-      <Testimonials />
+      {flags.reviews && <Testimonials />}
     </>
   );
 }

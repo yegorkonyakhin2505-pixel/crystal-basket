@@ -26,12 +26,12 @@ export default async function StonePage({ params }: { params: Promise<Params> })
     <>
       <ListingHero palette={d.palette} crumbs={[[routes.stones, "Stones"], ["", d.name]]} title={d.name} text={d.description} />
       <section className="container-x py-12 grid md:grid-cols-[1fr_1.4fr] gap-10 items-start">
-        <div className="aspect-square rounded-full ring-1 ring-black/5 max-w-sm" style={{ background: `radial-gradient(circle at 38% 32%, #ffffffaa 0%, transparent 18%), radial-gradient(circle at 40% 35%, ${d.palette[0]}, ${d.palette[1]})` }} />
+        <div className="aspect-square rounded-full ring-1 ring-black/5 max-w-sm" style={{ background: `radial-gradient(circle at 38% 32%, rgb(255 255 255 / 0.67) 0%, transparent 18%), radial-gradient(circle at 40% 35%, ${d.palette[0]}, ${d.palette[1]})` }} />
         <dl className="divide-y divide-cb-line border-y border-cb-line">
           {facts.map(([k, v]) => <div key={k} className="grid grid-cols-[120px_1fr] gap-4 py-3 text-[14px]"><dt className="text-cb-muted">{k}</dt><dd>{v}</dd></div>)}
         </dl>
       </section>
-      <section className="pb-16"><div className="container-x"><SectionTitle eyebrow="Bracelets" title={`Bracelets with ${d.name}`} /></div><ProductGrid products={productsForStone(stone.id)} /></section>
+      <section className="pb-16"><div className="container-x"><SectionTitle eyebrow="Bracelets" title={`Bracelets with ${d.name}`} /></div><ProductGrid products={productsForStone(stone.id)} empty={`No bracelet uses ${d.name} on its own yet. It appears in our chakra and mixed pieces.`} /></section>
     </>
   );
 }

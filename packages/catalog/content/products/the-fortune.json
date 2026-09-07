@@ -9,11 +9,7 @@
     "green-aventurine",
     "tigers-eye"
   ],
-  "priceAED": 239,
-  "beadSizes": [
-    8,
-    10
-  ],
+  "priceAED": 75,
   "goldAccent": false,
   "style": "unisex",
   "triad": [
@@ -29,5 +25,6 @@
   ],
   "images": [
     "main.jpg"
-  ]
+  ],
+  "bestseller": false
 }

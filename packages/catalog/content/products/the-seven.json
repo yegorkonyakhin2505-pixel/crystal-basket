@@ -7,7 +7,7 @@
     "focus"
   ],
   "stones": [
-    "hematite",
+    "red-jasper",
     "carnelian",
     "citrine",
     "green-aventurine",
@@ -15,10 +15,7 @@
     "amethyst",
     "clear-quartz"
   ],
-  "priceAED": 269,
-  "beadSizes": [
-    8
-  ],
+  "priceAED": 75,
   "goldAccent": false,
   "style": "unisex",
   "triad": [
@@ -27,12 +24,11 @@
     "Alignment"
   ],
   "promise": "All seven centres, in order, on one wrist.",
-  "body": "Hematite, carnelian, citrine, aventurine, lapis, amethyst and clear quartz set in the traditional root-to-crown order on matte black beads. The perennial bestseller, worn for overall balance.",
+  "body": "Red jasper, carnelian, citrine, aventurine, lapis, amethyst and clear quartz set in the traditional root-to-crown order on matte black beads. Worn for overall balance.",
   "affirmation": "I am balanced. Energy moves freely through me.",
-  "bestseller": true,
+  "bestseller": false,
   "tags": [
     "chakra",
-    "bestseller",
     "gift"
   ],
   "images": [

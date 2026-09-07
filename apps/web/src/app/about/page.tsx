@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Img } from "@/components/Img";
 import { asset } from "@/lib/paths";
 import { site } from "@/lib/site";
-export const metadata: Metadata = { title: "Our story" };
+export const metadata: Metadata = { title: "Our story", description: "A small Dubai studio stringing natural, undyed crystal bracelets by hand, cleansed on selenite before they ship." };
 const steps: [string, string][] = [
   ["Sourced", "Whole strands from graders we know, not marketplace lots. Every strand is checked bead by bead for dye, glass and glue."],
   ["Strung", "Each bracelet is strung by hand on 1mm premium stretch cord, double-knotted and hidden inside a bead."],
@@ -19,7 +19,7 @@ export default function AboutPage() {
       <section className="container-x py-16 grid md:grid-cols-4 gap-px bg-cb-line border border-cb-line">
         {steps.map(([t, s], i) => <div key={t} className="bg-white p-7"><span className="font-display text-3xl text-cb-gold">0{i + 1}</span><p className="font-display text-[1.4rem] mt-2">{t}</p><p className="text-[13px] text-cb-muted mt-2">{s}</p></div>)}
       </section>
-      <section className="container-x pb-20 max-w-3xl"><p className="label-caps mb-3">What’s next</p><p className="text-cb-muted">Bracelets first. Raw crystals, tumbled stones, clusters and towers are coming to the basket later this year, organised by the same eight intentions.</p></section>
+      <section className="container-x pb-20 max-w-3xl"><p className="label-caps mb-3">What’s next</p><p className="text-cb-muted">Bracelets first. Raw crystals, tumbled stones, clusters and towers are coming to the basket next, organised by the same eight intentions.</p></section>
     </>
   );
 }

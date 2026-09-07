@@ -9,11 +9,7 @@
     "citrine",
     "pyrite"
   ],
-  "priceAED": 299,
-  "beadSizes": [
-    8,
-    10
-  ],
+  "priceAED": 105,
   "goldAccent": true,
   "style": "unisex",
   "triad": [
@@ -27,8 +23,8 @@
   "featured": true,
   "bestseller": true,
   "tags": [
-    "bestseller",
-    "gold"
+    "gold",
+    "bestseller"
   ],
   "images": [
     "main.jpg"

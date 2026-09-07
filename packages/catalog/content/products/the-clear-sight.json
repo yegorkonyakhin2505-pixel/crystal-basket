@@ -9,11 +9,7 @@
     "lapis-lazuli",
     "clear-quartz"
   ],
-  "priceAED": 319,
-  "beadSizes": [
-    6,
-    8
-  ],
+  "priceAED": 75,
   "goldAccent": true,
   "style": "unisex",
   "triad": [
@@ -30,5 +26,6 @@
   ],
   "images": [
     "main.jpg"
-  ]
+  ],
+  "bestseller": false
 }

@@ -20,8 +20,10 @@
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+@layer base {
 html {
   color-scheme: light;
+  scrollbar-gutter: stable;
 }
 body {
   background: var(--cb-bg);
@@ -43,6 +45,7 @@ h1, h2, h3, .font-display {
   font-size: 1.15em;
 }
 ::selection { background: var(--cb-rose-soft); }
+}
 
 /* Utilities */
 @utility container-x {
@@ -66,6 +69,10 @@ html.js .reveal { opacity: 0; transform: translateY(10px); transition: opacity .
 html.js .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html.js .reveal { opacity: 1; transform: none; transition: none; }
+}
+@media print {
+  html.js .reveal { opacity: 1; transform: none; }
+  .print-hidden { display: none !important; }
 }
 
 @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }

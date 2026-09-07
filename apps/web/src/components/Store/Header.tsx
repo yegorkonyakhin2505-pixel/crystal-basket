@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getIntentions, getStones } from "@crystal-basket/catalog";
 import { site } from "@/lib/site";
 import { routes } from "@/lib/paths";

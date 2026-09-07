@@ -18,11 +18,19 @@ export const productsForStone = (id: string): Product[] => getProducts().filter(
 
 export const stonesForProduct = (p: Product): Stone[] => p.data.stones.map(getStone);
 
-/** Products related by shared intention or stone, excluding itself. */
+/** Products related to `p`, best match first: same intention, shared stones, secondary intention, then bestsellers to fill the row. */
 export function relatedProducts(p: Product, limit = 4): Product[] {
+  const score = (o: Product) =>
+    (o.data.intention === p.data.intention ? 4 : 0) +
+    o.data.stones.filter((s) => p.data.stones.includes(s)).length * 2 +
+    (o.data.secondaryIntentions.includes(p.data.intention) || p.data.secondaryIntentions.includes(o.data.intention) ? 1 : 0) +
+    (o.data.bestseller ? 0.5 : 0);
   return getProducts()
-    .filter((o) => o.id !== p.id && (o.data.intention === p.data.intention || o.data.stones.some((s) => p.data.stones.includes(s))))
-    .slice(0, limit);
+    .filter((o) => o.id !== p.id)
+    .map((o, i) => ({ o, s: score(o), i }))
+    .sort((a, b) => b.s - a.s || a.i - b.i)
+    .slice(0, limit)
+    .map((x) => x.o);
 }
 
 export function stackSubtotal(s: Stack): number {

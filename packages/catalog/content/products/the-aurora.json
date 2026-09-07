@@ -1,19 +1,16 @@
 {
   "name": "The Aurora",
-  "subtitle": "Manifestation Bracelet · Labradorite",
+  "subtitle": "Focus & Clarity Bracelet · Labradorite",
   "intention": "focus",
   "secondaryIntentions": [
     "protection",
-    "sleep"
+    "sleep",
+    "calm"
   ],
   "stones": [
     "labradorite"
   ],
-  "priceAED": 349,
-  "beadSizes": [
-    8,
-    10
-  ],
+  "priceAED": 80,
   "goldAccent": true,
   "style": "unisex",
   "triad": [
@@ -31,5 +28,6 @@
   ],
   "images": [
     "main.jpg"
-  ]
+  ],
+  "bestseller": false
 }

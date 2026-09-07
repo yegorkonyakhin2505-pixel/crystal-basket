@@ -33,6 +33,8 @@ export const flags = {
   cardCheckout: true,
   /** TODO[NEEDED:N04] newsletter provider (Klaviyo/Mailchimp) form action. */
   newsletter: false,
+  /** TODO[NEEDED:N03] real customer reviews. The sample quotes in Testimonials.tsx stay hidden until then. */
+  reviews: false,
   /** Wishlist persisted in localStorage (no account needed). */
   wishlist: true,
   /** Welcome-offer popup after the first interaction. */

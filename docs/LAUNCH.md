@@ -8,7 +8,7 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 |---|---|---|
 | ✅ | Website live at **crystalbasket.store**, HTTPS, GitHub Pages, auto-deploys on push | repo `crystal-basket` |
 | ✅ | Design: Swarovski-style light layout, logo 05 badge, brand book | `docs/brand/` |
-| ✅ | 14 bracelets, 16 stones, 8 intentions, 3 stacks with copy and AI placeholder photos | `packages/catalog/content` |
+| ✅ | 12 bracelets (all 8 mm, S/M/L), 16 stones, 8 intentions, 3 stacks with copy and AI placeholder photos; prices set by Alya 2026-09-07 | `packages/catalog/content` |
 | ✅ | Shopify store (Basic plan, AED, Dubai), products imported with variants | `utx8rj-t3.myshopify.com` |
 | ✅ | Bag + checkout wired (Storefront API), verified end to end | `apps/web/src/lib/shopify.ts` |
 | ✅ | Cash on Delivery active, UAE shipping 25 AED / free over 250 AED, private mode off | Shopify → Settings |
@@ -30,12 +30,11 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 |---|---|---|---|
 | ⏳ | **Send as hello@crystalbasket.store** from Gmail | Alya, 3 min | Gmail → Settings → Accounts and Import → "Send mail as" → add hello@crystalbasket.store, Gmail SMTP with an app password |
 | ⏳ | Real product photos (at least the on-white shot per bracelet) | Alya | Drop into `apps/web/public/images/products/<slug>/main.jpg`, Claude also uploads to Shopify |
-| ⏳ | Real prices confirmed (site and Shopify must match) | Alya | Tell Claude the final numbers |
 | ⏳ | Stock on hand per variant (currently 5 each as placeholder) | Alya | Shopify → Products → Inventory |
 | ⏳ | Tabby + Tamara apps (after gateway approval) | Alya installs in Shopify | 🔧 Claude adds "pay in 4" line on product pages |
 | ⏳ | Checkout branding (logo, colours) | 🔧 Claude | Shopify → Settings → Checkout → Customize |
 | ⏳ | Instagram + TikTok handles, real contact email in footer | Alya | `site.ts` |
-| ⏳ | Three real reviews to replace placeholders, honest review count | Alya | `Testimonials.tsx`, `site.ts` |
+| ⏳ | Three real reviews + honest count (reviews section is hidden until then) | Alya | `Testimonials.tsx`, `site.ts` → `flags.reviews` |
 | ⏳ | Newsletter provider (Klaviyo free) connected to the popup | 🔧 Claude once account exists | `flags.newsletter` |
 | ⏳ | Pixels: Meta + TikTok + GA4 | 🔧 Claude once IDs exist | layout |
 | ⏳ | Courier account (Aramex / Quiqup) with COD | Alya | |
