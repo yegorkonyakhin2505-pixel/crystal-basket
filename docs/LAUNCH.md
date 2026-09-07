@@ -14,6 +14,8 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | ✅ | Cash on Delivery active, UAE shipping 25 AED / free over 250 AED, private mode off | Shopify → Settings |
 | ✅ | Stock Shopify storefront redirects to crystalbasket.store | theme.liquid |
 | ✅ | Welcome popup + WELCOME10 discount live in Shopify (10% off order, one per customer), wishlist, stack builder, filters | site · Shopify → Discounts |
+| ✅ | Stack discount: automatic "Stack of 3 · 15% off" on any 3+ items (Shopify → Discounts), so the builder's total is what checkout charges. Does not combine with WELCOME10 | Shopify → Discounts |
+| ✅ | Shopify catalog synced 2026-09-07: 12 products, wrist size only (8 mm), owner's prices, The Lunar + The Exhale deleted | `docs/shopify/products.csv` |
 | ✅ | Email: any address @crystalbasket.store forwards to Alya's Gmail (Cloudflare Email Routing). DNS now hosted on Cloudflare | Cloudflare, Alya's account |
 
 ## Blocking launch (cannot take real money without these)
