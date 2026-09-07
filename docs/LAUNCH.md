@@ -14,7 +14,7 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | ✅ | Cash on Delivery active, UAE shipping 25 AED / free over 250 AED, private mode off | Shopify → Settings |
 | ✅ | Stock Shopify storefront redirects to crystalbasket.store | theme.liquid |
 | ✅ | Welcome popup + WELCOME10 discount live in Shopify (10% off order, one per customer), wishlist, stack builder, filters | site · Shopify → Discounts |
-| ✅ | Email DNS records in place (Forward Email) | GoDaddy DNS |
+| ✅ | Email: any address @crystalbasket.store forwards to Alya's Gmail (Cloudflare Email Routing). DNS now hosted on Cloudflare | Cloudflare, Alya's account |
 
 ## Blocking launch (cannot take real money without these)
 
@@ -28,7 +28,7 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 
 | # | Item | Who | How |
 |---|---|---|---|
-| ⏳ | **Email**: pick free Cloudflare routing (Yegor creates account, Claude does the rest) or pay Forward Email 3 USD/mo | Yegor/Alya decide | Then Gmail → "Send mail as" hello@crystalbasket.store |
+| ⏳ | **Send as hello@crystalbasket.store** from Gmail | Alya, 3 min | Gmail → Settings → Accounts and Import → "Send mail as" → add hello@crystalbasket.store, Gmail SMTP with an app password |
 | ⏳ | Real product photos (at least the on-white shot per bracelet) | Alya | Drop into `apps/web/public/images/products/<slug>/main.jpg`, Claude also uploads to Shopify |
 | ⏳ | Real prices confirmed (site and Shopify must match) | Alya | Tell Claude the final numbers |
 | ⏳ | Stock on hand per variant (currently 5 each as placeholder) | Alya | Shopify → Products → Inventory |
