@@ -12,7 +12,7 @@ export function Footer() {
     { title: "Shop", links: [[routes.shop, "All bracelets"], [routes.stacks, "Stacks & sets"], [routes.stones, "Stone library"], [routes.wishlist, "Wishlist"]] },
     { title: "Intentions", links: intentions.map((i) => [routes.intention(i.id), i.data.name] as [string, string]) },
     { title: "Help", links: [[routes.sizeGuide, "Size guide"], [routes.care, "Cleanse & care"], [routes.faq, "FAQ"], [routes.disclaimer, "Wellness disclaimer"]] },
-    { title: "Crystal Basket", links: [[routes.about, "Our story"], [`https://instagram.com/${site.instagram}`, "Instagram"], [`https://tiktok.com/@${site.tiktok}`, "TikTok"], [`mailto:${site.email}`, "Email us"]] },
+    { title: "Crystal Basket", links: ([[routes.about, "Our story"], site.instagram && [`https://instagram.com/${site.instagram}`, "Instagram"], site.tiktok && [`https://tiktok.com/@${site.tiktok}`, "TikTok"], [`mailto:${site.email}`, "Email us"]] as (false | "" | [string, string])[]).filter((l): l is [string, string] => Array.isArray(l)) },
   ];
   return (
     <footer className="bg-cb-band border-t border-cb-line mt-24 pb-8">

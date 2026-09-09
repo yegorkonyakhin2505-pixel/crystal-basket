@@ -35,7 +35,7 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | ⏳ | Stock on hand per variant (currently 5 each as placeholder) | Alya | Shopify → Products → Inventory |
 | ⏳ | Tabby + Tamara apps (after gateway approval) | Alya installs in Shopify | 🔧 Claude adds "pay in 4" line on product pages |
 | ⏳ | Checkout branding (logo, colours) | 🔧 Claude | Shopify → Settings → Checkout → Customize |
-| ⏳ | Instagram + TikTok handles, real contact email in footer | Alya | `site.ts` |
+| ⏳ | TikTok handle (Instagram @crystal.basket and hello@ email are in the footer) | Alya | `site.ts` |
 | ⏳ | Three real reviews + honest count (reviews section is hidden until then) | Alya | `Testimonials.tsx`, `site.ts` → `flags.reviews` |
 | ⏳ | Newsletter provider (Klaviyo free) connected to the popup | 🔧 Claude once account exists | `flags.newsletter` |
 | ⏳ | Pixels: Meta + TikTok + GA4 | 🔧 Claude once IDs exist | layout |

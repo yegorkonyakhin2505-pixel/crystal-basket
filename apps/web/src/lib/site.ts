@@ -14,8 +14,9 @@ export const site = {
   /** TODO[NEEDED:N01] real WhatsApp business number, digits only. */
   whatsapp: "971500000000",
   email: "hello@crystalbasket.store",
-  instagram: "crystalbasket.ae",
-  tiktok: "crystalbasket.ae",
+  instagram: "crystal.basket",
+  /** TODO[NEEDED:N06] TikTok handle; empty hides the footer link. */
+  tiktok: "",
   freeDeliveryAED: 250,
   deliveryCopy: "Next-day delivery across the UAE.",
   announcement: "Free UAE delivery over 250 AED · Every piece cleansed & charged before it ships",

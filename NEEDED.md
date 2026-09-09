@@ -11,7 +11,7 @@ _Last updated: 2026-09-07_
 | **N03** ⚠️ | Real reviews + honest review count | Homepage social proof | `site.ts` → `reviews` + `flags.reviews`; `components/Store/Testimonials.tsx` | ⏳ section hidden until real quotes exist (sample quotes were invented) |
 | **N04** | Newsletter provider (Klaviyo/Mailchimp) endpoint | Email capture from the welcome popup + bottom bar; today emails stay in the visitor's browser and the code WELCOME10 is shown at once | `site.ts` → `flags.newsletter`, `welcome`; `OfferPopup.tsx`, `NewsletterBar.tsx` | ⏳ local only |
 | **N05** | Real product & lifestyle photography | Replace AI placeholders | `apps/web/public/images/**` | ⏳ AI placeholders live |
-| **N06** | Instagram / TikTok handles, contact email | Footer links | `site.ts` | ⏳ placeholders |
+| **N06** | Instagram / TikTok handles, contact email | Footer links | `site.ts` | Instagram @crystal.basket ✅ 2026-09-09 · email hello@ ✅ · TikTok ⏳ (link hidden until the handle exists) |
 | **N07** | Custom domain | Replace github.io link | crystalbasket.store (GoDaddy). DNS → GitHub Pages, HTTPS enforced, github.io redirects | ✅ live 2026-09-06 |
 | **N08** | Logo | Concept 05 (bead badge) chosen by Yegor 2026-09-06 | `components/Store/LogoBadge.tsx`, `public/brand/logo-badge*.svg`, `public/favicon.svg`; concepts in `docs/brand/logos` | ✅ |
 | **N09** | Delivery partner + COD terms | Delivery copy accuracy | `site.ts` → `deliveryCopy`, `freeDeliveryAED` | ⏳ assumed |
