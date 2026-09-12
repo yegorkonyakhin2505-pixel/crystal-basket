@@ -6,7 +6,7 @@ import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { useCart } from "@/hooks/useCart";
 import { WRIST_SIZES, type WristSizeKey } from "@/lib/sizes";
 
-export interface BuilderProduct { id: string; name: string; intention: string; intentionName: string; stones: string; priceAED: number; image: string | null; palettes: [string, string][] }
+export interface BuilderProduct { id: string; name: string; intention: string; intentionName: string; stones: string; priceAED: number; image: string | null; palettes: [string, string][]; inStock: boolean }
 
 export function StackBuilder({ products, intentions, discountPct }: { products: BuilderProduct[]; intentions: { id: string; name: string }[]; discountPct: number }) {
   const [filter, setFilter] = useState("all");
@@ -32,11 +32,11 @@ export function StackBuilder({ products, intentions, discountPct }: { products: 
         <div className="grid grid-cols-2 xl:grid-cols-3 gap-px bg-cb-line border border-cb-line">
           {list.map((p) => {
             const on = picked.includes(p.id);
-            const full = picked.length >= 3 && !on;
+            const full = (picked.length >= 3 && !on) || !p.inStock;
             return (
               <button key={p.id} type="button" onClick={() => toggle(p.id)} disabled={full} aria-pressed={on} className={cn("text-left bg-white p-4 transition-colors", on ? "outline outline-2 -outline-offset-2 outline-cb-ink" : "hover:bg-cb-band", "disabled:opacity-40")}>
                 <div className="aspect-square bg-white mb-3 overflow-hidden">{p.image ? <img src={p.image} alt="" className="h-full w-full object-cover" loading="lazy" /> : null}</div>
-                <p className="font-display text-[1.15rem] leading-tight">{p.name}</p>
+                <p className="font-display text-[1.15rem] leading-tight">{p.name}{!p.inStock && <span className="ml-2 align-middle text-[10px] uppercase tracking-[0.14em] text-cb-muted">Sold out</span>}</p>
                 <p className="text-[12px] text-cb-muted truncate">{p.stones}</p>
                 <div className="flex justify-between mt-2 text-[12px]"><span className="text-cb-rose uppercase tracking-[0.12em]">{p.intentionName}</span><span className="price text-[14px]">{formatAED(p.priceAED)}</span></div>
               </button>

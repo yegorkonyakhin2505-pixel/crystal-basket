@@ -59,6 +59,7 @@ def main():
         alt = f"{title} — {p['subtitle']}"
         img = image_url(slug, p["images"][0]) if p.get("images") else ""
         sku_base = "CB-" + slug.replace("the-", "").upper().replace("-", "")
+        in_stock = p.get("inStock", True)
         for i, (size, cm) in enumerate(SIZES):
             if size not in p.get("sizes", ["S", "M", "L"]):
                 continue
@@ -75,7 +76,7 @@ def main():
                 "Option1 Name": "Wrist size", "Option1 Value": f"{size} · {cm} cm",
                 "Option2 Name": "", "Option2 Value": "",
                 "Variant SKU": f"{sku_base}-{size}", "Variant Grams": 20,
-                "Variant Inventory Tracker": "shopify", "Variant Inventory Qty": 5, "Variant Inventory Policy": "continue",
+                "Variant Inventory Tracker": "shopify", "Variant Inventory Qty": 5 if in_stock else 0, "Variant Inventory Policy": "continue" if in_stock else "deny",
                 "Variant Fulfillment Service": "manual", "Variant Price": p["priceAED"],
                 "Variant Requires Shipping": "TRUE", "Variant Taxable": "TRUE",
                 "Image Src": img if first else "", "Image Position": 1 if first and img else "", "Image Alt Text": alt if first and img else "",

@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { BEAD_MM } from "@crystal-basket/catalog/schemas";
 import { Button, cn } from "@/components/ui";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { buildWhatsAppUrl, whatsappChatUrl } from "@/lib/whatsapp";
 import { WRIST_SIZES, type WristSizeKey } from "@/lib/sizes";
 import { routes } from "@/lib/paths";
 import { flags } from "@/lib/site";
@@ -48,7 +48,13 @@ export function BuyBox(p: Props) {
         <p className="text-[12px] text-cb-muted mt-2">{BEAD_MM} mm beads on 1 mm stretch cord. Between sizes? Go up.</p>
       </div>
       <div className="grid gap-2.5">
-        {cart.enabled ? (
+        {!p.inStock ? (
+          <>
+            <Button size="lg" disabled aria-disabled>Sold out</Button>
+            <a href={whatsappChatUrl(`Hi Crystal Basket! Please let me know when ${p.name} (size ${size}) is back in stock.`)} target="_blank" rel="noopener" className="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Tell me when it’s back</a>
+            <p className="text-[12px] text-cb-muted text-center">This piece is between batches. Message us and we will hold one for you.</p>
+          </>
+        ) : cart.enabled ? (
           <button type="button" onClick={() => cart.add([{ handle: p.id, size }])} disabled={cart.busy} className="inline-flex h-13 items-center justify-center bg-cb-ink text-white text-[13px] uppercase tracking-[0.14em] hover:bg-black transition-colors disabled:opacity-60">
             {cart.busy ? "Adding…" : `Add to bag · ${p.priceAED} AED`}
           </button>
@@ -57,10 +63,12 @@ export function BuyBox(p: Props) {
         ) : (
           <Button size="lg" disabled title="Card checkout link not set yet">Card checkout · coming soon</Button>
         )}
-        <a href={waUrl} target="_blank" rel="noopener" className="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Order on WhatsApp</a>
+        {p.inStock && cart.enabled && stripeUrl && (
+          <a href={stripeUrl} target="_blank" rel="noopener" className="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Pay by card · {p.priceAED} AED</a>
+        )}
+        {p.inStock && <a href={waUrl} target="_blank" rel="noopener" className="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Order on WhatsApp</a>}
         <div className="flex justify-center"><WishlistButton id={p.id} label /></div>
         {cart.error && <p className="text-[12px] text-cb-danger text-center">{cart.error}</p>}
-        {!p.inStock && <p className="text-[12px] text-cb-muted text-center">Currently made to order. Message us for the wait time.</p>}
       </div>
       <ul className="text-[12px] text-cb-muted space-y-1.5 border-t border-cb-line pt-5">
         <li>· {p.deliveryCopy} Free over {p.freeDeliveryAED} AED.</li>

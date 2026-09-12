@@ -30,5 +30,6 @@
   "images": [
     "main.jpg"
   ],
-  "bestseller": true
+  "bestseller": true,
+  "inStock": false
 }

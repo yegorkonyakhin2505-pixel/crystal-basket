@@ -15,6 +15,7 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | ✅ | Stock Shopify storefront redirects to crystalbasket.store | theme.liquid |
 | ✅ | Welcome popup + WELCOME10 discount live in Shopify (10% off order, one per customer), wishlist, stack builder, filters | site · Shopify → Discounts |
 | ✅ | Stack discount: automatic "Stack of 3 · 15% off" on any 3+ items (Shopify → Discounts), so the builder's total is what checkout charges. Does not combine with WELCOME10 | Shopify → Discounts |
+| ✅ | The Devotion and The Aurora marked sold out 2026-09-12 (site + Shopify stock 0, no oversell); Calm Stack re-composed from in-stock pieces | catalog + Shopify |
 | ✅ | Shopify catalog synced 2026-09-07: 12 products, wrist size only (8 mm), owner's prices, The Lunar + The Exhale deleted | `docs/shopify/products.csv` |
 | ✅ | Email: any address @crystalbasket.store forwards to Alya's Gmail (Cloudflare Email Routing). DNS now hosted on Cloudflare | Cloudflare, Alya's account |
 

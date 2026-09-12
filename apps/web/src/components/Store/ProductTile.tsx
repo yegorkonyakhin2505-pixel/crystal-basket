@@ -3,7 +3,7 @@ import { BEAD_MM, formatAED, getIntention, stonesForProduct, type Product } from
 import { routes } from "@/lib/paths";
 import { productImage } from "@/lib/images";
 import { Img } from "@/components/Img";
-import { Badge } from "@/components/ui";
+import { Badge, cn } from "@/components/ui";
 import { WishlistButton } from "./WishlistButton";
 import { BeadRing } from "./BeadRing";
 
@@ -18,15 +18,15 @@ export function ProductTile({ product, eager = false }: { product: Product; eage
   const stones = stonesForProduct(product);
   const intention = getIntention(d.intention);
   const img = productImage(product);
-  const badge = d.isNew ? "New" : d.bestseller ? "Bestseller" : null;
+  const badge = !d.inStock ? "Sold out" : d.isNew ? "New" : d.bestseller ? "Bestseller" : null;
   const stoneLine = stones.length > 3 ? `${stones.length} stones` : stones.map((s) => s.data.name).join(", ");
   const spec = [stoneLine, `${BEAD_MM}mm`, d.goldAccent ? "14k gold-filled accent" : null].filter(Boolean).join(", ");
   return (
-    <div className="group relative h-full bg-white border-r border-b border-cb-line" data-intention={d.intention} data-stones={d.stones.join(" ")} data-style={d.style} data-price={d.priceAED} data-gold={d.goldAccent ? "1" : "0"} data-new={d.isNew ? "1" : "0"}>
+    <div className="group relative h-full bg-white border-r border-b border-cb-line" data-intention={d.intention} data-stones={d.stones.join(" ")} data-style={d.style} data-price={d.priceAED} data-gold={d.goldAccent ? "1" : "0"} data-new={d.isNew ? "1" : "0"} data-stock={d.inStock ? "1" : "0"}>
       <div className="absolute right-4 top-4 z-10"><WishlistButton id={product.id} /></div>
-      {badge && <Badge tone="neutral" className="absolute left-5 top-5 z-10">{badge}</Badge>}
+      {badge && <Badge tone={d.inStock ? "neutral" : "ink"} className="absolute left-5 top-5 z-10">{badge}</Badge>}
       <Link href={routes.product(product.id)} className="block h-full p-5 md:p-7">
-        <div className="aspect-square overflow-hidden bg-white">
+        <div className={cn("aspect-square overflow-hidden bg-white", !d.inStock && "opacity-60")}>
           <div className="h-full w-full transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
             {img ? <Img src={img} alt={`${d.name} — ${d.subtitle}`} loading={eager ? "eager" : "lazy"} /> : <BeadRing palettes={stones.map((s) => s.data.palette)} gold={d.goldAccent} />}
           </div>

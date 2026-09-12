@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { getIntentions, getProducts, getStacks, getStones, loadCatalog, relatedProducts, stackSubtotal } from "./index";
+import { getIntentions, getProduct, getProducts, getStacks, getStones, loadCatalog, relatedProducts, stackSubtotal } from "./index";
 
 describe("catalog content", () => {
   it("loads and cross-validates every collection", () => {
@@ -27,6 +27,10 @@ describe("catalog content", () => {
   it("every stone is used by at least one product", () => {
     const used = new Set(getProducts().flatMap((p) => p.data.stones));
     for (const s of getStones()) expect(used.has(s.id), `stone ${s.id} unused`).toBe(true);
+  });
+
+  it("curated stacks only contain in-stock pieces", () => {
+    for (const s of getStacks()) for (const id of s.data.products) expect(getProduct(id).data.inStock, `${s.id} contains sold-out ${id}`).toBe(true);
   });
 
   it("stack prices are below the sum of their parts", () => {

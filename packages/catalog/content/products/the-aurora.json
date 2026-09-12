@@ -29,5 +29,6 @@
   "images": [
     "main.jpg"
   ],
-  "bestseller": false
+  "bestseller": false,
+  "inStock": false
 }

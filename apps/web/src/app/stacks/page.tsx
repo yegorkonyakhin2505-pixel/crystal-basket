@@ -16,7 +16,7 @@ export default function StacksPage() {
   const intentions = getIntentions();
   const builder = getProducts().map((p) => ({
     id: p.id, name: p.data.name, intention: p.data.intention, intentionName: intentions.find((i) => i.id === p.data.intention)!.data.short,
-    stones: p.data.stones.map((s) => getStone(s).data.name).join(" · "), priceAED: p.data.priceAED, image: productImage(p), palettes: p.data.stones.map((s) => getStone(s).data.palette),
+    stones: p.data.stones.map((s) => getStone(s).data.name).join(" · "), priceAED: p.data.priceAED, image: productImage(p), palettes: p.data.stones.map((s) => getStone(s).data.palette), inStock: p.data.inStock,
   }));
   return (
     <>
