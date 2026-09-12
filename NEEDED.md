@@ -7,7 +7,7 @@ _Last updated: 2026-09-07_
 | ID | What | Why | Where it goes | Status |
 |---|---|---|---|---|
 | **N01** 🚨 | WhatsApp business number (international, digits only) | Every order button points here | `apps/web/src/lib/site.ts` → `whatsapp` | ⏳ placeholder `971500000000` |
-| **N02** ⚠️ | Payment links per product (Stripe / Ziina / Tap) | Turns on the "Buy now" button | `packages/catalog/content/products/*.json` → `stripePaymentLink` | ⏳ |
+| **N02** ⚠️ | Card gateway | Cards at checkout | **Stripe Card Payments** inside Shopify (Settings → Payments → Choose a provider). Needs a Stripe account under the Click Collab license, connected by Yegor. Per-product `stripePaymentLink` stays as an optional "Pay by card" button, unused once Stripe is inside Shopify checkout | ⏳ decided 2026-09-12 |
 | **N03** ⚠️ | Real reviews + honest review count | Homepage social proof | `site.ts` → `reviews` + `flags.reviews`; `components/Store/Testimonials.tsx` | ⏳ section hidden until real quotes exist (sample quotes were invented) |
 | **N04** | Newsletter provider (Klaviyo/Mailchimp) endpoint | Email capture from the welcome popup + bottom bar; today emails stay in the visitor's browser and the code WELCOME10 is shown at once | `site.ts` → `flags.newsletter`, `welcome`; `OfferPopup.tsx`, `NewsletterBar.tsx` | ⏳ local only |
 | **N05** | Real product & lifestyle photography | Replace AI placeholders | `apps/web/public/images/**` | ⏳ AI placeholders live |

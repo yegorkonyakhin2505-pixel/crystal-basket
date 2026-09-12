@@ -24,7 +24,7 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | # | Item | Who | How |
 |---|---|---|---|
 | ⏳ | **Trade license** (Dubai e-Trader / freelance permit / free-zone) | Alya | Required by every card gateway and BNPL provider |
-| ⏳ | **Card payments**: Tap Payments (or PayTabs / Telr) merchant account | Alya applies with license + bank account | Then Shopify → Settings → Payments → Choose a provider → activate |
+| ⏳ | **Card payments via Stripe** (decided 2026-09-12, same license as Click Collab) | Yegor: Stripe account for Crystal Basket, then Shopify → Settings → Payments → Choose a provider → "Stripe Card Payments" → Install → Connect with Stripe | Stripe is listed as a third-party provider for this store. Shopify adds a 2% fee on top of Stripe's rate on the Basic plan. Card path then runs inside the existing Shopify checkout; nothing changes on the site. |
 | ⏳ | **WhatsApp business number** | Alya gives the number | 🔧 Claude puts it in `site.ts`; every order button uses it |
 
 ## Should be done before the first Instagram post
