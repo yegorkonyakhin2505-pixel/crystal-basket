@@ -64,7 +64,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             {img ? <Img src={img} alt={`${d.name} — ${d.subtitle}`} loading="eager" /> : <BeadRing palettes={stones.map((s) => s.data.palette)} gold={d.goldAccent} />}
           </div>
           <div className="grid grid-cols-2 gap-2">
-            {intentionImage(intention) && <div className="aspect-[3/4] bg-cb-band overflow-hidden"><Img src={intentionImage(intention)!} alt={`${intention.data.name} on the wrist`} /></div>}
+            {(productImage(product, 1) ?? intentionImage(intention)) && <div className="aspect-[3/4] bg-cb-band overflow-hidden"><Img src={(productImage(product, 1) ?? intentionImage(intention))!} alt={productImage(product, 1) ? `${d.name}, bead detail` : `${intention.data.name} on the wrist`} /></div>}
             <div className="aspect-[3/4] bg-cb-band p-6 flex flex-col justify-end">
               <p className="label-caps mb-2">{d.triad.join(" · ")}</p>
               <p className="font-display text-[1.5rem] leading-snug italic">“{d.affirmation}”</p>

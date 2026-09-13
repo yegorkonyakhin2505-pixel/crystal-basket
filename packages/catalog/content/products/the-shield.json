@@ -23,7 +23,8 @@
     "bestseller"
   ],
   "images": [
-    "main.jpg"
+    "main.jpg",
+    "detail.jpg"
   ],
   "bestseller": true
 }

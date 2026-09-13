@@ -27,7 +27,8 @@
     "gold"
   ],
   "images": [
-    "main.jpg"
+    "main.jpg",
+    "detail.jpg"
   ],
   "bestseller": false,
   "inStock": false

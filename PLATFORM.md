@@ -15,7 +15,7 @@
 |---|---|---|---|
 | `/` | `page.tsx` | bestsellers, new, stacks | Hero, intention grid, bestsellers, trust strip, stacks band, story, reviews |
 | `/shop/` | `shop/page.tsx` | all products | ListingHero + FilterBar + ProductGrid |
-| `/products/[slug]/` | `products/[slug]/page.tsx` | product, stones, related | Gallery, BuyBox (wrist size only, all 8 mm), accordions, related grid (scored + backfilled), FAQ, Product JSON-LD + per-product Open Graph |
+| `/products/[slug]/` | `products/[slug]/page.tsx` | product, stones, related | Gallery (second tile = `images[1]` if the product has one, else the intention lifestyle shot), BuyBox (wrist size only, all 8 mm), accordions, related grid (scored + backfilled), FAQ, Product JSON-LD + per-product Open Graph |
 | `/intentions/` | `intentions/page.tsx` | intentions | CategoryGrid |
 | `/intentions/[slug]/` | `intentions/[slug]/page.tsx` | primary + secondary products | Stone chips band; an intention with no piece of its own (sleep) shows the "also worn for" pieces as the main grid |
 | `/stones/` | `stones/page.tsx` | stones | Sphere tiles |
