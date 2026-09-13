@@ -12,6 +12,7 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | ✅ | Shopify store (Basic plan, AED, Dubai), products imported with variants | `utx8rj-t3.myshopify.com` |
 | ✅ | Bag + checkout wired (Storefront API), verified end to end | `apps/web/src/lib/shopify.ts` |
 | ✅ | Cash on Delivery active, UAE shipping 25 AED / free over 250 AED, private mode off | Shopify → Settings |
+| ✅ | **Card payments live**: Stripe Card Payments connected by Yegor 2026-09-13 (Visa, Mastercard, Amex, Apple Pay, Google Pay), test mode off; checkout verified showing the card form | Shopify → Settings → Payments |
 | ✅ | Stock Shopify storefront redirects to crystalbasket.store | theme.liquid |
 | ✅ | Welcome popup + WELCOME10 discount live in Shopify (10% off order, one per customer), wishlist, stack builder, filters | site · Shopify → Discounts |
 | ✅ | Stack discount: automatic "Stack of 3 · 15% off" on any 3+ items (Shopify → Discounts), so the builder's total is what checkout charges. Does not combine with WELCOME10 | Shopify → Discounts |
@@ -24,7 +25,6 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | # | Item | Who | How |
 |---|---|---|---|
 | ⏳ | **Trade license** (Dubai e-Trader / freelance permit / free-zone) | Alya | Required by every card gateway and BNPL provider |
-| ⏳ | **Card payments via Stripe** (decided 2026-09-12, same license as Click Collab) | Yegor: Stripe account for Crystal Basket, then Shopify → Settings → Payments → Choose a provider → "Stripe Card Payments" → Install → Connect with Stripe | Stripe is listed as a third-party provider for this store. Shopify adds a 2% fee on top of Stripe's rate on the Basic plan. Card path then runs inside the existing Shopify checkout; nothing changes on the site. |
 | ⏳ | **WhatsApp business number** | Alya gives the number | 🔧 Claude puts it in `site.ts`; every order button uses it |
 
 ## Should be done before the first Instagram post

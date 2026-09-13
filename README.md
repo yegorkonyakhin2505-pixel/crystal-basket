@@ -22,7 +22,7 @@ Node 22+, pnpm 10.
 | M2 | Storefront pages | ✅ | Home, shop, product, intention ×8, stone ×16, stacks, about, size guide, care, FAQ, disclaimer, wishlist. |
 | M3 | Design system | ✅ | Light only. Cormorant + Jost. `DESIGN.md`. |
 | M4 | Filter & sort | ✅ | Client-side over data attributes: popovers / bottom sheet, faceted counts, chips, custom sort. |
-| M5 | Buy flow | ✅ | Shopify bag + checkout live. COD active; card gateway pending (N13). WhatsApp number still placeholder (N01). |
+| M5 | Buy flow | ✅ | Shopify bag + checkout live. COD + Stripe cards active. WhatsApp number still placeholder (N01). |
 | M6 | Stack builder | ✅ | WhatsApp only until payment links exist. |
 | M7 | Wishlist | ✅ | localStorage. |
 | M8 | Newsletter | ⏳ | Popup + bar show WELCOME10 inline; no provider yet (N04). |
