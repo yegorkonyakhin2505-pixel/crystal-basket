@@ -50,7 +50,7 @@
 
 ## Scripts
 
-`scripts/shopify-csv.py` (catalog → `docs/shopify/products.csv`, Wrist-size-only variants, hashed image URLs) · `scripts/logo-badge.py` (badge geometry → component data + static SVGs; needs `pip install fonttools`) · `scripts/check-tokens.sh` (rule 3 gate, runs in CI and `make check`).
+`scripts/shopify-csv.py` (catalog → `docs/shopify/products.csv`, Wrist-size-only variants, hashed image URLs) · `scripts/logo-badge.py` (badge geometry → component data + static SVGs; needs `pip install fonttools`) · `scripts/check-tokens.sh` (rule 3 gate, runs in CI and `make check`). · `scripts/install-lifestyle.py <slug> <image>` (fits an on-wrist photo to 900×1200 and sets it as the product's second image).
 
 ## Workflows
 
