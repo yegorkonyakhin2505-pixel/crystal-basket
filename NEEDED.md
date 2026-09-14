@@ -13,7 +13,7 @@ _Last updated: 2026-09-07_
 | **N05** | Real product & lifestyle photography | Replace AI placeholders | `apps/web/public/images/**`. Every product now has its own on-wrist shot as `images[1]` (`lifestyle.jpg`, generated 2026-09-14 with Nano Banana Pro from the product photo; `scripts/install-lifestyle.py` installs a new one) | ⏳ AI placeholders live |
 | **N06** | Instagram / TikTok handles, contact email | Footer links | `site.ts` | Instagram @crystal.basket ✅ 2026-09-09 · email hello@ ✅ · TikTok ⏳ (link hidden until the handle exists) |
 | **N07** | Custom domain | Replace github.io link | crystalbasket.store (GoDaddy). DNS → GitHub Pages, HTTPS enforced, github.io redirects | ✅ live 2026-09-06 |
-| **N08** | Logo | Concept 05 (bead badge) chosen by Yegor 2026-09-06 | `components/Store/LogoBadge.tsx`, `public/brand/logo-badge*.svg`, `public/favicon.svg`; concepts in `docs/brand/logos` | ✅ |
+| **N08** | Logo | Concept 05 (bead badge) chosen 2026-09-06; palette 18 (ivory on dusty-rose disc, gold bead) chosen 2026-09-15 | `components/Store/LogoBadge.tsx`, `public/brand/logo-badge*.svg`, `public/favicon.svg`; concepts in `docs/brand/logos` | ✅ |
 | **N09** | Delivery partner + COD terms | Delivery copy accuracy | `site.ts` → `deliveryCopy`, `freeDeliveryAED` | ⏳ assumed |
 | **N10** | ~~Decision: phase 2 backend host~~ | Superseded: Shopify is the back office (ADR 0002) | `docs/decisions/0002-shopify-back-office.md` | ✅ decided 2026-09-06 |
 | **N11** | Shopify Storefront API token | Turns on Add to bag + checkout on our site | Headless channel → storefront "My Store Headless" → public token in repo var `SHOPIFY_STOREFRONT_PUBLIC_TOKEN` (client-side token by design) | ✅ 2026-09-06 |

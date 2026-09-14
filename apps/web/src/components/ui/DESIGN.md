@@ -23,6 +23,7 @@ Defined in `src/styles/tokens.css`, bridged in `globals.css` `@theme`. Use as `b
 | `cb-line` | `#E6E2DC` | ALL hairlines, dividers, grid borders |
 | `cb-rose` | `#8F5F66` | The one accent: wishlist active, links on hover, sale price, focus ring |
 | `cb-rose-soft` | `#F4E9EA` | Tint fills (badges, notices) |
+| `cb-cream` | `#F5F1E9` | Badge ink on the rose disc (logo palette 18). Not for body text. |
 | `cb-gold` | `#C9A961` | Decorative only: the gold bead dot, thin rules. Never text. |
 
 Fonts: `font-display` = Cormorant Garamond (headings, prices, product names). Body = Jost. Serif only for h1–h3, product names, prices and pull quotes. Everything else is Jost.

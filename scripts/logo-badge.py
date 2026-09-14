@@ -28,7 +28,10 @@ C = 200.0                     # centre of the 400-unit viewBox
 OUTER = (146.7, 4.5, 100)    # radius, bead radius, bead count
 INNER = (131.0, 3.85, 100)
 ROSE = (138.3, 147.0, 8.2)    # angle (deg, counter-clockwise from +x), distance, radius
-ROSE_HEX = "#b98186"          # sampled from the original artwork
+ROSE_HEX = "#b98186"          # sampled from the original artwork (palette 01)
+# Palette 18 (chosen 2026-09-15): ivory ink + gold bead on a dusty-rose disc.
+DISC_HEX, INK_HEX, BEAD_HEX = "#8f5f66", "#f5f1e9", "#c9a961"
+DISC_R = 172                  # disc radius in viewBox units; ring reaches 151.2, so ~21 units of rose around it
 FONT_SIZE = 44.0              # cap height ≈ 27.5 units
 TOP = ("CRYSTAL", 78.0, [155.5, 132.25, 110.75, 89.5, 68.75, 47.25, 24.25])     # baseline radius, glyph centres (deg)
 BOTTOM = ("BASKET", 104.7, [220.5, 241.75, 261.25, 280.75, 300.25, 320.5])
@@ -120,9 +123,10 @@ def build():
     return rings, rose, top + bottom, crystal
 
 
-def svg(rings, rose, text, crystal, ink, with_text=True, rose_hex=ROSE_HEX, pad=0, size=1200):
-    """Standalone SVG. `pad` adds equal breathing room (viewBox units) on all four sides; the artwork stays centred."""
-    body = f'<g fill="{ink}">{rings}</g><circle cx="{rose["cx"]}" cy="{rose["cy"]}" r="{rose["r"]}" fill="{rose_hex}"/>'
+def svg(rings, rose, text, crystal, ink, with_text=True, rose_hex=ROSE_HEX, pad=0, size=1200, disc=None):
+    """Standalone SVG. `pad` adds equal breathing room (viewBox units) on all four sides; the artwork stays centred. `disc` fills a circle behind the badge."""
+    body = f'<circle cx="{C}" cy="{C}" r="{DISC_R}" fill="{disc}"/>' if disc else ""
+    body += f'<g fill="{ink}">{rings}</g><circle cx="{rose["cx"]}" cy="{rose["cy"]}" r="{rose["r"]}" fill="{rose_hex}"/>'
     body += f'<path d="{crystal}" fill="none" stroke="{ink}" stroke-width="{CRYSTAL_STROKE if with_text else CRYSTAL_STROKE * 1.6}" stroke-linejoin="round" stroke-linecap="round"/>'
     if with_text:
         body += f'<g fill="{ink}">{text}</g>'
@@ -139,13 +143,16 @@ def main():
         f.write(f"export const ROSE = {{ cx: {rose['cx']}, cy: {rose['cy']}, r: {rose['r']} }};\n")
         f.write(f"export const CRYSTAL = {crystal!r};\n")
         f.write(f"export const CRYSTAL_STROKE = {CRYSTAL_STROKE};\n")
+        f.write(f"export const DISC_R = {DISC_R};\n")
         f.write(f"export const TEXT = {text!r};\n")
     pub = os.path.join(ROOT, "apps", "web", "public")
     # Brand files carry 40 units of even padding (≈10 % of the badge) so nothing sits near an edge; the favicon stays tight.
-    open(os.path.join(pub, "brand", "logo-badge.svg"), "w").write(svg(rings, rose, text, crystal, "#1a1a1a", pad=40))
-    open(os.path.join(pub, "brand", "logo-badge-dark.svg"), "w").write(svg(rings, rose, text, crystal, "#ffffff", pad=40))
-    open(os.path.join(pub, "brand", "logo-mark.svg"), "w").write(svg(rings, rose, text, crystal, "#1a1a1a", with_text=False, pad=40))
-    open(os.path.join(pub, "favicon.svg"), "w").write(svg(rings, rose, text, crystal, "#1a1a1a", with_text=False, pad=0, size=64))
+    kw = dict(rose_hex=BEAD_HEX, disc=DISC_HEX)
+    open(os.path.join(pub, "brand", "logo-badge.svg"), "w").write(svg(rings, rose, text, crystal, INK_HEX, pad=20, **kw))
+    open(os.path.join(pub, "brand", "logo-badge-ink.svg"), "w").write(svg(rings, rose, text, crystal, "#1a1a1a", rose_hex=ROSE_HEX, pad=40))
+    open(os.path.join(pub, "brand", "logo-badge-dark.svg"), "w").write(svg(rings, rose, text, crystal, INK_HEX, rose_hex=BEAD_HEX, pad=40))
+    open(os.path.join(pub, "brand", "logo-mark.svg"), "w").write(svg(rings, rose, text, crystal, INK_HEX, with_text=False, pad=20, **kw))
+    open(os.path.join(pub, "favicon.svg"), "w").write(svg(rings, rose, text, crystal, INK_HEX, with_text=False, pad=0, size=64, **kw))
     print("logo assets written")
 
 
