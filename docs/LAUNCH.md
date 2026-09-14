@@ -13,6 +13,7 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | ✅ | Bag + checkout wired (Storefront API), verified end to end | `apps/web/src/lib/shopify.ts` |
 | ✅ | Cash on Delivery active, UAE shipping 25 AED / free over 250 AED, private mode off | Shopify → Settings |
 | ✅ | **Card payments live**: Stripe Card Payments connected by Yegor 2026-09-13 (Visa, Mastercard, Amex, Apple Pay, Google Pay), test mode off; checkout verified showing the card form | Shopify → Settings → Payments |
+| ✅ | Stripe account is the shared ClickCollab / Amplify Marketing Management account (same license). Statement descriptor set to `AMPLIFY MKTG MGMT`, shortened prefix `AMPLIFY` (2026-09-14) so bracelet charges are recognisable on bank statements | Stripe → Settings → Business |
 | ✅ | Stock Shopify storefront redirects to crystalbasket.store | theme.liquid |
 | ✅ | Welcome popup + WELCOME10 discount live in Shopify (10% off order, one per customer), wishlist, stack builder, filters | site · Shopify → Discounts |
 | ✅ | Stack discount: automatic "Stack of 3 · 15% off" on any 3+ items (Shopify → Discounts), so the builder's total is what checkout charges. Does not combine with WELCOME10 | Shopify → Discounts |
