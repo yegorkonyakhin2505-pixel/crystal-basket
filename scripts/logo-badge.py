@@ -120,12 +120,14 @@ def build():
     return rings, rose, top + bottom, crystal
 
 
-def svg(rings, rose, text, crystal, ink, with_text=True, rose_hex=ROSE_HEX):
+def svg(rings, rose, text, crystal, ink, with_text=True, rose_hex=ROSE_HEX, pad=0, size=1200):
+    """Standalone SVG. `pad` adds equal breathing room (viewBox units) on all four sides; the artwork stays centred."""
     body = f'<g fill="{ink}">{rings}</g><circle cx="{rose["cx"]}" cy="{rose["cy"]}" r="{rose["r"]}" fill="{rose_hex}"/>'
     body += f'<path d="{crystal}" fill="none" stroke="{ink}" stroke-width="{CRYSTAL_STROKE if with_text else CRYSTAL_STROKE * 1.6}" stroke-linejoin="round" stroke-linecap="round"/>'
     if with_text:
         body += f'<g fill="{ink}">{text}</g>'
-    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Crystal Basket">{body}</svg>\n'
+    vb = f"{-pad} {-pad} {400 + 2 * pad} {400 + 2 * pad}"
+    return f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="{vb}" role="img" aria-label="Crystal Basket">{body}</svg>\n'
 
 
 def main():
@@ -139,10 +141,11 @@ def main():
         f.write(f"export const CRYSTAL_STROKE = {CRYSTAL_STROKE};\n")
         f.write(f"export const TEXT = {text!r};\n")
     pub = os.path.join(ROOT, "apps", "web", "public")
-    open(os.path.join(pub, "brand", "logo-badge.svg"), "w").write(svg(rings, rose, text, crystal, "#1a1a1a"))
-    open(os.path.join(pub, "brand", "logo-badge-dark.svg"), "w").write(svg(rings, rose, text, crystal, "#ffffff"))
-    open(os.path.join(pub, "brand", "logo-mark.svg"), "w").write(svg(rings, rose, text, crystal, "#1a1a1a", with_text=False))
-    open(os.path.join(pub, "favicon.svg"), "w").write(svg(rings, rose, text, crystal, "#1a1a1a", with_text=False))
+    # Brand files carry 40 units of even padding (≈10 % of the badge) so nothing sits near an edge; the favicon stays tight.
+    open(os.path.join(pub, "brand", "logo-badge.svg"), "w").write(svg(rings, rose, text, crystal, "#1a1a1a", pad=40))
+    open(os.path.join(pub, "brand", "logo-badge-dark.svg"), "w").write(svg(rings, rose, text, crystal, "#ffffff", pad=40))
+    open(os.path.join(pub, "brand", "logo-mark.svg"), "w").write(svg(rings, rose, text, crystal, "#1a1a1a", with_text=False, pad=40))
+    open(os.path.join(pub, "favicon.svg"), "w").write(svg(rings, rose, text, crystal, "#1a1a1a", with_text=False, pad=0, size=64))
     print("logo assets written")
 
 
