@@ -14,7 +14,13 @@ export const getStack = (id: string): Stack => must(getStacks().find((s) => s.id
 export const productsForIntention = (id: string, includeSecondary = false): Product[] =>
   getProducts().filter((p) => p.data.intention === id || (includeSecondary && p.data.secondaryIntentions.includes(id)));
 
-export const productsForStone = (id: string): Product[] => getProducts().filter((p) => p.data.stones.includes(id));
+/** In-stock pieces first, catalog order otherwise, so a sold-out piece never leads a grid. */
+export const inStockFirst = (list: Product[]): Product[] => [...list].sort((a, b) => Number(b.data.inStock) - Number(a.data.inStock));
+
+export const productsForStone = (id: string): Product[] => inStockFirst(getProducts().filter((p) => p.data.stones.includes(id)));
+
+/** The curated stack a product belongs to, if any. */
+export const stackForProduct = (p: Product): Stack | undefined => getStacks().find((s) => s.data.products.includes(p.id));
 
 export const stonesForProduct = (p: Product): Stone[] => p.data.stones.map(getStone);
 
@@ -24,7 +30,8 @@ export function relatedProducts(p: Product, limit = 4): Product[] {
     (o.data.intention === p.data.intention ? 4 : 0) +
     o.data.stones.filter((s) => p.data.stones.includes(s)).length * 2 +
     (o.data.secondaryIntentions.includes(p.data.intention) || p.data.secondaryIntentions.includes(o.data.intention) ? 1 : 0) +
-    (o.data.bestseller ? 0.5 : 0);
+    (o.data.bestseller ? 0.5 : 0) +
+    (o.data.inStock ? 0 : -10);
   return getProducts()
     .filter((o) => o.id !== p.id)
     .map((o, i) => ({ o, s: score(o), i }))

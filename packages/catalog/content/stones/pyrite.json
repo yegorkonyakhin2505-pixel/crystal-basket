@@ -16,8 +16,20 @@
     "#d4b04a",
     "#8a6a1e"
   ],
-  "description": "Fool's gold that behaves like the real thing. Pyrite is worn for wealth, drive and getting things done.",
+  "description": "Fool's gold that behaves like the real thing. Pyrite is traditionally worn for wealth, drive and getting things done.",
   "waterSafe": false,
   "sunSafe": true,
-  "tier": "select"
+  "tier": "select",
+  "mineral": "Pyrite is iron sulfide, nicknamed fool's gold for its brassy metallic shine. In the rock it often grows as near-perfect cubes.",
+  "mohs": "6 to 6.5",
+  "foundIn": "Peru, Spain and China",
+  "wornFor": "A pyrite bracelet is traditionally worn for wealth, willpower and the drive to act on a plan. Pyrite belongs to the solar plexus chakra and is linked with Leo. It is a favourite with people who run their own business, and it is paired with citrine in The Alchemist for a gold-toned abundance piece. Keep it dry, because moisture slowly dulls and tarnishes pyrite.",
+  "wrist": "left",
+  "wristWhy": "Wear pyrite on the left wrist when you wear it for abundance, the receiving side. If you wear it for drive and action, some people prefer the right.",
+  "waterNote": "Pyrite is iron sulfide and tarnishes when wet, so keep it dry.",
+  "pairsWith": [
+    "citrine",
+    "tigers-eye",
+    "green-aventurine"
+  ]
 }

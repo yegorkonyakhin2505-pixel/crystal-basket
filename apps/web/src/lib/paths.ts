@@ -16,5 +16,9 @@ export const routes = {
   care: "/care/",
   faq: "/faq/",
   disclaimer: "/disclaimer/",
+  delivery: "/delivery/",
+  returns: "/returns/",
+  contact: "/contact/",
+  privacy: "/privacy/",
   wishlist: "/wishlist/",
 } as const;

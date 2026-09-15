@@ -1,0 +1,333 @@
+{
+  "summary": {
+    "health_score": 60,
+    "score_basis": "Live site as crawled on 2026-09-15, before the same-day fixes. Weighted: Technical 22%, Content 23%, On-page 20%, Schema 10%, Performance 10%, AI search 10%, Images 5%.",
+    "business_type": "E-commerce: single-brand D2C crystal bracelet store, Dubai, UAE-only delivery",
+    "top_findings": [
+      "WhatsApp order and contact buttons pointed at a placeholder number on every page",
+      "16 stone and 8 intention pages had 51-103 words; product pages were 81% boilerplate",
+      "No delivery, returns, contact or privacy page; delivery fee not shown on product pages",
+      "Structured data gaps: BackOrder on sold-out items, single image, no breadcrumbs or collection markup on hubs",
+      "556 KB non-responsive hero image, 4.5 MB of home images, about 2.3 MB of mega-menu prefetches, mobile horizontal scroll"
+    ],
+    "quick_wins": [
+      "Hide WhatsApp buttons behind a flag with an email fallback",
+      "Descriptive query-shaped titles and H1s",
+      "OutOfStock availability, image arrays, breadcrumbs everywhere",
+      "noindex the wishlist instead of blocking it in robots.txt",
+      "Git-based sitemap lastmod and IndexNow on deploy"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 76,
+      "what_works": [
+        "True static HTML with copy, prices, canonicals and JSON-LD in the raw response",
+        "Clean trailing-slash URLs and one-hop redirects",
+        "Valid sitemap, every page within two clicks of home"
+      ],
+      "findings": [
+        {
+          "title": "Hero LCP image is a 556 KB JPEG with no responsive variants",
+          "severity": "High",
+          "description": "2000x1125 JPEG served to every device; 4.5 MB of images on the home page.",
+          "recommendation": "Generate WebP width variants and serve them with srcset and sizes. Shipped 2026-09-15."
+        },
+        {
+          "title": "Mega-menu prefetches every intention and stone page",
+          "severity": "High",
+          "description": "About 2.3 MB of RSC payload fetched on desktop hover.",
+          "recommendation": "prefetch={false} on menu, drawer and footer links. Shipped 2026-09-15."
+        },
+        {
+          "title": "Wishlist blocked in robots.txt but linked from every page",
+          "severity": "Medium",
+          "description": "Disallow with no noindex meta.",
+          "recommendation": "Allow crawling and set noindex, follow. Shipped 2026-09-15."
+        },
+        {
+          "title": "No security headers and 10-minute cache on hashed assets",
+          "severity": "Medium",
+          "description": "GitHub Pages cannot set response headers.",
+          "recommendation": "Proxy through Cloudflare with header and cache rules, or move host. Open: owner decision."
+        },
+        {
+          "title": "Inline RSC payload of about 90-100 KB per page",
+          "severity": "Medium",
+          "description": "Home HTML is about 250 KB for about 330 words.",
+          "recommendation": "Inherent to Next static export; revisit if field LCP is slow. Open."
+        },
+        {
+          "title": "Sitemap lastmod is the build time on every URL and priority is emitted",
+          "severity": "Low",
+          "description": "All 46 URLs share one timestamp.",
+          "recommendation": "Use the last git commit per page source and content file; drop priority. Shipped 2026-09-15."
+        },
+        {
+          "title": "IndexNow not implemented",
+          "severity": "Low",
+          "description": "No key file or submission step.",
+          "recommendation": "Key file in public and a post-deploy ping job. Shipped 2026-09-15."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 52,
+      "what_works": [
+        "Readable plain English (Flesch 64-83)",
+        "Honest first-hand process copy",
+        "Disclaimer linked from every product"
+      ],
+      "findings": [
+        {
+          "title": "Placeholder WhatsApp number on every page",
+          "severity": "Critical",
+          "description": "971500000000 used in order, contact and sold-out links.",
+          "recommendation": "Hide behind flags.whatsapp with an email fallback until the real number is provided. Shipped; number still needed."
+        },
+        {
+          "title": "No policy or contact pages",
+          "severity": "High",
+          "description": "No delivery, returns, contact or privacy page.",
+          "recommendation": "Add factual policy pages. Shipped 2026-09-15."
+        },
+        {
+          "title": "Nobody is named",
+          "severity": "High",
+          "description": "About page is anonymous; no founder, photo or experience.",
+          "recommendation": "Add founder name, real photo and years of experience. Open: owner input."
+        },
+        {
+          "title": "Stone and intention pages are thin",
+          "severity": "High",
+          "description": "51-103 words on near-identical templates.",
+          "recommendation": "Question-headed guides with definitions, tables and FAQs. Shipped: now 343-422 words."
+        },
+        {
+          "title": "Product pages are 81% boilerplate",
+          "severity": "High",
+          "description": "The same seven FAQs on every product.",
+          "recommendation": "Product-specific questions; general FAQ lives once on /faq/. Shipped 2026-09-15."
+        },
+        {
+          "title": "Claims rule applied inconsistently",
+          "severity": "Medium",
+          "description": "'Traditionally worn for' on 6 of 24 guide pages; six health-adjacent phrases.",
+          "recommendation": "Reword and add a test gate. Shipped 2026-09-15."
+        },
+        {
+          "title": "Stale operational copy",
+          "severity": "Medium",
+          "description": "'Card payments coming soon' and WhatsApp-centric wording.",
+          "recommendation": "Rewrite ordering FAQ and page intros. Shipped 2026-09-15."
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 60,
+      "what_works": [
+        "46 of 46 titles and descriptions unique",
+        "Breadcrumb navigation on listing and product pages"
+      ],
+      "findings": [
+        {
+          "title": "Brand-voice H1s and titles carry no search terms",
+          "severity": "Medium",
+          "description": "Home 'Energy you can wear.'; care 'A monthly ritual, five minutes long.'",
+          "recommendation": "Descriptive H1 with the brand line kept as display text. Shipped 2026-09-15."
+        },
+        {
+          "title": "Product titles and descriptions exceed SERP limits",
+          "severity": "Medium",
+          "description": "Titles 63-81 characters, descriptions 183-251.",
+          "recommendation": "seoTitle (20-50) and seoDescription (90-155) per product. Shipped 2026-09-15."
+        },
+        {
+          "title": "Internal-link gaps between stones, intentions, care and stacks",
+          "severity": "Medium",
+          "description": "Stone pages never linked to intentions or care.",
+          "recommendation": "Cross-links added on stone, intention and product pages. Shipped 2026-09-15."
+        },
+        {
+          "title": "SXO: guide queries return long guides, our stone pages were stubs",
+          "severity": "High",
+          "description": "'X bracelet meaning' SERPs favour tables and FAQs.",
+          "recommendation": "Stone guides with facts tables and question sections. Shipped 2026-09-15."
+        }
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 48,
+      "what_works": [
+        "FAQPage valid",
+        "Product present on all 12 product pages"
+      ],
+      "findings": [
+        {
+          "title": "Sold-out products marked BackOrder",
+          "severity": "Medium",
+          "description": "Devotion and Aurora cannot be ordered.",
+          "recommendation": "OutOfStock. Shipped 2026-09-15."
+        },
+        {
+          "title": "Offers lack shipping and return policy",
+          "severity": "High",
+          "description": "No OfferShippingDetails or MerchantReturnPolicy.",
+          "recommendation": "Shared shipping and return policy nodes. Shipped 2026-09-15."
+        },
+        {
+          "title": "No BreadcrumbList on hubs, no collection markup",
+          "severity": "High",
+          "description": "Visible breadcrumbs without markup on index pages.",
+          "recommendation": "BreadcrumbList everywhere, CollectionPage on shop, intentions and stacks. Shipped 2026-09-15."
+        },
+        {
+          "title": "Product image is a single URL",
+          "severity": "Medium",
+          "description": "A lifestyle photo exists for every product.",
+          "recommendation": "Image array. Shipped 2026-09-15."
+        },
+        {
+          "title": "Ratings must stay out until reviews are real",
+          "severity": "Low",
+          "description": "No genuine reviews yet.",
+          "recommendation": "Add AggregateRating only with real reviews. Open: owner input."
+        }
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 65,
+      "what_works": [
+        "Fast TTFB from GitHub Pages CDN",
+        "Good route-level code splitting"
+      ],
+      "findings": [
+        {
+          "title": "Oversized LCP image",
+          "severity": "High",
+          "description": "556 KB hero.",
+          "recommendation": "Responsive WebP (15 KB at 800 px). Shipped 2026-09-15."
+        },
+        {
+          "title": "Below-the-fold product images preloaded",
+          "severity": "High",
+          "description": "Four preload links competing with the hero.",
+          "recommendation": "Removed eager loading from grids. Shipped 2026-09-15."
+        },
+        {
+          "title": "Lab-only data",
+          "severity": "Info",
+          "description": "No CrUX or Search Console field data.",
+          "recommendation": "Verify Search Console and watch field CWV. Open."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 51,
+      "what_works": [
+        "llms.txt present",
+        "AI crawlers allowed",
+        "Static HTML"
+      ],
+      "findings": [
+        {
+          "title": "No definition sentences or quotable passages on guide pages",
+          "severity": "High",
+          "description": "Answers not marked up as headings.",
+          "recommendation": "40-80-word passages under question headings, definitions and tables. Shipped 2026-09-15."
+        },
+        {
+          "title": "No dates",
+          "severity": "Medium",
+          "description": "Nothing shows when guides were reviewed.",
+          "recommendation": "'Last reviewed' from git on guide pages. Shipped 2026-09-15."
+        },
+        {
+          "title": "No named entity behind the brand",
+          "severity": "High",
+          "description": "No founder or external profiles beyond Instagram.",
+          "recommendation": "Founder bio and consistent profiles. Open: owner input."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 59,
+      "what_works": [
+        "Consistent aspect ratios prevent layout shift"
+      ],
+      "findings": [
+        {
+          "title": "JPEG only, no srcset, no intrinsic dimensions",
+          "severity": "High",
+          "description": "189 img tags without width and height.",
+          "recommendation": "WebP variants, srcset and width/height from a manifest. Shipped 2026-09-15."
+        },
+        {
+          "title": "Empty alt on hero and stack-builder thumbnails",
+          "severity": "Low",
+          "description": "alt=\"\".",
+          "recommendation": "Descriptive alt text. Shipped 2026-09-15."
+        },
+        {
+          "title": "AI placeholder photography",
+          "severity": "Medium",
+          "description": "Generated images without IPTC labels.",
+          "recommendation": "Replace with real photography. Open: owner input."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Fixes",
+        "timeframe": "Week 1",
+        "items": [
+          "Hide placeholder WhatsApp buttons (done)",
+          "Provide the real WhatsApp number and flip flags.whatsapp"
+        ]
+      },
+      {
+        "name": "Phase 2: High-Impact Improvements",
+        "timeframe": "Weeks 2-3",
+        "items": [
+          "Policy pages, stone and intention guides, product FAQs, responsive images, schema (done)",
+          "Verify Search Console and Bing",
+          "Founder name and photo on the about page",
+          "One real card test order"
+        ]
+      },
+      {
+        "name": "Phase 3: Content & Authority",
+        "timeframe": "Month 2",
+        "items": [
+          "Real reviews and AggregateRating",
+          "Shopify storefront noindex and path redirect",
+          "Terms of sale page",
+          "Real product photography"
+        ]
+      },
+      {
+        "name": "Phase 4: Monitoring & Iteration",
+        "timeframe": "Ongoing",
+        "items": [
+          "Search Console queries after 4-6 weeks",
+          "Re-run the full audit against the 60 baseline",
+          "Field Core Web Vitals"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/",
+    "raw_dir": "raw/"
+  }
+}

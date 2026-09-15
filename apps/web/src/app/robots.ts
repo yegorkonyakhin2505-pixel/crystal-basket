@@ -3,16 +3,23 @@ import { site } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-/** AI search crawlers are welcome: citations in AI Overviews, ChatGPT, Perplexity and Copilot are how a small brand gets found. */
-const AI_CRAWLERS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "anthropic-ai", "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot", "Applebot-Extended", "Bingbot", "CCBot", "DuckAssistBot", "Amazonbot", "meta-externalagent"];
+/**
+ * Everything public is crawlable. AI search and answer crawlers are named explicitly so a future
+ * blanket rule can't shut them out by accident: being cited in AI Overviews, ChatGPT, Perplexity and
+ * Copilot is how a small brand gets found. Training crawlers are allowed too (owner's choice, easy to flip).
+ * The RSC payload files Next writes beside each page (index.txt) are not pages, so they stay out of the index.
+ */
+const SEARCH_AND_ANSWER = ["Googlebot", "Bingbot", "Applebot", "DuckDuckBot", "OAI-SearchBot", "ChatGPT-User", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User", "DuckAssistBot"];
+const TRAINING = ["GPTBot", "ClaudeBot", "Google-Extended", "Applebot-Extended", "CCBot", "meta-externalagent", "Amazonbot"];
+const NOT_PAGES = ["/*index.txt$"];
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/wishlist/"] },
-      { userAgent: AI_CRAWLERS, allow: "/", disallow: ["/wishlist/"] },
+      { userAgent: SEARCH_AND_ANSWER, allow: "/", disallow: NOT_PAGES },
+      { userAgent: TRAINING, allow: "/", disallow: NOT_PAGES },
+      { userAgent: "*", allow: "/", disallow: NOT_PAGES },
     ],
     sitemap: `${site.url}/sitemap.xml`,
-    host: site.url,
   };
 }

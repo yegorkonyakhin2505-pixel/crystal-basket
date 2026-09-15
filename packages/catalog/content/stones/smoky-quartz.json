@@ -3,7 +3,7 @@
   "keywords": [
     "Grounding",
     "Release",
-    "Release"
+    "Steadiness"
   ],
   "chakra": [
     "Root"
@@ -17,8 +17,19 @@
     "#7a6a5a",
     "#3d3129"
   ],
-  "description": "Quartz tinted by the earth. Smoky quartz is worn to release what is heavy and settle back into steadiness.",
+  "description": "Quartz tinted by the earth. Smoky quartz is traditionally worn to release what is heavy and settle back into steadiness.",
   "waterSafe": true,
   "sunSafe": false,
-  "tier": "classic"
+  "tier": "classic",
+  "mineral": "Smoky quartz is quartz darkened to brown or grey by natural radiation acting on traces of aluminium in the crystal. It stays translucent, which sets it apart from black stones.",
+  "mohs": "7",
+  "foundIn": "Brazil, Madagascar and Switzerland",
+  "wornFor": "A smoky quartz bracelet is traditionally worn for grounding, letting go of a heavy day and feeling steady again. It belongs to the root chakra and is linked with Scorpio and Capricorn. Smoky quartz looks softer than black tourmaline or obsidian, so it suits people who want a grounding piece that does not read as all-black. Its colour can fade after long hours in strong sun.",
+  "wrist": "right",
+  "wristWhy": "Wear smoky quartz on the right wrist. Grounding stones traditionally sit on the projecting side, where they are said to let heaviness go.",
+  "pairsWith": [
+    "hematite",
+    "black-tourmaline",
+    "red-jasper"
+  ]
 }

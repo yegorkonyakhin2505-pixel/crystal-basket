@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { BEAD_MM } from "@crystal-basket/catalog/schemas";
 import { Button, cn } from "@/components/ui";
-import { buildWhatsAppUrl, whatsappChatUrl } from "@/lib/whatsapp";
+import { contactOpensNewTab, contactUrl, orderByMessageUrl } from "@/lib/contact";
 import { WRIST_SIZES, type WristSizeKey } from "@/lib/sizes";
 import { routes } from "@/lib/paths";
 import { flags } from "@/lib/site";
@@ -13,13 +13,14 @@ import { useCart } from "@/hooks/useCart";
 interface Props {
   id: string; name: string; priceAED: number; compareAtAED?: number;
   sizes: WristSizeKey[]; inStock: boolean;
-  stripePaymentLink?: string; freeDeliveryAED: number; deliveryCopy: string;
+  stripePaymentLink?: string; freeDeliveryAED: number; deliveryFeeAED: number; deliveryCopy: string;
 }
 
 /** Price, wrist size, add to bag / WhatsApp. Every bracelet is 8 mm, so wrist size is the only choice. */
 export function BuyBox(p: Props) {
   const [size, setSize] = useState<WristSizeKey>(p.sizes.includes("M") ? "M" : p.sizes[0]);
-  const waUrl = useMemo(() => buildWhatsAppUrl([{ name: p.name, bead: BEAD_MM, size, priceAED: p.priceAED }]), [p.name, size, p.priceAED]);
+  const waUrl = useMemo(() => orderByMessageUrl([{ name: p.name, bead: BEAD_MM, size, priceAED: p.priceAED }]), [p.name, size, p.priceAED]);
+  const newTab = contactOpensNewTab ? { target: "_blank", rel: "noopener" } : {};
   const cart = useCart();
   const stripeUrl = flags.cardCheckout && p.stripePaymentLink ? `${p.stripePaymentLink}${p.stripePaymentLink.includes("?") ? "&" : "?"}client_reference_id=${encodeURIComponent(`${BEAD_MM}mm-${size}`)}` : undefined;
 
@@ -51,7 +52,7 @@ export function BuyBox(p: Props) {
         {!p.inStock ? (
           <>
             <Button size="lg" disabled aria-disabled>Sold out</Button>
-            <a href={whatsappChatUrl(`Hi Crystal Basket! Please let me know when ${p.name} (size ${size}) is back in stock.`)} target="_blank" rel="noopener" className="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Tell me when it’s back</a>
+            <a href={contactUrl(`Hi Crystal Basket! Please let me know when ${p.name} (size ${size}) is back in stock.`, `Back in stock: ${p.name}`)} {...newTab} className="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Tell me when it’s back</a>
             <p className="text-[12px] text-cb-muted text-center">This piece is between batches. Message us and we will hold one for you.</p>
           </>
         ) : cart.enabled ? (
@@ -66,12 +67,12 @@ export function BuyBox(p: Props) {
         {p.inStock && cart.enabled && stripeUrl && (
           <a href={stripeUrl} target="_blank" rel="noopener" className="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Pay by card · {p.priceAED} AED</a>
         )}
-        {p.inStock && <a href={waUrl} target="_blank" rel="noopener" className="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Order on WhatsApp</a>}
+        {p.inStock && waUrl && <a href={waUrl} target="_blank" rel="noopener" className="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Order on WhatsApp</a>}
         <div className="flex justify-center"><WishlistButton id={p.id} label /></div>
         {cart.error && <p className="text-[12px] text-cb-danger text-center">{cart.error}</p>}
       </div>
       <ul className="text-[12px] text-cb-muted space-y-1.5 border-t border-cb-line pt-5">
-        <li>· {p.deliveryCopy} Free over {p.freeDeliveryAED} AED.</li>
+        <li>· {p.deliveryCopy} Delivery {p.deliveryFeeAED} AED, free over {p.freeDeliveryAED} AED.</li>
         <li>· Cash on delivery across the UAE</li>
         <li>· Free re-string if the cord ever gives</li>
       </ul>

@@ -7,7 +7,7 @@
     "Steady",
     "Present"
   ],
-  "description": "Earth-toned and metallic stones for people who live in their heads. Worn to feel heavier, slower and more here.",
+  "description": "Earth-toned and metallic stones for people who live in their heads. Traditionally worn to feel heavier, slower and more here.",
   "chakra": [
     "Root"
   ],
@@ -16,5 +16,24 @@
     "#8c8c92"
   ],
   "order": 7,
-  "image": "grounding.jpg"
+  "image": "grounding.jpg",
+  "seoDescription": "Grounding crystal bracelets in smoky quartz, hematite and red jasper, plus a 7 chakra bracelet. Hand-strung in Dubai with next-day UAE delivery.",
+  "definition": "A grounding bracelet is a crystal bracelet strung from stones traditionally worn to feel steady, present and settled in the body: smoky quartz, hematite, red jasper and black tourmaline. These are root chakra stones, often dark or metallic and noticeably weighty, and they are usually worn on the right wrist. The Seven, a chakra bracelet, also starts from red jasper at the root.",
+  "wrist": "right",
+  "stones": [
+    "smoky-quartz",
+    "hematite",
+    "red-jasper",
+    "black-tourmaline"
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between grounding and protection stones?",
+      "a": "The two families overlap. Protection stones such as black tourmaline and obsidian are traditionally worn as a boundary against other people's energy, while grounding stones such as hematite, smoky quartz and red jasper are worn to feel steady in yourself. Hematite and black tourmaline are often worn for both."
+    },
+    {
+      "q": "What is a 7 chakra bracelet?",
+      "a": "A 7 chakra bracelet carries one stone for each of the seven chakras, in root-to-crown order. The Seven uses red jasper, carnelian, citrine, green aventurine, lapis lazuli, amethyst and clear quartz on matte black beads, and is traditionally worn for overall balance."
+    }
+  ]
 }

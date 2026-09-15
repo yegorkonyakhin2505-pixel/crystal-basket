@@ -17,5 +17,24 @@
     "#7a9a5a"
   ],
   "order": 3,
-  "image": "abundance.jpg"
+  "image": "abundance.jpg",
+  "seoDescription": "Abundance crystal bracelets in citrine, pyrite, green aventurine and tiger's eye. Hand-strung in Dubai, natural 8 mm stone, next-day UAE delivery.",
+  "definition": "An abundance bracelet is a crystal bracelet strung from stones traditionally worn for prosperity, luck and confidence with money and work: citrine, pyrite, green aventurine and tiger's eye. By tradition it is worn on the left wrist, the side that receives. Crystal Basket's abundance pieces lean gold and green, and The Alchemist adds a 14k gold-filled accent.",
+  "wrist": "left",
+  "stones": [
+    "citrine",
+    "pyrite",
+    "green-aventurine",
+    "tigers-eye"
+  ],
+  "faq": [
+    {
+      "q": "Which crystal is traditionally worn for money and luck?",
+      "a": "Citrine and pyrite are the two stones most traditionally worn for prosperity, and green aventurine is known as the stone of luck. Many people wear citrine and pyrite together, as in The Alchemist, or aventurine with tiger's eye for luck plus the nerve to act on it, as in The Fortune."
+    },
+    {
+      "q": "Can I wear an abundance bracelet every day?",
+      "a": "Yes. Every stone in this family is hard enough for daily wear. Citrine fades in long direct sun and pyrite should be kept dry, so take the bracelet off for swimming, the gym and the beach, and keep it in its pouch overnight."
+    }
+  ]
 }

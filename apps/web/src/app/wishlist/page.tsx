@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getProducts, getStone } from "@crystal-basket/catalog";
 import { WishlistClient } from "@/components/Store/WishlistClient";
 import { productImage } from "@/lib/images";
-export const metadata: Metadata = { title: "Wishlist" };
+export const metadata: Metadata = { title: "Wishlist", robots: { index: false, follow: true } };
 export default function WishlistPage() {
   const items = getProducts().map((p) => ({ id: p.id, name: p.data.name, stones: p.data.stones.map((s) => getStone(s).data.name).join(", "), priceAED: p.data.priceAED, image: productImage(p) }));
   return (

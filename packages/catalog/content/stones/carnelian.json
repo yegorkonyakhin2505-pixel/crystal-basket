@@ -18,8 +18,19 @@
     "#e07a3a",
     "#a33f14"
   ],
-  "description": "Warm and energising. Carnelian is worn for creative fire, physical energy and the courage to start.",
+  "description": "Warm and energising. Carnelian is traditionally worn for creative fire, get-up-and-go and the courage to start.",
   "waterSafe": true,
   "sunSafe": false,
-  "tier": "classic"
+  "tier": "classic",
+  "mineral": "Carnelian is a translucent orange to red variety of chalcedony, a very fine-grained quartz. Iron oxide gives it its warm, glowing colour.",
+  "mohs": "6.5 to 7",
+  "foundIn": "India, Brazil and Uruguay",
+  "wornFor": "A carnelian bracelet is traditionally worn for motivation, creativity and the courage to begin something new. Carnelian belongs to the sacral chakra and is linked with Aries, Leo and Virgo. It is a popular choice for a new job, a project or a performance, and it pairs naturally with tiger's eye for confidence. Its colour can soften after long hours in direct sun.",
+  "wrist": "right",
+  "wristWhy": "Wear carnelian on the right wrist. Tradition calls the right side the active one, and carnelian is chosen for doing rather than receiving.",
+  "pairsWith": [
+    "tigers-eye",
+    "citrine",
+    "red-jasper"
+  ]
 }

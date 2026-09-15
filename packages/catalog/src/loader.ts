@@ -79,6 +79,12 @@ export function loadCatalog() {
     for (const r of refs) if (!intentionIds.has(r)) throw new CatalogError(`products/${p.id}.json`, `  • intention "${r}" does not exist`);
     for (const s of p.data.stones) if (!stoneIds.has(s)) throw new CatalogError(`products/${p.id}.json`, `  • stone "${s}" does not exist`);
   }
+  for (const i of intentions) {
+    for (const s of i.data.stones) if (!stoneIds.has(s)) throw new CatalogError(`intentions/${i.id}.json`, `  • stone "${s}" does not exist`);
+  }
+  for (const st of stones) {
+    for (const s of st.data.pairsWith) if (!stoneIds.has(s) || s === st.id) throw new CatalogError(`stones/${st.id}.json`, `  • pairsWith "${s}" is not another stone`);
+  }
   for (const s of stacks) {
     if (!intentionIds.has(s.data.intention)) throw new CatalogError(`stacks/${s.id}.json`, `  • intention "${s.data.intention}" does not exist`);
     for (const p of s.data.products) if (!productIds.has(p)) throw new CatalogError(`stacks/${s.id}.json`, `  • product "${p}" does not exist`);

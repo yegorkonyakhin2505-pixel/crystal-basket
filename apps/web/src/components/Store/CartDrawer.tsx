@@ -5,7 +5,7 @@ import { formatAED } from "@crystal-basket/catalog/money";
 import { cn } from "@/components/ui";
 import { useCart } from "@/hooks/useCart";
 import { useDialog } from "@/hooks/useDialog";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { orderByMessageUrl } from "@/lib/contact";
 import { site } from "@/lib/site";
 
 export function CartDrawer() {
@@ -16,7 +16,7 @@ export function CartDrawer() {
   if (!enabled || !open) return null;
   const lines = cart?.lines ?? [];
   const empty = lines.length === 0;
-  const waUrl = buildWhatsAppUrl(lines.map((l) => ({ name: `${l.title} (${l.variantTitle})`, priceAED: l.priceAED, qty: l.quantity })));
+  const waUrl = orderByMessageUrl(lines.map((l) => ({ name: `${l.title} (${l.variantTitle})`, priceAED: l.priceAED, qty: l.quantity })));
   const cta = "inline-flex h-12 w-full items-center justify-center text-[12px] uppercase tracking-[0.14em] transition-colors";
   return (
     <div className="fixed inset-0 z-[70] print-hidden" data-lenis-prevent>
@@ -48,9 +48,9 @@ export function CartDrawer() {
         </div>
         <div className="border-t border-cb-line px-6 py-5 space-y-3">
           <div className="flex justify-between text-[15px]"><span>Subtotal</span><span className="price">{formatAED(cart?.subtotalAED ?? 0)}</span></div>
-          <p className="text-[11px] text-cb-muted">Delivery and discount codes are applied at checkout. {site.deliveryCopy}</p>
+          <p className="text-[11px] text-cb-muted">Delivery {site.deliveryFeeAED} AED, free over {site.freeDeliveryAED} AED. Discount codes are applied at checkout. {site.deliveryCopy}</p>
           <a href={empty ? undefined : cart?.checkoutUrl} aria-disabled={empty} tabIndex={empty ? -1 : undefined} className={cn(cta, "bg-cb-ink text-white hover:bg-black", empty && "pointer-events-none opacity-50")}>Checkout</a>
-          <a href={empty ? undefined : waUrl} target="_blank" rel="noopener" aria-disabled={empty} tabIndex={empty ? -1 : undefined} className={cn(cta, "border border-cb-ink hover:bg-cb-ink hover:text-white", empty && "pointer-events-none opacity-50")}>Order on WhatsApp instead</a>
+          {waUrl && <a href={empty ? undefined : waUrl} target="_blank" rel="noopener" aria-disabled={empty} tabIndex={empty ? -1 : undefined} className={cn(cta, "border border-cb-ink hover:bg-cb-ink hover:text-white", empty && "pointer-events-none opacity-50")}>Order on WhatsApp instead</a>}
         </div>
       </aside>
     </div>

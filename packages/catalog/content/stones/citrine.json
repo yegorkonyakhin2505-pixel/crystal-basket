@@ -18,8 +18,19 @@
     "#f0c65a",
     "#c98b1e"
   ],
-  "description": "Sunlight in stone form. Citrine is worn for prosperity, warmth and a bright, optimistic outlook. Ours is natural, not heat-treated amethyst.",
+  "description": "Sunlight in stone form. Citrine is traditionally worn for prosperity, warmth and a bright, optimistic outlook. Ours is natural, not heat-treated amethyst.",
   "waterSafe": true,
   "sunSafe": false,
-  "tier": "select"
+  "tier": "select",
+  "mineral": "Citrine is the yellow to honey-coloured variety of quartz. Natural citrine is uncommon; much of the citrine sold worldwide is amethyst that has been heated until it turns orange.",
+  "mohs": "7",
+  "foundIn": "Brazil, Madagascar and Zambia",
+  "wornFor": "A citrine bracelet is traditionally worn for abundance, optimism and confidence in work and money. Citrine is a honey-yellow quartz linked to the solar plexus chakra and to Leo, Gemini and Aries. Natural citrine fades in strong sun, so charge it under moonlight rather than on a windowsill. Crystal Basket strings natural, untreated citrine rather than heat-treated amethyst.",
+  "wrist": "left",
+  "wristWhy": "Wear citrine on the left wrist. By tradition the left side receives, and abundance stones are worn to draw something in. It stacks well with pyrite or green aventurine on the same wrist.",
+  "pairsWith": [
+    "pyrite",
+    "green-aventurine",
+    "tigers-eye"
+  ]
 }

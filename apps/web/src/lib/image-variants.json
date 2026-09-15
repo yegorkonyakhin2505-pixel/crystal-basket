@@ -1,0 +1,312 @@
+{
+ "/images/about/studio.jpg": {
+  "w": 1400,
+  "h": 1050,
+  "webp": [
+   480,
+   800,
+   1200,
+   1400
+  ]
+ },
+ "/images/hero/hero-1.jpg": {
+  "w": 2000,
+  "h": 1125,
+  "webp": [
+   480,
+   800,
+   1200,
+   1600,
+   2000
+  ]
+ },
+ "/images/hero/hero-2.jpg": {
+  "w": 1280,
+  "h": 1125,
+  "webp": [
+   480,
+   800,
+   1200,
+   1280
+  ]
+ },
+ "/images/intentions/abundance.jpg": {
+  "w": 1050,
+  "h": 1400,
+  "webp": [
+   480,
+   800,
+   1050
+  ]
+ },
+ "/images/intentions/calm.jpg": {
+  "w": 1050,
+  "h": 1400,
+  "webp": [
+   480,
+   800,
+   1050
+  ]
+ },
+ "/images/intentions/confidence.jpg": {
+  "w": 1050,
+  "h": 1400,
+  "webp": [
+   480,
+   800,
+   1050
+  ]
+ },
+ "/images/intentions/focus.jpg": {
+  "w": 1050,
+  "h": 1400,
+  "webp": [
+   480,
+   800,
+   1050
+  ]
+ },
+ "/images/intentions/grounding.jpg": {
+  "w": 1050,
+  "h": 1400,
+  "webp": [
+   480,
+   800,
+   1050
+  ]
+ },
+ "/images/intentions/love.jpg": {
+  "w": 1050,
+  "h": 1400,
+  "webp": [
+   480,
+   800,
+   1050
+  ]
+ },
+ "/images/intentions/protection.jpg": {
+  "w": 1050,
+  "h": 1400,
+  "webp": [
+   480,
+   800,
+   1050
+  ]
+ },
+ "/images/intentions/sleep.jpg": {
+  "w": 1050,
+  "h": 1400,
+  "webp": [
+   480,
+   800,
+   1050
+  ]
+ },
+ "/images/products/the-alchemist/lifestyle.jpg": {
+  "w": 900,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/products/the-alchemist/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-anchor/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-aurora/lifestyle.jpg": {
+  "w": 900,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/products/the-aurora/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-clear-sight/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-devotion/lifestyle.jpg": {
+  "w": 900,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/products/the-devotion/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-fortune/lifestyle.jpg": {
+  "w": 900,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/products/the-fortune/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-guardian/lifestyle.jpg": {
+  "w": 900,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/products/the-guardian/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-lionheart/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-seven/lifestyle.jpg": {
+  "w": 900,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/products/the-seven/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-shield/lifestyle.jpg": {
+  "w": 900,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/products/the-shield/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-still-mind/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-tender-heart/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/stacks/abundance-stack.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/stacks/calm-stack.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/stacks/protection-stack.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/stacks/stacks-wrist.jpg": {
+  "w": 900,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ }
+}

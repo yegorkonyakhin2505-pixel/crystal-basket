@@ -7,7 +7,7 @@
     "Dream",
     "Release"
   ],
-  "description": "Moon-white and lavender stones for the nightstand and the wrist. Worn in the evening to mark the edge of the day.",
+  "description": "Moon-white and lavender stones for the nightstand and the wrist. Traditionally worn in the evening to mark the edge of the day.",
   "chakra": [
     "Crown",
     "Third Eye"
@@ -17,5 +17,23 @@
     "#8f86b8"
   ],
   "order": 8,
-  "image": "sleep.jpg"
+  "image": "sleep.jpg",
+  "seoDescription": "Evening crystal bracelets in amethyst, moonstone and labradorite, traditionally worn to wind down. Hand-strung in Dubai, next-day UAE delivery.",
+  "definition": "A sleep bracelet is a crystal bracelet strung from stones traditionally kept close in the evening to mark the end of the day: amethyst, moonstone and labradorite. It is worn on the left wrist or placed on the nightstand. Crystal meanings describe tradition rather than a sleep remedy; the small ritual of taking it off at night is part of the appeal.",
+  "wrist": "left",
+  "stones": [
+    "amethyst",
+    "moonstone",
+    "labradorite"
+  ],
+  "faq": [
+    {
+      "q": "Which crystal is traditionally kept close for sleep?",
+      "a": "Amethyst is the stone most traditionally kept close at night, and moonstone is linked with the moon and its cycles. Many people place the bracelet on the nightstand rather than sleeping in it, which keeps the cord in good shape and turns taking it off into an evening ritual."
+    },
+    {
+      "q": "Is it safe to sleep wearing a crystal bracelet?",
+      "a": "A stretch bracelet is comfortable for most people overnight. If it leaves a mark or feels tight in the morning, size up or keep it on the nightstand instead. Take it off if your skin feels irritated, and keep beaded jewellery away from small children."
+    }
+  ]
 }

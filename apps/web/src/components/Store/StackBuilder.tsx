@@ -1,24 +1,30 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { formatAED } from "@crystal-basket/catalog/money";
 import { cn } from "@/components/ui";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { orderByMessageUrl } from "@/lib/contact";
 import { useCart } from "@/hooks/useCart";
 import { WRIST_SIZES, type WristSizeKey } from "@/lib/sizes";
 
 export interface BuilderProduct { id: string; name: string; intention: string; intentionName: string; stones: string; priceAED: number; image: string | null; palettes: [string, string][]; inStock: boolean }
 
-export function StackBuilder({ products, intentions, discountPct }: { products: BuilderProduct[]; intentions: { id: string; name: string }[]; discountPct: number }) {
+/** `presets` lets a curated stack link here with ?stack=<id> and arrive with its three pieces already picked. */
+export function StackBuilder({ products, intentions, discountPct, presets = [] }: { products: BuilderProduct[]; intentions: { id: string; name: string }[]; discountPct: number; presets?: { id: string; products: string[] }[] }) {
   const [filter, setFilter] = useState("all");
   const [picked, setPicked] = useState<string[]>([]);
   const [size, setSize] = useState<WristSizeKey>("M");
   const cart = useCart();
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("stack");
+    const preset = presets.find((p) => p.id === id);
+    if (preset) setPicked(preset.products.filter((pid) => products.find((p) => p.id === pid)?.inStock).slice(0, 3));
+  }, [presets, products]);
   const list = filter === "all" ? products : products.filter((p) => p.intention === filter);
   const chosen = picked.map((id) => products.find((p) => p.id === id)!).filter(Boolean);
   const subtotal = chosen.reduce((s, p) => s + p.priceAED, 0);
   const complete = chosen.length === 3;
   const total = complete ? Math.round(subtotal * (1 - discountPct / 100)) : subtotal;
-  const waUrl = useMemo(() => buildWhatsAppUrl(chosen.map((c) => ({ name: c.name, size, priceAED: c.priceAED })), complete ? `Stack of 3, ${discountPct}% off applied` : undefined, complete ? total : undefined), [chosen, size, complete, total, discountPct]);
+  const waUrl = useMemo(() => orderByMessageUrl(chosen.map((c) => ({ name: c.name, size, priceAED: c.priceAED })), complete ? `Stack of 3, ${discountPct}% off applied` : undefined, complete ? total : undefined), [chosen, size, complete, total, discountPct]);
   const toggle = (id: string) => setPicked((c) => (c.includes(id) ? c.filter((x) => x !== id) : c.length < 3 ? [...c, id] : c));
   const chip = (on: boolean) => cn("px-3.5 py-1.5 text-[12px] uppercase tracking-[0.12em] border transition-colors", on ? "bg-cb-ink text-white border-cb-ink" : "border-cb-line hover:border-cb-ink");
 
@@ -35,7 +41,7 @@ export function StackBuilder({ products, intentions, discountPct }: { products: 
             const full = (picked.length >= 3 && !on) || !p.inStock;
             return (
               <button key={p.id} type="button" onClick={() => toggle(p.id)} disabled={full} aria-pressed={on} className={cn("text-left bg-white p-4 transition-colors", on ? "outline outline-2 -outline-offset-2 outline-cb-ink" : "hover:bg-cb-band", "disabled:opacity-40")}>
-                <div className="aspect-square bg-white mb-3 overflow-hidden">{p.image ? <img src={p.image} alt="" className="h-full w-full object-cover" loading="lazy" /> : null}</div>
+                <div className="aspect-square bg-white mb-3 overflow-hidden">{p.image ? <img src={p.image} alt={p.name} className="h-full w-full object-cover" loading="lazy" /> : null}</div>
                 <p className="font-display text-[1.15rem] leading-tight">{p.name}{!p.inStock && <span className="ml-2 align-middle text-[10px] uppercase tracking-[0.14em] text-cb-muted">Sold out</span>}</p>
                 <p className="text-[12px] text-cb-muted truncate">{p.stones}</p>
                 <div className="flex justify-between mt-2 text-[12px]"><span className="text-cb-rose uppercase tracking-[0.12em]">{p.intentionName}</span><span className="price text-[14px]">{formatAED(p.priceAED)}</span></div>
@@ -67,8 +73,8 @@ export function StackBuilder({ products, intentions, discountPct }: { products: 
           </button>
         )}
         {cart.error && <p className="text-[12px] text-cb-danger mt-3">{cart.error}</p>}
-        <a href={chosen.length ? waUrl : undefined} target="_blank" rel="noopener" aria-disabled={!chosen.length} className={cn("mt-3 inline-flex h-12 w-full items-center justify-center text-[12px] uppercase tracking-[0.14em]", cart.enabled ? "border border-cb-ink hover:bg-cb-ink hover:text-white" : "bg-cb-ink text-white hover:bg-black", !chosen.length && "pointer-events-none opacity-50")}>Order this stack on WhatsApp</a>
-        <p className="text-[11px] text-cb-faint mt-3">{cart.enabled ? `All three in size ${size} (${WRIST_SIZES[size].cm} cm). Mixed sizes? Order on WhatsApp and tell us. The stack discount is applied at checkout.` : "Card checkout for custom stacks arrives with our payment links. WhatsApp orders are confirmed within the hour."}</p>
+        {waUrl && <a href={chosen.length ? waUrl : undefined} target="_blank" rel="noopener" aria-disabled={!chosen.length} className={cn("mt-3 inline-flex h-12 w-full items-center justify-center text-[12px] uppercase tracking-[0.14em]", cart.enabled ? "border border-cb-ink hover:bg-cb-ink hover:text-white" : "bg-cb-ink text-white hover:bg-black", !chosen.length && "pointer-events-none opacity-50")}>Order this stack on WhatsApp</a>}
+        <p className="text-[11px] text-cb-faint mt-3">{cart.enabled ? `All three in size ${size} (${WRIST_SIZES[size].cm} cm). Mixed sizes? Add each piece in its own size from the product pages; any three still get the stack discount at checkout.` : waUrl ? "Card checkout for custom stacks arrives with our payment links. WhatsApp orders are confirmed within the hour." : "Card checkout for custom stacks is on its way. Email us the three pieces and your size to order now."}</p>
       </aside>
     </div>
   );

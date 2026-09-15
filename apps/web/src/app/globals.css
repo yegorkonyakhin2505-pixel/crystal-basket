@@ -30,7 +30,9 @@ body {
   background: var(--cb-bg);
   color: var(--cb-ink);
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 16px;
+  /* clip, not hidden: stops any stray wide child from creating sideways scroll without breaking sticky headers */
+  overflow-x: clip;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }

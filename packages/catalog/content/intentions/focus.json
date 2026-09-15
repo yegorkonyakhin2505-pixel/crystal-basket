@@ -17,5 +17,24 @@
     "#dfe8f5"
   ],
   "order": 6,
-  "image": "focus.jpg"
+  "image": "focus.jpg",
+  "seoDescription": "Focus crystal bracelets in lapis lazuli, clear quartz and labradorite, traditionally worn for clarity. Made in Dubai, next-day delivery across the UAE.",
+  "definition": "A focus bracelet is a crystal bracelet strung from stones traditionally worn for mental clarity, honest speech and concentration: lapis lazuli, clear quartz, labradorite and hematite. Lapis and clear quartz are the classic pair. It is usually worn on the right wrist, the active side, and many people put it on for work or study.",
+  "wrist": "right",
+  "stones": [
+    "lapis-lazuli",
+    "clear-quartz",
+    "labradorite",
+    "hematite"
+  ],
+  "faq": [
+    {
+      "q": "Which crystal is traditionally worn for focus?",
+      "a": "Lapis lazuli is the stone most traditionally worn for clear thinking and communication, and clear quartz is worn to sharpen intention; The Clear Sight alternates the two with gold-filled beads. Hematite is another common choice when focus means feeling grounded rather than sharp."
+    },
+    {
+      "q": "Can I wear a lapis lazuli bracelet in the shower or at the gym?",
+      "a": "No. Lapis is porous and its pyrite flecks can tarnish, so take it off for water, sweat, perfume and sunscreen. Wipe it with a soft dry cloth and cleanse it with moonlight, a selenite plate or smoke instead of water."
+    }
+  ]
 }

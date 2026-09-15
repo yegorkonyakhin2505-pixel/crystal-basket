@@ -7,7 +7,7 @@
     "Fire",
     "Drive"
   ],
-  "description": "Amber and orange stones worn for nerve before the meeting, the pitch, the first date, the hard conversation.",
+  "description": "Amber and orange stones traditionally worn for nerve before the meeting, the pitch, the first date, the hard conversation.",
   "chakra": [
     "Solar Plexus",
     "Sacral"
@@ -17,5 +17,24 @@
     "#8f4a1a"
   ],
   "order": 5,
-  "image": "confidence.jpg"
+  "image": "confidence.jpg",
+  "seoDescription": "Confidence crystal bracelets in tiger's eye and carnelian, traditionally worn for courage. Hand-strung in Dubai with next-day delivery across the UAE.",
+  "definition": "A confidence bracelet is a crystal bracelet strung from stones traditionally worn for courage, willpower and the nerve to speak up: tiger's eye, carnelian, citrine and red jasper. It is usually worn on the right wrist, the side tradition says sends energy outward. The Lionheart pairs golden tiger's eye with burnt-orange carnelian for exactly this.",
+  "wrist": "right",
+  "stones": [
+    "tigers-eye",
+    "carnelian",
+    "citrine",
+    "red-jasper"
+  ],
+  "faq": [
+    {
+      "q": "Which crystal is traditionally worn for confidence?",
+      "a": "Tiger's eye is the stone most traditionally worn for confidence and willpower, and carnelian is worn for courage and motivation. Together they make a warm, golden-orange bracelet that suits both men and women, which is why they are the pair in The Lionheart."
+    },
+    {
+      "q": "Is a confidence bracelet a good gift?",
+      "a": "It is a popular gift for a new job, a graduation, exam season or a big presentation. Tiger's eye and carnelian are hard, everyday stones, and every bracelet ships in a linen pouch with a card explaining what its stones are traditionally worn for."
+    }
+  ]
 }

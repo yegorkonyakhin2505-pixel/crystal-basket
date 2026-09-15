@@ -13,36 +13,38 @@
 
 | Route | File | Data | Notes |
 |---|---|---|---|
-| `/` | `page.tsx` | bestsellers, new, stacks | Hero, intention grid, bestsellers, trust strip, stacks band, story, reviews |
-| `/shop/` | `shop/page.tsx` | all products | ListingHero + FilterBar + ProductGrid |
-| `/products/[slug]/` | `products/[slug]/page.tsx` | product, stones, related | Gallery (second tile = `images[1]` if the product has one, else the intention lifestyle shot), BuyBox (wrist size only, all 8 mm), accordions, related grid (scored + backfilled), FAQ, Product JSON-LD + per-product Open Graph |
-| `/intentions/` | `intentions/page.tsx` | intentions | CategoryGrid |
-| `/intentions/[slug]/` | `intentions/[slug]/page.tsx` | primary + secondary products | Stone chips band; an intention with no piece of its own (sleep) shows the "also worn for" pieces as the main grid |
-| `/stones/` | `stones/page.tsx` | stones | Sphere tiles |
-| `/stones/[slug]/` | `stones/[slug]/page.tsx` | stone, products | Facts table |
-| `/stacks/` | `stacks/page.tsx` | stacks, all products | Curated sets + StackBuilder |
-| `/about/`, `/size-guide/`, `/care/`, `/faq/`, `/disclaimer/` | same-named folders | static | |
-| `/wishlist/` | `wishlist/page.tsx` | all products (client filters by localStorage) | |
+| `/` | `page.tsx` | bestsellers, new, stacks | Hero (eyebrow is the H1 "Crystal bracelets, hand-strung in Dubai"), intention grid, bestsellers, plain-words summary paragraph, trust strip, stacks band, story, reviews. Absolute title "Crystal Bracelets Hand-Strung in Dubai \| Crystal Basket" |
+| `/shop/` | `shop/page.tsx` | all products (in stock first) | ListingHero + FilterBar + ProductGrid · CollectionPage JSON-LD |
+| `/products/[slug]/` | `products/[slug]/page.tsx` | product, stones, related | Grid areas: mobile order photo → buy box → detail photo; desktop photos left, sticky buy box right. H1 = name + `seoTitle`; `<title>`/description from `seoTitle`/`seoDescription`. BuyBox (wrist size only, all 8 mm, shows the 25 AED fee), "Part of The X Stack" link, accordions, related grid, three product-specific questions (wrist from the intention, water/sun from the stones, stack) as h3, Product JSON-LD via `productLd` (image array, OutOfStock when sold out, shipping + return policy) + BreadcrumbList |
+| `/intentions/` | `intentions/page.tsx` | intentions | CategoryGrid · H1 "Crystal bracelets by intention" · CollectionPage + BreadcrumbList |
+| `/intentions/[slug]/` | `intentions/[slug]/page.tsx` | primary + secondary products, curated `stones`, stack | Stone chips from the intention's curated list; grids in stock first; sleep shows the "also worn for" pieces as the main grid. Guide: "What is a … crystal bracelet?" (`definition`), which wrist, stone table, intention FAQ as h3, link to its stack (`/stacks/?stack=<id>#build`). CollectionPage + BreadcrumbList |
+| `/stones/` | `stones/page.tsx` | stones | Sphere tiles + "16 stones at a glance" table (worn for, chakra, wrist, water, sun, Mohs) · H1 "Crystal meanings" · CollectionPage + BreadcrumbList |
+| `/stones/[slug]/` | `stones/[slug]/page.tsx` | stone, products, intentions, pairings | H1 "X bracelet meaning". Facts table (incl. Mohs, found in, wrist) and question-headed H2 sections: worn for (`wornFor`), what is it (`mineral`), which wrist (`wristWhy`), how to cleanse (water/sun/`waterNote`), pairs with (`pairsWith`). WebPage (`about` Thing) + BreadcrumbList |
+| `/stacks/` | `stacks/page.tsx` | stacks, all products | Curated sets (CTA links `?stack=<id>#build`, StackBuilder preselects that stack's in-stock pieces) + StackBuilder at `#build` · CollectionPage + BreadcrumbList |
+| `/about/`, `/size-guide/`, `/care/`, `/faq/`, `/disclaimer/` | same-named folders | static | `PageIntro` header: descriptive H1 in label caps, display tagline, "Last reviewed" from git. Question H2s. `/faq/` renders `lib/faq.ts` with h3 questions, follow-up links and FAQPage JSON-LD; the disclaimer opens with a plain-English line |
+| `/delivery/`, `/returns/`, `/contact/`, `/privacy/` | same-named folders | `site.ts` | Policy pages, factual only: 25 AED / free over 250 AED / 1–2 working days / COD; 14-day size exchange, refunds case by case, free restring; email + Instagram (+ WhatsApp when `flags.whatsapp`); Shopify/Stripe/localStorage data use. BreadcrumbList |
+| `/llms.txt` | `llms.txt/route.ts` | whole catalog, FAQ | Generated Markdown map for AI assistants |
+| `/wishlist/` | `wishlist/page.tsx` | all products (client filters by localStorage) | `noindex, follow` |
 | 404 | `not-found.tsx` | | |
-| `/robots.txt`, `/sitemap.xml` | `robots.ts`, `sitemap.ts` | all catalog ids | Static metadata routes; wishlist excluded |
+| `/robots.txt`, `/sitemap.xml` | `robots.ts`, `sitemap.ts` | all catalog ids | robots: search/answer crawlers, training crawlers and `*` all allowed; `/*index.txt$` (RSC payloads) disallowed. Sitemap: no wishlist, `lastmod` = last git commit touching the page source or its content JSON (`lib/git-date.ts`), no priority |
 
 ## Components
 
 **`components/ui`** (design system, see `DESIGN.md`): `Button`, `ButtonLink`, `buttonClasses`, `Badge`, `Input`, `AccordionItem`, `SectionTitle`, `cn`.
 
-**`components/Store`:** `Header` (server) + `HeaderClient` (sticky, compact on scroll with hysteresis, state-driven mega-menus with keyboard + Escape, mobile drawer as a dialog) · `Wordmark` · `Footer` · `NewsletterBar` (client, dismissable, shows the welcome code inline, renders its own spacer) · `OfferPopup` (client, welcome-offer modal ~3 s after load, defers while the bag is open) · `Hero` · `ListingHero` · `CategoryGrid` · `ProductGrid` · `ProductTile` (data-* attributes for FilterBar; heart is a sibling of the link) · `BeadRing` (SVG fallback art) · `LogoBadge` (palette 18: cream ink + gold bead on a `cb-rose` disc; `mono` prop for single-colour uses; renders `logo-badge-paths.ts`, generated by `scripts/logo-badge.py`) · `FilterBar` (client: anchored popovers on desktop, bottom sheet on mobile, faceted counts, chips, custom sort menu) · `BuyBox` (client; sold-out state with "tell me when it’s back" WhatsApp link; optional "Pay by card" Stripe link next to the Shopify bag) · `StackBuilder` (client) · `WishlistButton` · `WishlistClient` · `TrustStrip` · `Testimonials`.
+**`components/Store`:** `Header` (server) + `HeaderClient` (sticky, compact on scroll with hysteresis, state-driven mega-menus with keyboard + Escape, mobile drawer as a dialog) · `Wordmark` · `Footer` · `NewsletterBar` (client, dismissable, shows the welcome code inline, renders its own spacer) · `OfferPopup` (client, welcome-offer modal ~3 s after load, defers while the bag is open) · `Hero` · `ListingHero` · `CategoryGrid` · `ProductGrid` · `ProductTile` (data-* attributes for FilterBar; heart is a sibling of the link) · `BeadRing` (SVG fallback art) · `LogoBadge` (palette 18: cream ink + gold bead on a `cb-rose` disc; `mono` prop for single-colour uses; renders `logo-badge-paths.ts`, generated by `scripts/logo-badge.py`) · `FilterBar` (client: anchored popovers on desktop, bottom sheet on mobile, faceted counts, chips, custom sort menu) · `BuyBox` (client; sold-out state with a "tell me when it’s back" contact link; optional "Pay by card" Stripe link next to the Shopify bag) · `StackBuilder` (client) · `WishlistButton` · `WishlistClient` · `TrustStrip` · `Testimonials` · `PageIntro` (guide/policy page header). WhatsApp buttons everywhere render only when `flags.whatsapp` is on; otherwise contact links fall back to email (`lib/contact.ts`). Mega-menu, drawer, footer and stone/intention links use `prefetch={false}`.
 
-**Root:** `Img` (base-path aware `<img>`), `QueryProvider`, `SmoothScroll` (Lenis, nested scroll allowed; dialogs carry `data-lenis-prevent`; pins each client-side navigation to the top, keeps the browser's position on back/forward), `ScrollReveal` (re-attaches on route change and DOM mutations).
+**Root:** `Img` (base-path aware; when `lib/image-variants.json` lists the file, renders `<picture>` with a WebP `srcset` from `scripts/responsive-images.py` plus intrinsic width/height; pass `sizes`), `QueryProvider`, `SmoothScroll` (Lenis, nested scroll allowed; dialogs carry `data-lenis-prevent`; pins each client-side navigation to the top, keeps the browser's position on back/forward), `ScrollReveal` (re-attaches on route change and DOM mutations).
 
 **Commerce (Shopify Storefront, env-gated):** `lib/shopify.ts` (GraphQL client: variant lookup by handle + "Wrist size", cart create/add/remove/fetch with `userErrors`, friendly errors, `CartGoneError`) · `hooks/useCart.ts` (shared cart state, localStorage cart id, single in-flight restore, revalidates on `pageshow`, recreates an expired cart) · `components/Store/CartDrawer.tsx` · `BagButton.tsx` · "Add to bag" paths in `BuyBox` and `StackBuilder`. Off when `NEXT_PUBLIC_SHOPIFY_*` are empty; then payment links + WhatsApp apply.
 
 ## Lib & hooks
 
-`lib/site.ts` (site config + feature flags) · `lib/paths.ts` (`routes`, `asset`, `BASE`) · `lib/whatsapp.ts` · `lib/images.ts` · `lib/sizes.ts` · `lib/faq.ts` · `lib/subscribe.ts` (shared email-capture state) · `hooks/useWishlist.ts` (`ready`, `prune`) · `hooks/useDialog.ts` (Escape, focus trap, scroll lock, focus return; used by popup, bag drawer, mobile menu).
+`lib/site.ts` (site config + feature flags) · `lib/paths.ts` (`routes`, `asset`, `BASE`) · `lib/whatsapp.ts` · `lib/images.ts` · `lib/sizes.ts` · `lib/faq.ts` (40–80-word answers with optional follow-up link) · `lib/contact.ts` (`contactUrl`, `orderByMessageUrl`, `contactChannel`; WhatsApp when `flags.whatsapp`, else email) · `lib/schema.ts` (JSON-LD builders: `organizationLd`, `websiteLd`, `productLd`, `breadcrumbLd`, `collectionPageLd`, `stonePageLd`, `faqPageLd`, shared `shippingDetailsLd` / `returnPolicyLd`, `ld()` serialiser) · `lib/git-date.ts` (`lastCommitDate`, `formatReviewed`, `sources`) · `lib/image-variants.json` (generated) · `lib/subscribe.ts` (shared email-capture state, `OFFER_EVENT` so the bar hides while the popup is open) · `hooks/useWishlist.ts` (`ready`, `prune`) · `hooks/useDialog.ts` (Escape, focus trap, scroll lock, focus return; used by popup, bag drawer, mobile menu).
 
 ## Catalog API (`@crystal-basket/catalog`)
 
-`loadCatalog()` · `getProducts/getStones/getIntentions/getStacks` · `getProduct/getStone/getIntention/getStack` · `productsForIntention(id, includeSecondary)` · `productsForStone` · `stonesForProduct` · `relatedProducts` (scored, backfilled) · `stackSubtotal` · `formatAED` · `BEAD_MM` (8) · schemas + types. Client components import the fs-free subpaths `@crystal-basket/catalog/money` and `/schemas`.
+`loadCatalog()` · `getProducts/getStones/getIntentions/getStacks` · `getProduct/getStone/getIntention/getStack` · `productsForIntention(id, includeSecondary)` · `productsForStone` (in stock first) · `inStockFirst` · `stackForProduct` · `stonesForProduct` · `relatedProducts` (scored, backfilled, sold-out pieces last) · `stackSubtotal` · `formatAED` · `BEAD_MM` (8) · schemas + types. Client components import the fs-free subpaths `@crystal-basket/catalog/money` and `/schemas`.
 
 ## Static assets
 
@@ -50,8 +52,12 @@
 
 ## Scripts
 
-`scripts/shopify-csv.py` (catalog → `docs/shopify/products.csv`, Wrist-size-only variants, hashed image URLs) · `scripts/logo-badge.py` (badge geometry → component data + static SVGs; needs `pip install fonttools`) · `scripts/check-tokens.sh` (rule 3 gate, runs in CI and `make check`). · `scripts/install-lifestyle.py <slug> <image>` (fits an on-wrist photo to 900×1200 and sets it as the product's second image).
+`scripts/shopify-csv.py` (catalog → `docs/shopify/products.csv`, Wrist-size-only variants, hashed image URLs) · `scripts/logo-badge.py` (badge geometry → component data + static SVGs; needs `pip install fonttools`) · `scripts/check-tokens.sh` (rule 3 gate, runs in CI and `make check`). · `scripts/install-lifestyle.py <slug> <image>` (fits an on-wrist photo to 900×1200 and sets it as the product's second image) · `scripts/responsive-images.py` (every JPEG under `public/images` → `<stem>-<w>.webp` at 480/800/1200/1600/2000 px plus `lib/image-variants.json`; rerun after adding photos).
 
 ## Workflows
 
-`ci.yml`: catalog tests → typecheck → build, on push/PR. `deploy.yml`: build at root path for crystalbasket.store (`public/CNAME`), Shopify domain/token from repo var + secret → GitHub Pages, on push to `main`.
+`ci.yml`: catalog tests → typecheck → build, on push/PR. `deploy.yml`: full-history checkout (git dates), build at root path for crystalbasket.store (`public/CNAME`), Shopify domain/token from repo vars → GitHub Pages, on push to `main`; then an `indexnow` job pings IndexNow with every sitemap URL (key file `public/111d836f4189ab2274f0b929c3e43b99.txt`).
+
+## SEO
+
+Audit (claude-seo v2.3.1, 2026-09-15) and the fixes shipped from it: `docs/seo/crystalbasket.store-audit/` (`FULL-AUDIT-REPORT.md`, `ACTION-PLAN.md`, `findings/`). Catalog SEO fields: product `seoTitle` (20–50) / `seoDescription` (90–155); intention `seoDescription`, `definition`, `wrist`, `stones`, `faq`; stone `mineral`, `mohs`, `foundIn`, `wornFor`, `wrist`, `wristWhy`, `waterNote`, `pairsWith`. Tests enforce unique product titles/descriptions, passage lengths and a banned medical-claims pattern.

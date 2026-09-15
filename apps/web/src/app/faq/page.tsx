@@ -1,14 +1,37 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AccordionItem } from "@/components/ui";
-import { orderingFaq, productFaq } from "@/lib/faq";
-export const metadata: Metadata = { title: "FAQ", description: "Wearing, cleansing, sizing, paying and delivery: the questions we answer most on WhatsApp." };
+import { PageIntro } from "@/components/Store/PageIntro";
+import { orderingFaq, productFaq, type QA } from "@/lib/faq";
+import { faqPageLd, ld } from "@/lib/schema";
+import { formatReviewed, lastCommitDate, sources } from "@/lib/git-date";
+
+const description = "Crystal bracelet questions answered: which wrist, how to cleanse, sleeping in it, real stones, stacking, paying, UAE delivery and size exchanges.";
+export const metadata: Metadata = { title: "Crystal Bracelet FAQ", description, openGraph: { title: "Crystal Bracelet FAQ", description } };
+
+function Group({ title, items }: { title: string; items: QA[] }) {
+  return (
+    <section className="container-x pb-10 max-w-3xl">
+      <h2 className="label-caps mb-2">{title}</h2>
+      <div className="border-t border-cb-line">
+        {items.map((f) => (
+          <AccordionItem key={f.q} title={f.q} heading="h3">
+            <p>{f.a}</p>
+            {f.link && <p className="mt-2"><Link href={f.link[0]} className="text-cb-ink underline underline-offset-4 hover:text-cb-rose">{f.link[1]}</Link></p>}
+          </AccordionItem>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function FaqPage() {
   return (
     <>
-      <section className="container-x pt-12 md:pt-20 pb-8 max-w-3xl"><p className="label-caps mb-3">FAQ</p><h1 className="text-4xl md:text-[3.25rem]">Things people ask us on WhatsApp.</h1></section>
-      <section className="container-x pb-10 max-w-3xl"><p className="label-caps mb-2">Wearing & caring</p><div className="border-t border-cb-line">{productFaq.map((f) => <AccordionItem key={f.q} title={f.q}><p>{f.a}</p></AccordionItem>)}</div></section>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [...productFaq, ...orderingFaq].map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }) }} />
-      <section className="container-x pb-20 max-w-3xl"><p className="label-caps mb-2">Ordering</p><div className="border-t border-cb-line">{orderingFaq.map((f) => <AccordionItem key={f.q} title={f.q}><p>{f.a}</p></AccordionItem>)}</div></section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(faqPageLd([...productFaq, ...orderingFaq])) }} />
+      <PageIntro heading="Crystal bracelet FAQ" tagline="Things people ask us." reviewed={formatReviewed(lastCommitDate(sources.page("faq"), "apps/web/src/lib/faq.ts"))} />
+      <Group title="Wearing & caring" items={productFaq} />
+      <div className="pb-10"><Group title="Ordering & delivery" items={orderingFaq} /></div>
     </>
   );
 }

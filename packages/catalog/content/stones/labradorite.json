@@ -19,8 +19,19 @@
     "#5e6d86",
     "#8a7a4a"
   ],
-  "description": "Grey until it catches the light, then flashes blue, gold and green. Labradorite is worn for transformation and protection of the aura.",
+  "description": "Grey until it catches the light, then flashes blue, gold and green. Labradorite is traditionally worn for transformation and protection of the aura.",
   "waterSafe": true,
   "sunSafe": true,
-  "tier": "rare"
+  "tier": "rare",
+  "mineral": "Labradorite is a feldspar mineral. Its flash, called labradorescence, is light bouncing between thin layers inside the stone, so colour appears and disappears as the bead turns.",
+  "mohs": "6 to 6.5",
+  "foundIn": "Madagascar, Finland and Canada",
+  "wornFor": "A labradorite bracelet is traditionally worn for change, intuition and a sense of protection around your own energy. It is linked with the third eye and throat chakras and with Leo, Scorpio and Sagittarius. Many people are drawn to it simply for the flash, which is different on every bead. Labradorite is water safe; avoid hard knocks, because feldspar can chip.",
+  "wrist": "left",
+  "wristWhy": "Wear labradorite on the left wrist. It is chosen for intuition and insight, which tradition places on the receiving side.",
+  "pairsWith": [
+    "moonstone",
+    "amethyst",
+    "clear-quartz"
+  ]
 }

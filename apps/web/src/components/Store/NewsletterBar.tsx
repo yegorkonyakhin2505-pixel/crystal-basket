@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { X } from "lucide-react";
 import { site } from "@/lib/site";
-import { SUB_EVENT, isSubscribed, markSubscribed } from "@/lib/subscribe";
+import { OFFER_EVENT, SUB_EVENT, isSubscribed, markSubscribed } from "@/lib/subscribe";
 
 /**
  * Sticky bottom newsletter bar (Swarovski pattern). Dismissable per browser, hidden once
@@ -15,6 +15,7 @@ export function NewsletterBar() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
   const keepOpen = useRef(false);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   useEffect(() => {
     const sync = () => {
@@ -22,10 +23,12 @@ export function NewsletterBar() {
       try { setShow(!localStorage.getItem("cb-nl-dismissed") && !isSubscribed()); } catch { setShow(true); }
     };
     sync();
+    const onOffer = (e: Event) => setPopupOpen(Boolean((e as CustomEvent<boolean>).detail));
     window.addEventListener(SUB_EVENT, sync);
-    return () => window.removeEventListener(SUB_EVENT, sync);
+    window.addEventListener(OFFER_EVENT, onOffer);
+    return () => { window.removeEventListener(SUB_EVENT, sync); window.removeEventListener(OFFER_EVENT, onOffer); };
   }, []);
-  if (!show) return null;
+  if (!show || popupOpen) return null;
 
   const dismiss = () => { keepOpen.current = false; setShow(false); try { localStorage.setItem("cb-nl-dismissed", "1"); } catch {} };
   const submit = (e: FormEvent) => {

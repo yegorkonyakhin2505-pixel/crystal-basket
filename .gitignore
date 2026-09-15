@@ -12,3 +12,7 @@ _old/
 
 # Google Fonts file fetched on demand by scripts/logo-badge.py
 docs/brand/fonts/
+
+# SEO audit working data (large, regenerable); reports and findings are committed
+docs/seo/*-audit/raw/
+docs/seo/*-audit/screenshots/

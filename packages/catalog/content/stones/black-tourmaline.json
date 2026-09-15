@@ -17,8 +17,19 @@
     "#3a3a40",
     "#151518"
   ],
-  "description": "The most trusted protection stone. Black tourmaline is worn to absorb heaviness and hold a clear boundary around your energy.",
+  "description": "A classic protection stone. Black tourmaline is traditionally worn to absorb heaviness and hold a clear boundary around your energy.",
   "waterSafe": true,
   "sunSafe": true,
-  "tier": "select"
+  "tier": "select",
+  "mineral": "Black tourmaline, also called schorl, is a boron-rich silicate mineral. It grows in long, finely ridged crystals and polishes to a soft, matte charcoal black.",
+  "mohs": "7 to 7.5",
+  "foundIn": "Brazil, Madagascar and Pakistan",
+  "wornFor": "A black tourmaline bracelet is traditionally worn for protection, grounding and firmer personal boundaries. It is a root chakra stone associated with Capricorn and Libra, and it is the stone most often suggested to people who feel drained by crowded rooms, long commutes or demanding days. Black tourmaline is hard and water safe, which makes it an easy everyday protection piece.",
+  "wrist": "right",
+  "wristWhy": "Wear black tourmaline on the right wrist, the side tradition says sends energy out. Protection stones sit there so the boundary faces the world.",
+  "pairsWith": [
+    "hematite",
+    "black-obsidian",
+    "smoky-quartz"
+  ]
 }

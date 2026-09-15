@@ -19,8 +19,19 @@
     "#eef0f6",
     "#b7c2e0"
   ],
-  "description": "A soft blue sheen that moves under the surface. Moonstone is worn for intuition, feminine cycles and fresh starts.",
+  "description": "A soft blue sheen that moves under the surface. Moonstone is traditionally worn for intuition, the moon's phases and fresh starts.",
   "waterSafe": true,
   "sunSafe": true,
-  "tier": "select"
+  "tier": "select",
+  "mineral": "Moonstone is a feldspar. Its glow, called adularescence, comes from light scattering between microscopic layers inside the stone.",
+  "mohs": "6 to 6.5",
+  "foundIn": "India, Sri Lanka and Madagascar",
+  "wornFor": "A moonstone bracelet is traditionally worn for intuition, new beginnings and moving with the moon's cycles. It is linked with the crown and sacral chakras and with Cancer, Libra and Scorpio. Moonstone is a classic gift for a new chapter such as a wedding, a move or a birthday, and its soft sheen pairs especially well with rose quartz, as in The Devotion. Handle it gently, as feldspar can chip.",
+  "wrist": "left",
+  "wristWhy": "Wear moonstone on the left wrist. Intuitive stones are traditionally worn on the receiving side, the wrist many traditions also call the side of the heart.",
+  "pairsWith": [
+    "rose-quartz",
+    "labradorite",
+    "amethyst"
+  ]
 }

@@ -11,7 +11,7 @@ export function Footer() {
   const cols = [
     { title: "Shop", links: [[routes.shop, "All bracelets"], [routes.stacks, "Stacks & sets"], [routes.stones, "Stone library"], [routes.wishlist, "Wishlist"]] },
     { title: "Intentions", links: intentions.map((i) => [routes.intention(i.id), i.data.name] as [string, string]) },
-    { title: "Help", links: [[routes.sizeGuide, "Size guide"], [routes.care, "Cleanse & care"], [routes.faq, "FAQ"], [routes.disclaimer, "Wellness disclaimer"]] },
+    { title: "Help", links: [[routes.delivery, "Delivery"], [routes.returns, "Exchanges & returns"], [routes.sizeGuide, "Size guide"], [routes.care, "Cleanse & care"], [routes.faq, "FAQ"], [routes.contact, "Contact"], [routes.privacy, "Privacy"], [routes.disclaimer, "Wellness disclaimer"]] },
     { title: "Crystal Basket", links: ([[routes.about, "Our story"], site.instagram && [`https://instagram.com/${site.instagram}`, "Instagram"], site.tiktok && [`https://tiktok.com/@${site.tiktok}`, "TikTok"], [`mailto:${site.email}`, "Email us"]] as (false | "" | [string, string])[]).filter((l): l is [string, string] => Array.isArray(l)) },
   ];
   return (
@@ -22,7 +22,7 @@ export function Footer() {
             <p className="label-caps mb-4">{c.title}</p>
             <ul className="space-y-2 text-[13px]">
               {c.links.map(([href, label]) => (
-                <li key={href}>{href.startsWith("http") ? <a href={href} target="_blank" rel="noopener" className="hover:text-cb-rose">{label}</a> : href.startsWith("mailto") ? <a href={href} className="hover:text-cb-rose">{label}</a> : <Link href={href} className="hover:text-cb-rose">{label}</Link>}</li>
+                <li key={href}>{href.startsWith("http") ? <a href={href} target="_blank" rel="noopener" className="hover:text-cb-rose">{label}</a> : href.startsWith("mailto") ? <a href={href} className="hover:text-cb-rose">{label}</a> : <Link href={href} prefetch={false} className="hover:text-cb-rose">{label}</Link>}</li>
               ))}
             </ul>
           </div>

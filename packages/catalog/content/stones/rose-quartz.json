@@ -17,8 +17,19 @@
     "#f3cdd3",
     "#e0a3ae"
   ],
-  "description": "The stone of the heart. Rose quartz is worn for compassion, tenderness and the everyday practice of self-love.",
+  "description": "The stone of the heart. Rose quartz is traditionally worn for compassion, tenderness and the everyday practice of self-love.",
   "waterSafe": true,
   "sunSafe": false,
-  "tier": "classic"
+  "tier": "classic",
+  "mineral": "Rose quartz is the pink variety of quartz. Its milky, soft colour comes from microscopic fibres inside the stone, which is why it is rarely perfectly clear.",
+  "mohs": "7",
+  "foundIn": "Brazil, Madagascar and South Africa",
+  "wornFor": "A rose quartz bracelet is traditionally worn for love, compassion and self-worth. Rose quartz is the heart chakra stone and is linked with Taurus and Libra. It is one of the most popular crystals to give, because its soft pink suits every age and occasion, from a first bracelet to a gift for a mother or friend. Its colour fades in long sun, so store it away from windows.",
+  "wrist": "left",
+  "wristWhy": "Wear rose quartz on the left wrist. Love stones are traditionally worn on the receiving side, the one many traditions also call the side of the heart.",
+  "pairsWith": [
+    "moonstone",
+    "amethyst",
+    "clear-quartz"
+  ]
 }

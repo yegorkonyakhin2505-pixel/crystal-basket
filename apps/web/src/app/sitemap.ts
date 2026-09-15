@@ -2,17 +2,40 @@ import type { MetadataRoute } from "next";
 import { getIntentions, getProducts, getStones } from "@crystal-basket/catalog";
 import { routes } from "@/lib/paths";
 import { site } from "@/lib/site";
+import { lastCommitDate, sources } from "@/lib/git-date";
 
 export const dynamic = "force-static";
 
+/**
+ * lastmod is the last commit that touched the page's source or content file, so it only moves when the
+ * page really changed (Google ignores lastmod that changes on every build). No priority/changefreq: ignored by Google.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-  const fixed: [string, number][] = [
-    [routes.home, 1], [routes.shop, 0.9], [routes.stacks, 0.8], [routes.intentions, 0.7], [routes.stones, 0.6],
-    [routes.about, 0.4], [routes.sizeGuide, 0.4], [routes.care, 0.3], [routes.faq, 0.3], [routes.disclaimer, 0.1],
+  const catalog = "packages/catalog/content";
+  const fixed: [string, string[]][] = [
+    [routes.home, [sources.page("page.tsx"), `${catalog}/products`]],
+    [routes.shop, [sources.page("shop"), `${catalog}/products`]],
+    [routes.stacks, [sources.page("stacks"), `${catalog}/stacks`]],
+    [routes.intentions, [sources.page("intentions/page.tsx"), `${catalog}/intentions`]],
+    [routes.stones, [sources.page("stones/page.tsx"), `${catalog}/stones`]],
+    [routes.about, [sources.page("about")]],
+    [routes.sizeGuide, [sources.page("size-guide"), "apps/web/src/lib/sizes.ts"]],
+    [routes.care, [sources.page("care")]],
+    [routes.faq, [sources.page("faq"), "apps/web/src/lib/faq.ts"]],
+    [routes.delivery, [sources.page("delivery")]],
+    [routes.returns, [sources.page("returns")]],
+    [routes.contact, [sources.page("contact")]],
+    [routes.privacy, [sources.page("privacy")]],
+    [routes.disclaimer, [sources.page("disclaimer")]],
   ];
-  const products = getProducts().map((p) => [routes.product(p.id), 0.8] as [string, number]);
-  const intentions = getIntentions().map((i) => [routes.intention(i.id), 0.7] as [string, number]);
-  const stones = getStones().map((s) => [routes.stone(s.id), 0.5] as [string, number]);
-  return [...fixed, ...products, ...intentions, ...stones].map(([path, priority]) => ({ url: `${site.url}${path}`, lastModified: now, priority }));
+  const entries: [string, string[]][] = [
+    ...fixed,
+    ...getProducts().map((p) => [routes.product(p.id), [...sources.product(p.id), sources.page("products/[slug]")]] as [string, string[]]),
+    ...getIntentions().map((i) => [routes.intention(i.id), [...sources.intention(i.id), sources.page("intentions/[slug]")]] as [string, string[]]),
+    ...getStones().map((s) => [routes.stone(s.id), [...sources.stone(s.id), sources.page("stones/[slug]")]] as [string, string[]]),
+  ];
+  return entries.map(([path, files]) => {
+    const lastModified = lastCommitDate(...files);
+    return { url: `${site.url}${path}`, ...(lastModified ? { lastModified } : {}) };
+  });
 }

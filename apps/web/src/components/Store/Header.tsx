@@ -1,7 +1,7 @@
 import { getIntentions, getStones } from "@crystal-basket/catalog";
 import { site } from "@/lib/site";
 import { routes } from "@/lib/paths";
-import { whatsappChatUrl } from "@/lib/whatsapp";
+import { contactLabel, contactOpensNewTab, contactUrl } from "@/lib/contact";
 import { HeaderClient } from "./HeaderClient";
 
 /** Swarovski-style header: utility row, centered wordmark, nav row beneath. Server component; interactive bits in HeaderClient. */
@@ -23,7 +23,7 @@ export function Header() {
         nav={nav}
         intentions={intentions.map((i) => ({ id: i.id, name: i.data.name, short: i.data.short, tagline: i.data.tagline }))}
         stones={stones.map((s) => ({ id: s.id, name: s.data.name, palette: s.data.palette }))}
-        whatsappUrl={whatsappChatUrl()}
+        contact={{ href: contactUrl(), label: contactLabel, newTab: contactOpensNewTab }}
         siteName={site.name}
         city={site.city}
       />

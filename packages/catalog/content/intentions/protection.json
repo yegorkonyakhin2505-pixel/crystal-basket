@@ -16,5 +16,25 @@
     "#4a4a55"
   ],
   "order": 1,
-  "image": "protection.jpg"
+  "image": "protection.jpg",
+  "seoDescription": "Protection crystal bracelets in black tourmaline, obsidian and hematite, traditionally worn as a boundary. Made in Dubai, next-day UAE delivery.",
+  "definition": "A protection bracelet is a crystal bracelet strung from stones traditionally worn to absorb or deflect other people's energy: black tourmaline, black obsidian, hematite and smoky quartz. It is usually worn on the right wrist, the projecting side. Crystal Basket's protection pieces are 8 mm black and metallic beads, so they read as everyday jewellery rather than a talisman.",
+  "wrist": "right",
+  "stones": [
+    "black-tourmaline",
+    "black-obsidian",
+    "hematite",
+    "smoky-quartz",
+    "labradorite"
+  ],
+  "faq": [
+    {
+      "q": "Which crystal is traditionally worn for protection?",
+      "a": "Black tourmaline is the stone most traditionally worn for protection, followed by black obsidian and hematite. The Guardian pairs black tourmaline with hematite and a single gold-filled bead, and The Shield is a single row of polished obsidian for a simple, all-black look."
+    },
+    {
+      "q": "Is a protection bracelet the same as an evil eye bracelet?",
+      "a": "No. An evil eye bracelet uses a blue eye charm, a tradition across the Middle East and the Mediterranean. A crystal protection bracelet uses natural stones such as black tourmaline and obsidian instead. Some people wear both, and they stack comfortably on the same wrist."
+    }
+  ]
 }

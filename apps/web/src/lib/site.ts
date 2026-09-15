@@ -17,6 +17,8 @@ export const site = {
   instagram: "crystal.basket",
   /** TODO[NEEDED:N06] TikTok handle; empty hides the footer link. */
   tiktok: "",
+  /** Standard UAE delivery fee (Shopify UAE zone, N13). Shown on product pages and /delivery/, and in Offer schema. */
+  deliveryFeeAED: 25,
   freeDeliveryAED: 250,
   deliveryCopy: "Next-day delivery across the UAE.",
   announcement: "Free UAE delivery over 250 AED · Every piece cleansed & charged before it ships",
@@ -40,6 +42,9 @@ export const flags = {
   wishlist: true,
   /** Welcome-offer popup after the first interaction. */
   offerPopup: true,
+  /** TODO[NEEDED:N01] WhatsApp order and contact buttons. Off while site.whatsapp is the placeholder; every
+   *  WhatsApp link falls back to email (lib/contact.ts). Set the real number, then flip to true. */
+  whatsapp: false,
   /** Shopify cart + checkout switches on automatically when NEXT_PUBLIC_SHOPIFY_DOMAIN and
    *  NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN are present at build time. See lib/shopify.ts. */
 } as const;

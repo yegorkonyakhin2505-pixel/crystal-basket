@@ -2,6 +2,8 @@
 export const SUB_KEY = "cb-subscribed";
 export const OFFER_DISMISSED_KEY = "cb-offer-dismissed";
 export const SUB_EVENT = "cb:subscribed";
+/** Fired by the welcome popup with detail=true while it is open. */
+export const OFFER_EVENT = "cb:offer-open";
 
 export function isSubscribed(): boolean {
   try {

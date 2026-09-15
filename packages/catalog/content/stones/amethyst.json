@@ -19,8 +19,19 @@
     "#b79ce0",
     "#5d3a9c"
   ],
-  "description": "The classic calming stone. Amethyst is traditionally worn to quiet an overactive mind, support restful sleep and open intuition.",
+  "description": "The classic calming stone. Amethyst is traditionally worn to quiet an overactive mind, keep evenings calm and open intuition.",
   "waterSafe": true,
   "sunSafe": false,
-  "tier": "classic"
+  "tier": "classic",
+  "mineral": "Amethyst is the purple variety of quartz. Its colour comes from traces of iron in the crystal and natural radiation in the surrounding rock.",
+  "mohs": "7",
+  "foundIn": "Brazil, Uruguay and Zambia",
+  "wornFor": "An amethyst bracelet is traditionally worn for calm, intuition and a quieter mind at the end of the day. Amethyst belongs to the third eye and crown chakras and is linked with Pisces, Aquarius and Virgo. People reach for it when their thoughts run faster than they would like, and many keep it on through the evening. It fades in long direct sun, so charge it under moonlight.",
+  "wrist": "left",
+  "wristWhy": "Wear amethyst on the left wrist. By tradition the left side receives, and calm stones are worn to draw quiet in rather than send energy out.",
+  "pairsWith": [
+    "rose-quartz",
+    "moonstone",
+    "clear-quartz"
+  ]
 }

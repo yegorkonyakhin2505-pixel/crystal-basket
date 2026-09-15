@@ -7,7 +7,7 @@
     "Breath",
     "Stillness"
   ],
-  "description": "Lilac and white stones worn to soften an anxious mind and slow the day down. The most gifted intention in our basket.",
+  "description": "Lilac and white stones traditionally worn to quiet a busy mind and slow the day down.",
   "chakra": [
     "Third Eye",
     "Crown"
@@ -17,5 +17,24 @@
     "#efe9f7"
   ],
   "order": 4,
-  "image": "calm.jpg"
+  "image": "calm.jpg",
+  "seoDescription": "Calm crystal bracelets in amethyst, rose quartz and moonstone, traditionally worn for a quieter mind. Made in Dubai, next-day delivery across the UAE.",
+  "definition": "A calm bracelet is a crystal bracelet strung from stones traditionally worn for a quieter mind and a slower day: amethyst above all, with rose quartz, moonstone and clear quartz. By tradition it is worn on the left wrist, the receiving side, and many people keep it on through the evening. Crystal meanings describe tradition, not medical advice.",
+  "wrist": "left",
+  "stones": [
+    "amethyst",
+    "rose-quartz",
+    "moonstone",
+    "clear-quartz"
+  ],
+  "faq": [
+    {
+      "q": "Which crystal bracelet is traditionally worn for calm?",
+      "a": "Amethyst is the stone most traditionally worn for calm and a quieter mind, which is why The Still Mind is a single row of amethyst with one gold-filled bead. Rose quartz adds softness and moonstone is worn for intuition, and both stack well beside amethyst on the left wrist."
+    },
+    {
+      "q": "Can I sleep in a calm bracelet?",
+      "a": "Yes, if it is comfortable. Stretch cord is gentle on the wrist and 8 mm amethyst and rose quartz beads are smooth. Many people prefer to take it off and keep it on the nightstand instead, which also keeps the cord in good shape for longer."
+    }
+  ]
 }

@@ -17,8 +17,19 @@
     "#8fbf8a",
     "#4f8a56"
   ],
-  "description": "The gambler's stone. Aventurine is worn for luck, new opportunities and the confidence to say yes to them.",
+  "description": "The gambler's stone. Aventurine is traditionally worn for luck, new opportunities and the confidence to say yes to them.",
   "waterSafe": true,
   "sunSafe": true,
-  "tier": "classic"
+  "tier": "classic",
+  "mineral": "Green aventurine is a quartz rock rather than a single crystal. Tiny flakes of the green mica fuchsite give it its soft colour and a faint sparkle known as aventurescence.",
+  "mohs": "6.5 to 7",
+  "foundIn": "India, Brazil and Chile",
+  "wornFor": "A green aventurine bracelet is traditionally worn for luck, opportunity and a hopeful, open outlook. It belongs to the heart chakra and is linked with Taurus and Virgo. People often choose it before interviews, exams or a new venture, and it is a common gift for someone starting out. Aventurine is water safe and sun safe, so it is easy to wear every day.",
+  "wrist": "left",
+  "wristWhy": "Wear green aventurine on the left wrist, the receiving side in most traditions. Luck and opportunity stones are worn to invite something in.",
+  "pairsWith": [
+    "tigers-eye",
+    "citrine",
+    "pyrite"
+  ]
 }

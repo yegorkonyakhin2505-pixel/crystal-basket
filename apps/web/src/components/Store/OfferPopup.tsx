@@ -3,7 +3,8 @@ import { useCallback, useEffect, useRef, useState, type FormEvent } from "react"
 import { X } from "lucide-react";
 import { flags, site } from "@/lib/site";
 import { asset } from "@/lib/paths";
-import { dismissOffer, isOfferDismissed, isSubscribed, markSubscribed } from "@/lib/subscribe";
+import { OFFER_EVENT, dismissOffer, isOfferDismissed, isSubscribed, markSubscribed } from "@/lib/subscribe";
+import { contactChannel } from "@/lib/contact";
 import { useDialog } from "@/hooks/useDialog";
 import { useCart } from "@/hooks/useCart";
 import { LogoBadge } from "./LogoBadge";
@@ -41,6 +42,8 @@ export function OfferPopup() {
   useEffect(() => { if (want && !drawerOpen) { setOpen(true); setWant(false); } }, [want, drawerOpen]);
 
   const close = useCallback(() => { dismissOffer(); setOpen(false); }, []);
+  // The bottom bar makes the same offer, so it hides while the popup is on screen.
+  useEffect(() => { window.dispatchEvent(new CustomEvent(OFFER_EVENT, { detail: open })); }, [open]);
   useDialog(open, close, card, input);
 
   function submit(e: FormEvent) {
@@ -53,7 +56,7 @@ export function OfferPopup() {
 
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto p-4 print-hidden" role="dialog" aria-modal="true" aria-labelledby="offer-title" data-lenis-prevent>
+    <div className="fixed inset-0 z-[60] flex items-end md:items-center justify-center overflow-y-auto p-0 md:p-4 print-hidden" role="dialog" aria-modal="true" aria-labelledby="offer-title" data-lenis-prevent>
       <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] animate-[fadeIn_.3s_ease] motion-reduce:animate-none" onClick={close} />
       <div ref={card} className="relative w-full max-w-[860px] max-h-[calc(100dvh-2rem)] overflow-y-auto bg-white shadow-2xl grid md:grid-cols-2 animate-[popIn_.45s_cubic-bezier(.22,1,.36,1)] motion-reduce:animate-none">
         <div className="hidden md:block relative bg-cb-band">
@@ -63,7 +66,7 @@ export function OfferPopup() {
           <button type="button" onClick={close} aria-label="Close" className="absolute right-3 top-3 p-2 text-cb-muted hover:text-cb-ink"><X className="h-5 w-5" /></button>
           {!done ? (
             <>
-              <LogoBadge className="h-14 w-14 mb-4 text-cb-ink" />
+              <LogoBadge className="hidden md:block h-14 w-14 mb-4 text-cb-ink" />
               <p className="label-caps mb-3">Welcome to {site.name}</p>
               <h2 id="offer-title" className="text-[2.2rem] md:text-[2.6rem] leading-[1.05]">{site.welcome.pct}% off your first bracelet.</h2>
               <p className="text-cb-muted text-[14px] mt-4">Leave your email and your code appears right here. Then one note a month: when to cleanse your stones, and new pieces before Instagram sees them.</p>
@@ -79,7 +82,7 @@ export function OfferPopup() {
             <>
               <p className="label-caps mb-3">You&apos;re in</p>
               <h2 className="text-[2.2rem] leading-[1.05]">Your code is ready.</h2>
-              <p className="text-cb-muted text-[14px] mt-3">Use it at checkout or mention it in your WhatsApp order.</p>
+              <p className="text-cb-muted text-[14px] mt-3">Use it at checkout{contactChannel === "WhatsApp" ? " or mention it in your WhatsApp order" : ""}.</p>
               <button type="button" onClick={copy} className="mt-6 flex items-center justify-between border border-dashed border-cb-ink px-5 py-4 hover:bg-cb-band transition-colors">
                 <span className="font-display text-[1.6rem] tracking-[0.2em]">{site.welcome.code}</span>
                 <span className="text-[11px] uppercase tracking-[0.14em] text-cb-muted">{copied ? "Copied" : "Copy"}</span>

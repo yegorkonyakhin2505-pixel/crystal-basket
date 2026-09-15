@@ -1,6 +1,6 @@
 # Crystal Basket — launch checklist
 
-_Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do once the prerequisite exists_
+_Updated 2026-09-15. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do once the prerequisite exists_
 
 ## Done
 
@@ -20,6 +20,7 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | ✅ | The Devotion and The Aurora marked sold out 2026-09-12 (site + Shopify stock 0, no oversell); Calm Stack re-composed from in-stock pieces | catalog + Shopify |
 | ✅ | Shopify catalog synced 2026-09-07: 12 products, wrist size only (8 mm), owner's prices, The Lunar + The Exhale deleted | `docs/shopify/products.csv` |
 | ✅ | Email: any address @crystalbasket.store forwards to Alya's Gmail (Cloudflare Email Routing). DNS now hosted on Cloudflare | Cloudflare, Alya's account |
+| ✅ | SEO audit (claude-seo) and fixes 2026-09-15: descriptive titles/H1s, product/collection/breadcrumb/FAQ schema, stone and intention guides, delivery/returns/contact/privacy pages, WebP images, git-dated sitemap, IndexNow | `docs/seo/crystalbasket.store-audit/` |
 
 ## Blocking launch (cannot take real money without these)
 
@@ -32,6 +33,8 @@ _Updated 2026-09-07. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 
 | # | Item | Who | How |
 |---|---|---|---|
+| ⏳ | **Google Search Console + Bing Webmaster** (N17) | Yegor or Alya, 10 min | Domain property, TXT record in Cloudflare, submit `sitemap.xml` |
+| ⏳ | **One real card test order** end to end, then refund it | Yegor | Card payments are connected but no real card order has gone through yet |
 | ⏳ | **Send as hello@crystalbasket.store** from Gmail | Alya, 3 min | Gmail → Settings → Accounts and Import → "Send mail as" → add hello@crystalbasket.store, Gmail SMTP with an app password |
 | ⏳ | Real product photos (at least the on-white shot per bracelet) | Alya | Drop into `apps/web/public/images/products/<slug>/main.jpg`, Claude also uploads to Shopify |
 | ⏳ | Stock on hand per variant (currently 5 each as placeholder) | Alya | Shopify → Products → Inventory |

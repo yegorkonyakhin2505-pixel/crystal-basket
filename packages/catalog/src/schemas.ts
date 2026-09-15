@@ -13,6 +13,10 @@ export const Hex = z.string().regex(/^#[0-9a-fA-F]{6}$/);
 /** Every bracelet is strung on 8 mm beads (decided 2026-09-07); wrist size is the only variant. */
 export const BEAD_MM = 8;
 export const WristSize = z.enum(["S", "M", "L"]);
+/** Tradition: the left wrist receives, the right projects. `either` for stones that follow their pairing. */
+export const Wrist = z.enum(["left", "right", "either"]);
+/** A question and a self-contained 40–80 word answer, rendered under a real heading. */
+export const QA = z.object({ q: z.string().min(10), a: z.string().min(80) });
 
 export const IntentionSchema = z.object({
   name: z.string(),
@@ -25,6 +29,14 @@ export const IntentionSchema = z.object({
   order: z.number().int(),
   /** Category tile photo under apps/web/public/images/intentions/<slug>.jpg */
   image: z.string().optional(),
+  /** SEO: meta description, keyword first, ≤155 characters. */
+  seoDescription: z.string().min(70).max(155),
+  /** "What is a … bracelet?": a definition-first 40–80 word answer. */
+  definition: z.string().min(200),
+  wrist: Wrist,
+  /** Curated stones traditionally worn for this intention (not derived from products). */
+  stones: z.array(Slug).min(1),
+  faq: z.array(QA).min(2),
 });
 
 export const StoneSchema = z.object({
@@ -38,6 +50,20 @@ export const StoneSchema = z.object({
   waterSafe: z.boolean().default(true),
   sunSafe: z.boolean().default(true),
   tier: z.enum(["classic", "select", "rare"]).default("classic"),
+  /** "What is …?": mineral family and what makes it look the way it does. */
+  mineral: z.string().min(60),
+  /** Mohs hardness, e.g. "7" or "5.5 to 6.5". */
+  mohs: z.string(),
+  /** Where the stone is commonly found worldwide (general, not our supplier). */
+  foundIn: z.string(),
+  /** "What is a … bracelet worn for?": a self-contained 40–80 word answer. */
+  wornFor: z.string().min(200),
+  wrist: Wrist,
+  /** Why that wrist, one or two sentences. */
+  wristWhy: z.string().min(60),
+  /** Extra care note when the stone must stay dry. */
+  waterNote: z.string().optional(),
+  pairsWith: z.array(Slug).default([]),
 });
 
 export const ProductSchema = z.object({
@@ -72,6 +98,10 @@ export const ProductSchema = z.object({
   bestseller: z.boolean().default(false),
   isNew: z.boolean().default(false),
   tags: z.array(z.string()).default([]),
+  /** SEO: <title> before the " · Crystal Basket" suffix, stones and type first. */
+  seoTitle: z.string().min(20).max(50),
+  /** SEO: meta description, ≤155 characters. */
+  seoDescription: z.string().min(90).max(155),
 });
 
 export const StackSchema = z.object({
@@ -89,6 +119,8 @@ export type IntentionData = z.infer<typeof IntentionSchema>;
 export type StoneData = z.infer<typeof StoneSchema>;
 export type ProductData = z.infer<typeof ProductSchema>;
 export type StackData = z.infer<typeof StackSchema>;
+export type QAData = z.infer<typeof QA>;
+export type WristSide = z.infer<typeof Wrist>;
 
 export interface Entry<T> {
   id: string;

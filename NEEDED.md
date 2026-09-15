@@ -2,11 +2,11 @@
 
 Each item maps to a `TODO[NEEDED:Nxx]` marker in code. Mark ✅ when provided.
 
-_Last updated: 2026-09-07_
+_Last updated: 2026-09-15_
 
 | ID | What | Why | Where it goes | Status |
 |---|---|---|---|---|
-| **N01** 🚨 | WhatsApp business number (international, digits only) | Every order button points here | `apps/web/src/lib/site.ts` → `whatsapp` | ⏳ placeholder `971500000000` |
+| **N01** 🚨 | WhatsApp business number (international, digits only) | Every order button points here | `apps/web/src/lib/site.ts` → `whatsapp`, then set `flags.whatsapp: true` | ⏳ placeholder `971500000000`; every WhatsApp button is hidden and contact links use email until then (SEO audit flagged the dead number) |
 | **N02** ⚠️ | Card gateway | Cards at checkout | **Stripe Card Payments** inside Shopify (Settings → Payments → Choose a provider). Needs a Stripe account under the Click Collab license, connected by Yegor. Per-product `stripePaymentLink` stays as an optional "Pay by card" button, unused once Stripe is inside Shopify checkout | ✅ connected 2026-09-13 |
 | **N03** ⚠️ | Real reviews + honest review count | Homepage social proof | `site.ts` → `reviews` + `flags.reviews`; `components/Store/Testimonials.tsx` | ⏳ section hidden until real quotes exist (sample quotes were invented) |
 | **N04** | Newsletter provider (Klaviyo/Mailchimp) endpoint | Email capture from the welcome popup + bottom bar; today emails stay in the visitor's browser and the code WELCOME10 is shown at once | `site.ts` → `flags.newsletter`, `welcome`; `OfferPopup.tsx`, `NewsletterBar.tsx` | ⏳ local only |
@@ -23,3 +23,7 @@ _Last updated: 2026-09-07_
 | **N13** | Shopify shipping + payments | UAE delivery rates, COD, card gateway | Standard delivery 25 AED, free over 250 AED (UAE zone) ✅ · Cash on Delivery active ✅ · Private mode off ✅ · Card gateway: Stripe Card Payments active ✅ 2026-09-13 |
 
 | **N15** | Shopify default storefront (utx8rj-t3.myshopify.com shows the stock "My Store" theme) | Customers only reach it via "Continue shopping" after checkout | Online Store → Themes → ⋯ → Edit code → `layout/theme.liquid`, paste the redirect snippet from `docs/shopify/redirect-snippet.liquid` right after `<head>`. Claude could not open that menu under automation. | ✅ redirect added to theme.liquid 2026-09-07 |
+| **N17** ⚠️ | Google Search Console + Bing Webmaster Tools verification | Submit the sitemap, see real queries, request indexing | Search Console: Domain property via a Cloudflare TXT record (Alya's Cloudflare). Bing: import from Search Console. IndexNow already pings Bing on every deploy | ⏳ |
+| **N18** | Shopify stock storefront: `noindex` + canonical to crystalbasket.store, and keep the path in the redirect | `utx8rj-t3.myshopify.com` pages redirect to the homepage instead of the matching product, and are indexable duplicates | `theme.liquid`: add `<meta name="robots" content="noindex">` and redirect to `https://crystalbasket.store{{ request.path }}` for `/products/*` | ⏳ |
+| **N19** | Founder name, a real photo of her and the studio, and how long she has been stringing | About page trust (E-E-A-T): today the story is anonymous | `apps/web/src/app/about/page.tsx`, `public/images/about/` | ⏳ |
+| **N20** | Terms of sale page | Card checkout and COD terms in one place | Shopify → Settings → Policies generates one; Claude links it in the footer | ⏳ |

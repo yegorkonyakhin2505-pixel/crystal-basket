@@ -74,7 +74,7 @@ export async function findVariantId(handle: string, size: string): Promise<strin
     const wrist = n.selectedOptions.find((o) => o.name.toLowerCase().startsWith("wrist"))?.value ?? "";
     return wrist.trim().toUpperCase().startsWith(size.toUpperCase());
   });
-  if (!v) throw new Error(`This size is not available online yet. Order it on WhatsApp and we will string it for you.`);
+  if (!v) throw new Error(`This size is not available online yet. Message us and we will string it for you.`);
   return v.id;
 }
 

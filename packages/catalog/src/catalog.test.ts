@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { getIntentions, getProduct, getProducts, getStacks, getStones, loadCatalog, relatedProducts, stackSubtotal } from "./index";
+import { getIntentions, getProduct, getProducts, getStacks, getStones, inStockFirst, loadCatalog, relatedProducts, stackForProduct, stackSubtotal } from "./index";
 
 describe("catalog content", () => {
   it("loads and cross-validates every collection", () => {
@@ -39,5 +39,52 @@ describe("catalog content", () => {
 
   it("related products never include the product itself", () => {
     for (const p of getProducts()) expect(relatedProducts(p).map((r) => r.id)).not.toContain(p.id);
+  });
+
+  it("stack prices match the advertised stack discount", () => {
+    // site.stackDiscountPct is 15; a curated stack costs the sum of its parts less 15%, rounded to the dirham.
+    for (const s of getStacks()) expect(s.data.priceAED, s.id).toBe(Math.round(stackSubtotal(s) * 0.85));
+  });
+});
+
+describe("search content", () => {
+  it("product SEO titles and descriptions are unique", () => {
+    const titles = getProducts().map((p) => p.data.seoTitle);
+    const descriptions = getProducts().map((p) => p.data.seoDescription);
+    expect(new Set(titles).size).toBe(titles.length);
+    expect(new Set(descriptions).size).toBe(descriptions.length);
+  });
+
+  it("intention definitions and stone passages are quotable length (40-120 words)", () => {
+    const words = (t: string) => t.trim().split(/\s+/).length;
+    for (const i of getIntentions()) expect(words(i.data.definition), `${i.id} definition`).toBeGreaterThanOrEqual(40);
+    for (const s of getStones()) {
+      expect(words(s.data.wornFor), `${s.id} wornFor`).toBeGreaterThanOrEqual(40);
+      expect(words(s.data.wornFor), `${s.id} wornFor`).toBeLessThanOrEqual(120);
+    }
+  });
+
+  it("copy never makes medical claims", () => {
+    const banned = /\b(cures?|heals?|treats? (anxiety|depression|illness|disease)|prevents? (anxiety|illness|disease)|diagnos\w*|anxiety relief|insomnia)\b/i;
+    const texts = [
+      ...getProducts().flatMap((p) => [p.data.promise, p.data.body, p.data.seoDescription]),
+      ...getStones().flatMap((s) => [s.data.description, s.data.wornFor, s.data.wristWhy]),
+      ...getIntentions().flatMap((i) => [i.data.description, i.data.definition, i.data.seoDescription, ...i.data.faq.flatMap((f) => [f.q, f.a])]),
+    ];
+    for (const t of texts) expect(t, t).not.toMatch(banned);
+  });
+
+  it("stone pairings are mutual-safe: no stone pairs with itself", () => {
+    for (const s of getStones()) expect(s.data.pairsWith, s.id).not.toContain(s.id);
+  });
+
+  it("inStockFirst never puts a sold-out piece ahead of an in-stock one", () => {
+    const sorted = inStockFirst(getProducts());
+    const firstSoldOut = sorted.findIndex((p) => !p.data.inStock);
+    if (firstSoldOut >= 0) expect(sorted.slice(firstSoldOut).every((p) => !p.data.inStock)).toBe(true);
+  });
+
+  it("every stack product resolves back to its stack", () => {
+    for (const s of getStacks()) for (const id of s.data.products) expect(stackForProduct(getProduct(id))?.id).toBe(s.id);
   });
 });

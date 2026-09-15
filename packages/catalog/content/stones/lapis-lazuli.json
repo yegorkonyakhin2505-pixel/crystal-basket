@@ -18,8 +18,20 @@
     "#2b4a9a",
     "#1a2b5c"
   ],
-  "description": "The stone of kings and scribes. Lapis is worn for honest speech, wisdom and a clear inner vision.",
+  "description": "The stone of kings and scribes. Lapis is traditionally worn for honest speech, wisdom and a clear inner vision.",
   "waterSafe": false,
   "sunSafe": true,
-  "tier": "select"
+  "tier": "select",
+  "mineral": "Lapis lazuli is a rock rather than a single mineral: deep blue lazurite mixed with white calcite and flecks of golden pyrite. The gold flecks are a sign of natural lapis.",
+  "mohs": "5 to 5.5",
+  "foundIn": "Afghanistan, Chile and Russia",
+  "wornFor": "A lapis lazuli bracelet is traditionally worn for clear thinking, honest communication and wisdom. Lapis belongs to the third eye and throat chakras and is linked with Sagittarius and Libra. It has been prized for thousands of years, ground into ultramarine pigment and set in royal jewellery. It is softer and more porous than quartz, so keep it out of water and away from perfume.",
+  "wrist": "right",
+  "wristWhy": "Wear lapis lazuli on the right wrist. It is a stone of expression and speaking up, and tradition gives outward-going energy to the right side.",
+  "waterNote": "Lapis is porous and its pyrite flecks can tarnish, so keep it away from water, sweat and perfume.",
+  "pairsWith": [
+    "clear-quartz",
+    "labradorite",
+    "amethyst"
+  ]
 }

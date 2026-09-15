@@ -16,8 +16,19 @@
     "#f4f6fa",
     "#c9d3e3"
   ],
-  "description": "The master amplifier. Clear quartz is worn to sharpen intention and boost the stones around it.",
+  "description": "The master amplifier. Clear quartz is traditionally worn to sharpen intention and strengthen the stones around it.",
   "waterSafe": true,
   "sunSafe": true,
-  "tier": "classic"
+  "tier": "classic",
+  "mineral": "Clear quartz is colourless silicon dioxide, the most common mineral in the Earth's crust. Small inclusions and soft cloudiness are natural and help tell it apart from glass.",
+  "mohs": "7",
+  "foundIn": "Brazil, Madagascar and Arkansas in the United States",
+  "wornFor": "A clear quartz bracelet is traditionally worn for clarity, focus and to strengthen whatever intention you set. It is linked with the crown chakra and, unusually, with every star sign. Clear quartz is the stone most often paired with others, which is why it sits between the lapis beads in The Clear Sight and at the crown end of The Seven. It is hard, water safe and sun safe.",
+  "wrist": "either",
+  "wristWhy": "Clear quartz can go on either wrist. It takes on the direction of the stones beside it, so wear it on the same side as the piece it is paired with.",
+  "pairsWith": [
+    "lapis-lazuli",
+    "amethyst",
+    "rose-quartz"
+  ]
 }

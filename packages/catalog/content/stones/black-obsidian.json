@@ -17,8 +17,19 @@
     "#2a2a2e",
     "#0a0a0c"
   ],
-  "description": "Volcanic glass with a mirror-like polish. Obsidian is worn as a shield and for the honesty to see what needs releasing.",
+  "description": "Volcanic glass with a mirror-like polish. Obsidian is traditionally worn as a shield and for the honesty to see what needs releasing.",
   "waterSafe": true,
   "sunSafe": true,
-  "tier": "classic"
+  "tier": "classic",
+  "mineral": "Obsidian is natural volcanic glass, formed when lava cools too fast for crystals to grow. That is why it breaks with smooth, curved edges instead of flat faces.",
+  "mohs": "5 to 5.5",
+  "foundIn": "Mexico, the United States and Iceland",
+  "wornFor": "A black obsidian bracelet is traditionally worn for protection, honesty and letting go of what no longer fits. Obsidian is a root chakra stone linked with Scorpio and Sagittarius, and it is often chosen as a first protection piece because it is simple, polished and entirely black. Its glassy surface scratches more easily than quartz, so store it in its pouch away from other jewellery.",
+  "wrist": "right",
+  "wristWhy": "Wear black obsidian on the right wrist. Tradition treats the right side as the one that projects, so protective stones sit there as a boundary facing outward.",
+  "pairsWith": [
+    "black-tourmaline",
+    "hematite",
+    "smoky-quartz"
+  ]
 }

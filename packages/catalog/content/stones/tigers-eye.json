@@ -18,8 +18,19 @@
     "#c48a3a",
     "#5a3a1a"
   ],
-  "description": "Chatoyant golden bands that shift as you move. Tiger's eye is worn for nerve, focus and the will to follow through.",
+  "description": "Chatoyant golden bands that shift as you move. Tiger's eye is traditionally worn for nerve, focus and the will to follow through.",
   "waterSafe": true,
   "sunSafe": true,
-  "tier": "classic"
+  "tier": "classic",
+  "mineral": "Tiger's eye is quartz that has replaced fibres of another mineral. Those parallel fibres create chatoyancy, a band of light that slides across the bead as it moves.",
+  "mohs": "6.5 to 7",
+  "foundIn": "South Africa, Australia and India",
+  "wornFor": "A tiger's eye bracelet is traditionally worn for confidence, courage and willpower. It is linked with the solar plexus and root chakras and with Leo and Capricorn. Tiger's eye is one of the most popular stones for men's bracelets, and it pairs with carnelian in The Lionheart and with green aventurine in The Fortune. It is hard, water safe and sun safe.",
+  "wrist": "right",
+  "wristWhy": "Wear tiger's eye on the right wrist. Confidence stones are traditionally worn on the active side, the one that sends energy out.",
+  "pairsWith": [
+    "carnelian",
+    "green-aventurine",
+    "citrine"
+  ]
 }

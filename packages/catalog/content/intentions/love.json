@@ -7,7 +7,7 @@
     "Worth",
     "Warmth"
   ],
-  "description": "Rose-toned stones worn for compassion, tenderness and the quiet work of liking yourself. Gentle enough for every day, meaningful enough to gift.",
+  "description": "Rose-toned stones traditionally worn for compassion, tenderness and the quiet work of liking yourself. Gentle enough for every day, meaningful enough to gift.",
   "chakra": [
     "Heart"
   ],
@@ -16,5 +16,22 @@
     "#d98a97"
   ],
   "order": 2,
-  "image": "love.jpg"
+  "image": "love.jpg",
+  "seoDescription": "Love and self-love crystal bracelets in rose quartz and moonstone. A thoughtful gift, hand-strung in Dubai with next-day delivery across the UAE.",
+  "definition": "A love bracelet is a crystal bracelet strung from stones traditionally worn for compassion, self-worth and open-hearted relationships: rose quartz above all, often paired with moonstone. By tradition it is worn on the left wrist, the receiving side and the one many call the side of the heart. It is one of the most popular crystal gifts for a partner, mother or friend.",
+  "wrist": "left",
+  "stones": [
+    "rose-quartz",
+    "moonstone"
+  ],
+  "faq": [
+    {
+      "q": "Is a rose quartz bracelet a good gift?",
+      "a": "Rose quartz is one of the most popular crystals to give. It is traditionally worn for love and self-worth, its soft pink suits almost everyone, and it is hard enough to wear every day. The Tender Heart is a single row of rose quartz; The Devotion adds moonstone and gold-filled beads."
+    },
+    {
+      "q": "Should I wear a rose quartz bracelet on my left or right wrist?",
+      "a": "Tradition says the left wrist, the receiving side and the one many call the side of the heart. There is no strict rule, so wear it where it feels comfortable. Keep rose quartz out of long direct sun, which slowly fades its colour."
+    }
+  ]
 }

@@ -16,12 +16,12 @@ interface Props {
   nav: NavItem[];
   intentions: { id: string; name: string; short: string; tagline: string }[];
   stones: { id: string; name: string; palette: [string, string] }[];
-  whatsappUrl: string;
+  contact: { href: string; label: string; newTab: boolean };
   siteName: string;
   city: string;
 }
 
-export function HeaderClient({ nav, intentions, stones, whatsappUrl, siteName, city }: Props) {
+export function HeaderClient({ nav, intentions, stones, contact, siteName, city }: Props) {
   const path = usePathname();
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
@@ -63,7 +63,7 @@ export function HeaderClient({ nav, intentions, stones, whatsappUrl, siteName, c
           <span>Hand-strung in {city}</span>
         </div>
         <div className="flex items-center gap-4">
-          <a href={whatsappUrl} target="_blank" rel="noopener" className="hover:text-cb-ink">WhatsApp us</a>
+          <a href={contact.href} {...(contact.newTab ? { target: "_blank", rel: "noopener" } : {})} className="hover:text-cb-ink">{contact.label}</a>
           <span className="text-cb-line">|</span>
           <Link href={routes.wishlist} className="inline-flex items-center gap-1.5 hover:text-cb-ink"><Heart className="h-3.5 w-3.5" /> Wishlist {count > 0 && <span className="rounded-full bg-cb-ink text-white text-[9px] px-1.5 py-0.5 leading-none">{count}</span>}</Link>
         </div>
@@ -74,10 +74,10 @@ export function HeaderClient({ nav, intentions, stones, whatsappUrl, siteName, c
         <button className="lg:hidden p-2 -ml-2" aria-label="Open menu" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(true)}><Menu className="h-5 w-5" /></button>
         <Link href={routes.home} aria-label={`${siteName} home`} className="flex min-w-0 items-center gap-2.5 lg:gap-4 text-cb-ink">
           <LogoBadge className={cn("transition-all duration-300 shrink-0", compact ? "h-9 w-9 lg:h-10 lg:w-10" : "h-10 w-10 lg:h-16 lg:w-16")} />
-          <Wordmark className={cn("transition-all duration-300 max-lg:tracking-[0.16em]", compact ? "text-[1.05rem] lg:text-[1.6rem]" : "text-[1.15rem] lg:text-[2.4rem]")} />
+          <Wordmark className={cn("transition-all duration-300 max-lg:tracking-[0.16em]", compact ? "text-[0.95rem] sm:text-[1.05rem] lg:text-[1.6rem]" : "text-[1rem] sm:text-[1.15rem] lg:text-[2.4rem]")} />
         </Link>
         <div className="flex items-center gap-1 lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2">
-          <Link href={routes.shop} className="p-2 hover:text-cb-rose" aria-label="Browse all bracelets"><Search className="h-5 w-5" strokeWidth={1.5} /></Link>
+          <Link href={routes.shop} className="hidden sm:inline-flex p-2 hover:text-cb-rose" aria-label="Browse all bracelets"><Search className="h-5 w-5" strokeWidth={1.5} /></Link>
           <Link href={routes.wishlist} className="relative p-2 hover:text-cb-rose" aria-label="Wishlist">
             <Heart className="h-5 w-5" strokeWidth={1.5} />
             {count > 0 && <span className="absolute -right-0.5 -top-0.5 rounded-full bg-cb-ink text-white text-[9px] px-1.5 py-0.5 leading-none">{count}</span>}
@@ -106,7 +106,7 @@ export function HeaderClient({ nav, intentions, stones, whatsappUrl, siteName, c
                     {item.menu === "intentions" ? (
                       <div className="grid grid-cols-2 gap-x-8 gap-y-1">
                         {intentions.map((i) => (
-                          <Link key={i.id} href={routes.intention(i.id)} onClick={() => setMenu(null)} className="block py-2 border-b border-cb-line/60 hover:text-cb-rose">
+                          <Link key={i.id} href={routes.intention(i.id)} prefetch={false} onClick={() => setMenu(null)} className="block py-2 border-b border-cb-line/60 hover:text-cb-rose">
                             <span className="block text-[14px]">{i.name}</span>
                             <span className="block text-[12px] text-cb-muted">{i.tagline}</span>
                           </Link>
@@ -115,7 +115,7 @@ export function HeaderClient({ nav, intentions, stones, whatsappUrl, siteName, c
                     ) : (
                       <div className="grid grid-cols-3 gap-x-6 gap-y-0.5">
                         {stones.map((s) => (
-                          <Link key={s.id} href={routes.stone(s.id)} onClick={() => setMenu(null)} className="flex items-center gap-2.5 py-1.5 text-[13px] hover:text-cb-rose">
+                          <Link key={s.id} href={routes.stone(s.id)} prefetch={false} onClick={() => setMenu(null)} className="flex items-center gap-2.5 py-1.5 text-[13px] hover:text-cb-rose">
                             <span className="h-3 w-3 rounded-full ring-1 ring-black/10" style={{ background: `radial-gradient(circle at 35% 30%, ${s.palette[0]}, ${s.palette[1]})` }} />
                             {s.name}
                           </Link>
@@ -143,8 +143,8 @@ export function HeaderClient({ nav, intentions, stones, whatsappUrl, siteName, c
               {nav.map((n) => <Link key={n.href} href={n.href} onClick={closeDrawer} className="py-3 border-b border-cb-line text-[16px]">{n.label}</Link>)}
             </nav>
             <p className="label-caps mt-6 mb-2">By intention</p>
-            <div className="grid grid-cols-2 gap-1">{intentions.map((i) => <Link key={i.id} href={routes.intention(i.id)} onClick={closeDrawer} className="py-1.5 text-[14px] text-cb-muted">{i.short}</Link>)}</div>
-            <a href={whatsappUrl} target="_blank" rel="noopener" className="mt-6 block border border-cb-ink py-3 text-center text-[12px] uppercase tracking-[0.14em]">WhatsApp us</a>
+            <div className="grid grid-cols-2 gap-1">{intentions.map((i) => <Link key={i.id} href={routes.intention(i.id)} prefetch={false} onClick={closeDrawer} className="py-1.5 text-[14px] text-cb-muted">{i.short}</Link>)}</div>
+            <a href={contact.href} {...(contact.newTab ? { target: "_blank", rel: "noopener" } : {})} className="mt-6 block border border-cb-ink py-3 text-center text-[12px] uppercase tracking-[0.14em]">{contact.label}</a>
           </div>
         </div>
       )}
