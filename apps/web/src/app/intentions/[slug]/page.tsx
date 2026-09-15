@@ -6,6 +6,8 @@ import { ListingHero } from "@/components/Store/ListingHero";
 import { ProductGrid } from "@/components/Store/ProductGrid";
 import { SectionTitle } from "@/components/ui";
 import { routes } from "@/lib/paths";
+import { productImage } from "@/lib/images";
+import { breadcrumbLd, itemListLd, ld } from "@/lib/schema";
 
 type Params = { slug: string };
 export function generateStaticParams(): Params[] { return getIntentions().map((i) => ({ slug: i.id })); }
@@ -27,6 +29,8 @@ export default async function IntentionPage({ params }: { params: Promise<Params
   const others = getIntentions().filter((i) => i.id !== intention.id);
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(breadcrumbLd([["Intentions", routes.intentions], [intention.data.name, routes.intention(intention.id)]])) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(itemListLd(`${intention.data.name} bracelets`, primary.map((p) => ({ name: p.data.name, path: routes.product(p.id), image: productImage(p) })))) }} />
       <ListingHero image={intention.data.image ? `/images/intentions/${intention.data.image}` : null} palette={intention.data.palette} crumbs={[[routes.intentions, "Intentions"], ["", intention.data.name]]} title={intention.data.name} text={`${intention.data.tagline} ${intention.data.description}`} />
       <div className="bg-cb-band">
         <div className="container-x flex flex-wrap items-center gap-2 py-3 text-[13px]">

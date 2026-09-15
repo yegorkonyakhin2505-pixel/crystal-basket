@@ -5,6 +5,7 @@ import { ProductGrid } from "@/components/Store/ProductGrid";
 import { ListingHero } from "@/components/Store/ListingHero";
 import { SectionTitle } from "@/components/ui";
 import { routes } from "@/lib/paths";
+import { breadcrumbLd, ld } from "@/lib/schema";
 
 type Params = { slug: string };
 export function generateStaticParams(): Params[] { return getStones().map((s) => ({ slug: s.id })); }
@@ -24,6 +25,7 @@ export default async function StonePage({ params }: { params: Promise<Params> })
   ];
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(breadcrumbLd([["Stones", routes.stones], [d.name, routes.stone(stone.id)]])) }} />
       <ListingHero palette={d.palette} crumbs={[[routes.stones, "Stones"], ["", d.name]]} title={d.name} text={d.description} />
       <section className="container-x py-12 grid md:grid-cols-[1fr_1.4fr] gap-10 items-start">
         <div className="aspect-square rounded-full ring-1 ring-black/5 max-w-sm" style={{ background: `radial-gradient(circle at 38% 32%, rgb(255 255 255 / 0.67) 0%, transparent 18%), radial-gradient(circle at 40% 35%, ${d.palette[0]}, ${d.palette[1]})` }} />

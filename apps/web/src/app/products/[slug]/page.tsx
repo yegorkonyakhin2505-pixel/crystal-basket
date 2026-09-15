@@ -12,6 +12,7 @@ import { routes } from "@/lib/paths";
 import { site } from "@/lib/site";
 import { WRIST_SIZES, beadCount } from "@/lib/sizes";
 import { productFaq } from "@/lib/faq";
+import { breadcrumbLd, freeShippingDetailsLd, ld, returnPolicyLd, shippingDetailsLd } from "@/lib/schema";
 
 const list = (names: string[]) => names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names[0];
 
@@ -43,12 +44,15 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   const jsonLd = {
     "@context": "https://schema.org", "@type": "Product", name: `${d.name} — ${d.subtitle}`, description: `${d.promise} ${d.body}`,
     brand: { "@type": "Brand", name: site.name }, material: stones.map((s) => s.data.name).join(", "), sku: product.id,
+    category: "Apparel & Accessories > Jewelry > Bracelets", color: stones.map((s) => s.data.color).join(", "),
+    size: d.sizes.map((k) => `${k} (${WRIST_SIZES[k].cm} cm)`).join(", "), audience: { "@type": "PeopleAudience", suggestedGender: d.style === "men" ? "male" : d.style === "women" ? "female" : "unisex" },
     url: `${site.url}${routes.product(product.id)}`, image: img ? `${site.url}${img}` : undefined,
-    offers: { "@type": "Offer", priceCurrency: "AED", price: d.priceAED, url: `${site.url}${routes.product(product.id)}`, availability: d.inStock ? "https://schema.org/InStock" : "https://schema.org/BackOrder" },
+    offers: { "@type": "Offer", priceCurrency: "AED", price: d.priceAED, url: `${site.url}${routes.product(product.id)}`, availability: d.inStock ? "https://schema.org/InStock" : "https://schema.org/BackOrder", itemCondition: "https://schema.org/NewCondition", seller: { "@type": "Organization", name: site.name }, shippingDetails: d.priceAED >= site.freeDeliveryAED ? freeShippingDetailsLd : shippingDetailsLd, hasMerchantReturnPolicy: returnPolicyLd },
   };
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(breadcrumbLd([["Bracelets", routes.shop], [intention.data.name, routes.intention(intention.id)], [d.name, routes.product(product.id)]])) }} />
       <nav className="container-x pt-5 text-[13px] text-cb-muted" aria-label="Breadcrumb">
         <ol className="flex flex-wrap items-center gap-x-2">
           <li><Link href={routes.home} className="hover:text-cb-ink">Home</Link></li>

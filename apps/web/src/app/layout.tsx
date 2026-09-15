@@ -11,6 +11,7 @@ import { NewsletterBar } from "@/components/Store/NewsletterBar";
 import { OfferPopup } from "@/components/Store/OfferPopup";
 import { CartDrawer } from "@/components/Store/CartDrawer";
 import { asset } from "@/lib/paths";
+import { ld, organizationLd, websiteLd } from "@/lib/schema";
 
 const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"], variable: "--font-cormorant", display: "swap" });
 const jost = Jost({ subsets: ["latin"], weight: ["300", "400", "500"], variable: "--font-jost", display: "swap" });
@@ -33,6 +34,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
       <body className="min-h-screen flex flex-col">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(organizationLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(websiteLd) }} />
         <QueryProvider>
           <SmoothScroll>
             <Header />
