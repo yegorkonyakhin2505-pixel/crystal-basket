@@ -22,7 +22,7 @@ _From the 2026-09-15 audit. ✅ shipped 2026-09-15 · ⏳ needs the owner · �
 | H7 | Stop the mega-menu prefetch storm | ✅ |
 | H8 | Organization, WebSite, BreadcrumbList, shipping and return policy schema | ✅ |
 | H9 | Verify Google Search Console and Bing Webmaster Tools, submit the sitemap | ⏳ (N17), 10 minutes with Cloudflare access |
-| H10 | Name the founder with a real photo on the about page | ⏳ owner (N19) → 🔧 |
+| H10 | Name the founder with a real photo on the about page | 🤔 decided 2026-09-15: stay discreet. Lean on reviews, real photos and policies instead |
 | H11 | Place one real card order end to end, then refund it | ⏳ Yegor |
 
 ## Medium
@@ -37,7 +37,7 @@ _From the 2026-09-15 audit. ✅ shipped 2026-09-15 · ⏳ needs the owner · �
 | M6 | Consistent "traditionally worn for" copy, health-adjacent phrases removed, test gate | ✅ |
 | M7 | Mobile product page shows price and buy box right after the photo | ✅ |
 | M8 | Mobile horizontal scroll and popup plus bar clash | ✅ |
-| M9 | Shopify stock storefront: `noindex`, path-preserving redirect | ⏳ (N18), theme.liquid edit |
+| M9 | Shopify stock storefront: `noindex`, path-preserving redirect | ⏳ (N18), line ready in `docs/shopify/redirect-snippet.liquid`; editor blocks automation |
 | M10 | Real reviews, then `AggregateRating` | ⏳ owner (N03) → 🔧 |
 | M11 | Welcome popup frequency on mobile | 🤔 owner |
 | M12 | Free-delivery threshold versus the stack discount | 🤔 owner |

@@ -97,7 +97,7 @@
           "title": "Nobody is named",
           "severity": "High",
           "description": "About page is anonymous; no founder, photo or experience.",
-          "recommendation": "Add founder name, real photo and years of experience. Open: owner input."
+          "recommendation": "Decided 2026-09-15: the brand stays discreet. Build trust through policies, process copy, real reviews and real photos."
         },
         {
           "title": "Stone and intention pages are thin",
@@ -252,7 +252,7 @@
           "title": "No named entity behind the brand",
           "severity": "High",
           "description": "No founder or external profiles beyond Instagram.",
-          "recommendation": "Founder bio and consistent profiles. Open: owner input."
+          "recommendation": "Brand stays anonymous by choice; strengthen the brand entity with consistent profiles, reviews and citations instead."
         }
       ]
     },
@@ -300,8 +300,8 @@
         "items": [
           "Policy pages, stone and intention guides, product FAQs, responsive images, schema (done)",
           "Verify Search Console and Bing",
-          "Founder name and photo on the about page",
-          "One real card test order"
+          "One real card test order",
+          "Paste the tested theme.liquid line for the Shopify storefront"
         ]
       },
       {

@@ -1,6 +1,8 @@
-{% comment %} Crystal Basket: our storefront lives at crystalbasket.store. Send anyone who lands on the stock Shopify theme to the real site. Checkout pages never load theme.liquid, so checkout is unaffected. {% endcomment %}
-<script>
-  if (location.hostname.indexOf("myshopify.com") !== -1) {
-    location.replace("https://crystalbasket.store" + (location.pathname.indexOf("/products/") === 0 ? location.pathname.replace(/\/$/, "") + "/" : "/"));
-  }
-</script>
+{% comment %}
+  Crystal Basket: replaces line 9 of layout/theme.liquid (the old one-line <script> right after <head>).
+  The stock Shopify storefront (utx8rj-t3.myshopify.com) is never meant to be seen:
+  - noindex keeps its pages out of Google (duplicates of crystalbasket.store);
+  - each page forwards to its matching page on crystalbasket.store (products keep their handle);
+  - checkout, cart handoff links, accounts, order pages and the theme editor preview are left alone.
+{% endcomment %}
+{%- unless request.design_mode -%}<meta name="robots" content="noindex"><script>(function(){var l=location,p=l.pathname,t="/",m;if(l.hostname.indexOf("myshopify.com")<0||window.top!==window.self||/^\/(checkouts|account|apps|services|tools)(\/|$)/.test(p)||/^\/cart\/c\//.test(p)||p.indexOf("/orders/")>-1||/^\/policies\/terms/.test(p))return;if(m=p.match(/^\/(?:[a-z]{2}(?:-[a-z]{2})?\/)?products\/([^\/]+)/))t="/products/"+m[1]+"/";else if(/^\/(collections|search)/.test(p))t="/shop/";else if(/^\/pages\/contact/.test(p))t="/contact/";else if(/^\/policies\/refund/.test(p))t="/returns/";else if(/^\/policies\/shipping/.test(p))t="/delivery/";else if(/^\/policies\/privacy/.test(p))t="/privacy/";l.replace("https://crystalbasket.store"+t)})();</script>{%- endunless -%}

@@ -93,10 +93,10 @@ Supporting scores: e-commerce 64, sitemap 74, visual/UX 62, SXO gap 40.
 | Item | Why it is open |
 |---|---|
 | Real WhatsApp number (NEEDED N01) | Owner input. Flip `flags.whatsapp` once set. |
-| Founder name, photo and studio photos (N19) | Owner input; biggest remaining E-E-A-T gap. |
+| Founder name and photo (N19) | Decided: the brand stays discreet. Real reviews and real product photos carry the trust signal instead. |
 | Real reviews (N03) | Owner input; never fabricate. |
 | Search Console and Bing verification (N17) | Needs a DNS TXT record in the owner's Cloudflare account. |
-| Shopify stock storefront (N18) | Should be `noindex` and redirect path-to-path; today it redirects to the home page. |
+| Shopify stock storefront (N18) | Replacement theme line is written and tested (`docs/shopify/redirect-snippet.liquid`); Shopify's new code editor ignores automated input, so it needs a manual paste or a Shopify CLI sign-in. |
 | Terms of sale page (N20) | Shopify can generate one. |
 | Security headers and long asset caching | GitHub Pages cannot set headers. Needs the Cloudflare proxy (currently DNS-only by design) or a host move. |
 | RSC payload in every HTML page | Inherent to Next static export; revisit if field data shows slow LCP. |
