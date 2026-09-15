@@ -55,6 +55,13 @@ describe("search content", () => {
     expect(new Set(descriptions).size).toBe(descriptions.length);
   });
 
+  it("product SEO titles describe the piece without repeating its name", () => {
+    for (const p of getProducts()) {
+      expect(p.data.seoTitle.toLowerCase(), p.id).not.toContain(p.data.name.toLowerCase());
+      expect(p.data.seoTitle, p.id).not.toMatch(/[—–]/);
+    }
+  });
+
   it("intention definitions and stone passages are quotable length (40-120 words)", () => {
     const words = (t: string) => t.trim().split(/\s+/).length;
     for (const i of getIntentions()) expect(words(i.data.definition), `${i.id} definition`).toBeGreaterThanOrEqual(40);

@@ -27,7 +27,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const p = getProducts().find((x) => x.id === slug);
   if (!p) return {};
   const img = productImage(p);
-  const title = `${p.data.name}, ${p.data.seoTitle}`.length <= 60 ? `${p.data.name}, ${p.data.seoTitle}` : p.data.seoTitle;
+  // "Citrine & Pyrite Bracelet, The Alchemist · Crystal Basket" when it fits in about 60 characters; the descriptive phrase alone otherwise.
+  const withName = `${p.data.seoTitle}, ${p.data.name}`;
+  const title = withName.length <= 45 ? withName : p.data.seoTitle;
   return { title, description: p.data.seoDescription, openGraph: { title, description: p.data.seoDescription, images: img ? [{ url: img, width: 1200, height: 1200 }] : undefined } };
 }
 
