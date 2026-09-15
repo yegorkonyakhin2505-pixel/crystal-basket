@@ -52,7 +52,7 @@
 
 ## Scripts
 
-`scripts/shopify-csv.py` (catalog → `docs/shopify/products.csv`, Wrist-size-only variants, hashed image URLs) · `scripts/logo-badge.py` (badge geometry → component data + static SVGs; needs `pip install fonttools`) · `scripts/check-tokens.sh` (rule 3 gate, runs in CI and `make check`). · `scripts/install-lifestyle.py <slug> <image>` (fits an on-wrist photo to 900×1200 and sets it as the product's second image) · `scripts/responsive-images.py` (every JPEG under `public/images` → `<stem>-<w>.webp` at 480/800/1200/1600/2000 px plus `lib/image-variants.json`; rerun after adding photos).
+`scripts/shopify-csv.py` (catalog → `docs/shopify/products.csv`, Wrist-size-only variants, hashed image URLs) · `scripts/logo-badge.py` (badge geometry → component data + static SVGs; needs `pip install fonttools`) · `scripts/check-tokens.sh` (rule 3 gate, runs in CI and `make check`). · `scripts/install-lifestyle.py <slug> <image>` (fits an on-wrist photo to 900×1200 and sets it as the product's second image) · `scripts/responsive-images.py` (every JPEG under `public/images` → `<stem>-<w>.webp` at 480/800/1200/1600/2000 px plus `lib/image-variants.json`; rerun after adding photos). · `scripts/higgsfield-kit.py` (one paste-ready Higgsfield promo prompt plus numbered reference photos → `~/Desktop/crystal-basket-higgsfield` and `docs/marketing/higgsfield-promo.md`).
 
 ## Workflows
 
