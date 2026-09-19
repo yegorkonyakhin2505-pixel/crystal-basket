@@ -9,6 +9,10 @@ export const site = {
   description:
     "Hand-strung crystal bracelets chosen by intention. Natural stones, cleansed and charged before they leave Dubai.",
   url: "https://crystalbasket.store",
+  /** Shopify checkout runs on this subdomain (Settings → Domains), so the whole journey stays on crystalbasket.store. */
+  checkoutDomain: "shop.crystalbasket.store",
+  /** Public Shopify shop id, used to report this storefront's traffic in Shopify analytics. */
+  shopifyShopId: "gid://shopify/Shop/76545687731",
   city: "Dubai",
   currency: "AED",
   /** TODO[NEEDED:N01] real WhatsApp business number, digits only. */

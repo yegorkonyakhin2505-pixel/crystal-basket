@@ -9,8 +9,8 @@ const description = "What Crystal Basket collects when you browse and order: ord
 export const metadata: Metadata = { title: "Privacy", description, openGraph: { title: "Privacy", description } };
 
 const sections: [string, string][] = [
-  ["What happens when I order?", "Checkout runs on Shopify. The name, email, phone number and delivery address you enter there are used to deliver your order and contact you about it, and Shopify stores them for us under its own privacy policy. Card payments are processed by Stripe inside that checkout, so your card details never reach this website."],
-  ["What does this website store?", "Your bag, wishlist and welcome-offer status are saved in your own browser's local storage, so they are still there when you come back. They are not sent to us. This site has no advertising trackers and no analytics cookies."],
+  ["What happens when I order?", "Checkout runs on Shopify, at shop.crystalbasket.store. The name, email, phone number and delivery address you enter there are used to deliver your order and contact you about it, and Shopify stores them for us under its own privacy policy. Card payments are processed by Stripe inside that checkout, so your card details never reach this website."],
+  ["What does this website store?", "Your bag, wishlist and welcome-offer status are saved in your own browser's local storage, so they are still there when you come back. Shopify also sets two counting cookies so we can see how many people visit and which pages they read, and so a visit carries through to checkout. There are no advertising or social-media trackers."],
   ["Do you send marketing emails?", "Not yet. The welcome-offer form currently keeps your email in your own browser only, to show the code. Before we start sending emails we will update this page and ask for your consent."],
   ["How do I ask about my data?", `Email ${site.email} and we will tell you what we hold about you, correct it, or delete it, apart from what we must keep for order and tax records.`],
 ];

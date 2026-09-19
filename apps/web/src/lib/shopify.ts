@@ -19,7 +19,7 @@ export class CartGoneError extends Error {
   constructor() { super("Your bag had expired, so we started a new one."); this.name = "CartGoneError"; }
 }
 
-export interface CartLine { id: string; quantity: number; title: string; variantTitle: string; handle: string; priceAED: number; image?: string }
+export interface CartLine { id: string; quantity: number; title: string; variantTitle: string; handle: string; priceAED: number; image?: string; variantGid: string; productGid: string; vendor: string }
 export interface Cart { id: string; checkoutUrl: string; totalQuantity: number; subtotalAED: number; lines: CartLine[] }
 
 async function gql<T>(query: string, variables: Record<string, unknown> = {}): Promise<T> {
@@ -46,15 +46,15 @@ async function gql<T>(query: string, variables: Record<string, unknown> = {}): P
 const CART_FIELDS = `
   id checkoutUrl totalQuantity
   cost { subtotalAmount { amount currencyCode } }
-  lines(first: 50) { nodes { id quantity merchandise { ... on ProductVariant { title product { title handle } price { amount } image { url(transform: { maxWidth: 240, maxHeight: 240 }) } } } } }
+  lines(first: 50) { nodes { id quantity merchandise { ... on ProductVariant { id title product { id title handle vendor } price { amount } image { url(transform: { maxWidth: 240, maxHeight: 240 }) } } } } }
 `;
-interface RawCart { id: string; checkoutUrl: string; totalQuantity: number; cost: { subtotalAmount: { amount: string; currencyCode: string } }; lines: { nodes: { id: string; quantity: number; merchandise: { title: string; product: { title: string; handle: string }; price: { amount: string }; image?: { url: string } } }[] } }
+interface RawCart { id: string; checkoutUrl: string; totalQuantity: number; cost: { subtotalAmount: { amount: string; currencyCode: string } }; lines: { nodes: { id: string; quantity: number; merchandise: { id: string; title: string; product: { id: string; title: string; handle: string; vendor: string }; price: { amount: string }; image?: { url: string } } }[] } }
 interface MutationResult { cart: RawCart | null; userErrors: { message: string }[] }
 
 function shape(c: RawCart): Cart {
   return {
     id: c.id, checkoutUrl: c.checkoutUrl, totalQuantity: c.totalQuantity, subtotalAED: Number(c.cost.subtotalAmount.amount),
-    lines: c.lines.nodes.map((l) => ({ id: l.id, quantity: l.quantity, title: l.merchandise.product.title, handle: l.merchandise.product.handle, variantTitle: l.merchandise.title, priceAED: Number(l.merchandise.price.amount), image: l.merchandise.image?.url })),
+    lines: c.lines.nodes.map((l) => ({ id: l.id, quantity: l.quantity, title: l.merchandise.product.title, handle: l.merchandise.product.handle, variantTitle: l.merchandise.title, priceAED: Number(l.merchandise.price.amount), image: l.merchandise.image?.url, variantGid: l.merchandise.id, productGid: l.merchandise.product.id, vendor: l.merchandise.product.vendor })),
   };
 }
 function settle(r: MutationResult, existing: boolean): Cart {

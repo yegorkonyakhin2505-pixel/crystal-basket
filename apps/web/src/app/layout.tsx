@@ -10,6 +10,7 @@ import { Footer } from "@/components/Store/Footer";
 import { NewsletterBar } from "@/components/Store/NewsletterBar";
 import { OfferPopup } from "@/components/Store/OfferPopup";
 import { CartDrawer } from "@/components/Store/CartDrawer";
+import { ShopifyAnalytics } from "@/components/ShopifyAnalytics";
 import { asset } from "@/lib/paths";
 import { ld, organizationLd, websiteLd } from "@/lib/schema";
 
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <CartDrawer />
           </SmoothScroll>
           <ScrollReveal />
+          <ShopifyAnalytics />
         </QueryProvider>
       </body>
     </html>

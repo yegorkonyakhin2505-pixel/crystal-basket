@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { CartGoneError, cartCreate, cartFetch, cartLinesAdd, cartLinesRemove, findVariantId, shopifyEnabled, type Cart } from "@/lib/shopify";
+import { trackAddToCart } from "@/lib/analytics";
 
 const KEY = "cb-cart-id";
 const EVENT = "cb:cart";
@@ -65,6 +66,7 @@ export function useCart() {
         next = await cartCreate(lines);
       }
       persist(next); show(true);
+      trackAddToCart(next, lines.map((l) => l.merchandiseId));
     } catch (e) { setError((e as Error).message); }
     finally { setBusy(false); }
   }, [show]);
