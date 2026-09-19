@@ -20,6 +20,8 @@ _Updated 2026-09-15. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | ✅ | The Devotion and The Aurora marked sold out 2026-09-12 (site + Shopify stock 0, no oversell); Calm Stack re-composed from in-stock pieces | catalog + Shopify |
 | ✅ | Shopify catalog synced 2026-09-07: 12 products, wrist size only (8 mm), owner's prices, The Lunar + The Exhale deleted | `docs/shopify/products.csv` |
 | ✅ | Email: any address @crystalbasket.store forwards to Alya's Gmail (Cloudflare Email Routing). DNS now hosted on Cloudflare | Cloudflare, Alya's account |
+| ✅ | Checkout on **shop.crystalbasket.store** (2026-09-19): Shopify primary domain, so the Shopify admin and every checkout link show the brand, not utx8rj-t3.myshopify.com | Shopify → Settings → Domains |
+| ✅ | **Shopify analytics now counts crystalbasket.store** (2026-09-19): page views and add-to-cart sent from our storefront, verified in Live View | `lib/analytics.ts`, `components/ShopifyAnalytics.tsx` |
 | ✅ | SEO audit (claude-seo) and fixes 2026-09-15: descriptive titles/H1s, product/collection/breadcrumb/FAQ schema, stone and intention guides, delivery/returns/contact/privacy pages, WebP images, git-dated sitemap, IndexNow | `docs/seo/crystalbasket.store-audit/` |
 
 ## Blocking launch (cannot take real money without these)
