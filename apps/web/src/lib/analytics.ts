@@ -16,7 +16,10 @@ import { site } from "./site";
  * crystalbasket.store the traffic Shopify reports: sessions, page views, Live View and add-to-cart.
  * Cookies are set on the root domain so checkout on site.checkoutDomain continues the same session.
  */
-const ROOT_DOMAIN = new URL(site.url).hostname.replace(/^www\./, "");
+// Events post to https://<this host>/.well-known/shopify/monorail/... so it must be a Shopify-served
+// host: our own domain is GitHub Pages and answers 405. The checkout subdomain is Shopify's and shares
+// our root domain, so the visit, the cookies and the order all belong to one session.
+const EVENT_HOST = site.checkoutDomain;
 
 const base = () => ({
   hasUserConsent: true,
@@ -48,7 +51,7 @@ export function trackPageView(path: string) {
         canonicalUrl: `${site.url}${path}`,
       },
     },
-    ROOT_DOMAIN,
+    EVENT_HOST,
   ).catch(() => {});
 }
 
@@ -76,6 +79,6 @@ export function trackAddToCart(cart: Cart, merchandiseIds: string[]) {
         products,
       },
     },
-    ROOT_DOMAIN,
+    EVENT_HOST,
   ).catch(() => {});
 }
