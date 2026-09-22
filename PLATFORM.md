@@ -18,7 +18,7 @@
 | `/products/[slug]/` | `products/[slug]/page.tsx` | product, stones, related | Grid areas: mobile order photo → buy box → detail photo; desktop photos left, sticky buy box right. H1 = name + `seoTitle`; `<title>`/description from `seoTitle`/`seoDescription`. BuyBox (wrist size only, all 8 mm, shows the 25 AED fee), "Part of The X Stack" link, accordions, related grid, three product-specific questions (wrist from the intention, water/sun from the stones, stack) as h3, Product JSON-LD via `productLd` (image array, OutOfStock when sold out, shipping + return policy) + BreadcrumbList |
 | `/intentions/` | `intentions/page.tsx` | intentions | CategoryGrid · H1 "Crystal bracelets by intention" · CollectionPage + BreadcrumbList |
 | `/intentions/[slug]/` | `intentions/[slug]/page.tsx` | primary + secondary products, curated `stones`, stack | Stone chips from the intention's curated list; grids in stock first; sleep shows the "also worn for" pieces as the main grid. Guide: "What is a … crystal bracelet?" (`definition`), which wrist, stone table, intention FAQ as h3, link to its stack (`/stacks/?stack=<id>#build`). CollectionPage + BreadcrumbList |
-| `/stones/` | `stones/page.tsx` | stones | Sphere tiles + "16 stones at a glance" table (worn for, chakra, wrist, water, sun, Mohs) · H1 "Crystal meanings" · CollectionPage + BreadcrumbList |
+| `/stones/` | `stones/page.tsx` | stones | Tumbled-stone photo tiles (`public/images/stones/<id>.jpg`, gradient sphere fallback) + "16 stones at a glance" table (worn for, chakra, wrist, water, sun, Mohs) · H1 "Crystal meanings" · CollectionPage + BreadcrumbList |
 | `/stones/[slug]/` | `stones/[slug]/page.tsx` | stone, products, intentions, pairings | H1 "X bracelet meaning". Facts table (incl. Mohs, found in, wrist) and question-headed H2 sections: worn for (`wornFor`), what is it (`mineral`), which wrist (`wristWhy`), how to cleanse (water/sun/`waterNote`), pairs with (`pairsWith`). WebPage (`about` Thing) + BreadcrumbList |
 | `/stacks/` | `stacks/page.tsx` | stacks, all products | Curated sets (CTA links `?stack=<id>#build`, StackBuilder preselects that stack's in-stock pieces) + StackBuilder at `#build` · CollectionPage + BreadcrumbList |
 | `/about/`, `/size-guide/`, `/care/`, `/faq/`, `/disclaimer/` | same-named folders | static | `PageIntro` header: descriptive H1 in label caps, display tagline, "Last reviewed" from git. Question H2s. `/faq/` renders `lib/faq.ts` with h3 questions, follow-up links and FAQPage JSON-LD; the disclaimer opens with a plain-English line |
@@ -48,7 +48,7 @@
 
 ## Static assets
 
-`apps/web/public/images/{hero,intentions,products/<slug>,stacks,about}` · `favicon.svg`, `favicon.ico`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (all from `scripts/logo-badge.py` + PIL) · `brand/logo-badge{,-dark}.svg`, `brand/logo-mark.svg`.
+`apps/web/public/images/{hero,intentions,products/<slug>,stacks,stones,about}` (stones: 16 tumbled-stone photos on white, generated 2026-09-23 as four 2×2 grids in Nano Banana Pro and cut by a one-off script; `docs/photos/real-stock-2026-09-23/` holds Alya's phone photos of real stock) · `favicon.svg`, `favicon.ico`, `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (all from `scripts/logo-badge.py` + PIL) · `brand/logo-badge{,-dark}.svg`, `brand/logo-mark.svg`.
 
 ## Scripts
 

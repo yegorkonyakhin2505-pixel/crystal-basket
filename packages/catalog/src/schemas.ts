@@ -64,6 +64,8 @@ export const StoneSchema = z.object({
   /** Extra care note when the stone must stay dry. */
   waterNote: z.string().optional(),
   pairsWith: z.array(Slug).default([]),
+  /** Tumbled-stone photo under apps/web/public/images/stones/<file> (white background). */
+  image: z.string().optional(),
 });
 
 export const ProductSchema = z.object({

@@ -6,7 +6,8 @@ import { ProductGrid } from "@/components/Store/ProductGrid";
 import { ListingHero } from "@/components/Store/ListingHero";
 import { SectionTitle } from "@/components/ui";
 import { routes } from "@/lib/paths";
-import { productImage } from "@/lib/images";
+import { productImage, stoneImage } from "@/lib/images";
+import { Img } from "@/components/Img";
 import { breadcrumbLd, ld, stonePageLd } from "@/lib/schema";
 
 const WRIST = { left: "Left wrist", right: "Right wrist", either: "Either wrist" } as const;
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const title = `${s.data.name} Bracelet Meaning, Chakra & Care`;
   const description = describe(s.data.name, s.data.keywords);
   const first = productsForStone(s.id)[0];
-  const img = first ? productImage(first) : null;
+  const img = stoneImage(s) ?? (first ? productImage(first) : null);
   return { title, description, openGraph: { title, description, images: img ? [{ url: img, width: 1200, height: 1200 }] : undefined } };
 }
 
@@ -59,11 +60,15 @@ export default async function StonePage({ params }: { params: Promise<Params> })
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(breadcrumbLd([["Stones", routes.stones], [d.name, routes.stone(stone.id)]])) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(stonePageLd(stone, heading, describe(d.name, d.keywords), products.map((p) => ({ name: p.data.name, path: routes.product(p.id), image: productImage(p) })))) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(stonePageLd(stone, heading, describe(d.name, d.keywords), products.map((p) => ({ name: p.data.name, path: routes.product(p.id), image: productImage(p) })), stoneImage(stone))) }} />
       <ListingHero palette={d.palette} crumbs={[[routes.stones, "Stones"], ["", d.name]]} title={heading} text={d.description} />
 
       <section className="container-x py-12 md:py-16 grid grid-cols-1 md:grid-cols-[minmax(0,280px)_1fr] gap-8 md:gap-14 items-start">
-        <div aria-hidden className="aspect-square rounded-full ring-1 ring-black/5 w-40 md:w-full max-w-[280px]" style={{ background: `radial-gradient(circle at 38% 32%, rgb(255 255 255 / 0.67) 0%, transparent 18%), radial-gradient(circle at 40% 35%, ${d.palette[0]}, ${d.palette[1]})` }} />
+        {stoneImage(stone) ? (
+          <div className="aspect-square w-48 md:w-full max-w-[280px]"><Img src={stoneImage(stone)!} alt={`${d.name} tumbled stone`} sizes="280px" loading="eager" /></div>
+        ) : (
+          <div aria-hidden className="aspect-square rounded-full ring-1 ring-black/5 w-40 md:w-full max-w-[280px]" style={{ background: `radial-gradient(circle at 38% 32%, rgb(255 255 255 / 0.67) 0%, transparent 18%), radial-gradient(circle at 40% 35%, ${d.palette[0]}, ${d.palette[1]})` }} />
+        )}
         <div className="overflow-x-auto border border-cb-line">
           <table className="w-full text-[14px]">
             <caption className="sr-only">{d.name} at a glance</caption>

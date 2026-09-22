@@ -1,4 +1,4 @@
-import type { Intention, Product, Stack } from "@crystal-basket/catalog";
+import type { Intention, Product, Stack, Stone } from "@crystal-basket/catalog";
 import { asset } from "./paths";
 
 /** Resolve the primary image for a product, or null when photos are pending. */
@@ -11,4 +11,7 @@ export function intentionImage(i: Intention): string | null {
 }
 export function stackImage(s: Stack): string | null {
   return s.data.image ? asset(`/images/stacks/${s.data.image}`) : null;
+}
+export function stoneImage(s: Stone): string | null {
+  return s.data.image ? asset(`/images/stones/${s.data.image}`) : null;
 }

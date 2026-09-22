@@ -308,5 +308,149 @@
    800,
    900
   ]
+ },
+ "/images/stones/amethyst.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/black-obsidian.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/black-tourmaline.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/carnelian.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/citrine.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/clear-quartz.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/green-aventurine.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/hematite.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/labradorite.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/lapis-lazuli.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/moonstone.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/pyrite.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/red-jasper.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/rose-quartz.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/smoky-quartz.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
+ },
+ "/images/stones/tigers-eye.jpg": {
+  "w": 900,
+  "h": 900,
+  "webp": [
+   480,
+   800,
+   900
+  ]
  }
 }

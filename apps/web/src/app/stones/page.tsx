@@ -3,6 +3,8 @@ import Link from "next/link";
 import { getStones, productsForStone } from "@crystal-basket/catalog";
 import { ListingHero } from "@/components/Store/ListingHero";
 import { routes } from "@/lib/paths";
+import { Img } from "@/components/Img";
+import { stoneImage } from "@/lib/images";
 import { breadcrumbLd, collectionPageLd, ld } from "@/lib/schema";
 
 export const metadata: Metadata = { title: "Crystal Meanings: The Stone Library", description: "Meanings, chakras, best wrist and care for the 16 natural stones in our bracelets, from amethyst and rose quartz to black tourmaline and tiger's eye." };
@@ -19,7 +21,11 @@ export default function StonesPage() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-t border-l border-cb-line">
         {stones.map((s) => (
           <Link key={s.id} href={routes.stone(s.id)} prefetch={false} className="group bg-white p-6 border-r border-b border-cb-line">
-            <div className="aspect-square rounded-full mx-auto w-3/4 ring-1 ring-black/5 transition-transform duration-700 group-hover:scale-[1.04]" style={{ background: `radial-gradient(circle at 38% 32%, rgb(255 255 255 / 0.67) 0%, transparent 18%), radial-gradient(circle at 40% 35%, ${s.data.palette[0]}, ${s.data.palette[1]})` }} />
+            {stoneImage(s) ? (
+              <div className="aspect-square mx-auto w-4/5 transition-transform duration-700 group-hover:scale-[1.04]"><Img src={stoneImage(s)!} alt={`${s.data.name} tumbled stone`} sizes="(min-width: 1024px) 20vw, 40vw" /></div>
+            ) : (
+              <div className="aspect-square rounded-full mx-auto w-3/4 ring-1 ring-black/5 transition-transform duration-700 group-hover:scale-[1.04]" style={{ background: `radial-gradient(circle at 38% 32%, rgb(255 255 255 / 0.67) 0%, transparent 18%), radial-gradient(circle at 40% 35%, ${s.data.palette[0]}, ${s.data.palette[1]})` }} />
+            )}
             <p className="font-display text-[1.3rem] mt-6 text-center group-hover:text-cb-rose transition-colors">{s.data.name}</p>
             <p className="text-[12px] text-cb-muted text-center mt-1">{s.data.keywords.join(" · ")}</p>
             <p className="text-[11px] text-cb-faint text-center mt-2 uppercase tracking-[0.14em]">{productsForStone(s.id).length} bracelet{productsForStone(s.id).length === 1 ? "" : "s"}</p>

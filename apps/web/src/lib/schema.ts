@@ -131,7 +131,7 @@ export function collectionPageLd(name: string, path: string, description: string
 }
 
 /** Stone guide page: about the stone, listing the bracelets that contain it. No medical types. */
-export function stonePageLd(stone: Stone, name: string, description: string, items: ListEntry[]) {
+export function stonePageLd(stone: Stone, name: string, description: string, items: ListEntry[], image?: string | null) {
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -141,7 +141,8 @@ export function stonePageLd(stone: Stone, name: string, description: string, ite
     description,
     inLanguage: "en",
     isPartOf: { "@id": SITE_ID },
-    about: { "@type": "Thing", name: stone.data.name, alternateName: `${stone.data.name} crystal` },
+    about: { "@type": "Thing", name: stone.data.name, alternateName: `${stone.data.name} crystal`, ...(image ? { image: U(image) } : {}) },
+    ...(image ? { primaryImageOfPage: { "@type": "ImageObject", url: U(image) } } : {}),
     ...(items.length ? { mainEntity: itemList(`Bracelets with ${stone.data.name}`, items) } : {}),
   };
 }

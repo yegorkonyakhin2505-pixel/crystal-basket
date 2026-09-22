@@ -22,6 +22,7 @@ describe("catalog content", () => {
     for (const p of getProducts()) for (const f of p.data.images) expect(existsSync(`${pub}products/${p.id}/${f}`), `${p.id}/${f} missing`).toBe(true);
     for (const i of getIntentions()) if (i.data.image) expect(existsSync(`${pub}intentions/${i.data.image}`), `${i.id} image missing`).toBe(true);
     for (const s of getStacks()) if (s.data.image) expect(existsSync(`${pub}stacks/${s.data.image}`), `${s.id} image missing`).toBe(true);
+    for (const s of getStones()) if (s.data.image) expect(existsSync(`${pub}stones/${s.data.image}`), `${s.id} image missing`).toBe(true);
   });
 
   it("every stone is used by at least one product", () => {
