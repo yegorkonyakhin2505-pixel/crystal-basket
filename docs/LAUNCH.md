@@ -21,7 +21,7 @@ _Updated 2026-09-15. ✅ done · ⏳ needs Alya or Yegor · 🔧 Claude can do o
 | ✅ | Shopify catalog synced 2026-09-07: 12 products, wrist size only (8 mm), owner's prices, The Lunar + The Exhale deleted | `docs/shopify/products.csv` |
 | ✅ | Email: any address @crystalbasket.store forwards to Alya's Gmail (Cloudflare Email Routing). DNS now hosted on Cloudflare | Cloudflare, Alya's account |
 | ✅ | **Build your own bracelet** (2026-09-23): `/build/`, nav tab and home section; custom designs check out as the Shopify `custom-bracelet` product (imported with the catalog) with the bead sequence on the order line | `components/Store/BraceletBuilder.tsx` |
-| ✅ | **Eight real-stock single-stone bracelets** added as "Leaving soon" (2026-09-23), plus fluorite as a 17th stone; product shots generated from Alya's photos; Shopify re-imported (21 products, 78 variants) | catalog + Shopify |
+| ✅ | **Nine real-stock single-stone bracelets** added as "Leaving soon" (2026-09-23): The Blush, Quiet, Clarity, Sunlit, Ember, Root, Vault, Prism, Night; fluorite as a 17th stone; product shots generated from Alya's photos; Shopify re-imported (22 products, 81 variants). Placeholder prices, see N21 | catalog + Shopify |
 | ✅ | Stone library shows tumbled-stone photos instead of colour circles (2026-09-23) | `public/images/stones/` |
 | ✅ | Stock Shopify theme hidden (2026-09-19): `noindex` plus a path-preserving redirect to crystalbasket.store, pushed with the Shopify CLI; checkout, cart handoff and order pages untouched | `docs/shopify/redirect-snippet.liquid` |
 | ✅ | Checkout on **shop.crystalbasket.store** (2026-09-19): Shopify primary domain, so the Shopify admin and every checkout link show the brand, not utx8rj-t3.myshopify.com | Shopify → Settings → Domains |
