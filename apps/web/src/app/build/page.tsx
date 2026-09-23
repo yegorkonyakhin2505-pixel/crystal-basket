@@ -4,6 +4,9 @@ import { BEAD_MM, getIntentions, getStones } from "@crystal-basket/catalog";
 import { BraceletBuilder } from "@/components/Store/BraceletBuilder";
 import { PageIntro } from "@/components/Store/PageIntro";
 import { stoneImage } from "@/lib/images";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import { asset } from "@/lib/paths";
 import { routes } from "@/lib/paths";
 import { site } from "@/lib/site";
 import { breadcrumbLd, ld } from "@/lib/schema";
@@ -19,7 +22,9 @@ const steps: [string, string][] = [
 ];
 
 export default function BuildPage() {
-  const stones = getStones().map((s) => ({ id: s.id, name: s.data.name, palette: s.data.palette, tier: s.data.tier, keywords: s.data.keywords, waterSafe: s.data.waterSafe, image: stoneImage(s) }));
+  // Photographic bead sprites (apps/web/public/images/beads/<id>.png); the ring falls back to a gradient when one is missing.
+  const beadSprite = (id: string) => (existsSync(join(process.cwd(), "public", "images", "beads", `${id}.png`)) ? asset(`/images/beads/${id}.png`) : null);
+  const stones = getStones().map((s) => ({ id: s.id, name: s.data.name, palette: s.data.palette, tier: s.data.tier, keywords: s.data.keywords, waterSafe: s.data.waterSafe, image: stoneImage(s), bead: beadSprite(s.id) }));
   const intentions = getIntentions().map((i) => ({ id: i.id, short: i.data.short, stones: i.data.stones }));
   return (
     <>
@@ -28,7 +33,7 @@ export default function BuildPage() {
         <p>Every Crystal Basket bracelet is {BEAD_MM} mm natural stone on stretch cord, so anything you design here sits evenly next to the pieces we already string. Choose a size, drop in the stones you want, and we make it to order.</p>
       </PageIntro>
       <section className="container-x pb-16">
-        <BraceletBuilder stones={stones} intentions={intentions} pricing={site.custom} />
+        <BraceletBuilder stones={stones} intentions={intentions} pricing={site.custom} goldBead={beadSprite("gold")} />
       </section>
       <section className="container-x pb-16 md:pb-20">
         <h2 className="text-3xl md:text-[2.25rem] mb-6">How does it work?</h2>

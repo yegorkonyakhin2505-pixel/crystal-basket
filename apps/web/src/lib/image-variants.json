@@ -9,6 +9,15 @@
    1400
   ]
  },
+ "/images/build/teaser.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
  "/images/hero/hero-1.jpg": {
   "w": 2000,
   "h": 1125,

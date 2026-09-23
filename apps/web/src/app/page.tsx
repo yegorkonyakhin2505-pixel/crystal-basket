@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { formatAED, getProducts, getStacks, getStones, getIntention, getProduct, stackSubtotal } from "@crystal-basket/catalog";
-import { BeadRing } from "@/components/Store/BeadRing";
 import { Hero } from "@/components/Store/Hero";
 import { CategoryGrid } from "@/components/Store/CategoryGrid";
 import { ProductGrid } from "@/components/Store/ProductGrid";
@@ -23,7 +22,6 @@ export default function HomePage() {
   const fresh = products.filter((p) => p.data.isNew).slice(0, 4);
   const leaving = products.filter((p) => p.data.leavingSoon && p.data.inStock);
   const stoneCount = getStones().length;
-  const builderPalettes = ["amethyst", "rose-quartz", "clear-quartz", "green-aventurine"].map((id) => getStones().find((s) => s.id === id)!.data.palette);
   const stacks = getStacks().filter((s) => s.data.featured);
   return (
     <>
@@ -101,8 +99,8 @@ export default function HomePage() {
           <p className="text-cb-muted mt-4 max-w-md">Pick a wrist size, tap a stone and watch it drop onto the ring. Mix any of our {stoneCount} stones, add a gold-filled bead, and we string it to order in Dubai from {site.custom.baseAED} AED.</p>
           <ButtonLink href={routes.build} className="mt-6">Start building</ButtonLink>
         </div>
-        <Link href={routes.build} className="order-1 lg:order-2 block bg-cb-band p-8 md:p-12 group" aria-label="Open the bracelet builder">
-          <div className="mx-auto max-w-[360px] transition-transform duration-700 group-hover:scale-[1.03]"><BeadRing palettes={builderPalettes} gold count={23} /></div>
+        <Link href={routes.build} className="order-1 lg:order-2 block overflow-hidden bg-cb-band group" aria-label="Open the bracelet builder">
+          <div className="aspect-square transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]"><Img src={asset("/images/build/teaser.jpg")} alt="A half-strung bracelet of amethyst, rose quartz, clear quartz and aventurine beads beside dishes of loose beads" sizes="(min-width: 1024px) 50vw, 100vw" /></div>
         </Link>
       </section>
 

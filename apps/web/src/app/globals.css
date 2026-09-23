@@ -81,3 +81,27 @@ html.js .reveal.is-visible { opacity: 1; transform: none; }
 @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
 @keyframes popIn { from { opacity: 0; transform: translateY(16px) scale(.98) } to { opacity: 1; transform: none } }
 @keyframes slideIn { from { transform: translateX(100%) } to { transform: none } }
+/* Build-your-own ring: float, landing ripple, pop-out, next-slot pulse, completion sparkle, price glow. */
+@keyframes ringFloat { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-5px) } }
+.ring-float { animation: ringFloat 5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes ringSettle { 0% { transform: scale(1) } 35% { transform: scale(1.025) } 100% { transform: scale(1) } }
+.ring-settle { animation: ringSettle .9s cubic-bezier(.22,1,.36,1) both; }
+.bead-inner { transition: transform .35s cubic-bezier(.22,1,.36,1); transform-box: fill-box; transform-origin: center; }
+.bead:hover .bead-inner { transform: translateY(-5px) scale(1.1); }
+@keyframes beadPop { 0% { transform: scale(1); opacity: 1 } 100% { transform: translateY(-26px) scale(.4); opacity: 0 } }
+.bead-pop { animation: beadPop .32s ease-in both; }
+@keyframes beadRipple { 0% { transform: scale(.6); opacity: .8 } 100% { transform: scale(2.2); opacity: 0 } }
+.bead-ripple { animation: beadRipple .7s ease-out both; transform-box: fill-box; transform-origin: center; }
+@keyframes slotPulse { 0%, 100% { opacity: .55 } 50% { opacity: 1 } }
+.slot-pulse { animation: slotPulse 1.4s ease-in-out infinite; }
+@keyframes sparkle { 0% { transform: scale(0) rotate(0deg); opacity: 0 } 40% { opacity: 1 } 100% { transform: scale(1.4) rotate(90deg); opacity: 0 } }
+.sparkle { animation: sparkle 1.2s ease-out both; }
+@keyframes shimmer { 0% { opacity: .55 } 50% { opacity: 1 } 100% { opacity: .55 } }
+.shimmer-text { animation: shimmer 1.6s ease-in-out infinite; }
+@keyframes ctaGlow { 0%, 100% { box-shadow: 0 0 0 0 rgb(0 0 0 / 0) } 50% { box-shadow: 0 10px 30px -10px rgb(0 0 0 / .45) } }
+.cta-glow { animation: ctaGlow 2.4s ease-in-out infinite; }
+.bead-range { -webkit-appearance: none; appearance: none; height: 4px; border-radius: 999px; background: linear-gradient(90deg, var(--cb-ink), var(--cb-line)); outline: none; }
+.bead-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, var(--cb-rose) 55%, color-mix(in srgb, var(--cb-rose) 60%, black)); box-shadow: 0 3px 8px rgb(0 0 0 / .3); cursor: pointer; transition: transform .2s; }
+.bead-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.bead-range::-moz-range-thumb { width: 22px; height: 22px; border: 0; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, var(--cb-rose) 55%, color-mix(in srgb, var(--cb-rose) 60%, black)); box-shadow: 0 3px 8px rgb(0 0 0 / .3); cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .ring-float, .ring-settle, .bead-pop, .bead-ripple, .slot-pulse, .sparkle, .shimmer-text, .cta-glow { animation: none } .bead-inner { transition: none } }
