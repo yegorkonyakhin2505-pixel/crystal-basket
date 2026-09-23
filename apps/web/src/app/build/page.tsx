@@ -17,7 +17,7 @@ export const metadata: Metadata = { title: "Build Your Own Crystal Bracelet", de
 
 const steps: [string, string][] = [
   ["Pick a size", "S, M or L sets how many 8 mm beads fit around your wrist. Not sure? The size guide takes a minute."],
-  ["Drop the beads", "Tap a stone and it drops onto the ring. Use the slider to drop several at once, repeat a pattern, or fill the rest in one go."],
+  ["String the beads", "Tap a bead in the tray and it drops onto the string next to the last one. Set beads per tap to string several at once, repeat a pattern, or fill the rest with one stone. When the string is full, press Done and it curls into your bracelet."],
   ["We string it", "Your design goes to the studio exactly as you laid it out. Strung on 1 mm stretch cord, cleansed on selenite, and on its way within two working days."],
 ];
 
@@ -30,7 +30,7 @@ export default function BuildPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(breadcrumbLd([["Build your own", routes.build]])) }} />
       <PageIntro heading="Build your own crystal bracelet" tagline="Your stones, your order, your wrist." reviewed={formatReviewed(lastCommitDate(sources.page("build")))}>
-        <p>Every Crystal Basket bracelet is {BEAD_MM} mm natural stone on stretch cord, so anything you design here sits evenly next to the pieces we already string. Choose a size, drop in the stones you want, and we make it to order.</p>
+        <p>Every Crystal Basket bracelet is {BEAD_MM} mm natural stone on stretch cord, so anything you design here sits evenly next to the pieces we already string. Choose a size, string the beads you want, press Done to see the bracelet, and we make it to order.</p>
       </PageIntro>
       <section className="container-x pb-16">
         <BraceletBuilder stones={stones} intentions={intentions} pricing={site.custom} goldBead={beadSprite("gold")} />
