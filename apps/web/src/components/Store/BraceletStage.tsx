@@ -8,13 +8,14 @@ import { forwardRef, useEffect, useImperativeHandle, useRef } from "react";
  *  - the fold: the string curls from both ends into a bracelet seen from a raised angle in true
  *    perspective, the beads riding the string the whole way and growing as the view closes in;
  *  - a glint that sweeps across the finished bracelet, and a soft ground shadow.
- * Beads that are still flying in from the tray (`hidden`) take part in the layout but are not drawn;
- * the moment they stop being hidden they land with a squash and the string dips.
- * `posOf(id)` reports a bead's current screen position so the flight layer can aim at it.
+ * Beads still flying in from the tray (`hidden`) are not laid out or drawn. When one arrives it is
+ * threaded onto the string at the end given by `entries[id]` (0 = left tip, 1 = right tip) and slides
+ * along the cord into the row; the row shifts to make room, and the bead lands with a squash that
+ * dips the string. `endOf(side)` reports the tip's screen position so the flight layer can aim at it.
  */
 export type StageBead = { id: number; stone: string };
-export type StageHandle = { posOf: (id: number) => { x: number; y: number; r: number } | null };
-type Anim = { id: number; stone: string; u: number; uv: number; land: number | null; pop: number | null };
+export type StageHandle = { endOf: (side: 0 | 1) => { x: number; y: number; r: number } | null; posOf: (id: number) => { x: number; y: number; r: number } | null };
+type Anim = { id: number; stone: string; u: number; uv: number; enter: 0 | 1 | null; arrived: boolean; land: number | null; pop: number | null };
 
 const W = 640, H = 360;
 const OPEN: [number, number][] = [[28, 92], [320, 306], [612, 92]];
@@ -51,11 +52,11 @@ const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t 
 const curl = (u: number, fold: number) => smooth(clamp(fold * 1.45 - 0.45 * (1 - Math.abs(2 * u - 1)), 0, 1));
 
 export const BraceletStage = forwardRef<StageHandle, {
-  beads: StageBead[]; slots: number; folded: boolean; hidden: number[]; sprites: Record<string, string>;
+  beads: StageBead[]; slots: number; folded: boolean; hidden: number[]; entries: Record<number, 0 | 1>; sprites: Record<string, string>;
   onRemove: (id: number) => void; onBusy: (busy: boolean) => void; onHover: (stone: string | null) => void; className?: string;
-}>(function BraceletStage({ beads, slots, folded, hidden, sprites, onRemove, onBusy, onHover, className }, ref) {
+}>(function BraceletStage({ beads, slots, folded, hidden, entries, sprites, onRemove, onBusy, onHover, className }, ref) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const propsRef = useRef({ beads, slots, folded, hidden }); propsRef.current = { beads, slots, folded, hidden };
+  const propsRef = useRef({ beads, slots, folded, hidden, entries }); propsRef.current = { beads, slots, folded, hidden, entries };
   const cbRef = useRef({ onRemove, onBusy, onHover }); cbRef.current = { onRemove, onBusy, onHover };
   const anims = useRef<Anim[]>([]);
   const imgs = useRef<Record<string, HTMLImageElement>>({});
@@ -71,6 +72,12 @@ export const BraceletStage = forwardRef<StageHandle, {
   const kickRef = useRef<() => void>(() => {});
 
   useImperativeHandle(ref, () => ({
+    endOf(side) {
+      const c = canvasRef.current; if (!c) return null;
+      const r = c.getBoundingClientRect(); const k = r.width / W; const [x, y] = side === 0 ? OPEN[0] : OPEN[2];
+      const dOpen = Math.min(30, (openCurve(0).total / Math.max(propsRef.current.slots, 1)) * 0.98);
+      return { x: r.left + x * k, y: r.top + y * (r.height / H), r: (dOpen / 2) * k };
+    },
     posOf(id) {
       const g = geom.current.get(id); const c = canvasRef.current; if (!g || !c) return null;
       const r = c.getBoundingClientRect(); const k = r.width / W;
@@ -96,21 +103,27 @@ export const BraceletStage = forwardRef<StageHandle, {
       const hid = new Set(hidden);
       for (const b of beads) {
         seen.add(b.id);
-        if (!anims.current.some((a) => a.id === b.id)) anims.current.push({ id: b.id, stone: b.stone, u: NaN, uv: 0, land: null, pop: null });
+        if (!anims.current.some((a) => a.id === b.id)) anims.current.push({ id: b.id, stone: b.stone, u: NaN, uv: 0, enter: null, arrived: true, land: null, pop: null });
       }
       for (const a of anims.current) {
         if (!seen.has(a.id) && a.pop == null) a.pop = now;
-        if (wasHidden.current.has(a.id) && !hid.has(a.id)) { a.land = now; if (!reduce.current) sag.current.vel += 1.1; }
+        if (wasHidden.current.has(a.id) && !hid.has(a.id)) {
+          // just arrived from the tray: thread on at the tip and slide in
+          const side = propsRef.current.entries[a.id];
+          if (side === 0 || side === 1) { a.u = side; a.uv = 0; a.enter = side; a.arrived = false; }
+          else { a.land = now; if (!reduce.current) sag.current.vel += 1.1; }
+        }
       }
       wasHidden.current = hid;
       const target = folded ? 1 : 0;
       if (fold.current.to !== target) { fold.current = { v: fold.current.v, from: fold.current.v, to: target, t0: now, dur: reduce.current ? 0 : 1900 }; if (target === 0) glint.current = null; }
     };
 
-    const layout = () => {
-      const { slots, beads } = propsRef.current;
-      const order = beads.map((b) => b.id);
-      const live = anims.current.filter((a) => a.pop == null);
+    const layout = (now: number) => {
+      const { slots, beads, hidden } = propsRef.current; const hid = new Set(hidden);
+      const live = anims.current.filter((a) => a.pop == null && !hid.has(a.id));
+      const liveIds = new Set(live.map((a) => a.id));
+      const order = beads.map((b) => b.id).filter((id) => liveIds.has(id));
       const n = live.length;
       const curveOpen = openCurve(sag.current.v);
       const dOpen = Math.min(30, (curveOpen.total / Math.max(slots, 1)) * 0.98);
@@ -122,8 +135,11 @@ export const BraceletStage = forwardRef<StageHandle, {
         const uRing = (i + 0.5) / slots;
         const target = uOpen + (uRing - uOpen) * fe;
         if (Number.isNaN(a.u)) { a.u = target; a.uv = 0; continue; }
-        const k = 170, c = 2 * Math.sqrt(k) * 0.9, dt = 1 / 60;
+        // sliding in from the tip: gravity-like pull along the cord, gentler than the row's own settle spring
+        const sliding = !a.arrived;
+        const k = sliding ? 42 : 170, c = 2 * Math.sqrt(k) * (sliding ? 1.0 : 0.9), dt = 1 / 60;
         a.uv += ((target - a.u) * k - a.uv * c) * dt; a.u += a.uv * dt;
+        if (sliding && Math.abs(target - a.u) < 0.006) { a.arrived = true; a.land = now; if (!reduce.current) sag.current.vel += 1.1; }
         if (Math.abs(target - a.u) < 1e-5 && Math.abs(a.uv) < 1e-4) { a.u = target; a.uv = 0; }
       }
       return { curveOpen, dOpen, dRing, fe, f };
@@ -135,7 +151,7 @@ export const BraceletStage = forwardRef<StageHandle, {
 
     const draw = (now: number) => {
       const { hidden } = propsRef.current; const hid = new Set(hidden);
-      const { curveOpen, dOpen, dRing, fe, f } = layout();
+      const { curveOpen, dOpen, dRing, fe, f } = layout(now);
       const sx = cssW / W, sy = cssH / H;
       ctx.setTransform(dpr * sx, 0, 0, dpr * sy, 0, 0);
       ctx.clearRect(0, 0, W, H);
@@ -206,8 +222,8 @@ export const BraceletStage = forwardRef<StageHandle, {
         anyAnim = true;
       }
       if (glint.current != null && now - glint.current > 1500) glint.current = null;
-      const active = anyAnim || glint.current != null || hid.size > 0 || anims.current.some((a) => a.pop != null || Math.abs(a.uv) > 1e-3) || Math.abs(sag.current.vel) > 0.02 || Math.abs(rest - sag.current.v) > 0.05;
-      const nowBusy = fo.v !== fo.to || hid.size > 0;
+      const active = anyAnim || glint.current != null || hid.size > 0 || anims.current.some((a) => a.pop != null || !a.arrived || Math.abs(a.uv) > 1e-3) || Math.abs(sag.current.vel) > 0.02 || Math.abs(rest - sag.current.v) > 0.05;
+      const nowBusy = fo.v !== fo.to || hid.size > 0 || anims.current.some((a) => !a.arrived);
       if (nowBusy !== busy.current) { busy.current = nowBusy; cbRef.current.onBusy(nowBusy); }
       return active;
     };
@@ -231,7 +247,7 @@ export const BraceletStage = forwardRef<StageHandle, {
     return () => { cancelAnimationFrame(raf.current); ro.disconnect(); canvas.removeEventListener("pointermove", onMove); canvas.removeEventListener("pointerleave", onLeave); canvas.removeEventListener("click", onClick); };
   }, []);
 
-  useEffect(() => { kickRef.current(); }, [beads, slots, folded, hidden]);
+  useEffect(() => { kickRef.current(); }, [beads, slots, folded, hidden, entries]);
 
   return <canvas ref={canvasRef} className={className} style={{ width: "100%", aspectRatio: `${W} / ${H}`, display: "block", touchAction: "manipulation" }} aria-label={`${beads.length} of ${slots} beads on the string`} role="img" />;
 });
