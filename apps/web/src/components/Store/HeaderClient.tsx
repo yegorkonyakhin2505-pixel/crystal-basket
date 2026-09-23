@@ -10,18 +10,21 @@ import { useDialog } from "@/hooks/useDialog";
 import { Wordmark } from "./Wordmark";
 import { LogoBadge } from "./LogoBadge";
 import { BagButton } from "./BagButton";
+import { SearchDialog, type SearchItem } from "./SearchDialog";
 
 interface NavItem { href: string; label: string; menu?: "intentions" | "stones" }
 interface Props {
   nav: NavItem[];
   intentions: { id: string; name: string; short: string; tagline: string }[];
-  stones: { id: string; name: string; palette: [string, string] }[];
+  stones: { id: string; name: string; palette: [string, string]; image: string | null }[];
+  search: SearchItem[];
   contact: { href: string; label: string; newTab: boolean };
   siteName: string;
   city: string;
 }
 
-export function HeaderClient({ nav, intentions, stones, contact, siteName, city }: Props) {
+export function HeaderClient({ nav, intentions, stones, search, contact, siteName, city }: Props) {
+  const [searchOpen, setSearchOpen] = useState(false);
   const path = usePathname();
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
@@ -47,8 +50,10 @@ export function HeaderClient({ nav, intentions, stones, contact, siteName, city 
   useEffect(() => {
     if (!menu) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMenu(null); };
+    const onDown = (e: PointerEvent) => { if (!(e.target as HTMLElement).closest("[data-menu-root]")) setMenu(null); };
     document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown, true);
+    return () => { document.removeEventListener("keydown", onKey); document.removeEventListener("pointerdown", onDown, true); };
   }, [menu]);
 
   const active = (href: string) => (href === "/" ? path === "/" : path.startsWith(href.replace(/\/$/, "")));
@@ -77,7 +82,7 @@ export function HeaderClient({ nav, intentions, stones, contact, siteName, city 
           <Wordmark className={cn("transition-all duration-300 max-lg:tracking-[0.16em]", compact ? "text-[0.95rem] sm:text-[1.05rem] lg:text-[1.6rem]" : "text-[1rem] sm:text-[1.15rem] lg:text-[2.4rem]")} />
         </Link>
         <div className="flex items-center gap-1 lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2">
-          <Link href={routes.shop} className="hidden sm:inline-flex p-2 hover:text-cb-rose" aria-label="Browse all bracelets"><Search className="h-5 w-5" strokeWidth={1.5} /></Link>
+          <button type="button" onClick={() => setSearchOpen(true)} className="inline-flex p-2 hover:text-cb-rose" aria-label="Search"><Search className="h-5 w-5" strokeWidth={1.5} /></button>
           <Link href={routes.wishlist} className="relative p-2 hover:text-cb-rose" aria-label="Wishlist">
             <Heart className="h-5 w-5" strokeWidth={1.5} />
             {count > 0 && <span className="absolute -right-0.5 -top-0.5 rounded-full bg-cb-ink text-white text-[9px] px-1.5 py-0.5 leading-none">{count}</span>}
@@ -93,6 +98,7 @@ export function HeaderClient({ nav, intentions, stones, contact, siteName, city 
           return (
             <div
               key={item.href}
+              data-menu-root
               className="relative h-full flex items-center"
               onMouseEnter={() => item.menu && setMenu(item.href)}
               onMouseLeave={() => setMenu(null)}
@@ -113,10 +119,10 @@ export function HeaderClient({ nav, intentions, stones, contact, siteName, city 
                         ))}
                       </div>
                     ) : (
-                      <div className="grid grid-cols-3 gap-x-6 gap-y-0.5">
+                      <div className="grid grid-cols-3 gap-x-6 gap-y-1">
                         {stones.map((s) => (
                           <Link key={s.id} href={routes.stone(s.id)} prefetch={false} onClick={() => setMenu(null)} className="flex items-center gap-2.5 py-1.5 text-[13px] hover:text-cb-rose">
-                            <span className="h-3 w-3 rounded-full ring-1 ring-black/10" style={{ background: `radial-gradient(circle at 35% 30%, ${s.palette[0]}, ${s.palette[1]})` }} />
+                            {s.image ? <img src={s.image} alt="" className="h-7 w-7 rounded-full object-cover ring-1 ring-black/5" loading="lazy" /> : <span className="h-3 w-3 rounded-full ring-1 ring-black/10" style={{ background: `radial-gradient(circle at 35% 30%, ${s.palette[0]}, ${s.palette[1]})` }} />}
                             {s.name}
                           </Link>
                         ))}
@@ -130,6 +136,8 @@ export function HeaderClient({ nav, intentions, stones, contact, siteName, city 
         })}
       </nav>
 
+      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} items={search} />
+
       {/* Mobile drawer */}
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden" data-lenis-prevent>
@@ -139,6 +147,7 @@ export function HeaderClient({ nav, intentions, stones, contact, siteName, city 
               <span className="flex items-center gap-2"><LogoBadge className="h-8 w-8" /><Wordmark className="text-[1.05rem] tracking-[0.16em]" /></span>
               <button className="p-2 -mr-2" aria-label="Close menu" onClick={closeDrawer}><X className="h-5 w-5" /></button>
             </div>
+            <button type="button" onClick={() => { closeDrawer(); setSearchOpen(true); }} className="mb-4 flex w-full items-center gap-2 border border-cb-line px-3 py-2.5 text-left text-[14px] text-cb-muted"><Search className="h-4 w-4" strokeWidth={1.5} /> Search bracelets, stones…</button>
             <nav className="flex flex-col" aria-label="Primary">
               {nav.map((n) => <Link key={n.href} href={n.href} onClick={closeDrawer} className="py-3 border-b border-cb-line text-[16px]">{n.label}</Link>)}
             </nav>

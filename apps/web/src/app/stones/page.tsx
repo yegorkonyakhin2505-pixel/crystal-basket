@@ -22,7 +22,7 @@ export default function StonesPage() {
         {stones.map((s) => (
           <Link key={s.id} href={routes.stone(s.id)} prefetch={false} className="group bg-white p-6 border-r border-b border-cb-line">
             {stoneImage(s) ? (
-              <div className="aspect-square mx-auto w-4/5 transition-transform duration-700 group-hover:scale-[1.04]"><Img src={stoneImage(s)!} alt={`${s.data.name} tumbled stone`} sizes="(min-width: 1024px) 20vw, 40vw" /></div>
+              <div className="aspect-square mx-auto w-3/5 transition-transform duration-700 group-hover:scale-[1.04]"><Img src={stoneImage(s)!} alt={`${s.data.name} tumbled stone`} sizes="(min-width: 1024px) 15vw, 30vw" /></div>
             ) : (
               <div className="aspect-square rounded-full mx-auto w-3/4 ring-1 ring-black/5 transition-transform duration-700 group-hover:scale-[1.04]" style={{ background: `radial-gradient(circle at 38% 32%, rgb(255 255 255 / 0.67) 0%, transparent 18%), radial-gradient(circle at 40% 35%, ${s.data.palette[0]}, ${s.data.palette[1]})` }} />
             )}

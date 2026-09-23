@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { Check, ChevronDown, X } from "lucide-react";
 import { cn } from "@/components/ui";
 
-export interface FilterOption { id: string; label: string }
+export interface FilterOption { id: string; label: string; image?: string | null }
 type GroupKey = "intention" | "stone" | "style" | "price";
 export type FilterState = Record<GroupKey, string[]>;
 export type SortKey = "recommended" | "price-asc" | "price-desc" | "new";
@@ -114,11 +114,12 @@ export function FilterBar({ intentions, stones, total, gridId }: { intentions: F
 
   useEffect(() => {
     if (!open) return;
-    const onClick = (e: MouseEvent) => { if (!(e.target as HTMLElement).closest("[data-filter-root]")) setOpen(null); };
+    // Capture-phase pointerdown: closes on any press outside the bar or its panels, even when the target stops propagation.
+    const onDown = (e: PointerEvent) => { if (!(e.target as HTMLElement).closest("[data-filter-root]")) setOpen(null); };
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(null); };
-    document.addEventListener("click", onClick);
+    document.addEventListener("pointerdown", onDown, true);
     document.addEventListener("keydown", onKey);
-    return () => { document.removeEventListener("click", onClick); document.removeEventListener("keydown", onKey); };
+    return () => { document.removeEventListener("pointerdown", onDown, true); document.removeEventListener("keydown", onKey); };
   }, [open]);
 
   // Lock page scroll behind the mobile sheet.
@@ -158,6 +159,7 @@ export function FilterBar({ intentions, stones, total, gridId }: { intentions: F
                   <span aria-hidden className={cn("flex h-[15px] w-[15px] shrink-0 items-center justify-center border transition-colors", on ? "border-cb-ink bg-cb-ink" : off ? "border-cb-line" : "border-cb-faint")}>
                     {on && <Check className="h-3 w-3 text-white" strokeWidth={3} />}
                   </span>
+                  {o.image && <img src={o.image} alt="" className="h-7 w-7 rounded-full object-cover ring-1 ring-black/5" loading="lazy" />}
                   <span className="flex-1">{o.label}</span>
                   <span className="text-[12px] tabular-nums text-cb-muted">{count}</span>
                 </label>

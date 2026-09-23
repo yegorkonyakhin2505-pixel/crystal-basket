@@ -85,7 +85,7 @@ export default function HomePage() {
       {leaving.length >= 2 && (
         <section className="bg-cb-band py-16 md:py-24">
           <div className="container-x">
-            <SectionTitle eyebrow="Limited edition" title="Leaving soon" text="One-off pieces from the studio, separate from our regular line. We have them in hand today and will not restring them once they sell out." />
+            <SectionTitle eyebrow="Leaving soon" title="One-off studio pieces" text="One-off pieces from the studio, separate from our regular line. We have them in hand today and will not restring them once they sell out." />
           </div>
           <ProductGrid products={leaving} />
           <div className="container-x mt-8 text-center"><ButtonLink href={routes.shop} variant="outline">Shop all bracelets</ButtonLink></div>

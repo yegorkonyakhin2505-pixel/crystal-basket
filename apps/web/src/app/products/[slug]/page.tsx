@@ -7,7 +7,7 @@ import { BuyBox } from "@/components/Store/BuyBox";
 import { BeadRing } from "@/components/Store/BeadRing";
 import { ProductGrid } from "@/components/Store/ProductGrid";
 import { AccordionItem, Badge, SectionTitle } from "@/components/ui";
-import { intentionImage, productImage } from "@/lib/images";
+import { intentionImage, productImage, stoneImage } from "@/lib/images";
 import { routes } from "@/lib/paths";
 import { site } from "@/lib/site";
 import { WRIST_SIZES, beadCount } from "@/lib/sizes";
@@ -105,14 +105,14 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           <h1 className="text-4xl md:text-[3rem]">{d.name}<span className="block font-body text-[14px] text-cb-muted mt-2 tracking-normal leading-normal">{d.seoTitle}</span></h1>
           <p className="font-display text-[1.35rem] mt-5 italic">{d.promise}</p>
           <div className="flex flex-wrap gap-1.5 mt-4">
-            {d.leavingSoon && <Badge tone="rose">Limited edition</Badge>}
+            {d.leavingSoon && <Badge tone="rose">Leaving soon</Badge>}
             <Badge tone="ink">{intention.data.short}</Badge>
             {secondary.map((s) => <Badge key={s.id}>{s.data.short}</Badge>)}
             {d.goldAccent && <Badge>14k gold-filled accent</Badge>}
             <Badge>{d.style}</Badge>
           </div>
           {d.leavingSoon && (
-            <p className="mt-4 text-[13px] text-cb-rose">Limited edition, leaving soon. A one-off piece from the studio: once these sell out we will not restring it.</p>
+            <p className="mt-4 text-[13px] text-cb-rose">Leaving soon. A one-off piece from the studio, separate from our regular line: once these sell out we will not restring it.</p>
           )}
           {stack && (
             <p className="mt-4 text-[13px] text-cb-muted">Part of <Link href={`${routes.stacks}?stack=${stack.id}#build`} className="text-cb-ink underline underline-offset-4 hover:text-cb-rose">{stack.data.name}</Link>, {site.stackDiscountPct}% off as a set of three.</p>
@@ -125,7 +125,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
               <ul className="space-y-3">
                 {stones.map((s) => (
                   <li key={s.id} className="flex gap-3">
-                    <span className="mt-1 h-5 w-5 shrink-0 rounded-full ring-1 ring-black/10" style={{ background: `radial-gradient(circle at 35% 30%, ${s.data.palette[0]}, ${s.data.palette[1]})` }} />
+                    {stoneImage(s) ? <img src={stoneImage(s)!} alt="" className="mt-0.5 h-8 w-8 shrink-0 rounded-full object-cover ring-1 ring-black/5" loading="lazy" /> : <span className="mt-1 h-5 w-5 shrink-0 rounded-full ring-1 ring-black/10" style={{ background: `radial-gradient(circle at 35% 30%, ${s.data.palette[0]}, ${s.data.palette[1]})` }} />}
                     <span><Link href={routes.stone(s.id)} prefetch={false} className="text-cb-ink underline underline-offset-4 hover:text-cb-rose">{s.data.name}</Link>: {s.data.keywords.join(", ")}. {s.data.description}</span>
                   </li>
                 ))}

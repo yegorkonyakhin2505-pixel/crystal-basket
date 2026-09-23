@@ -107,7 +107,7 @@ export default async function StonePage({ params }: { params: Promise<Params> })
             <h2 className="text-3xl md:text-[2.25rem]">What does {lower} pair well with?</h2>
             <p className="text-cb-muted mt-3 leading-relaxed">{d.name} is often worn beside {pairs.map((p) => p.data.name.toLowerCase()).join(", ").replace(/, ([^,]*)$/, " and $1")}. Every bracelet is 8 mm, so any of them stack evenly on the same wrist.</p>
             <p className="mt-4 flex flex-wrap gap-2 text-[13px]">
-              {pairs.map((p) => <Link key={p.id} href={routes.stone(p.id)} prefetch={false} className="inline-flex items-center gap-2 border border-cb-line px-3 py-1 hover:border-cb-ink"><span className="h-2.5 w-2.5 rounded-full" style={{ background: `radial-gradient(circle at 35% 30%, ${p.data.palette[0]}, ${p.data.palette[1]})` }} />{p.data.name}</Link>)}
+              {pairs.map((p) => <Link key={p.id} href={routes.stone(p.id)} prefetch={false} className="inline-flex items-center gap-2 border border-cb-line px-3 py-1 hover:border-cb-ink">{stoneImage(p) ? <img src={stoneImage(p)!} alt="" className="h-6 w-6 rounded-full object-cover ring-1 ring-black/5" loading="lazy" /> : <span className="h-2.5 w-2.5 rounded-full" style={{ background: `radial-gradient(circle at 35% 30%, ${p.data.palette[0]}, ${p.data.palette[1]})` }} />}{p.data.name}</Link>)}
             </p>
           </section>
         )}

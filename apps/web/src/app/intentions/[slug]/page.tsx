@@ -6,7 +6,7 @@ import { ListingHero } from "@/components/Store/ListingHero";
 import { ProductGrid } from "@/components/Store/ProductGrid";
 import { SectionTitle } from "@/components/ui";
 import { routes } from "@/lib/paths";
-import { intentionImage, productImage } from "@/lib/images";
+import { intentionImage, productImage, stoneImage } from "@/lib/images";
 import { site } from "@/lib/site";
 import { breadcrumbLd, collectionPageLd, ld } from "@/lib/schema";
 
@@ -44,7 +44,7 @@ export default async function IntentionPage({ params }: { params: Promise<Params
       <div className="bg-cb-band">
         <div className="container-x flex flex-wrap items-center gap-2 py-3 text-[13px]">
           <span className="text-cb-muted mr-2">Stones:</span>
-          {stones.map((s) => <Link key={s.id} href={routes.stone(s.id)} prefetch={false} className="inline-flex items-center gap-2 bg-white border border-cb-line px-3 py-1 hover:border-cb-ink"><span className="h-2.5 w-2.5 rounded-full" style={{ background: `radial-gradient(circle at 35% 30%, ${s.data.palette[0]}, ${s.data.palette[1]})` }} />{s.data.name}</Link>)}
+          {stones.map((s) => <Link key={s.id} href={routes.stone(s.id)} prefetch={false} className="inline-flex items-center gap-2 bg-white border border-cb-line px-3 py-1 hover:border-cb-ink">{stoneImage(s) ? <img src={stoneImage(s)!} alt="" className="h-6 w-6 rounded-full object-cover ring-1 ring-black/5" loading="lazy" /> : <span className="h-2.5 w-2.5 rounded-full" style={{ background: `radial-gradient(circle at 35% 30%, ${s.data.palette[0]}, ${s.data.palette[1]})` }} />}{s.data.name}</Link>)}
           <span className="ml-auto text-cb-muted">Chakra: {d.chakra.join(", ")}</span>
         </div>
       </div>
