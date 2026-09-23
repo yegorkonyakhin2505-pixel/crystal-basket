@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     [routes.home, [sources.page("page.tsx"), `${catalog}/products`]],
     [routes.shop, [sources.page("shop"), `${catalog}/products`]],
     [routes.stacks, [sources.page("stacks"), `${catalog}/stacks`]],
+    [routes.build, [sources.page("build"), "apps/web/src/components/Store/BraceletBuilder.tsx"]],
     [routes.intentions, [sources.page("intentions/page.tsx"), `${catalog}/intentions`]],
     [routes.stones, [sources.page("stones/page.tsx"), `${catalog}/stones`]],
     [routes.about, [sources.page("about")]],

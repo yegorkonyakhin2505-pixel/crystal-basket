@@ -13,6 +13,7 @@ export function Header() {
     { href: routes.intentions, label: "By intention", menu: "intentions" as const },
     { href: routes.stones, label: "By stone", menu: "stones" as const },
     { href: routes.stacks, label: "Stacks & sets" },
+    { href: routes.build, label: "Build your own" },
     { href: routes.about, label: "Our story" },
   ];
   return (

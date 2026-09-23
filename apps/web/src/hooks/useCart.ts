@@ -1,6 +1,8 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { CartGoneError, cartCreate, cartFetch, cartLinesAdd, cartLinesRemove, findVariantId, shopifyEnabled, type Cart } from "@/lib/shopify";
+import { CartGoneError, cartCreate, cartFetch, cartLinesAdd, cartLinesRemove, findVariantId, shopifyEnabled, type Cart, type LineInput } from "@/lib/shopify";
+
+export type AddItem = { handle: string; size: string; quantity?: number } | { merchandiseId: string; quantity?: number; attributes?: { key: string; value: string }[] };
 import { trackAddToCart } from "@/lib/analytics";
 
 const KEY = "cb-cart-id";
@@ -51,11 +53,13 @@ export function useCart() {
 
   const show = useCallback((v: boolean) => { drawerOpen = v; broadcast(); }, []);
 
-  const add = useCallback(async (items: { handle: string; size: string; quantity?: number }[]) => {
+  const add = useCallback(async (items: AddItem[]) => {
     if (!shopifyEnabled) return;
     setBusy(true); setError(null);
     try {
-      const lines = await Promise.all(items.map(async (i) => ({ merchandiseId: await findVariantId(i.handle, i.size), quantity: i.quantity ?? 1 })));
+      const lines: LineInput[] = await Promise.all(items.map(async (i) => "merchandiseId" in i
+        ? { merchandiseId: i.merchandiseId, quantity: i.quantity ?? 1, attributes: i.attributes }
+        : { merchandiseId: await findVariantId(i.handle, i.size), quantity: i.quantity ?? 1 }));
       const current = await restore();
       let next: Cart;
       try {

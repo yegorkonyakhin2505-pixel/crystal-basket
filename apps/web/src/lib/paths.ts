@@ -6,6 +6,7 @@ export const routes = {
   home: "/",
   shop: "/shop/",
   stacks: "/stacks/",
+  build: "/build/",
   intentions: "/intentions/",
   intention: (id: string) => `/intentions/${id}/`,
   stones: "/stones/",

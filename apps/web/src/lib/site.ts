@@ -27,6 +27,8 @@ export const site = {
   deliveryCopy: "Next-day delivery across the UAE.",
   announcement: "Free UAE delivery over 250 AED · Every piece cleansed & charged before it ships",
   stackDiscountPct: 15,
+  /** Build-your-own bracelet (/build/). Price = base + the highest stone tier used + the gold-filled bead. Shopify product "custom-bracelet" carries the same grid as variants. */
+  custom: { handle: "custom-bracelet", baseAED: 75, tierAED: { classic: 0, select: 10, rare: 20 }, goldAED: 10, maxGold: 3 },
   /** TODO[NEEDED:N03] replace with real review numbers. */
   reviews: { average: 4.9, count: 312 },
   whatsappGreeting: "Hi Crystal Basket! I'd like to order:",

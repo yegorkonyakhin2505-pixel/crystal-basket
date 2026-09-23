@@ -19,7 +19,8 @@ export class CartGoneError extends Error {
   constructor() { super("Your bag had expired, so we started a new one."); this.name = "CartGoneError"; }
 }
 
-export interface CartLine { id: string; quantity: number; title: string; variantTitle: string; handle: string; priceAED: number; image?: string; variantGid: string; productGid: string; vendor: string }
+export interface CartLine { id: string; quantity: number; title: string; variantTitle: string; handle: string; priceAED: number; image?: string; variantGid: string; productGid: string; vendor: string; attributes: { key: string; value: string }[] }
+export interface LineInput { merchandiseId: string; quantity: number; attributes?: { key: string; value: string }[] }
 export interface Cart { id: string; checkoutUrl: string; totalQuantity: number; subtotalAED: number; lines: CartLine[] }
 
 async function gql<T>(query: string, variables: Record<string, unknown> = {}): Promise<T> {
@@ -46,15 +47,15 @@ async function gql<T>(query: string, variables: Record<string, unknown> = {}): P
 const CART_FIELDS = `
   id checkoutUrl totalQuantity
   cost { subtotalAmount { amount currencyCode } }
-  lines(first: 50) { nodes { id quantity merchandise { ... on ProductVariant { id title product { id title handle vendor } price { amount } image { url(transform: { maxWidth: 240, maxHeight: 240 }) } } } } }
+  lines(first: 50) { nodes { id quantity attributes { key value } merchandise { ... on ProductVariant { id title product { id title handle vendor } price { amount } image { url(transform: { maxWidth: 240, maxHeight: 240 }) } } } } }
 `;
-interface RawCart { id: string; checkoutUrl: string; totalQuantity: number; cost: { subtotalAmount: { amount: string; currencyCode: string } }; lines: { nodes: { id: string; quantity: number; merchandise: { id: string; title: string; product: { id: string; title: string; handle: string; vendor: string }; price: { amount: string }; image?: { url: string } } }[] } }
+interface RawCart { id: string; checkoutUrl: string; totalQuantity: number; cost: { subtotalAmount: { amount: string; currencyCode: string } }; lines: { nodes: { id: string; quantity: number; attributes: { key: string; value: string }[]; merchandise: { id: string; title: string; product: { id: string; title: string; handle: string; vendor: string }; price: { amount: string }; image?: { url: string } } }[] } }
 interface MutationResult { cart: RawCart | null; userErrors: { message: string }[] }
 
 function shape(c: RawCart): Cart {
   return {
     id: c.id, checkoutUrl: c.checkoutUrl, totalQuantity: c.totalQuantity, subtotalAED: Number(c.cost.subtotalAmount.amount),
-    lines: c.lines.nodes.map((l) => ({ id: l.id, quantity: l.quantity, title: l.merchandise.product.title, handle: l.merchandise.product.handle, variantTitle: l.merchandise.title, priceAED: Number(l.merchandise.price.amount), image: l.merchandise.image?.url, variantGid: l.merchandise.id, productGid: l.merchandise.product.id, vendor: l.merchandise.product.vendor })),
+    lines: c.lines.nodes.map((l) => ({ id: l.id, quantity: l.quantity, title: l.merchandise.product.title, handle: l.merchandise.product.handle, variantTitle: l.merchandise.title, priceAED: Number(l.merchandise.price.amount), image: l.merchandise.image?.url, variantGid: l.merchandise.id, productGid: l.merchandise.product.id, vendor: l.merchandise.product.vendor, attributes: l.attributes ?? [] })),
   };
 }
 function settle(r: MutationResult, existing: boolean): Cart {
@@ -78,11 +79,28 @@ export async function findVariantId(handle: string, size: string): Promise<strin
   return v.id;
 }
 
-export async function cartCreate(lines: { merchandiseId: string; quantity: number }[]): Promise<Cart> {
+/** Resolve a variant by every option it must match (e.g. Wrist size, Stones, Gold bead), for the custom bracelet. */
+export async function findVariantByOptions(handle: string, wanted: Record<string, string>): Promise<string> {
+  const data = await gql<{ product: { variants: { nodes: { id: string; selectedOptions: { name: string; value: string }[] }[] } } | null }>(
+    `query($handle: String!) { product(handle: $handle) { variants(first: 100) { nodes { id selectedOptions { name value } } } } }`,
+    { handle },
+  );
+  const norm = (s: string) => s.trim().toLowerCase();
+  const v = data.product?.variants.nodes.find((n) =>
+    Object.entries(wanted).every(([name, value]) => {
+      const opt = n.selectedOptions.find((o) => norm(o.name) === norm(name));
+      return !!opt && (norm(opt.value) === norm(value) || norm(opt.value).startsWith(norm(value)));
+    }),
+  );
+  if (!v) throw new Error("This design is not available online yet. Email us the design and we will string it for you.");
+  return v.id;
+}
+
+export async function cartCreate(lines: LineInput[]): Promise<Cart> {
   const d = await gql<{ cartCreate: MutationResult }>(`mutation($lines: [CartLineInput!]!) { cartCreate(input: { lines: $lines }) { cart { ${CART_FIELDS} } userErrors { message } } }`, { lines });
   return settle(d.cartCreate, false);
 }
-export async function cartLinesAdd(cartId: string, lines: { merchandiseId: string; quantity: number }[]): Promise<Cart> {
+export async function cartLinesAdd(cartId: string, lines: LineInput[]): Promise<Cart> {
   const d = await gql<{ cartLinesAdd: MutationResult }>(`mutation($cartId: ID!, $lines: [CartLineInput!]!) { cartLinesAdd(cartId: $cartId, lines: $lines) { cart { ${CART_FIELDS} } userErrors { message } } }`, { cartId, lines });
   return settle(d.cartLinesAdd, true);
 }

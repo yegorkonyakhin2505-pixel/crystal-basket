@@ -40,6 +40,8 @@ export function GET() {
     "",
     ...getStacks().map((s) => `- [${s.data.name}](${u(`${routes.stacks}?stack=${s.id}`)}): ${s.data.description} ${s.data.priceAED} AED.`),
     "",
+    `- [Build your own bracelet](${u(routes.build)}): pick a wrist size, drop in any of the ${getStones().length} stones bead by bead, add a gold-filled bead, from ${site.custom.baseAED} AED.`,
+    "",
     "## Guides",
     "",
     `- [Size guide](${u(routes.sizeGuide)}): how to measure a wrist and choose S, M or L.`,

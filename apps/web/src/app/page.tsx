@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { formatAED, getProducts, getStacks, getIntention, getProduct, stackSubtotal } from "@crystal-basket/catalog";
+import { formatAED, getProducts, getStacks, getStones, getIntention, getProduct, stackSubtotal } from "@crystal-basket/catalog";
+import { BeadRing } from "@/components/Store/BeadRing";
 import { Hero } from "@/components/Store/Hero";
 import { CategoryGrid } from "@/components/Store/CategoryGrid";
 import { ProductGrid } from "@/components/Store/ProductGrid";
@@ -21,6 +22,8 @@ export default function HomePage() {
   const bestsellers = [...products.filter((p) => p.data.bestseller), ...products.filter((p) => p.data.featured && !p.data.bestseller)].slice(0, 4);
   const fresh = products.filter((p) => p.data.isNew).slice(0, 4);
   const leaving = products.filter((p) => p.data.leavingSoon && p.data.inStock);
+  const stoneCount = getStones().length;
+  const builderPalettes = ["amethyst", "rose-quartz", "clear-quartz", "green-aventurine"].map((id) => getStones().find((s) => s.id === id)!.data.palette);
   const stacks = getStacks().filter((s) => s.data.featured);
   return (
     <>
@@ -90,6 +93,18 @@ export default function HomePage() {
           <div className="container-x mt-8 text-center"><ButtonLink href={routes.shop} variant="outline">Shop all bracelets</ButtonLink></div>
         </section>
       )}
+
+      <section className="container-x py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+        <div className="order-2 lg:order-1 reveal">
+          <p className="label-caps mb-3">Build your own</p>
+          <h2 className="text-3xl md:text-[2.5rem]">Design it bead by bead.</h2>
+          <p className="text-cb-muted mt-4 max-w-md">Pick a wrist size, tap a stone and watch it drop onto the ring. Mix any of our {stoneCount} stones, add a gold-filled bead, and we string it to order in Dubai from {site.custom.baseAED} AED.</p>
+          <ButtonLink href={routes.build} className="mt-6">Start building</ButtonLink>
+        </div>
+        <Link href={routes.build} className="order-1 lg:order-2 block bg-cb-band p-8 md:p-12 group" aria-label="Open the bracelet builder">
+          <div className="mx-auto max-w-[360px] transition-transform duration-700 group-hover:scale-[1.03]"><BeadRing palettes={builderPalettes} gold count={23} /></div>
+        </Link>
+      </section>
 
       {fresh.length >= 2 && (
         <section className="container-x py-16 md:py-24">

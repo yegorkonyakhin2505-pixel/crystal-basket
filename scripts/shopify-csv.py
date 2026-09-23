@@ -18,7 +18,7 @@ SITE = "https://crystalbasket.store"
 SIZES = [("S", 16), ("M", 18), ("L", 20)]
 COLUMNS = [
     "Handle", "Title", "Body (HTML)", "Vendor", "Product Category", "Type", "Tags", "Published",
-    "Option1 Name", "Option1 Value", "Option2 Name", "Option2 Value",
+    "Option1 Name", "Option1 Value", "Option2 Name", "Option2 Value", "Option3 Name", "Option3 Value",
     "Variant SKU", "Variant Grams", "Variant Inventory Tracker", "Variant Inventory Qty", "Variant Inventory Policy",
     "Variant Fulfillment Service", "Variant Price", "Variant Requires Shipping", "Variant Taxable",
     "Image Src", "Image Position", "Image Alt Text", "SEO Title", "SEO Description", "Status",
@@ -36,6 +36,46 @@ def image_url(slug, filename):
         return ""
     digest = hashlib.md5(open(path, "rb").read()).hexdigest()[:8]
     return f"{SITE}/images/products/{slug}/{filename}?v={digest}"  # new hash = Shopify fetches the new photo
+
+
+# Build-your-own bracelet (/build/): one Shopify product whose variants cover every price the builder can produce.
+# Keep in step with site.custom in apps/web/src/lib/site.ts.
+CUSTOM = {"handle": "custom-bracelet", "base": 75, "tiers": [("Classic", 0), ("Select", 10), ("Rare", 20)], "gold": 10}
+
+
+def custom_rows():
+    rows, first = [], True
+    body = (
+        "<p><em>Designed bead by bead on crystalbasket.store.</em></p>"
+        "<p>A made-to-order 8&nbsp;mm bracelet strung from the stones the customer chose in the builder. "
+        "The exact bead sequence, wrist size and any gold-filled bead are listed on the order line.</p>"
+        "<p>Natural, undyed stone on 1&nbsp;mm premium stretch cord. Includes meaning card, care card and linen pouch. Cleansed on selenite before it ships.</p>"
+    )
+    for size, cm in SIZES:
+        for tier, add in CUSTOM["tiers"]:
+            for gold, gadd in (("No", 0), ("Yes", CUSTOM["gold"])):
+                rows.append({
+                    "Handle": CUSTOM["handle"],
+                    "Title": "Custom bracelet" if first else "",
+                    "Body (HTML)": body if first else "",
+                    "Vendor": "Crystal Basket" if first else "",
+                    "Product Category": "Apparel & Accessories > Jewelry > Bracelets" if first else "",
+                    "Type": "Crystal bracelet" if first else "",
+                    "Tags": "custom, build your own" if first else "",
+                    "Published": "TRUE" if first else "",
+                    "Option1 Name": "Wrist size", "Option1 Value": f"{size} · {cm} cm",
+                    "Option2 Name": "Stones", "Option2 Value": tier,
+                    "Option3 Name": "Gold bead", "Option3 Value": gold,
+                    "Variant SKU": f"CB-CUSTOM-{size}-{tier[:1]}{'G' if gold == 'Yes' else ''}", "Variant Grams": 20,
+                    "Variant Inventory Tracker": "shopify", "Variant Inventory Qty": 100, "Variant Inventory Policy": "continue",
+                    "Variant Fulfillment Service": "manual", "Variant Price": CUSTOM["base"] + add + gadd,
+                    "Variant Requires Shipping": "TRUE", "Variant Taxable": "TRUE",
+                    "Image Src": f"{SITE}/images/hero/hero-2.jpg" if first else "", "Image Position": 1 if first else "", "Image Alt Text": "Custom crystal bracelet" if first else "",
+                    "SEO Title": "Custom Crystal Bracelet" if first else "", "SEO Description": "A bracelet designed bead by bead in the Crystal Basket builder and strung to order in Dubai." if first else "",
+                    "Status": "active" if first else "",
+                })
+                first = False
+    return rows
 
 
 def main():
@@ -76,7 +116,7 @@ def main():
                 "Tags": ", ".join(tags) if first else "",
                 "Published": "TRUE" if first else "",
                 "Option1 Name": "Wrist size", "Option1 Value": f"{size} · {cm} cm",
-                "Option2 Name": "", "Option2 Value": "",
+                "Option2 Name": "", "Option2 Value": "", "Option3 Name": "", "Option3 Value": "",
                 "Variant SKU": f"{sku_base}-{size}", "Variant Grams": 20,
                 "Variant Inventory Tracker": "shopify", "Variant Inventory Qty": 5 if in_stock else 0, "Variant Inventory Policy": "continue" if in_stock else "deny",
                 "Variant Fulfillment Service": "manual", "Variant Price": p["priceAED"],
@@ -86,12 +126,13 @@ def main():
                 "SEO Description": p["promise"] if first else "",
                 "Status": "active" if first else "",
             })
+    rows += custom_rows()
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=COLUMNS)
         w.writeheader()
         w.writerows(rows)
-    print(f"{OUT}: {len(products)} products, {len(rows)} variants")
+    print(f"{OUT}: {len(products)} products + custom bracelet, {len(rows)} variants")
 
 
 if __name__ == "__main__":

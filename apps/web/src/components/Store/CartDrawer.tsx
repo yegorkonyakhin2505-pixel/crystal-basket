@@ -37,6 +37,7 @@ export function CartDrawer() {
                   <div className="flex-1 min-w-0">
                     <p className="font-display text-[1.15rem] leading-tight">{l.title}</p>
                     <p className="text-[12px] text-cb-muted">{l.variantTitle}{l.quantity > 1 && ` × ${l.quantity}`}</p>
+                    {l.attributes.map((a) => <p key={a.key} className="text-[11px] text-cb-muted mt-0.5 line-clamp-2"><span className="text-cb-faint">{a.key}:</span> {a.value}</p>)}
                     <button onClick={() => remove(l.id)} disabled={busy} className="text-[11px] uppercase tracking-[0.14em] text-cb-muted underline underline-offset-4 mt-2 hover:text-cb-rose disabled:opacity-50">Remove</button>
                   </div>
                   <p className="price text-[15px]">{formatAED(l.priceAED * l.quantity)}</p>
