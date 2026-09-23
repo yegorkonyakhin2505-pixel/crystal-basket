@@ -105,14 +105,14 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
           <h1 className="text-4xl md:text-[3rem]">{d.name}<span className="block font-body text-[14px] text-cb-muted mt-2 tracking-normal leading-normal">{d.seoTitle}</span></h1>
           <p className="font-display text-[1.35rem] mt-5 italic">{d.promise}</p>
           <div className="flex flex-wrap gap-1.5 mt-4">
-            {d.leavingSoon && <Badge tone="rose">Leaving soon</Badge>}
+            {d.leavingSoon && <Badge tone="rose">Limited edition</Badge>}
             <Badge tone="ink">{intention.data.short}</Badge>
             {secondary.map((s) => <Badge key={s.id}>{s.data.short}</Badge>)}
             {d.goldAccent && <Badge>14k gold-filled accent</Badge>}
             <Badge>{d.style}</Badge>
           </div>
           {d.leavingSoon && (
-            <p className="mt-4 text-[13px] text-cb-rose">Last of the studio stock. Once these sell out we will not restring this piece.</p>
+            <p className="mt-4 text-[13px] text-cb-rose">Limited edition, leaving soon. A one-off piece from the studio: once these sell out we will not restring it.</p>
           )}
           {stack && (
             <p className="mt-4 text-[13px] text-cb-muted">Part of <Link href={`${routes.stacks}?stack=${stack.id}#build`} className="text-cb-ink underline underline-offset-4 hover:text-cb-rose">{stack.data.name}</Link>, {site.stackDiscountPct}% off as a set of three.</p>

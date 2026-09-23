@@ -18,7 +18,7 @@ export function ProductTile({ product, eager = false }: { product: Product; eage
   const stones = stonesForProduct(product);
   const intention = getIntention(d.intention);
   const img = productImage(product);
-  const badge = !d.inStock ? "Sold out" : d.leavingSoon ? "Leaving soon" : d.isNew ? "New" : d.bestseller ? "Bestseller" : null;
+  const badge = !d.inStock ? "Sold out" : d.leavingSoon ? "Limited edition" : d.isNew ? "New" : d.bestseller ? "Bestseller" : null;
   const stoneLine = stones.length > 3 ? `${stones.length} stones` : stones.map((s) => s.data.name).join(", ");
   const spec = [stoneLine, `${BEAD_MM}mm`, d.goldAccent ? "14k gold-filled accent" : null].filter(Boolean).join(", ");
   return (
