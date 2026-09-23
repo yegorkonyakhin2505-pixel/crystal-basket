@@ -49,6 +49,8 @@ def main():
             tags.append("gold accent")
         if p.get("bestseller"):
             tags.append("bestseller")
+        if p.get("leavingSoon"):
+            tags.append("leaving soon")
         body = (
             f"<p><em>{p['promise']}</em></p><p>{p['body']}</p>"
             f"<p><strong>Stones:</strong> {', '.join(stone_names)}.<br><strong>Intention:</strong> {intention['name']}.<br>"

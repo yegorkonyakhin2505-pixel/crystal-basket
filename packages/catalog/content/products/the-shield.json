@@ -18,9 +18,10 @@
   "body": "Polished eight-millimetre obsidian, nothing else. Volcanic glass with a deep mirror finish, traditionally worn as a shield and for the honesty to see what needs to go.",
   "affirmation": "I release what no longer serves me.",
   "tags": [
+    "bestseller",
+    "leaving soon",
     "men",
-    "minimal",
-    "bestseller"
+    "minimal"
   ],
   "images": [
     "main.jpg",
@@ -28,5 +29,6 @@
   ],
   "bestseller": true,
   "seoTitle": "Black Obsidian Protection Bracelet",
-  "seoDescription": "Black obsidian bracelet, traditionally worn for protection. Polished 8 mm volcanic glass, hand-strung in Dubai, next-day delivery across the UAE."
+  "seoDescription": "Black obsidian bracelet, traditionally worn for protection. Polished 8 mm volcanic glass, hand-strung in Dubai, next-day delivery across the UAE.",
+  "leavingSoon": true
 }

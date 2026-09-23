@@ -20,6 +20,7 @@ export default function HomePage() {
   // Four tiles: bestsellers first, then featured pieces so the row is never left half empty.
   const bestsellers = [...products.filter((p) => p.data.bestseller), ...products.filter((p) => p.data.featured && !p.data.bestseller)].slice(0, 4);
   const fresh = products.filter((p) => p.data.isNew).slice(0, 4);
+  const leaving = products.filter((p) => p.data.leavingSoon && p.data.inStock);
   const stacks = getStacks().filter((s) => s.data.featured);
   return (
     <>
@@ -79,6 +80,16 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {leaving.length >= 2 && (
+        <section className="bg-cb-band py-16 md:py-24">
+          <div className="container-x">
+            <SectionTitle eyebrow="Leaving soon" title="Last of the studio stock" text="Single-stone pieces we have in hand today and will not restring once they sell out. When they go, they go." />
+          </div>
+          <ProductGrid products={leaving} />
+          <div className="container-x mt-8 text-center"><ButtonLink href={routes.shop} variant="outline">Shop all bracelets</ButtonLink></div>
+        </section>
+      )}
 
       {fresh.length >= 2 && (
         <section className="container-x py-16 md:py-24">

@@ -147,6 +147,24 @@
    1200
   ]
  },
+ "/images/products/the-blush/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-clarity/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
  "/images/products/the-clear-sight/main.jpg": {
   "w": 1200,
   "h": 1200,
@@ -166,6 +184,15 @@
   ]
  },
  "/images/products/the-devotion/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-ember/main.jpg": {
   "w": 1200,
   "h": 1200,
   "webp": [
@@ -219,6 +246,33 @@
    1200
   ]
  },
+ "/images/products/the-prism/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-quiet/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-root/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
  "/images/products/the-seven/lifestyle.jpg": {
   "w": 900,
   "h": 1200,
@@ -264,7 +318,25 @@
    1200
   ]
  },
+ "/images/products/the-sunlit/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
  "/images/products/the-tender-heart/main.jpg": {
+  "w": 1200,
+  "h": 1200,
+  "webp": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "/images/products/the-vault/main.jpg": {
   "w": 1200,
   "h": 1200,
   "webp": [

@@ -99,6 +99,8 @@ export const ProductSchema = z.object({
   featured: z.boolean().default(false),
   bestseller: z.boolean().default(false),
   isNew: z.boolean().default(false),
+  /** Real stock we will not restring once sold: shows the "Leaving soon" tag and the home strip. */
+  leavingSoon: z.boolean().default(false),
   tags: z.array(z.string()).default([]),
   /** SEO: <title> before the " · Crystal Basket" suffix, stones and type first. */
   seoTitle: z.string().min(20).max(50),
