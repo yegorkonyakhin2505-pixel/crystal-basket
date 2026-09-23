@@ -19,7 +19,6 @@
   "affirmation": "I release what no longer serves me.",
   "tags": [
     "bestseller",
-    "leaving soon",
     "men",
     "minimal"
   ],
@@ -30,5 +29,5 @@
   "bestseller": true,
   "seoTitle": "Black Obsidian Protection Bracelet",
   "seoDescription": "Black obsidian bracelet, traditionally worn for protection. Polished 8 mm volcanic glass, hand-strung in Dubai, next-day delivery across the UAE.",
-  "leavingSoon": true
+  "leavingSoon": false
 }
