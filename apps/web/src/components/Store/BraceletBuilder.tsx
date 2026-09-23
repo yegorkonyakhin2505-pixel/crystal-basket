@@ -7,7 +7,7 @@ import { useCart } from "@/hooks/useCart";
 import { findVariantByOptions } from "@/lib/shopify";
 import { contactOpensNewTab, contactUrl } from "@/lib/contact";
 import { WRIST_SIZES, beadCount, type WristSizeKey } from "@/lib/sizes";
-import { BraceletStage } from "./BraceletStage";
+import { BraceletStage, type StageHandle } from "./BraceletStage";
 
 export interface BuilderStone { id: string; name: string; palette: [string, string]; tier: "classic" | "select" | "rare"; keywords: string[]; waterSafe: boolean; image: string | null; bead: string | null }
 export interface BuilderIntention { id: string; short: string; stones: string[] }
@@ -17,6 +17,8 @@ const GOLD = "gold";
 const TIER_LABEL = { classic: "Classic", select: "Select", rare: "Rare" } as const;
 const SIZE_KEYS = Object.keys(WRIST_SIZES) as WristSizeKey[];
 type Bead = { id: number; stone: string };
+type Flight = { id: number; stone: string; t0: number; dur: number; from: { x: number; y: number; w: number } };
+const easeInOutQuad = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 
 function useTicker(value: number) {
   const [shown, setShown] = useState(value);
@@ -43,7 +45,13 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
   const [qty, setQty] = useState(1);
   const [history, setHistory] = useState<Bead[][]>([]);
   const [folded, setFolded] = useState(false);
-  const [busy, setBusy] = useState(false);
+  const [stageBusy, setStageBusy] = useState(false);
+  const [flights, setFlights] = useState<Flight[]>([]);
+  const flightsRef = useRef<Flight[]>([]); flightsRef.current = flights;
+  const stageRef = useRef<StageHandle>(null);
+  const colRef = useRef<HTMLDivElement>(null);
+  const flightEls = useRef<Map<number, HTMLImageElement>>(new Map());
+  const busy = stageBusy || flights.length > 0;
   const [hoverStone, setHoverStone] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [adding, setAdding] = useState(false);
@@ -56,6 +64,7 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
   const remaining = Math.max(0, slots - beads.length);
   const full = beads.length === slots;
   const complete = full && folded && !busy;
+  const hidden = useMemo(() => flights.map((f) => f.id), [flights]);
   const byId = useMemo(() => Object.fromEntries(stones.map((s) => [s.id, s])), [stones]);
   const goldCount = beads.filter((b) => b.stone === GOLD).length;
   const nameOf = (id: string) => (id === GOLD ? "Gold-filled bead" : byId[id]?.name ?? id);
@@ -83,8 +92,48 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
     const gold = beadsRef.current.filter((b) => b.stone === GOLD).length;
     if (stone === GOLD) count = Math.min(count, Math.max(0, pricing.maxGold - gold));
     count = Math.min(count, slots - beadsRef.current.length); if (count <= 0) return;
-    setFolded(false); snapshot(); setBeads((b) => [...b, ...Array.from({ length: count }, () => ({ id: nextId.current++, stone }))]);
+    const fresh = Array.from({ length: count }, () => ({ id: nextId.current++, stone }));
+    setFolded(false); snapshot(); setBeads((b) => [...b, ...fresh]);
+    // fly each new bead out of the tray: clone the tray bead, arc it into its slot, then let the stage draw it
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const trayImg = document.querySelector<HTMLElement>(`[data-tray="${stone}"] [data-bead]`);
+    const rect = trayImg?.getBoundingClientRect();
+    if (rect && !reduce) {
+      const now = performance.now();
+      setFlights((f) => [...f, ...fresh.map((b, k) => ({ id: b.id, stone, t0: now + k * 110, dur: 620, from: { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2, w: rect.width } }))]);
+      trayImg?.animate([{ transform: "scale(1)", opacity: 1 }, { transform: "scale(.3)", opacity: 0, offset: 0.22 }, { transform: "scale(.3)", opacity: 0, offset: 0.55 }, { transform: "scale(1.15)", opacity: 1, offset: 0.85 }, { transform: "scale(1)", opacity: 1 }], { duration: 720, easing: "ease-out" });
+    }
   }, [pricing.maxGold, slots, snapshot]);
+  // flight loop: aim every frame at the bead's live slot position reported by the stage
+  useEffect(() => {
+    if (!flights.length) return;
+    let raf = 0;
+    const tick = (now: number) => {
+      const col = colRef.current?.getBoundingClientRect(); if (!col) return;
+      const done: number[] = [];
+      for (const f of flightsRef.current) {
+        const el = flightEls.current.get(f.id); const to = stageRef.current?.posOf(f.id);
+        if (!el || !to) continue;
+        const k = Math.min(1, Math.max(0, (now - f.t0) / f.dur));
+        if (now < f.t0) { el.style.opacity = "0"; continue; }
+        const e = easeInOutQuad(k);
+        const fx = f.from.x - col.left, fy = f.from.y - col.top, tx = to.x - col.left, ty = to.y - col.top;
+        const lift = Math.max(40, Math.hypot(tx - fx, ty - fy) * 0.28);
+        const cx = (fx + tx) / 2, cy = Math.min(fy, ty) - lift;
+        const q = 1 - e;
+        const x = q * q * fx + 2 * q * e * cx + e * e * tx, y = q * q * fy + 2 * q * e * cy + e * e * ty;
+        const size = f.from.w + (to.r * 2 - f.from.w) * e;
+        el.style.opacity = "1";
+        el.style.transform = `translate(${x - size / 2}px, ${y - size / 2}px) rotate(${(1 - e) * 140}deg)`;
+        el.style.width = el.style.height = `${size}px`;
+        if (k >= 1) done.push(f.id);
+      }
+      if (done.length) setFlights((cur) => cur.filter((f) => !done.includes(f.id)));
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [flights.length]);
   const fillWithLast = useCallback(() => { const last = beadsRef.current[beadsRef.current.length - 1]; if (last && last.stone !== GOLD) add(last.stone, slots); }, [add, slots]);
   const repeatPattern = useCallback(() => {
     const cur = beadsRef.current; const room = slots - cur.length; if (!cur.length || room <= 0) return;
@@ -93,9 +142,9 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
     setFolded(false); snapshot(); setBeads((b) => [...b, ...added]);
   }, [pricing.maxGold, slots, snapshot]);
   const removeBead = useCallback((id: number) => { setFolded(false); snapshot(); setBeads((b) => b.filter((x) => x.id !== id)); }, [snapshot]);
-  const undo = useCallback(() => { setFolded(false); setHistory((h) => { const prev = h[h.length - 1]; if (prev) setBeads(prev); return h.slice(0, -1); }); }, []);
-  const clear = useCallback(() => { setFolded(false); snapshot(); setBeads([]); }, [snapshot]);
-  const changeSize = useCallback((k: WristSizeKey) => { setSize(k); setFolded(false); const n = beadCount(BEAD_MM, WRIST_SIZES[k].cm); setBeads((b) => b.slice(0, n)); }, []);
+  const undo = useCallback(() => { setFolded(false); setFlights([]); setHistory((h) => { const prev = h[h.length - 1]; if (prev) setBeads(prev); return h.slice(0, -1); }); }, []);
+  const clear = useCallback(() => { setFolded(false); setFlights([]); snapshot(); setBeads([]); }, [snapshot]);
+  const changeSize = useCallback((k: WristSizeKey) => { setSize(k); setFolded(false); setFlights([]); const n = beadCount(BEAD_MM, WRIST_SIZES[k].cm); setBeads((b) => b.slice(0, n)); }, []);
 
   const usedStones = useMemo(() => { const c = new Map<string, number>(); for (const b of beads) c.set(b.stone, (c.get(b.stone) ?? 0) + 1); return [...c.entries()].sort((a, b) => b[1] - a[1]); }, [beads]);
   const tier = useMemo(() => { const t = usedStones.map(([id]) => byId[id]?.tier).filter(Boolean) as ("classic" | "select" | "rare")[]; return t.includes("rare") ? "rare" : t.includes("select") ? "select" : "classic"; }, [usedStones, byId]);
@@ -122,8 +171,11 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
 
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
-      <div className="space-y-4">
-        <div className="rounded-[1.5rem] bg-cb-band px-4 pt-4 pb-3">
+      <div ref={colRef} className="relative space-y-4">
+        <div className="pointer-events-none absolute inset-0 z-20" aria-hidden>
+          {flights.map((f) => <img key={f.id} ref={(el) => { if (el) flightEls.current.set(f.id, el); else flightEls.current.delete(f.id); }} src={spriteFor(f.stone) ?? undefined} alt="" className="absolute left-0 top-0 drop-shadow-[0_10px_10px_rgb(0_0_0/.25)]" style={{ opacity: 0, width: f.from.w, height: f.from.w, willChange: "transform" }} draggable={false} />)}
+        </div>
+        <div className="rounded-[1.5rem] bg-cb-band px-4 pt-4 pb-3 overflow-visible">
           <div className="flex items-baseline justify-between mb-3"><p className="label-caps">Tap a bead to string it</p><p className="text-[12px] text-cb-muted">{remaining} of {slots} to go</p></div>
           <div className="grid grid-cols-6 sm:grid-cols-9 gap-x-1 gap-y-3" role="listbox" aria-label="Beads">
             {tray.map((t) => {
@@ -132,7 +184,7 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
                 <button key={t.id} type="button" role="option" aria-selected={false} data-tray={t.id} disabled={disabled} onClick={() => add(t.id, qty)} title={`${t.name}${t.extra ? ` (+${t.extra} AED)` : ""}: ${t.keywords.join(", ")}`} className="group flex flex-col items-center gap-1 transition-opacity disabled:opacity-55 disabled:cursor-not-allowed">
                   <span className="relative block h-12 w-12 sm:h-14 sm:w-14 transition-transform duration-300 ease-[cubic-bezier(.22,1,.36,1)] group-hover:-translate-y-1.5 group-hover:scale-110 group-active:translate-y-0.5 group-active:scale-95">
                     <span className="absolute inset-x-1 -bottom-0.5 h-2 rounded-full bg-black/15 blur-[3px] transition-all duration-300 group-hover:inset-x-2 group-hover:opacity-60" />
-                    {t.sprite ? <img src={t.sprite} alt="" className="relative block h-full w-full" loading="lazy" draggable={false} /> : <span className="relative block h-full w-full rounded-full bg-cb-line" />}
+                    {t.sprite ? <img data-bead src={t.sprite} alt="" className="relative block h-full w-full" loading="lazy" draggable={false} /> : <span data-bead className="relative block h-full w-full rounded-full bg-cb-line" />}
                     {t.extra > 0 && <span className="absolute -right-1 -top-1 rounded-full bg-white px-1 text-[8px] leading-4 text-cb-rose shadow-sm">+{t.extra}</span>}
                   </span>
                   <span className="text-[10px] leading-tight text-center text-cb-muted group-hover:text-cb-ink">{t.name}</span>
@@ -143,7 +195,7 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
         </div>
 
         <div className="relative rounded-[1.5rem] bg-[radial-gradient(ellipse_at_50%_40%,white_0%,var(--cb-band)_78%)] px-2 pt-2 pb-2 overflow-hidden">
-          <BraceletStage beads={beads} slots={slots} folded={folded} sprites={sprites} onRemove={removeBead} onBusy={setBusy} onHover={setHoverStone} />
+          <BraceletStage ref={stageRef} beads={beads} slots={slots} folded={folded} hidden={hidden} sprites={sprites} onRemove={removeBead} onBusy={setStageBusy} onHover={setHoverStone} />
           <div className="pointer-events-none absolute left-4 top-3 flex items-baseline gap-1.5 text-[12px] text-cb-muted"><span className="font-display text-[1.35rem] text-cb-ink tabular-nums">{beads.length}</span> / {slots}{hoverStone && <span className="ml-2">· {nameOf(hoverStone)} · tap to take off</span>}{busy && !hoverStone && <span className="ml-2">· stringing…</span>}</div>
           <div className="absolute right-4 top-3">
             {full && !folded && <button type="button" disabled={busy} onClick={() => setFolded(true)} className="cta-glow inline-flex h-9 items-center bg-cb-ink px-4 text-white text-[11px] uppercase tracking-[0.14em] transition-all hover:bg-black active:scale-[.97] disabled:opacity-60">Done · form the bracelet</button>}
