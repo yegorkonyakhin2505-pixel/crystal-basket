@@ -11,7 +11,7 @@
     "build:js": "vite build",
     "typecheck": "tsc --noEmit",
     "sync": "tsx scripts/sync-shopify.ts",
-    "push": "shopify theme push --path theme --store utx8rj-t3.myshopify.com",
+    "push": "shopify theme push --theme 155126235315 --allow-live --path theme --store utx8rj-t3.myshopify.com",
     "check": "shopify theme check --path theme"
   },
   "dependencies": {
