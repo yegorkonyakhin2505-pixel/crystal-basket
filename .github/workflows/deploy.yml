@@ -1,8 +1,8 @@
 name: Deploy to GitHub Pages
 
+# Frozen on 2026-10-02: the storefront now lives in Shopify (ADR 0003, apps/theme) and crystalbasket.store
+# points at Shopify. Kept on manual dispatch only, as a rollback path for apps/web while it is still in the repo.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
