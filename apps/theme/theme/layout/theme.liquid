@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
   {%- render 'cb-meta' -%}
+  {%- comment -%} Shopify reserves /shop, so the URL redirect cannot catch the old shop page: send it to the collection here. {%- endcomment -%}
+  {%- if request.path == '/shop' or request.path == '/shop/' -%}<meta http-equiv="refresh" content="0; url={{ routes.all_products_collection_url }}">{%- endif -%}
   <link rel="icon" href="{{ 'cb-favicon.svg' | asset_url }}" type="image/svg+xml">
   <link rel="icon" href="{{ 'cb-favicon.ico' | asset_url }}" sizes="32x32">
   <link rel="icon" href="{{ 'cb-icon-192.png' | asset_url }}" sizes="192x192" type="image/png">
