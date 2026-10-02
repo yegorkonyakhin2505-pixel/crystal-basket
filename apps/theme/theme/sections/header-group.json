@@ -1,0 +1,9 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement": { "type": "cb-announcement", "settings": {} },
+    "header": { "type": "cb-header", "settings": {} }
+  },
+  "order": ["announcement", "header"]
+}

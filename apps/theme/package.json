@@ -1,0 +1,37 @@
+{
+  "name": "theme",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Crystal Basket Shopify theme: Liquid templates + React islands, built from the same catalog and design tokens as apps/web.",
+  "scripts": {
+    "build": "pnpm run build:data && pnpm run build:css && pnpm run build:js",
+    "build:data": "tsx scripts/build-data.ts",
+    "build:css": "tailwindcss -i src/styles/theme.css -o theme/assets/cb-theme.css --minify",
+    "build:js": "vite build",
+    "typecheck": "tsc --noEmit",
+    "sync": "tsx scripts/sync-shopify.ts",
+    "push": "shopify theme push --path theme --store utx8rj-t3.myshopify.com",
+    "check": "shopify theme check --path theme"
+  },
+  "dependencies": {
+    "@crystal-basket/catalog": "workspace:*",
+    "clsx": "^2.1.1",
+    "lenis": "^1.3.0",
+    "lucide-react": "^1.0.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "tailwind-merge": "^3.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.3.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0",
+    "vite": "^6.0.0"
+  }
+}

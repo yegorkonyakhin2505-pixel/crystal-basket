@@ -1,0 +1,110 @@
+{%- comment -%}
+  Stacks & sets (mirror of apps/web stacks/page.tsx): listing hero, the curated stacks (metaobjects of type `stack`,
+  in name order) and the StackBuilder island. Stack cards link to `?stack=<handle>#build` so the builder preselects them.
+{%- endcomment -%}
+{%- liquid
+  assign pct = settings.cb_stack_discount | default: 15
+  assign page_abs = shop.url | append: page.url
+  assign description = 'Three-piece crystal bracelet stacks for protection, calm and abundance, or build your own from any three bracelets and save ' | append: pct | append: '%. Hand-strung in Dubai.'
+  assign hero_text = 'Three bracelets, ' | append: pct | append: '% off. Start from a curated stack, or build your own below: any three bracelets unlock the stack price at checkout. Every piece is 8 mm, so any three sit evenly on one wrist.'
+  capture stack_names
+    for st in shop.metaobjects.stack.values
+      echo st.name.value
+      unless forloop.last
+        echo '||'
+      endunless
+    endfor
+  endcapture
+  assign stack_names = stack_names | split: '||' | sort_natural
+  assign n_ld = 0
+-%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}/"},{"@type":"ListItem","position":2,"name":"Stacks & sets","item":"{{ page_abs }}"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"{{ page_abs }}","url":"{{ page_abs }}","name":"Crystal bracelet stacks","description":{{ description | json }},"isPartOf":{"@id":"{{ shop.url }}/#website"},"mainEntity":{"@type":"ItemList","name":"Crystal bracelet stacks","numberOfItems":{{ stack_names.size }},"itemListElement":[
+{%- for nm in stack_names -%}
+  {%- for st in shop.metaobjects.stack.values -%}
+    {%- if st.name.value == nm -%}
+      {%- if n_ld > 0 -%},{%- endif -%}{%- assign n_ld = n_ld | plus: 1 -%}
+      {"@type":"ListItem","position":{{ n_ld }},"name":{{ st.name.value | json }},"url":{{ page_abs | append: '?stack=' | append: st.system.handle | json }}{% if st.image.value %},"image":{{ st.image.value | image_url: width: 1200 | json }}{% endif %}}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+]}}</script>
+
+{%- render 'cb-listing-hero', image: '/images/stacks/stacks-wrist.jpg', alt: 'Three crystal bracelets stacked on one wrist', crumbs: '|Stacks & sets', title: 'Crystal bracelet stacks', text: hero_text -%}
+
+<div class="grid md:grid-cols-3 gap-px bg-cb-line border-b border-cb-line">
+  {%- for nm in stack_names -%}
+    {%- for st in shop.metaobjects.stack.values -%}
+      {%- if st.name.value == nm -%}
+        {%- assign products = st.products.value -%}
+        {%- assign intention = st.intention.value -%}
+        {%- assign subtotal = 0 -%}
+        {%- for p in products -%}{%- assign subtotal = subtotal | plus: p.price -%}{%- endfor -%}
+        {%- assign subtotal = subtotal | divided_by: 100 -%}
+        {%- capture product_names -%}{%- for p in products -%}{{ p.title }}{% unless forloop.last %}, {% endunless %}{%- endfor -%}{%- endcapture -%}
+        <div class="bg-white p-6 md:p-8 flex flex-col">
+          <div class="aspect-square bg-white overflow-hidden">
+            {%- if st.image.value -%}
+              {%- assign img_alt = st.name.value | append: ': ' | append: product_names -%}
+              {{ st.image.value | image_url: width: 1200 | image_tag: widths: '480, 800, 1200', sizes: '(min-width: 768px) 33vw, 100vw', loading: 'lazy', alt: img_alt, class: 'block h-full w-full object-cover' }}
+            {%- endif -%}
+          </div>
+          <p class="label-caps mt-6"><a href="{{ intention.system.url | default: '#' }}" class="hover:text-cb-rose">{{ intention.short.value }}</a></p>
+          <h2 class="font-display text-[1.6rem] mt-1">{{ st.name.value }}</h2>
+          <p class="text-[13px] text-cb-muted mt-2">{{ st.description.value }}</p>
+          <ul class="text-[13px] mt-4 space-y-1">
+            {%- for p in products -%}<li class="flex justify-between"><a href="{{ p.url }}" class="hover:text-cb-rose">{{ p.title }}</a><span class="price text-[13px] text-cb-muted">{{ p.price | divided_by: 100 }} AED</span></li>{%- endfor -%}
+          </ul>
+          <div class="flex items-baseline gap-2 mt-5"><span class="price text-[1.4rem]">{{ st.price_aed.value }} AED</span><span class="price text-[13px] text-cb-faint line-through">{{ subtotal }} AED</span></div>
+          <a href="?stack={{ st.system.handle }}#build" class="mt-auto pt-5"><span class="flex h-12 items-center justify-center bg-cb-ink text-white text-[12px] uppercase tracking-[0.14em] hover:bg-black">Choose sizes and add to bag</span></a>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+</div>
+
+<section id="build" class="bg-cb-band py-16 scroll-mt-24">
+  <div class="container-x">
+    {%- render 'cb-section-title', eyebrow: 'Build your own', title: 'Pick any three', align: 'left' -%}
+    {%- capture builder_props -%}
+    {
+      "products": [
+      {%- assign n = 0 -%}
+      {%- for p in collections.all.products -%}
+        {%- assign d_int = p.metafields.crystal.intention.value -%}
+        {%- if d_int -%}
+          {%- assign stones = p.metafields.crystal.stones.value -%}
+          {%- capture stone_dots -%}{%- for s in stones -%}{{ s.name.value }}{% unless forloop.last %} · {% endunless %}{%- endfor -%}{%- endcapture -%}
+          {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
+          {"id":{{ p.handle | json }},"name":{{ p.title | json }},"intention":{{ d_int.system.handle | json }},"intentionName":{{ d_int.short.value | json }},"stones":{{ stone_dots | json }},"priceAED":{{ p.price | divided_by: 100 }},"image":{% if p.featured_image %}{{ p.featured_image | image_url: width: 480 | json }}{% else %}null{% endif %},"palettes":[{% for s in stones %}{% unless forloop.first %},{% endunless %}[{{ s.palette_1.value | append: '' | json }},{{ s.palette_2.value | append: '' | json }}]{% endfor %}],"inStock":{% if p.available %}true{% else %}false{% endif %}}
+        {%- endif -%}
+      {%- endfor -%}
+      ],
+      "intentions": [
+      {%- assign n = 0 -%}
+      {%- for k in (1..12) -%}
+        {%- for i in shop.metaobjects.intention.values -%}
+          {%- assign order = i.sort_order.value | plus: 0 -%}
+          {%- if order == k -%}
+            {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
+            {"id":{{ i.system.handle | json }},"name":{{ i.short.value | json }}}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+      ],
+      "discountPct": {{ pct }},
+      "presets": [
+      {%- assign n = 0 -%}
+      {%- for st in shop.metaobjects.stack.values -%}
+        {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
+        {"id":{{ st.system.handle | json }},"products":[{% for p in st.products.value %}{% unless forloop.first %},{% endunless %}{{ p.handle | json }}{% endfor %}]}
+      {%- endfor -%}
+      ]
+    }
+    {%- endcapture -%}
+    {%- render 'cb-island', name: 'StackBuilder', props: builder_props, style: 'min-height:520px' -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Stacks & sets", "settings": [] }
+{% endschema %}

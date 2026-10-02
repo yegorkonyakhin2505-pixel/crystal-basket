@@ -1,0 +1,60 @@
+{%- comment -%}
+  Stacks & sets band on the home page: wrist photo, featured curated stacks (metaobjects of type stack) with the set price
+  and the crossed-out subtotal of their three bracelets.
+{%- endcomment -%}
+{%- liquid
+  assign pct = settings.cb_stack_discount | default: 15
+-%}
+<section class="bg-cb-band py-16 md:py-24">
+  <div class="container-x grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+    <div class="aspect-[3/4] lg:aspect-[4/5] overflow-hidden reveal">
+      {%- if section.settings.image -%}
+        {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '480, 800, 1200, 1600', sizes: '(min-width: 1024px) 50vw, 100vw', loading: 'lazy', alt: 'Three crystal bracelets stacked on a wrist', class: 'block h-full w-full object-cover' }}
+      {%- else -%}
+        {%- render 'cb-img', src: '/images/stacks/stacks-wrist.jpg', alt: 'Three crystal bracelets stacked on a wrist' -%}
+      {%- endif -%}
+    </div>
+    <div class="reveal" style="transition-delay: 100ms">
+      <p class="label-caps mb-3">Stacks &amp; sets</p>
+      <h2 class="text-3xl md:text-[2.75rem]">Three pieces. One wrist. {{ pct }}% off.</h2>
+      <p class="text-cb-muted mt-4 max-w-md">{{ section.settings.text | default: 'Start from a curated stack for one intention, or build your own from any three bracelets. Every stack unlocks the set price.' }}</p>
+      <div class="mt-8 grid gap-px bg-cb-line border border-cb-line">
+        {%- for s in shop.metaobjects.stack.values -%}
+          {%- unless s.featured.value -%}{%- continue -%}{%- endunless -%}
+          {%- assign subtotal = 0 -%}
+          {%- capture names -%}{%- for p in s.products.value -%}{{ p.title }}{%- unless forloop.last %} · {% endunless -%}{%- assign subtotal = subtotal | plus: p.price -%}{%- endfor -%}{%- endcapture -%}
+          <a href="/pages/stacks" class="flex items-center gap-4 bg-white p-3 hover:bg-cb-band-2 transition-colors">
+            <div class="h-16 w-16 shrink-0 bg-white">
+              {%- if s.image.value -%}
+                {{ s.image.value | image_url: width: 160 | image_tag: widths: '64, 128, 160', sizes: '64px', loading: 'lazy', alt: s.name.value, class: 'block h-full w-full object-cover' }}
+              {%- else -%}
+                {%- assign src = '/images/stacks/' | append: s.system.handle | append: '.jpg' -%}
+                {%- render 'cb-img', src: src, alt: s.name.value, sizes: '64px' -%}
+              {%- endif -%}
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="font-display text-[1.2rem] leading-tight">{{ s.name.value }}</p>
+              <p class="text-[12px] text-cb-muted truncate">{{ names | strip }}</p>
+            </div>
+            <div class="text-right">
+              <p class="price">{{ s.price_aed.value }} AED</p>
+              <p class="text-[11px] text-cb-faint line-through">{{ subtotal | divided_by: 100 }} AED</p>
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
+      <a href="/pages/stacks" class="inline-flex select-none items-center justify-center gap-2 font-medium uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cb-rose disabled:cursor-not-allowed disabled:opacity-50 bg-cb-ink text-white hover:bg-black h-11 px-6 text-[12px] mt-6">{{ section.settings.button | default: 'Build your stack' }}</a>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Stacks band",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave empty for the stacked-wrist photo." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Start from a curated stack for one intention, or build your own from any three bracelets. Every stack unlocks the set price." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Build your stack" }
+  ],
+  "presets": [{ "name": "Stacks band" }]
+}
+{% endschema %}

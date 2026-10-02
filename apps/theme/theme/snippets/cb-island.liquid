@@ -1,0 +1,10 @@
+{%- comment -%}
+  Mount point for a React island. Usage:
+    {% capture props %}{ "id": {{ product.handle | json }} }{% endcapture %}
+    {% capture placeholder %}<button …>…</button>{% endcapture %}
+    {% render 'cb-island', name: 'BuyBox', props: props, placeholder: placeholder, class: 'space-y-7', style: 'min-height:420px', tag: 'div' %}
+  The island runtime (src/islands/main.tsx) parses the JSON and renders the component in place of the placeholder,
+  which carries the same markup so nothing shifts when scripts arrive.
+{%- endcomment -%}
+{%- assign cb_tag = tag | default: 'div' -%}
+<{{ cb_tag }} data-island="{{ name }}"{% if class != blank %} class="{{ class }}"{% endif %}{% if style != blank %} style="{{ style }}"{% endif %}>{% if props != blank %}<script type="application/json">{{ props | strip | replace: '</', '<\/' }}</script>{% endif %}{{ placeholder }}</{{ cb_tag }}>

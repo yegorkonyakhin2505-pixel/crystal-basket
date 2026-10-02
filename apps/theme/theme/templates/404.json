@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-404", "settings": {} }
+  },
+  "order": ["main"]
+}

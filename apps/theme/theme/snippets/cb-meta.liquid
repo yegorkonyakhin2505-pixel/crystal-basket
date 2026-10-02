@@ -1,0 +1,78 @@
+{%- comment -%}
+  <title>, description, canonical, robots and Open Graph (mirror of the Next metadata in apps/web).
+  Pages and products carry their SEO title/description in Shopify (set by scripts/sync-shopify.ts); hubs are computed here.
+{%- endcomment -%}
+{%- liquid
+  assign cb_abs = nil
+  assign cb_title = page_title
+  assign cb_desc = page_description
+  assign cb_noindex = false
+  assign cb_og_image = 'cb-hero-hero-1.jpg' | asset_url
+  case template.name
+    when 'index'
+      assign cb_abs = 'Crystal Bracelets Hand-Strung in Dubai | Crystal Basket'
+      assign cb_desc = "Natural crystal bracelets hand-strung in Dubai from 65 AED: amethyst, rose quartz, tiger's eye and more, chosen by intention. Next-day UAE delivery."
+    when 'collection'
+      if collection.handle == 'all'
+        assign cb_title = 'Crystal Bracelets in Dubai'
+        assign cb_desc = 'Twelve natural crystal bracelets from 65 AED, hand-strung in Dubai: amethyst, rose quartz, black tourmaline and more. Next-day delivery across the UAE.'
+      endif
+    when 'product'
+      assign cb_seo = product.metafields.crystal.seo_title.value | default: product.title
+      assign cb_with = cb_seo | append: ', ' | append: product.title
+      if cb_with.size <= 45
+        assign cb_title = cb_with
+      else
+        assign cb_title = cb_seo
+      endif
+      assign cb_desc = product.metafields.crystal.seo_description.value | default: page_description
+      if product.featured_image
+        assign cb_og_image = product.featured_image | image_url: width: 1200
+      endif
+    when 'page'
+      if template.suffix == 'wishlist'
+        assign cb_noindex = true
+      endif
+    when '404'
+      assign cb_title = 'Page not found'
+    when 'search'
+      assign cb_title = 'Search'
+  endcase
+  if metaobject
+    if metaobject.system.type == 'stone'
+      assign cb_title = metaobject.name.value | append: ' Bracelet Meaning, Chakra & Care'
+      assign cb_kw = metaobject.keywords.value | join: ', ' | downcase
+      assign cb_lower = metaobject.name.value | downcase
+      assign cb_desc = metaobject.name.value | append: ' bracelet meaning: traditionally worn for ' | append: cb_kw | append: '. Chakra, which wrist, how to cleanse it, and ' | append: cb_lower | append: ' bracelets hand-strung in Dubai.' | truncate: 155
+      if metaobject.image.value
+        assign cb_og_image = metaobject.image.value | image_url: width: 1200
+      endif
+    elsif metaobject.system.type == 'intention'
+      assign cb_title = metaobject.short.value | append: ' Crystal Bracelets in Dubai'
+      assign cb_desc = metaobject.seo_description.value
+      if metaobject.image.value
+        assign cb_og_image = metaobject.image.value | image_url: width: 1200
+      endif
+    endif
+  endif
+  if cb_desc == blank
+    assign cb_desc = shop.description
+  endif
+  if cb_abs
+    assign cb_full = cb_abs
+  else
+    assign cb_full = cb_title | append: ' · ' | append: shop.name
+  endif
+-%}
+<title>{{ cb_full }}</title>
+<meta name="description" content="{{ cb_desc | strip_html | escape }}">
+<link rel="canonical" href="{{ canonical_url }}">
+{%- if cb_noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:type" content="{% if template.name == 'product' %}product{% else %}website{% endif %}">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="{{ cb_full | escape }}">
+<meta property="og:description" content="{{ cb_desc | strip_html | escape }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:image" content="{{ cb_og_image }}">
+<meta name="twitter:card" content="summary_large_image">

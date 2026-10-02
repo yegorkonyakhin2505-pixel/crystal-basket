@@ -1,0 +1,7 @@
+{%- comment -%} Announcement bar above the header (mirror of Header.tsx). Text from theme settings. {%- endcomment -%}
+{%- if settings.cb_announcement != blank -%}
+<div class="bg-cb-ink text-white text-[11px] tracking-[0.12em] uppercase text-center py-2 px-4">{{ settings.cb_announcement }}</div>
+{%- endif -%}
+{% schema %}
+{ "name": "Announcement bar", "settings": [], "presets": [{ "name": "Announcement bar" }] }
+{% endschema %}

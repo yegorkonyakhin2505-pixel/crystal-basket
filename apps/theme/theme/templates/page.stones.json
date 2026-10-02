@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-stones-hub", "settings": {} }
+  },
+  "order": ["main"]
+}

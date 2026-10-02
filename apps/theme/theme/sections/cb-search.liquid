@@ -1,0 +1,37 @@
+{%- comment -%}
+  /search: the no-script fallback for the SearchDialog island. Product results in the four-up grid, other results as links.
+{%- endcomment -%}
+<section class="container-x pt-12 md:pt-20 pb-10 max-w-3xl">
+  <p class="label-caps mb-3">Search</p>
+  <h1 class="text-4xl md:text-[3rem]">{% if search.performed %}Results for “{{ search.terms | escape }}”{% else %}Search{% endif %}</h1>
+  <form action="{{ routes.search_url }}" method="get" role="search" class="mt-6 flex">
+    <label for="search-q" class="sr-only">Search</label>
+    <input id="search-q" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search bracelets, stones, intentions…" class="h-11 min-w-0 flex-1 border border-cb-line bg-white px-4 text-[14px] text-cb-ink placeholder:text-cb-faint focus:border-cb-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cb-rose transition-colors">
+    <input type="hidden" name="type" value="product">
+    <button type="submit" class="h-11 px-6 bg-cb-ink text-white text-[12px] uppercase tracking-[0.14em] hover:bg-black">Search</button>
+  </form>
+</section>
+{%- if search.performed -%}
+  {%- paginate search.results by 48 -%}
+    {%- assign shown = 0 -%}
+    {%- capture tiles -%}
+      {%- for item in search.results -%}
+        {%- if item.object_type == 'product' and item.metafields.crystal.intention.value -%}
+          {%- assign shown = shown | plus: 1 -%}
+          {%- render 'cb-product-tile', product: item -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if shown > 0 -%}
+      <div class="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-cb-line">{{ tiles }}</div>
+    {%- else -%}
+      <p class="container-x pb-20 text-[14px] text-cb-muted">Nothing matches “{{ search.terms | escape }}”. Try a stone name or an intention.</p>
+    {%- endif -%}
+    {%- if paginate.pages > 1 -%}
+      <nav class="container-x py-8 text-[13px] text-cb-muted" aria-label="Pagination">{{ paginate | default_pagination }}</nav>
+    {%- endif -%}
+  {%- endpaginate -%}
+{%- endif -%}
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

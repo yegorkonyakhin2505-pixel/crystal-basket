@@ -1,0 +1,24 @@
+{%- comment -%}
+  Wishlist page (mirror of apps/web wishlist/page.tsx): the WishlistClient island filters every catalog product by the
+  ids saved in this browser. noindex is set by snippets/cb-meta.liquid for the `wishlist` template suffix.
+{%- endcomment -%}
+<section class="container-x pt-12 md:pt-20 pb-20">
+  <p class="label-caps mb-3">Wishlist</p>
+  <h1 class="text-4xl md:text-[3rem] mb-10">Saved for later</h1>
+  {%- capture wishlist_props -%}
+  { "items": [
+  {%- assign n = 0 -%}
+  {%- for p in collections.all.products -%}
+    {%- if p.metafields.crystal.intention.value -%}
+      {%- capture stone_names -%}{%- for s in p.metafields.crystal.stones.value -%}{{ s.name.value }}{% unless forloop.last %}, {% endunless %}{%- endfor -%}{%- endcapture -%}
+      {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
+      {"id":{{ p.handle | json }},"name":{{ p.title | json }},"stones":{{ stone_names | json }},"priceAED":{{ p.price | divided_by: 100 }},"image":{% if p.featured_image %}{{ p.featured_image | image_url: width: 600 | json }}{% else %}null{% endif %}}
+    {%- endif -%}
+  {%- endfor -%}
+  ] }
+  {%- endcapture -%}
+  {%- render 'cb-island', name: 'WishlistClient', props: wishlist_props, style: 'min-height:240px' -%}
+</section>
+{% schema %}
+{ "name": "Wishlist", "settings": [] }
+{% endschema %}

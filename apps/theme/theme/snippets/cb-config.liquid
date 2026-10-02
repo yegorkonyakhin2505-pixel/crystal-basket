@@ -1,0 +1,48 @@
+{%- comment -%}
+  window.CB: site configuration for the React islands and vanilla modules (mirror of apps/web/src/lib/site.ts).
+  Values come from theme settings so the owner can change them in the theme editor.
+{%- endcomment -%}
+{%- liquid
+  assign cb_stones_page = pages['stones']
+  assign cb_intentions_page = pages['intentions']
+-%}
+<script>
+window.CB = {
+  name: {{ shop.name | json }},
+  city: {{ settings.cb_city | json }},
+  currency: "AED",
+  email: {{ settings.cb_email | json }},
+  instagram: {{ settings.cb_instagram | json }},
+  whatsapp: {{ settings.cb_whatsapp | json }},
+  whatsappGreeting: "Hi Crystal Basket! I'd like to order:",
+  deliveryFeeAED: {{ settings.cb_delivery_fee | default: 25 }},
+  freeDeliveryAED: {{ settings.cb_free_delivery | default: 250 }},
+  deliveryCopy: {{ settings.cb_delivery_copy | json }},
+  stackDiscountPct: {{ settings.cb_stack_discount | default: 15 }},
+  welcome: { pct: {{ settings.cb_welcome_pct | default: 10 }}, code: {{ settings.cb_welcome_code | json }} },
+  custom: { handle: {{ settings.cb_custom_handle | json }}, baseAED: {{ settings.cb_custom_base | default: 75 }}, tierAED: { classic: 0, select: {{ settings.cb_custom_select | default: 10 }}, rare: {{ settings.cb_custom_rare | default: 20 }} }, goldAED: {{ settings.cb_custom_gold | default: 10 }}, maxGold: {{ settings.cb_custom_max_gold | default: 3 }} },
+  flags: { whatsapp: {{ settings.cb_whatsapp_on | json }}, offerPopup: {{ settings.cb_offer_popup | json }}, reviews: {{ settings.cb_reviews | json }}, wishlist: true },
+  routes: {
+    home: "/",
+    shop: {{ routes.all_products_collection_url | json }},
+    stacks: "/pages/stacks",
+    build: "/pages/build",
+    intentions: {{ cb_intentions_page.url | default: '/pages/intentions' | json }},
+    stones: {{ cb_stones_page.url | default: '/pages/stones' | json }},
+    about: "/pages/about",
+    sizeGuide: "/pages/size-guide",
+    care: "/pages/care",
+    faq: "/pages/faq",
+    disclaimer: "/pages/disclaimer",
+    delivery: "/pages/delivery",
+    returns: "/pages/returns",
+    contact: "/pages/contact",
+    privacy: "/pages/privacy",
+    wishlist: "/pages/wishlist",
+    cart: {{ routes.cart_url | json }},
+    checkout: "/checkout"
+  },
+  offerImage: {{ 'cb-intentions-love.jpg' | asset_url | json }},
+  cartEnabled: true
+};
+</script>

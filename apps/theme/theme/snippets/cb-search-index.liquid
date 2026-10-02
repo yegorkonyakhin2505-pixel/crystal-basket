@@ -1,0 +1,34 @@
+{%- comment -%}
+  JSON array of SearchItem for the SearchDialog island (mirror of the index built in Header.tsx):
+  bracelets, stones, intentions and guide pages, with thumbnails and keywords.
+{%- endcomment -%}
+{%- liquid
+  assign intentions_url = pages['intentions'].url | default: '/pages/intentions'
+  assign stones_url = pages['stones'].url | default: '/pages/stones'
+-%}
+[
+{%- for p in collections.all.products -%}
+  {%- assign d_int = p.metafields.crystal.intention.value -%}
+  {%- if d_int == blank -%}{%- continue -%}{%- endif -%}
+  {%- capture stone_names -%}{%- for s in p.metafields.crystal.stones.value -%}{{ s.name.value }}{% unless forloop.last %}, {% endunless %}{%- endfor -%}{%- endcapture -%}
+  {%- capture kw -%}{{ p.metafields.crystal.subtitle.value }} {{ p.tags | join: ' ' }} {{ p.metafields.crystal.triad.value | join: ' ' }} {{ d_int.name.value }} {% if p.metafields.crystal.leaving_soon.value %}leaving soon limited{% endif %} {% if p.metafields.crystal.bestseller.value %}bestseller{% endif %}{%- endcapture -%}
+  {%- capture sub -%}{{ p.metafields.crystal.seo_title.value | default: p.title }} · {{ stone_names }}{%- endcapture -%}
+  {"kind":"product","title":{{ p.title | json }},"sub":{{ sub | strip | json }},"href":{{ p.url | json }},"image":{% if p.featured_image %}{{ p.featured_image | image_url: width: 120 | json }}{% else %}null{% endif %},"keywords":{{ kw | strip | json }},"priceAED":{{ p.price | divided_by: 100 }},"soldOut":{% if p.available %}false{% else %}true{% endif %}},
+{%- endfor -%}
+{%- for s in shop.metaobjects.stone.values -%}
+  {%- capture kw -%}{{ s.chakra.value | join: ' ' }} {{ s.zodiac.value | join: ' ' }} {{ s.color.value }} crystal stone meaning{%- endcapture -%}
+  {"kind":"stone","title":{{ s.name.value | json }},"sub":{{ s.keywords.value | join: ' · ' | json }},"href":{{ s.system.url | default: stones_url | json }},"image":{% if s.image.value %}{{ s.image.value | image_url: width: 120 | json }}{% else %}null{% endif %},"keywords":{{ kw | strip | json }}},
+{%- endfor -%}
+{%- for i in shop.metaobjects.intention.values -%}
+  {%- capture kw -%}{{ i.short.value }} {{ i.triad.value | join: ' ' }} {{ i.chakra.value | join: ' ' }}{%- endcapture -%}
+  {"kind":"intention","title":{{ i.name.value | json }},"sub":{{ i.tagline.value | json }},"href":{{ i.system.url | default: intentions_url | json }},"image":{% if i.image.value %}{{ i.image.value | image_url: width: 120 | json }}{% else %}null{% endif %},"keywords":{{ kw | strip | json }}},
+{%- endfor -%}
+  {"kind":"page","title":"Build your own bracelet","sub":"Design it bead by bead","href":"/pages/build","keywords":"custom builder design make"},
+  {"kind":"page","title":"Stacks & sets","sub":"Three bracelets, {{ settings.cb_stack_discount | default: 15 }}% off","href":"/pages/stacks","keywords":"stack set bundle discount"},
+  {"kind":"page","title":"Size guide","sub":"Measure your wrist","href":"/pages/size-guide","keywords":"size wrist cm measure fit"},
+  {"kind":"page","title":"Cleanse & care","sub":"Moonlight, selenite, smoke","href":"/pages/care","keywords":"clean cleanse charge water sun care"},
+  {"kind":"page","title":"Delivery","sub":"UAE, 1–2 working days","href":"/pages/delivery","keywords":"shipping delivery cod cash uae dubai"},
+  {"kind":"page","title":"Exchanges & returns","sub":"14-day size exchange","href":"/pages/returns","keywords":"return refund exchange"},
+  {"kind":"page","title":"FAQ","sub":"Wearing, cleansing, ordering","href":"/pages/faq","keywords":"questions help"},
+  {"kind":"page","title":"Contact","sub":"Email and Instagram","href":"/pages/contact","keywords":"email whatsapp contact instagram"}
+]

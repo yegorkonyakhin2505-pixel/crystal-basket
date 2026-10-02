@@ -1,0 +1,17 @@
+{%- comment -%} /collections: a plain list of collections (the site navigates by intention and stone instead). {%- endcomment -%}
+<section class="container-x pt-12 md:pt-20 pb-20 max-w-3xl">
+  <p class="label-caps mb-3">Collections</p>
+  <h1 class="text-4xl md:text-[3rem] mb-8">All collections</h1>
+  <ul class="border-t border-cb-line">
+    <li class="border-b border-cb-line py-4"><a href="{{ routes.all_products_collection_url }}" class="font-display text-2xl hover:text-cb-rose">All bracelets</a></li>
+    {%- paginate collections by 48 -%}
+      {%- for c in collections -%}
+        {%- if c.handle == 'all' or c.handle == 'frontpage' -%}{%- continue -%}{%- endif -%}
+        <li class="border-b border-cb-line py-4"><a href="{{ c.url }}" class="font-display text-2xl hover:text-cb-rose">{{ c.title }}</a>{% if c.description != blank %}<p class="text-[13px] text-cb-muted mt-1">{{ c.description | strip_html | truncate: 140 }}</p>{% endif %}</li>
+      {%- endfor -%}
+    {%- endpaginate -%}
+  </ul>
+</section>
+{% schema %}
+{ "name": "Collections list", "settings": [] }
+{% endschema %}

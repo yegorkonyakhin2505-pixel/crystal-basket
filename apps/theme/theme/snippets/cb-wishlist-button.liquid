@@ -1,0 +1,6 @@
+{%- comment -%}
+  WishlistButton island with its Liquid placeholder (same markup, unsaved state). {% render 'cb-wishlist-button', id: product.handle, label: true %}
+{%- endcomment -%}
+{%- capture cb_props -%}{ "id": {{ id | json }}{% if label %}, "label": true{% endif %} }{%- endcapture -%}
+{%- capture cb_placeholder -%}<button type="button" aria-pressed="false" aria-label="Add to wishlist" class="inline-flex items-center gap-2 p-2 transition-colors text-cb-ink hover:text-cb-rose">{% render 'cb-icon', name: 'heart', class: 'h-5 w-5 transition-transform duration-300 active:scale-90', stroke: 1.4 %}{% if label %}<span class="text-[12px] uppercase tracking-[0.14em]">Save</span>{% endif %}</button>{%- endcapture -%}
+{%- render 'cb-island', name: 'WishlistButton', props: cb_props, placeholder: cb_placeholder, tag: 'span', class: 'contents' -%}

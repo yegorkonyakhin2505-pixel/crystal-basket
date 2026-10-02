@@ -1,0 +1,12 @@
+{%- comment -%} Organisation + WebSite JSON-LD on every page (mirror of lib/schema.ts organizationLd / websiteLd). {%- endcomment -%}
+{%- liquid
+  assign cb_url = shop.url
+  assign cb_logo = 'cb-brand-logo-badge.svg' | asset_url
+  assign cb_hero = 'cb-hero-hero-1.jpg' | asset_url
+-%}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"OnlineStore","@id":"{{ cb_url }}/#organization","name":{{ shop.name | json }},"url":"{{ cb_url }}","logo":{"@type":"ImageObject","url":"{{ cb_logo }}","width":1200,"height":1200},"image":"{{ cb_hero }}","description":{{ shop.description | json }},"email":{{ settings.cb_email | json }},"contactPoint":{"@type":"ContactPoint","contactType":"customer service","email":{{ settings.cb_email | json }},"availableLanguage":"en","areaServed":"AE"},"areaServed":{"@type":"Country","name":"United Arab Emirates"},"address":{"@type":"PostalAddress","addressLocality":{{ settings.cb_city | json }},"addressCountry":"AE"},"sameAs":["https://www.instagram.com/{{ settings.cb_instagram }}/"{% if settings.cb_tiktok != blank %},"https://www.tiktok.com/@{{ settings.cb_tiktok }}"{% endif %}],"hasMerchantReturnPolicy":{% render 'cb-schema-returns' %}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","@id":"{{ cb_url }}/#website","name":{{ shop.name | json }},"url":"{{ cb_url }}","inLanguage":"en","publisher":{"@id":"{{ cb_url }}/#organization"}}
+</script>

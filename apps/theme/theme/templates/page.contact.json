@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-page-contact", "settings": {} }
+  },
+  "order": ["main"]
+}

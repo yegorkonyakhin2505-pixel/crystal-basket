@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-stone", "settings": {} }
+  },
+  "order": ["main"]
+}

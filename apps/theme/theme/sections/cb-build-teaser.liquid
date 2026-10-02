@@ -1,0 +1,33 @@
+{%- comment -%} Build-your-own teaser on the home page (text + teaser photo linking to /pages/build). {%- endcomment -%}
+{%- liquid
+  assign stone_count = shop.metaobjects.stone.values.size
+  assign base = settings.cb_custom_base | default: 75
+-%}
+<section class="container-x py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+  <div class="order-2 lg:order-1 reveal">
+    <p class="label-caps mb-3">Build your own</p>
+    <h2 class="text-3xl md:text-[2.5rem]">{{ section.settings.title | default: 'Design it bead by bead.' }}</h2>
+    <p class="text-cb-muted mt-4 max-w-md">Pick a wrist size, tap a stone and watch it drop onto the ring. Mix any of our {{ stone_count }} stones, add a gold-filled bead, and we string it to order in {{ settings.cb_city }} from {{ base }} AED.</p>
+    <a href="/pages/build" class="inline-flex select-none items-center justify-center gap-2 font-medium uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cb-rose disabled:cursor-not-allowed disabled:opacity-50 bg-cb-ink text-white hover:bg-black h-11 px-6 text-[12px] mt-6">{{ section.settings.button | default: 'Start building' }}</a>
+  </div>
+  <a href="/pages/build" class="order-1 lg:order-2 block overflow-hidden bg-cb-band group" aria-label="Open the bracelet builder">
+    <div class="aspect-square transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]">
+      {%- if section.settings.image -%}
+        {{ section.settings.image | image_url: width: 1200 | image_tag: widths: '480, 800, 1200', sizes: '(min-width: 1024px) 50vw, 100vw', loading: 'lazy', alt: 'A half-strung bracelet of amethyst, rose quartz, clear quartz and aventurine beads beside dishes of loose beads', class: 'block h-full w-full object-cover' }}
+      {%- else -%}
+        {%- render 'cb-img', src: '/images/build/teaser.jpg', alt: 'A half-strung bracelet of amethyst, rose quartz, clear quartz and aventurine beads beside dishes of loose beads', sizes: '(min-width: 1024px) 50vw, 100vw' -%}
+      {%- endif -%}
+    </div>
+  </a>
+</section>
+{% schema %}
+{
+  "name": "Build your own teaser",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave empty for the studio teaser photo." },
+    { "type": "text", "id": "title", "label": "Title", "default": "Design it bead by bead." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Start building" }
+  ],
+  "presets": [{ "name": "Build your own teaser" }]
+}
+{% endschema %}

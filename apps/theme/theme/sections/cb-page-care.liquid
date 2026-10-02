@@ -1,0 +1,63 @@
+{%- comment -%} Cleanse & care (mirror of apps/web care/page.tsx). Stones that must stay out of water or sun come from the stone metaobjects. {%- endcomment -%}
+{%- liquid
+  assign stones_url = pages['stones'].url | default: '/pages/stones'
+  capture names
+    for s in shop.metaobjects.stone.values
+      echo s.name.value
+      unless forloop.last
+        echo '||'
+      endunless
+    endfor
+  endcapture
+  assign names = names | split: '||' | sort_natural
+-%}
+{%- capture intro -%}<p>Cleanse a crystal bracelet when it arrives and about once a month after that. Moonlight, a selenite plate and smoke all work for every stone we sell. Whatever you believe cleansing does energetically, it is also the moment you check the cord, wipe the beads and remember the intention you bought it for.</p>{%- endcapture -%}
+{%- render 'cb-page-intro', heading: 'How to cleanse a crystal bracelet', tagline: 'A monthly ritual, five minutes long.', content: intro, reviewed: section.settings.reviewed -%}
+<section class="container-x pb-12 max-w-5xl">
+  <h2 class="text-3xl md:text-[2.25rem] mb-5">Which cleansing methods are safe?</h2>
+  <div class="grid md:grid-cols-3 gap-px bg-cb-line border border-cb-line">
+    <div class="bg-white p-6"><h3 class="font-display text-2xl">Moonlight</h3><p class="text-[13px] text-cb-muted mt-2">Leave the bracelet on a windowsill overnight, ideally around the full moon. Safe for every stone.</p></div>
+    <div class="bg-white p-6"><h3 class="font-display text-2xl">Selenite</h3><p class="text-[13px] text-cb-muted mt-2">Rest it on a selenite plate for a few hours. Our studio method.</p></div>
+    <div class="bg-white p-6"><h3 class="font-display text-2xl">Smoke</h3><p class="text-[13px] text-cb-muted mt-2">Pass it through the smoke of palo santo, sage or oud a few times.</p></div>
+  </div>
+</section>
+<section class="container-x pb-12 max-w-5xl">
+  <h2 class="text-3xl md:text-[2.25rem] mb-5">Which crystals should stay out of water and sun?</h2>
+  <div class="grid md:grid-cols-2 gap-px bg-cb-line border border-cb-line">
+    <div class="bg-white p-6">
+      <h3 class="label-caps mb-2">Keep out of water</h3>
+      <p class="text-[14px]">
+        {%- assign n = 0 -%}
+        {%- for nm in names -%}{%- for s in shop.metaobjects.stone.values -%}{%- if s.name.value == nm and s.water_safe.value == false -%}<span>{% if n > 0 %}, {% endif %}<a href="{{ s.system.url | default: '#' }}" class="underline underline-offset-4 hover:text-cb-rose">{{ s.name.value }}</a></span>{%- assign n = n | plus: 1 -%}{%- endif -%}{%- endfor -%}{%- endfor -%}
+      </p>
+      <p class="text-[12px] text-cb-muted mt-2">Softer, porous or iron-bearing stones that dull, rust or tarnish when wet. Cleanse them with smoke, selenite or moonlight.</p>
+    </div>
+    <div class="bg-white p-6">
+      <h3 class="label-caps mb-2">Keep out of long sun</h3>
+      <p class="text-[14px]">
+        {%- assign n = 0 -%}
+        {%- for nm in names -%}{%- for s in shop.metaobjects.stone.values -%}{%- if s.name.value == nm and s.sun_safe.value == false -%}<span>{% if n > 0 %}, {% endif %}<a href="{{ s.system.url | default: '#' }}" class="underline underline-offset-4 hover:text-cb-rose">{{ s.name.value }}</a></span>{%- assign n = n | plus: 1 -%}{%- endif -%}{%- endfor -%}{%- endfor -%}
+      </p>
+      <p class="text-[12px] text-cb-muted mt-2">Their colour fades after hours of direct sun. A few minutes is fine.</p>
+    </div>
+  </div>
+</section>
+<section class="container-x pb-20 max-w-3xl">
+  <h2 class="text-3xl md:text-[2.25rem] mb-4">How do you make a crystal bracelet last?</h2>
+  <ul class="space-y-2 text-[14px] list-disc list-outside pl-5">
+    <li>Roll the bracelet on and off over the hand instead of stretching it wide.</li>
+    <li>Take it off for showers, swimming, the gym and the beach.</li>
+    <li>Put it on after perfume, sunscreen and lotion, not before.</li>
+    <li>Store it flat in its pouch, away from jewellery that could scratch it.</li>
+    <li>Stretch cord is a wear part. If it ever gives, we restring it for free.</li>
+  </ul>
+  <p class="text-[13px] text-cb-muted mt-6">Each stone page lists its own care notes. See the <a href="{{ stones_url }}" class="underline underline-offset-4 hover:text-cb-rose">stone library</a> or the <a href="/pages/faq" class="underline underline-offset-4 hover:text-cb-rose">FAQ</a>.</p>
+</section>
+{% schema %}
+{
+  "name": "Care page",
+  "settings": [
+    { "type": "text", "id": "reviewed", "label": "Last reviewed", "default": "September 2026" }
+  ]
+}
+{% endschema %}

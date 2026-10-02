@@ -1,0 +1,29 @@
+{%- comment -%}
+  Fallback artwork when a product has no photo (mirror of BeadRing.tsx): a ring of beads in the stone colours.
+  palettes: array of stone metaobjects (uses palette_1/palette_2), gold: boolean, count: default 22
+{%- endcomment -%}
+{%- liquid
+  assign cb_count = count | default: 22
+  assign cb_n = palettes.size
+  if cb_n == 0
+    assign cb_n = 1
+  endif
+-%}
+<svg viewBox="0 0 400 400" class="block h-full w-full" role="img" aria-label="Bracelet illustration">
+  <defs>
+    {%- for s in palettes -%}
+      <radialGradient id="br-{{ forloop.index0 }}-{{ s.system.handle }}" cx="35%" cy="32%" r="70%"><stop offset="0%" stop-color="{{ s.palette_1.value }}" /><stop offset="100%" stop-color="{{ s.palette_2.value }}" /></radialGradient>
+    {%- endfor -%}
+    <radialGradient id="br-gold" cx="35%" cy="32%" r="70%"><stop offset="0%" stop-color="color-mix(in srgb, var(--cb-gold) 45%, white)" /><stop offset="100%" stop-color="color-mix(in srgb, var(--cb-gold) 60%, black)" /></radialGradient>
+  </defs>
+  {%- assign cb_r = 3.14159 | times: 2 | times: 130 | divided_by: cb_count | divided_by: 2.0 | times: 0.96 -%}
+  {%- for i in (0..cb_count) -%}
+    {%- if i == cb_count -%}{%- break -%}{%- endif -%}
+    {%- assign a = i | times: 6.28318 | divided_by: cb_count | minus: 1.5708 -%}
+    {%- assign pi = i | modulo: cb_n -%}
+    {%- assign s = palettes[pi] -%}
+    {%- comment -%} cos/sin are not in Liquid: positions are precomputed by the island fallback; here we draw a static ring of 22 beads with evenly spaced angles via a lookup table {%- endcomment -%}
+    {%- assign deg = a | times: 57.2958 | round -%}
+    <circle class="cb-bead-pos" data-angle="{{ deg }}" cx="200" cy="200" r="{{ cb_r }}" fill="{% if gold and i == 3 %}url(#br-gold){% else %}url(#br-{{ pi }}-{{ s.system.handle }}){% endif %}" style="transform: rotate({{ deg }}deg) translate(130px) ; transform-origin: 200px 200px" />
+  {%- endfor -%}
+</svg>

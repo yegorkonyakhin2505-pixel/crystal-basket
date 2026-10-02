@@ -1,0 +1,59 @@
+{%- comment -%} Footer (mirror of Footer.tsx): four link columns on the beige band, badge + wordmark + copyright. {%- endcomment -%}
+{%- liquid
+  assign shop_url = routes.all_products_collection_url
+  assign stones_url = pages['stones'].url | default: '/pages/stones'
+-%}
+<footer class="bg-cb-band border-t border-cb-line mt-24 pb-8">
+  <div class="container-x py-14 grid gap-10 md:grid-cols-4">
+    <div>
+      <p class="label-caps mb-4">Shop</p>
+      <ul class="space-y-2 text-[13px]">
+        <li><a href="{{ shop_url }}" class="hover:text-cb-rose">All bracelets</a></li>
+        <li><a href="/pages/stacks" class="hover:text-cb-rose">Stacks &amp; sets</a></li>
+        <li><a href="/pages/build" class="hover:text-cb-rose">Build your own</a></li>
+        <li><a href="{{ stones_url }}" class="hover:text-cb-rose">Stone library</a></li>
+        <li><a href="/pages/wishlist" class="hover:text-cb-rose">Wishlist</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="label-caps mb-4">Intentions</p>
+      <ul class="space-y-2 text-[13px]">
+        {%- for n in (1..12) -%}
+          {%- for i in shop.metaobjects.intention.values -%}
+            {%- assign order = i.sort_order.value | plus: 0 -%}
+            {%- if order == n -%}<li><a href="{{ i.system.url | default: '#' }}" class="hover:text-cb-rose">{{ i.name.value }}</a></li>{%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+    <div>
+      <p class="label-caps mb-4">Help</p>
+      <ul class="space-y-2 text-[13px]">
+        <li><a href="/pages/delivery" class="hover:text-cb-rose">Delivery</a></li>
+        <li><a href="/pages/returns" class="hover:text-cb-rose">Exchanges &amp; returns</a></li>
+        <li><a href="/pages/size-guide" class="hover:text-cb-rose">Size guide</a></li>
+        <li><a href="/pages/care" class="hover:text-cb-rose">Cleanse &amp; care</a></li>
+        <li><a href="/pages/faq" class="hover:text-cb-rose">FAQ</a></li>
+        <li><a href="/pages/contact" class="hover:text-cb-rose">Contact</a></li>
+        <li><a href="/pages/privacy" class="hover:text-cb-rose">Privacy</a></li>
+        <li><a href="/pages/disclaimer" class="hover:text-cb-rose">Wellness disclaimer</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="label-caps mb-4">Crystal Basket</p>
+      <ul class="space-y-2 text-[13px]">
+        <li><a href="/pages/about" class="hover:text-cb-rose">Our story</a></li>
+        {%- if settings.cb_instagram != blank -%}<li><a href="https://instagram.com/{{ settings.cb_instagram }}" target="_blank" rel="noopener" class="hover:text-cb-rose">Instagram</a></li>{%- endif -%}
+        {%- if settings.cb_tiktok != blank -%}<li><a href="https://tiktok.com/@{{ settings.cb_tiktok }}" target="_blank" rel="noopener" class="hover:text-cb-rose">TikTok</a></li>{%- endif -%}
+        <li><a href="mailto:{{ settings.cb_email }}" class="hover:text-cb-rose">Email us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-x border-t border-cb-line pt-6 flex flex-col md:flex-row gap-3 items-start md:items-center justify-between text-[11px] text-cb-muted">
+    <span class="flex items-center gap-2">{% render 'cb-logo-badge', class: 'h-7 w-7' %}{% render 'cb-wordmark', class: 'text-[0.9rem]' %}</span>
+    <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}, {{ settings.cb_city }}. Crystal meanings reflect traditional beliefs and are not medical advice.</p>
+  </div>
+</footer>
+{% schema %}
+{ "name": "Footer", "settings": [] }
+{% endschema %}

@@ -1,0 +1,311 @@
+{
+  "definitions": {
+    "stone": "gid://shopify/MetaobjectDefinition/16884334771",
+    "intention": "gid://shopify/MetaobjectDefinition/16884367539",
+    "stack": "gid://shopify/MetaobjectDefinition/16884400307"
+  },
+  "metafieldDefinitions": {
+    "intention": "gid://shopify/MetafieldDefinition/187782791347",
+    "secondary_intentions": "gid://shopify/MetafieldDefinition/187782824115",
+    "stones": "gid://shopify/MetafieldDefinition/187782856883",
+    "subtitle": "gid://shopify/MetafieldDefinition/187782889651",
+    "gold_accent": "gid://shopify/MetafieldDefinition/187782922419",
+    "style": "gid://shopify/MetafieldDefinition/187782955187",
+    "triad": "gid://shopify/MetafieldDefinition/187782987955",
+    "promise": "gid://shopify/MetafieldDefinition/187783020723",
+    "body": "gid://shopify/MetafieldDefinition/187783053491",
+    "affirmation": "gid://shopify/MetafieldDefinition/187783086259",
+    "includes": "gid://shopify/MetafieldDefinition/187783119027",
+    "featured": "gid://shopify/MetafieldDefinition/187783151795",
+    "bestseller": "gid://shopify/MetafieldDefinition/187783184563",
+    "is_new": "gid://shopify/MetafieldDefinition/187783217331",
+    "leaving_soon": "gid://shopify/MetafieldDefinition/187783250099",
+    "seo_title": "gid://shopify/MetafieldDefinition/187783282867",
+    "seo_description": "gid://shopify/MetafieldDefinition/187783315635"
+  },
+  "files": {
+    "stone-amethyst.jpg": {
+      "id": "gid://shopify/MediaImage/33612440633523",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-amethyst.jpg?v=1790929573"
+    },
+    "bead-amethyst.png": {
+      "id": "gid://shopify/MediaImage/33612440666291",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-amethyst.png?v=1790929573"
+    },
+    "stone-black-obsidian.jpg": {
+      "id": "gid://shopify/MediaImage/33612440699059",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-black-obsidian.jpg?v=1790929573"
+    },
+    "bead-black-obsidian.png": {
+      "id": "gid://shopify/MediaImage/33612440731827",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-black-obsidian.png?v=1790929573"
+    },
+    "stone-black-tourmaline.jpg": {
+      "id": "gid://shopify/MediaImage/33612440764595",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-black-tourmaline.jpg?v=1790929573"
+    },
+    "bead-black-tourmaline.png": {
+      "id": "gid://shopify/MediaImage/33612440797363",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-black-tourmaline.png?v=1790929573"
+    },
+    "stone-carnelian.jpg": {
+      "id": "gid://shopify/MediaImage/33612440830131",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-carnelian.jpg?v=1790929573"
+    },
+    "bead-carnelian.png": {
+      "id": "gid://shopify/MediaImage/33612440862899",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-carnelian.png?v=1790929573"
+    },
+    "stone-citrine.jpg": {
+      "id": "gid://shopify/MediaImage/33612440895667",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-citrine.jpg?v=1790929573"
+    },
+    "bead-citrine.png": {
+      "id": "gid://shopify/MediaImage/33612440928435",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-citrine.png?v=1790929574"
+    },
+    "stone-clear-quartz.jpg": {
+      "id": "gid://shopify/MediaImage/33612440961203",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-clear-quartz.jpg?v=1790929573"
+    },
+    "bead-clear-quartz.png": {
+      "id": "gid://shopify/MediaImage/33612440993971",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-clear-quartz.png?v=1790929573"
+    },
+    "stone-fluorite.jpg": {
+      "id": "gid://shopify/MediaImage/33612441026739",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-fluorite.jpg?v=1790929573"
+    },
+    "bead-fluorite.png": {
+      "id": "gid://shopify/MediaImage/33612441059507",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-fluorite.png?v=1790929573"
+    },
+    "stone-green-aventurine.jpg": {
+      "id": "gid://shopify/MediaImage/33612441092275",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-green-aventurine.jpg?v=1790929573"
+    },
+    "bead-green-aventurine.png": {
+      "id": "gid://shopify/MediaImage/33612441125043",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-green-aventurine.png?v=1790929573"
+    },
+    "stone-hematite.jpg": {
+      "id": "gid://shopify/MediaImage/33612441157811",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-hematite.jpg?v=1790929573"
+    },
+    "bead-hematite.png": {
+      "id": "gid://shopify/MediaImage/33612441190579",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-hematite.png?v=1790929573"
+    },
+    "stone-labradorite.jpg": {
+      "id": "gid://shopify/MediaImage/33612441223347",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-labradorite.jpg?v=1790929573"
+    },
+    "bead-labradorite.png": {
+      "id": "gid://shopify/MediaImage/33612441256115",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-labradorite.png?v=1790929573"
+    },
+    "stone-lapis-lazuli.jpg": {
+      "id": "gid://shopify/MediaImage/33612441288883",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-lapis-lazuli.jpg?v=1790929573"
+    },
+    "bead-lapis-lazuli.png": {
+      "id": "gid://shopify/MediaImage/33612441321651",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-lapis-lazuli.png?v=1790929573"
+    },
+    "stone-moonstone.jpg": {
+      "id": "gid://shopify/MediaImage/33612441354419",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-moonstone.jpg?v=1790929573"
+    },
+    "bead-moonstone.png": {
+      "id": "gid://shopify/MediaImage/33612441387187",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-moonstone.png?v=1790929573"
+    },
+    "stone-pyrite.jpg": {
+      "id": "gid://shopify/MediaImage/33612441419955",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-pyrite.jpg?v=1790929573"
+    },
+    "bead-pyrite.png": {
+      "id": "gid://shopify/MediaImage/33612441452723",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-pyrite.png?v=1790929573"
+    },
+    "stone-red-jasper.jpg": {
+      "id": "gid://shopify/MediaImage/33612441485491",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-red-jasper.jpg?v=1790929573"
+    },
+    "bead-red-jasper.png": {
+      "id": "gid://shopify/MediaImage/33612441518259",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-red-jasper.png?v=1790929573"
+    },
+    "stone-rose-quartz.jpg": {
+      "id": "gid://shopify/MediaImage/33612441551027",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-rose-quartz.jpg?v=1790929573"
+    },
+    "bead-rose-quartz.png": {
+      "id": "gid://shopify/MediaImage/33612441583795",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-rose-quartz.png?v=1790929573"
+    },
+    "stone-smoky-quartz.jpg": {
+      "id": "gid://shopify/MediaImage/33612441616563",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-smoky-quartz.jpg?v=1790929573"
+    },
+    "bead-smoky-quartz.png": {
+      "id": "gid://shopify/MediaImage/33612441649331",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-smoky-quartz.png?v=1790929573"
+    },
+    "stone-tigers-eye.jpg": {
+      "id": "gid://shopify/MediaImage/33612441682099",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stone-tigers-eye.jpg?v=1790929573"
+    },
+    "bead-tigers-eye.png": {
+      "id": "gid://shopify/MediaImage/33612441714867",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-tigers-eye.png?v=1790929573"
+    },
+    "bead-gold.png": {
+      "id": "gid://shopify/MediaImage/33612441747635",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/bead-gold.png?v=1790929573"
+    },
+    "intention-protection.jpg": {
+      "id": "gid://shopify/MediaImage/33612441780403",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/intention-protection.jpg?v=1790929573"
+    },
+    "intention-love.jpg": {
+      "id": "gid://shopify/MediaImage/33612441813171",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/intention-love.jpg?v=1790929573"
+    },
+    "intention-abundance.jpg": {
+      "id": "gid://shopify/MediaImage/33612441845939",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/intention-abundance.jpg?v=1790929574"
+    },
+    "intention-calm.jpg": {
+      "id": "gid://shopify/MediaImage/33612441878707",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/intention-calm.jpg?v=1790929573"
+    },
+    "intention-confidence.jpg": {
+      "id": "gid://shopify/MediaImage/33612441911475",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/intention-confidence.jpg?v=1790929573"
+    },
+    "intention-focus.jpg": {
+      "id": "gid://shopify/MediaImage/33612441944243",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/intention-focus.jpg?v=1790929573"
+    },
+    "intention-grounding.jpg": {
+      "id": "gid://shopify/MediaImage/33612441977011",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/intention-grounding.jpg?v=1790929573"
+    },
+    "intention-sleep.jpg": {
+      "id": "gid://shopify/MediaImage/33612442009779",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/intention-sleep.jpg?v=1790929573"
+    },
+    "stack-abundance-stack.jpg": {
+      "id": "gid://shopify/MediaImage/33612442042547",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stack-abundance-stack.jpg?v=1790929573"
+    },
+    "stack-calm-stack.jpg": {
+      "id": "gid://shopify/MediaImage/33612442075315",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stack-calm-stack.jpg?v=1790929573"
+    },
+    "stack-protection-stack.jpg": {
+      "id": "gid://shopify/MediaImage/33612442108083",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/stack-protection-stack.jpg?v=1790929573"
+    },
+    "site-hero-1.jpg": {
+      "id": "gid://shopify/MediaImage/33612442140851",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/site-hero-1.jpg?v=1790929573"
+    },
+    "site-hero-2.jpg": {
+      "id": "gid://shopify/MediaImage/33612442173619",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/site-hero-2.jpg?v=1790929573"
+    },
+    "site-studio.jpg": {
+      "id": "gid://shopify/MediaImage/33612442206387",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/site-studio.jpg?v=1790929573"
+    },
+    "site-build-teaser.jpg": {
+      "id": "gid://shopify/MediaImage/33612442239155",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/site-build-teaser.jpg?v=1790929573"
+    },
+    "site-stacks-wrist.jpg": {
+      "id": "gid://shopify/MediaImage/33612442271923",
+      "url": "https://cdn.shopify.com/s/files/1/0765/4568/7731/files/site-stacks-wrist.jpg?v=1790929573"
+    }
+  },
+  "metaobjects": {
+    "stone": {
+      "amethyst": "gid://shopify/Metaobject/251950268595",
+      "black-obsidian": "gid://shopify/Metaobject/251950301363",
+      "black-tourmaline": "gid://shopify/Metaobject/251950334131",
+      "carnelian": "gid://shopify/Metaobject/251950366899",
+      "citrine": "gid://shopify/Metaobject/251950399667",
+      "clear-quartz": "gid://shopify/Metaobject/251950432435",
+      "fluorite": "gid://shopify/Metaobject/251950465203",
+      "green-aventurine": "gid://shopify/Metaobject/251950497971",
+      "hematite": "gid://shopify/Metaobject/251950530739",
+      "labradorite": "gid://shopify/Metaobject/251950563507",
+      "lapis-lazuli": "gid://shopify/Metaobject/251950596275",
+      "moonstone": "gid://shopify/Metaobject/251950629043",
+      "pyrite": "gid://shopify/Metaobject/251950661811",
+      "red-jasper": "gid://shopify/Metaobject/251950694579",
+      "rose-quartz": "gid://shopify/Metaobject/251950727347",
+      "smoky-quartz": "gid://shopify/Metaobject/251950760115",
+      "tigers-eye": "gid://shopify/Metaobject/251950792883"
+    },
+    "intention": {
+      "protection": "gid://shopify/Metaobject/251950858419",
+      "love": "gid://shopify/Metaobject/251950891187",
+      "abundance": "gid://shopify/Metaobject/251950923955",
+      "calm": "gid://shopify/Metaobject/251950956723",
+      "confidence": "gid://shopify/Metaobject/251950989491",
+      "focus": "gid://shopify/Metaobject/251951022259",
+      "grounding": "gid://shopify/Metaobject/251951055027",
+      "sleep": "gid://shopify/Metaobject/251951087795"
+    },
+    "stack": {
+      "abundance-stack": "gid://shopify/Metaobject/251951120563",
+      "calm-stack": "gid://shopify/Metaobject/251951153331",
+      "protection-stack": "gid://shopify/Metaobject/251951186099"
+    }
+  },
+  "products": {
+    "the-alchemist": "gid://shopify/Product/8655653011635",
+    "the-fortune": "gid://shopify/Product/8655653503155",
+    "the-lionheart": "gid://shopify/Product/8655653732531",
+    "the-still-mind": "gid://shopify/Product/8655653994675",
+    "the-seven": "gid://shopify/Product/8655653896371",
+    "the-tender-heart": "gid://shopify/Product/8655654060211",
+    "the-guardian": "gid://shopify/Product/8655653568691",
+    "the-shield": "gid://shopify/Product/8655653961907",
+    "the-anchor": "gid://shopify/Product/8655653142707",
+    "the-aurora": "gid://shopify/Product/8655653208243",
+    "the-blush": "gid://shopify/Product/8704702218419",
+    "the-clarity": "gid://shopify/Product/8704702316723",
+    "the-clear-sight": "gid://shopify/Product/8655653306547",
+    "the-devotion": "gid://shopify/Product/8655653339315",
+    "the-ember": "gid://shopify/Product/8704702644403",
+    "the-night": "gid://shopify/Product/8704778240179",
+    "the-prism": "gid://shopify/Product/8704702873779",
+    "the-quiet": "gid://shopify/Product/8704702939315",
+    "the-root": "gid://shopify/Product/8704703037619",
+    "the-sunlit": "gid://shopify/Product/8704703201459",
+    "the-vault": "gid://shopify/Product/8704703266995"
+  },
+  "pages": {
+    "about": "gid://shopify/Page/124829958323",
+    "care": "gid://shopify/Page/124829991091",
+    "faq": "gid://shopify/Page/124830023859",
+    "size-guide": "gid://shopify/Page/124830056627",
+    "disclaimer": "gid://shopify/Page/124830089395",
+    "delivery": "gid://shopify/Page/124830122163",
+    "returns": "gid://shopify/Page/124830154931",
+    "contact": "gid://shopify/Page/124212674739",
+    "privacy": "gid://shopify/Page/124830187699",
+    "wishlist": "gid://shopify/Page/124830220467",
+    "stacks": "gid://shopify/Page/124830253235",
+    "build": "gid://shopify/Page/124830286003",
+    "intentions": "gid://shopify/Page/124830318771",
+    "stones": "gid://shopify/Page/124830351539"
+  },
+  "urlHandles": {
+    "stone": "stones",
+    "intention": "intentions"
+  }
+}

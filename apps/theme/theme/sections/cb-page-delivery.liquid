@@ -1,0 +1,44 @@
+{%- comment -%} Delivery in the UAE (mirror of apps/web delivery/page.tsx). Fee and threshold from theme settings. {%- endcomment -%}
+{%- liquid
+  assign fee = settings.cb_delivery_fee | default: 25
+  assign free = settings.cb_free_delivery | default: 250
+  assign pct = settings.cb_stack_discount | default: 15
+  assign page_abs = shop.url | append: page.url
+  assign description = 'Crystal Basket delivers across the UAE in 1 to 2 working days. Delivery is ' | append: fee | append: ' AED, free over ' | append: free | append: ' AED, with card payment or cash on delivery.'
+-%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}/"},{"@type":"ListItem","position":2,"name":"Delivery","item":"{{ page_abs }}"}]}</script>
+{%- capture intro -%}<p>{{ description }} Shopify emails your order confirmation as soon as you place the order, and the courier contacts you on the day of delivery.</p>{%- endcapture -%}
+{%- render 'cb-page-intro', heading: 'Delivery in the UAE', tagline: 'Strung in Dubai, at your door tomorrow.', content: intro, reviewed: section.settings.reviewed -%}
+<section class="container-x pb-12 max-w-3xl">
+  <h2 class="text-3xl md:text-[2.25rem] mb-5">How much is delivery and how long does it take?</h2>
+  <div class="overflow-x-auto border border-cb-line">
+    <table class="w-full text-[14px]">
+      <caption class="sr-only">Delivery details</caption>
+      <tbody class="divide-y divide-cb-line">
+        <tr><th scope="row" class="w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Where</th><td class="px-4 py-3">Every emirate in the UAE. We do not ship outside the UAE yet.</td></tr>
+        <tr><th scope="row" class="w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">How fast</th><td class="px-4 py-3">Most orders arrive the next working day, all within 1 to 2 working days of the order.</td></tr>
+        <tr><th scope="row" class="w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Cost</th><td class="px-4 py-3">{{ fee }} AED per order, free on orders over {{ free }} AED.</td></tr>
+        <tr><th scope="row" class="w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Payment</th><td class="px-4 py-3">Card at the secure Shopify checkout, or cash on delivery.</td></tr>
+        <tr><th scope="row" class="w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Packaging</th><td class="px-4 py-3">Linen pouch with a meaning card, ready to give.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="container-x pb-20 max-w-3xl space-y-8">
+  <div>
+    <h2 class="text-3xl md:text-[2.25rem]">Can I pay cash on delivery?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">Yes. Choose cash on delivery at checkout and pay the courier when the bracelet arrives. Card payments are taken at the same checkout. Discount codes and the {{ pct }}% stack discount apply either way.</p>
+  </div>
+  <div>
+    <h2 class="text-3xl md:text-[2.25rem]">What if the size is wrong?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">Exchange it for another size within 14 days. <a href="/pages/returns" class="text-cb-ink underline underline-offset-4">Exchanges and returns</a> explains how, and the <a href="/pages/size-guide" class="text-cb-ink underline underline-offset-4">size guide</a> helps you choose first.</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Delivery page",
+  "settings": [
+    { "type": "text", "id": "reviewed", "label": "Last reviewed", "default": "September 2026" }
+  ]
+}
+{% endschema %}

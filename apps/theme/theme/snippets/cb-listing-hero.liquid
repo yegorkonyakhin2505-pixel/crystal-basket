@@ -1,0 +1,33 @@
+{%- comment -%}
+  Listing page header (mirror of ListingHero.tsx): photo band with breadcrumb, H1 and intro on the left.
+  image: a web path for a theme asset ('/images/hero/hero-2.jpg') OR an image object (`image_obj`) from Files / metaobjects.
+  crumbs: "href|label||href|label" (empty href = current page). palette_1/palette_2: hex strings for the gradient fallback.
+  {% render 'cb-listing-hero', image: '/images/hero/hero-2.jpg', alt: '…', crumbs: '|Bracelets', title: 'Crystal bracelets', text: '…' %}
+{%- endcomment -%}
+<section class="relative min-h-[300px] md:min-h-[380px] overflow-hidden bg-cb-band">
+  {%- if image_obj != blank -%}
+    <div class="absolute inset-0">{{ image_obj | image_url: width: 2000 | image_tag: widths: '480, 800, 1200, 1600, 2000', sizes: '100vw', loading: 'eager', alt: alt, class: 'block h-full w-full object-cover object-[70%_center]' }}</div>
+  {%- elsif image != blank -%}
+    <div class="absolute inset-0">{% render 'cb-img', src: image, alt: alt, sizes: '100vw', loading: 'eager', class: 'object-[70%_center]' %}</div>
+  {%- elsif palette_1 != blank -%}
+    <div class="absolute inset-0" style="background: radial-gradient(70% 70% at 80% 20%, {{ palette_1 }}55, transparent 70%), radial-gradient(60% 60% at 20% 100%, {{ palette_2 }}33, transparent 70%)"></div>
+  {%- endif -%}
+  <div class="absolute inset-0 bg-white/75 md:bg-gradient-to-r md:from-white md:via-white/85 md:to-white/10"></div>
+  <div class="container-x relative">
+    <div class="max-w-[42rem] py-14 md:py-20">
+      <nav class="text-[13px] text-cb-muted mb-4" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-x-2">
+          <li><a href="{{ routes.root_url }}" class="hover:text-cb-ink">Home</a></li>
+          {%- assign cb_crumbs = crumbs | split: '||' -%}
+          {%- for c in cb_crumbs -%}
+            {%- assign parts = c | split: '|' -%}
+            {%- if parts.size > 1 -%}{%- assign c_href = parts[0] -%}{%- assign c_label = parts[1] -%}{%- else -%}{%- assign c_href = '' -%}{%- assign c_label = parts[0] -%}{%- endif -%}
+            <li class="flex items-center gap-x-2"><span aria-hidden="true">|</span>{% if c_href != blank %}<a href="{{ c_href }}" class="hover:text-cb-ink">{{ c_label }}</a>{% else %}<span class="text-cb-ink" aria-current="page">{{ c_label }}</span>{% endif %}</li>
+          {%- endfor -%}
+        </ol>
+      </nav>
+      <h1 class="text-4xl md:text-[3.25rem]">{{ title }}</h1>
+      {%- if text != blank -%}<p class="mt-3 text-[14px] text-cb-muted max-w-xl">{{ text }}</p>{%- endif -%}
+    </div>
+  </div>
+</section>

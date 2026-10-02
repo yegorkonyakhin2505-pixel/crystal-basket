@@ -1,0 +1,30 @@
+{%- comment -%} "Our story" teaser on the home page (studio photo + two paragraphs + link to /pages/about). {%- endcomment -%}
+<section class="container-x pb-16 md:pb-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+  <div class="order-2 lg:order-1 reveal">
+    <p class="label-caps mb-3">Our story</p>
+    <h2 class="text-3xl md:text-[2.5rem]">{{ section.settings.title | default: 'Chosen by hand. Strung one at a time.' }}</h2>
+    <p class="text-cb-muted mt-4 max-w-md">{{ section.settings.text_1 | default: 'Crystal Basket started as a basket of stones on a kitchen table in Dubai. Every bracelet is still made the same way: natural beads only, graded by eye, strung on premium cord, then rested on selenite before it goes into its linen pouch.' }}</p>
+    <p class="text-cb-muted mt-3 max-w-md">{{ section.settings.text_2 | default: 'Twelve bracelets in 8 mm natural stone, from 65 AED, chosen by what you want more of: calm, love, protection, confidence and more. Delivered across the UAE, usually the next working day, with card or cash on delivery. Crystal meanings describe tradition, not medical advice.' }}</p>
+    <a href="/pages/about" class="inline-flex select-none items-center justify-center gap-2 font-medium uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cb-rose disabled:cursor-not-allowed disabled:opacity-50 border border-cb-ink bg-transparent text-cb-ink hover:bg-cb-ink hover:text-white h-11 px-6 text-[12px] mt-6">{{ section.settings.button | default: 'Read the whole story' }}</a>
+  </div>
+  <div class="order-1 lg:order-2 aspect-[4/3] overflow-hidden reveal">
+    {%- if section.settings.image -%}
+      {{ section.settings.image | image_url: width: 1400 | image_tag: widths: '480, 800, 1200, 1400', sizes: '(min-width: 1024px) 50vw, 100vw', loading: 'lazy', alt: 'Stringing gemstone beads at the studio table', class: 'block h-full w-full object-cover' }}
+    {%- else -%}
+      {%- render 'cb-img', src: '/images/about/studio.jpg', alt: 'Stringing gemstone beads at the studio table' -%}
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Our story",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave empty for the studio photo." },
+    { "type": "text", "id": "title", "label": "Title", "default": "Chosen by hand. Strung one at a time." },
+    { "type": "textarea", "id": "text_1", "label": "First paragraph", "default": "Crystal Basket started as a basket of stones on a kitchen table in Dubai. Every bracelet is still made the same way: natural beads only, graded by eye, strung on premium cord, then rested on selenite before it goes into its linen pouch." },
+    { "type": "textarea", "id": "text_2", "label": "Second paragraph", "default": "Twelve bracelets in 8 mm natural stone, from 65 AED, chosen by what you want more of: calm, love, protection, confidence and more. Delivered across the UAE, usually the next working day, with card or cash on delivery. Crystal meanings describe tradition, not medical advice." },
+    { "type": "text", "id": "button", "label": "Button", "default": "Read the whole story" }
+  ],
+  "presets": [{ "name": "Our story" }]
+}
+{% endschema %}

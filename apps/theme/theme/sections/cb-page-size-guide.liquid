@@ -1,0 +1,43 @@
+{%- comment -%} Size guide (mirror of apps/web size-guide/page.tsx). Sizes S 16 cm / M 18 cm / L 20 cm, 8 mm beads: 20 / 23 / 25 beads. {%- endcomment -%}
+{%- liquid
+  if settings.cb_whatsapp_on
+    assign channel = 'WhatsApp'
+  else
+    assign channel = 'email'
+  endif
+-%}
+{%- capture intro -%}<p>A crystal bracelet should sit snug enough not to spin and loose enough to slide a finger under. Measure your wrist just below the wrist bone, then choose the size whose range includes your measurement. Between two sizes, go up: an 8 mm bracelet sits better slightly loose than tight.</p>{%- endcapture -%}
+{%- render 'cb-page-intro', heading: 'Crystal bracelet size guide', tagline: 'Measure once. Wear it every day.', content: intro, reviewed: section.settings.reviewed -%}
+<section class="container-x pb-12 grid md:grid-cols-2 gap-px bg-cb-line border border-cb-line max-w-5xl">
+  <div class="bg-white p-7">
+    <h2 class="label-caps mb-4">How do I measure my wrist?</h2>
+    <ol class="space-y-3 text-[14px] list-decimal list-inside"><li>Wrap a strip of paper or a soft tape snugly around your wrist, just below the wrist bone.</li><li>Mark where it overlaps and measure the length in centimetres.</li><li>Pick the size that lists your measurement below. Between sizes? Go up.</li></ol>
+  </div>
+  <div class="bg-white p-7">
+    <h2 class="label-caps mb-4">Which size am I?</h2>
+    <table class="w-full text-[14px]">
+      <caption class="sr-only">Wrist sizes</caption>
+      <thead><tr class="text-left label-caps"><th scope="col" class="pb-2 font-medium">Size</th><th scope="col" class="pb-2 font-medium">Bracelet</th><th scope="col" class="pb-2 font-medium">Fits wrist</th></tr></thead>
+      <tbody class="divide-y divide-cb-line">
+        <tr><th scope="row" class="py-2.5 text-left font-medium">S</th><td class="py-2.5">16 cm</td><td class="py-2.5">14–15.5 cm wrist</td></tr>
+        <tr><th scope="row" class="py-2.5 text-left font-medium">M</th><td class="py-2.5">18 cm</td><td class="py-2.5">15.5–17 cm wrist</td></tr>
+        <tr><th scope="row" class="py-2.5 text-left font-medium">L</th><td class="py-2.5">20 cm</td><td class="py-2.5">17–18.5 cm wrist</td></tr>
+      </tbody>
+    </table>
+    <p class="text-[12px] text-cb-muted mt-4">Need a custom length? Send us your wrist measurement by <a href="/pages/contact" class="underline underline-offset-4">{{ channel }}</a> and we will string it to size at no extra cost.</p>
+  </div>
+</section>
+<section class="container-x pb-20 max-w-5xl">
+  <div class="bg-white border border-cb-line p-7 md:flex md:items-baseline md:gap-8">
+    <h2 class="font-display text-2xl shrink-0">8 mm beads, on every piece</h2>
+    <p class="text-[13px] text-cb-muted mt-2 md:mt-0">The classic size: visible without being loud, comfortable on every wrist and made to stack. Roughly 20 beads on a size S, 23 on an M and 25 on an L. Wrong size after all? <a href="/pages/returns" class="underline underline-offset-4">Exchange it within 14 days</a>.</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Size guide page",
+  "settings": [
+    { "type": "text", "id": "reviewed", "label": "Last reviewed", "default": "September 2026" }
+  ]
+}
+{% endschema %}

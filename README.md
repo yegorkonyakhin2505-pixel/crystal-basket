@@ -10,6 +10,8 @@ Storefront for **Crystal Basket**, a Dubai crystal bracelet brand. Next.js 15 st
 pnpm install
 make dev          # http://localhost:3000
 make check        # tests + typecheck + build (the CI gate)
+pnpm --filter theme build   # Shopify theme: assets + CSS + islands into apps/theme/theme
+pnpm --filter theme push    # upload to the unpublished theme (shopify theme push)
 ```
 
 Node 22+, pnpm 10.
@@ -29,7 +31,8 @@ Node 22+, pnpm 10.
 | M9 | Deploy | ✅ | Push to `main` → GitHub Pages at crystalbasket.store. |
 | M10 | Shopify commerce | ✅ | Storefront API cart, Shopify checkout, 12 products / 36 variants imported. |
 | M10 | Real photography | ⏳ | AI placeholders in place (N05). |
-| M11 | API + admin (phase 2) | 📋 | Not started. See `docs/decisions/0001-tech-stack.md`. |
+| M11 | ~~API + admin (phase 2)~~ | ✖ | Superseded by M12 (ADR 0003). |
+| M12 | Shopify theme (`apps/theme`) | 🚧 | The storefront rebuilt as a Shopify Online Store 2.0 theme: Liquid pages + React islands, same tokens, copy and images. Pushed unpublished as "Crystal Basket (new)" (theme 155126235315). Content migration via `apps/theme/scripts/sync-shopify.ts` (needs the one-time CLI store auth), then domain move. See ADR 0003 and `apps/theme/ARCHITECTURE.md`. |
 
 ## How the owner edits products
 

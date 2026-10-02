@@ -1,0 +1,13 @@
+{%- comment -%} Single journal article. {%- endcomment -%}
+<article class="container-x pt-12 md:pt-20 pb-20 max-w-3xl">
+  <p class="label-caps mb-3"><a href="{{ blog.url }}" class="hover:text-cb-ink">{{ blog.title }}</a></p>
+  <h1 class="text-4xl md:text-[3.25rem] leading-[1.08]">{{ article.title }}</h1>
+  <p class="text-[12px] text-cb-faint mt-3">{{ article.published_at | date: '%-d %B %Y' }}</p>
+  {%- if article.image -%}
+    <div class="aspect-[4/3] overflow-hidden mt-8">{{ article.image | image_url: width: 1400 | image_tag: widths: '480, 800, 1200, 1400', sizes: '(min-width: 1024px) 48rem, 100vw', loading: 'eager', class: 'block h-full w-full object-cover' }}</div>
+  {%- endif -%}
+  <div class="text-cb-muted mt-8 space-y-4 text-[16px] leading-relaxed [&_a]:underline [&_a]:underline-offset-4 [&_h2]:text-cb-ink [&_h2]:text-3xl [&_h2]:mt-8 [&_h3]:text-cb-ink [&_h3]:text-2xl [&_h3]:mt-6">{{ article.content }}</div>
+</article>
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

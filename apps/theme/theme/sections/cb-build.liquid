@@ -1,0 +1,73 @@
+{%- comment -%}
+  Build-your-own bracelet (mirror of apps/web build/page.tsx): page intro, the BraceletBuilder island, how it works.
+  Stones in name order (the share-link code indexes this order), bead sprites and stone photos from the metaobject files.
+{%- endcomment -%}
+{%- liquid
+  assign page_abs = shop.url | append: page.url
+  assign shop_url = routes.all_products_collection_url
+  assign stones_url = pages['stones'].url | default: '/pages/stones'
+  capture names
+    for s in shop.metaobjects.stone.values
+      echo s.name.value
+      unless forloop.last
+        echo '||'
+      endunless
+    endfor
+  endcapture
+  assign names = names | split: '||' | sort_natural
+-%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}/"},{"@type":"ListItem","position":2,"name":"Build your own","item":"{{ page_abs }}"}]}</script>
+
+{%- capture intro -%}<p>Every Crystal Basket bracelet is 8 mm natural stone on stretch cord, so anything you design here sits evenly next to the pieces we already string. Choose a size, string the beads you want, press Done to see the bracelet, and we make it to order.</p>{%- endcapture -%}
+{%- render 'cb-page-intro', heading: 'Build your own crystal bracelet', tagline: 'Your stones, your order, your wrist.', content: intro, reviewed: section.settings.reviewed -%}
+
+<section class="container-x pb-16">
+  {%- capture builder_props -%}
+  {
+    "stones": [
+    {%- assign n = 0 -%}
+    {%- for nm in names -%}
+      {%- for s in shop.metaobjects.stone.values -%}
+        {%- if s.name.value == nm -%}
+          {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
+          {"id":{{ s.system.handle | json }},"name":{{ s.name.value | json }},"palette":[{{ s.palette_1.value | append: '' | json }},{{ s.palette_2.value | append: '' | json }}],"tier":{{ s.tier.value | default: 'classic' | json }},"keywords":{% if s.keywords.value %}{{ s.keywords.value | json }}{% else %}[]{% endif %},"waterSafe":{% if s.water_safe.value == false %}false{% else %}true{% endif %},"image":{% if s.image.value %}{{ s.image.value | image_url: width: 160 | json }}{% else %}null{% endif %},"bead":{% if s.bead.value %}{{ s.bead.value | image_url: width: 160 | json }}{% else %}null{% endif %}}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+    ],
+    "intentions": [
+    {%- assign n = 0 -%}
+    {%- for k in (1..12) -%}
+      {%- for i in shop.metaobjects.intention.values -%}
+        {%- assign order = i.sort_order.value | plus: 0 -%}
+        {%- if order == k -%}
+          {%- if n > 0 -%},{%- endif -%}{%- assign n = n | plus: 1 -%}
+          {"id":{{ i.system.handle | json }},"short":{{ i.short.value | json }},"stones":[{% for s in i.stones.value %}{% unless forloop.first %},{% endunless %}{{ s.system.handle | json }}{% endfor %}]}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+    ],
+    "pricing": {"handle":{{ settings.cb_custom_handle | default: 'custom-bracelet' | json }},"baseAED":{{ settings.cb_custom_base | default: 75 }},"tierAED":{"classic":0,"select":{{ settings.cb_custom_select | default: 10 }},"rare":{{ settings.cb_custom_rare | default: 20 }}},"goldAED":{{ settings.cb_custom_gold | default: 10 }},"maxGold":{{ settings.cb_custom_max_gold | default: 3 }}},
+    "goldBead": {{ 'cb-beads-gold.png' | asset_url | json }}
+  }
+  {%- endcapture -%}
+  {%- render 'cb-island', name: 'BraceletBuilder', props: builder_props, style: 'min-height:640px' -%}
+</section>
+
+<section class="container-x pb-16 md:pb-20">
+  <h2 class="text-3xl md:text-[2.25rem] mb-6">How does it work?</h2>
+  <ol class="grid md:grid-cols-3 gap-px bg-cb-line border border-cb-line">
+    <li class="bg-white p-6"><span class="font-display text-3xl text-cb-gold">01</span><h3 class="font-display text-[1.4rem] mt-2">Pick a size</h3><p class="text-[13px] text-cb-muted mt-2">S, M or L sets how many 8 mm beads fit around your wrist. Not sure? The size guide takes a minute.</p></li>
+    <li class="bg-white p-6"><span class="font-display text-3xl text-cb-gold">02</span><h3 class="font-display text-[1.4rem] mt-2">String the beads</h3><p class="text-[13px] text-cb-muted mt-2">Tap a bead in the tray and it drops onto the string next to the last one. Set beads per tap to string several at once, repeat a pattern, or fill the rest with one stone. When the string is full, press Done and it curls into your bracelet.</p></li>
+    <li class="bg-white p-6"><span class="font-display text-3xl text-cb-gold">03</span><h3 class="font-display text-[1.4rem] mt-2">We string it</h3><p class="text-[13px] text-cb-muted mt-2">Your design goes to the studio exactly as you laid it out. Strung on 1 mm stretch cord, cleansed on selenite, and on its way within two working days.</p></li>
+  </ol>
+  <p class="text-[13px] text-cb-muted mt-6">Want a head start? The <a href="{{ stones_url }}" class="underline underline-offset-4 hover:text-cb-rose">stone library</a> explains what each stone is traditionally worn for, and the <a href="/pages/size-guide" class="underline underline-offset-4 hover:text-cb-rose">size guide</a> helps you measure. Prefer one of ours? <a href="{{ shop_url }}" class="underline underline-offset-4 hover:text-cb-rose">Shop the ready-made bracelets</a>.</p>
+</section>
+{% schema %}
+{
+  "name": "Build your own",
+  "settings": [
+    { "type": "text", "id": "reviewed", "label": "Last reviewed", "default": "September 2026" }
+  ]
+}
+{% endschema %}

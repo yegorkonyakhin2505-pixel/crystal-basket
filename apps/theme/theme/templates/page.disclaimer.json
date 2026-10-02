@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-page-disclaimer", "settings": {} }
+  },
+  "order": ["main"]
+}

@@ -43,6 +43,8 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
   const [size, setSize] = useState<WristSizeKey>("M");
   const [beads, setBeads] = useState<Bead[]>([]);
   const [qty, setQty] = useState(1);
+  /** Which tip of the string new beads thread on from: 0 = left (joins the front of the row), 1 = right (joins the end). */
+  const [entrySide, setEntrySide] = useState<0 | 1>(1);
   const [history, setHistory] = useState<Bead[][]>([]);
   const [folded, setFolded] = useState(false);
   const [stageBusy, setStageBusy] = useState(false);
@@ -94,11 +96,11 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
     if (stone === GOLD) count = Math.min(count, Math.max(0, pricing.maxGold - gold));
     count = Math.min(count, slots - beadsRef.current.length); if (count <= 0) return;
     const fresh = Array.from({ length: count }, () => ({ id: nextId.current++, stone }));
-    // Thread on from the nearer tip of the string: left half of the tray enters at the left tip and joins the
-    // left of the row, right half enters at the right tip and joins the right, so nothing passes through the pile.
+    // Thread on from the chosen tip of the string ("Add from" switch): left joins the front of the row, right the end,
+    // so a design is always built from one side and stays easy to read.
     const trayImg = document.querySelector<HTMLElement>(`[data-tray="${stone}"] [data-bead]`);
-    const rect = trayImg?.getBoundingClientRect(); const col = colRef.current?.getBoundingClientRect();
-    const side: 0 | 1 = rect && col && rect.left + rect.width / 2 < col.left + col.width / 2 ? 0 : 1;
+    const rect = trayImg?.getBoundingClientRect();
+    const side: 0 | 1 = entrySide;
     setFolded(false); snapshot(); setBeads((b) => (side === 0 ? [...[...fresh].reverse(), ...b] : [...b, ...fresh]));
     setEntries((e) => { const n = { ...e }; for (const b of fresh) n[b.id] = side; return n; });
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -107,7 +109,7 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
       setFlights((f) => [...f, ...fresh.map((b, k) => ({ id: b.id, stone, side, t0: now + k * 140, dur: 560, from: { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2, w: rect.width } }))]);
       trayImg?.animate([{ transform: "scale(1)", opacity: 1 }, { transform: "scale(.3)", opacity: 0, offset: 0.22 }, { transform: "scale(.3)", opacity: 0, offset: 0.55 }, { transform: "scale(1.15)", opacity: 1, offset: 0.85 }, { transform: "scale(1)", opacity: 1 }], { duration: 720, easing: "ease-out" });
     }
-  }, [pricing.maxGold, slots, snapshot]);
+  }, [entrySide, pricing.maxGold, slots, snapshot]);
   // flight loop: aim every frame at the bead's live slot position reported by the stage
   useEffect(() => {
     if (!flights.length) return;
@@ -181,7 +183,18 @@ export function BraceletBuilder({ stones, intentions, pricing, goldBead }: { sto
           {flights.map((f) => <img key={f.id} ref={(el) => { if (el) flightEls.current.set(f.id, el); else flightEls.current.delete(f.id); }} src={spriteFor(f.stone) ?? undefined} alt="" className="absolute left-0 top-0 drop-shadow-[0_10px_10px_rgb(0_0_0/.25)]" style={{ opacity: 0, width: f.from.w, height: f.from.w, willChange: "transform" }} draggable={false} />)}
         </div>
         <div className="rounded-[1.5rem] bg-cb-band px-4 pt-4 pb-3 overflow-visible">
-          <div className="flex items-baseline justify-between mb-3"><p className="label-caps">Tap a bead to string it</p><p className="text-[12px] text-cb-muted">{remaining} of {slots} to go</p></div>
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 mb-3">
+            <p className="label-caps">Tap a bead to string it</p>
+            <div className="flex items-center gap-2 text-[11px]">
+              <span className="uppercase tracking-[0.12em] text-cb-muted">Add from</span>
+              <div className="inline-flex border border-cb-line bg-white" role="radiogroup" aria-label="Which end of the string new beads join">
+                {([0, 1] as const).map((s) => (
+                  <button key={s} type="button" role="radio" aria-checked={entrySide === s} onClick={() => setEntrySide(s)} className={cn("px-3 py-1 uppercase tracking-[0.12em] transition-colors", entrySide === s ? "bg-cb-ink text-white" : "text-cb-muted hover:text-cb-ink")}>{s === 0 ? "Left" : "Right"}</button>
+                ))}
+              </div>
+            </div>
+            <p className="text-[12px] text-cb-muted">{remaining} of {slots} to go</p>
+          </div>
           <div className="grid grid-cols-6 sm:grid-cols-9 gap-x-1 gap-y-3" role="listbox" aria-label="Beads">
             {tray.map((t) => {
               const disabled = remaining === 0 || (t.id === GOLD && goldCount >= pricing.maxGold);

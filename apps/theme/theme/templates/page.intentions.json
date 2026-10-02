@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-intentions-hub", "settings": {} }
+  },
+  "order": ["main"]
+}

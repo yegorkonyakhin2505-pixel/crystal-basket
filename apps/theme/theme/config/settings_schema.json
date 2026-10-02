@@ -1,0 +1,48 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Crystal Basket",
+    "theme_version": "1.0.0",
+    "theme_author": "Crystal Basket",
+    "theme_documentation_url": "https://crystalbasket.store",
+    "theme_support_url": "https://crystalbasket.store/pages/contact"
+  },
+  {
+    "name": "Store details",
+    "settings": [
+      { "type": "text", "id": "cb_city", "label": "City", "default": "Dubai" },
+      { "type": "text", "id": "cb_email", "label": "Email", "default": "hello@crystalbasket.store" },
+      { "type": "text", "id": "cb_instagram", "label": "Instagram handle (no @)", "default": "crystal.basket" },
+      { "type": "text", "id": "cb_tiktok", "label": "TikTok handle (no @)", "info": "Leave empty to hide the footer link." },
+      { "type": "text", "id": "cb_whatsapp", "label": "WhatsApp number, digits only", "default": "971500000000" },
+      { "type": "checkbox", "id": "cb_whatsapp_on", "label": "Show WhatsApp order and contact buttons", "info": "Keep off until the real number is set; every message link falls back to email.", "default": false },
+      { "type": "text", "id": "cb_announcement", "label": "Announcement bar", "default": "Free UAE delivery over 250 AED · Every piece cleansed & charged before it ships" }
+    ]
+  },
+  {
+    "name": "Delivery & pricing",
+    "settings": [
+      { "type": "number", "id": "cb_delivery_fee", "label": "Delivery fee (AED)", "default": 25 },
+      { "type": "number", "id": "cb_free_delivery", "label": "Free delivery from (AED)", "default": 250 },
+      { "type": "text", "id": "cb_delivery_copy", "label": "Delivery promise", "default": "Next-day delivery across the UAE." },
+      { "type": "number", "id": "cb_stack_discount", "label": "Stack discount (%)", "default": 15 },
+      { "type": "number", "id": "cb_custom_base", "label": "Build-your-own base price (AED)", "default": 75 },
+      { "type": "number", "id": "cb_custom_select", "label": "Build-your-own: Select stones add (AED)", "default": 10 },
+      { "type": "number", "id": "cb_custom_rare", "label": "Build-your-own: Rare stones add (AED)", "default": 20 },
+      { "type": "number", "id": "cb_custom_gold", "label": "Build-your-own: gold bead adds (AED)", "default": 10 },
+      { "type": "number", "id": "cb_custom_max_gold", "label": "Build-your-own: max gold beads", "default": 3 },
+      { "type": "text", "id": "cb_custom_handle", "label": "Build-your-own product handle", "default": "custom-bracelet" }
+    ]
+  },
+  {
+    "name": "Welcome offer & reviews",
+    "settings": [
+      { "type": "checkbox", "id": "cb_offer_popup", "label": "Welcome-offer popup", "default": true },
+      { "type": "number", "id": "cb_welcome_pct", "label": "Welcome offer (%)", "default": 10 },
+      { "type": "text", "id": "cb_welcome_code", "label": "Welcome discount code", "default": "WELCOME10" },
+      { "type": "checkbox", "id": "cb_reviews", "label": "Show the reviews section", "info": "Off until real customer reviews replace the sample quotes.", "default": false },
+      { "type": "text", "id": "cb_reviews_average", "label": "Review average", "default": "4.9" },
+      { "type": "number", "id": "cb_reviews_count", "label": "Review count", "default": 312 }
+    ]
+  }
+]

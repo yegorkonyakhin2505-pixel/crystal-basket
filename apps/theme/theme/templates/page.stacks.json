@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-stacks", "settings": {} }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,12 @@
+{%- comment -%}
+  Native <details> accordion (mirror of ui/Accordion.tsx). Body HTML is passed in `content` (capture it first).
+  {% render 'cb-accordion', title: 'The piece', content: html, open: true, heading: 'h3' %}
+{%- endcomment -%}
+{%- assign cb_h = heading | default: 'span' -%}
+<details{% if open %} open{% endif %} class="group border-b border-cb-line{% if class != blank %} {{ class }}{% endif %}">
+  <summary class="flex cursor-pointer list-none items-center justify-between py-4 text-[14px] font-medium tracking-wide [&::-webkit-details-marker]:hidden">
+    <{{ cb_h }} class="font-body text-[14px] font-medium tracking-wide leading-snug">{{ title }}</{{ cb_h }}>
+    <span aria-hidden="true" class="ml-4 text-cb-muted transition-transform duration-300 group-open:rotate-45 text-xl leading-none">+</span>
+  </summary>
+  <div class="pb-5 text-[14px] leading-relaxed text-cb-muted">{{ content }}</div>
+</details>

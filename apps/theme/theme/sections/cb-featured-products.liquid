@@ -1,0 +1,48 @@
+{%- comment -%}
+  Bestsellers (mirror of the home page block): bestsellers first, then featured pieces, four tiles, grid markup as cb-product-grid.
+  Only products that carry the cb.intention metafield count as bracelets (keeps the custom-bracelet and test products out).
+{%- endcomment -%}
+{%- liquid
+  assign shop_url = routes.all_products_collection_url
+  assign bracelets = collections.all.products | sort: 'handle'
+  assign max = section.settings.limit | default: 4
+  assign shown = 0
+-%}
+<section class="container-x py-16 md:py-24">
+  {%- render 'cb-section-title', eyebrow: section.settings.eyebrow, title: section.settings.title -%}
+  {%- capture tiles -%}
+    {%- for pass in (1..2) -%}
+      {%- for p in bracelets -%}
+        {%- if shown >= max -%}{%- break -%}{%- endif -%}
+        {%- unless p.metafields.crystal.intention.value -%}{%- continue -%}{%- endunless -%}
+        {%- assign best = p.metafields.crystal.bestseller.value -%}
+        {%- assign feat = p.metafields.crystal.featured.value -%}
+        {%- assign ok = false -%}
+        {%- if pass == 1 and best -%}{%- assign ok = true -%}{%- endif -%}
+        {%- if pass == 2 and feat and best != true -%}{%- assign ok = true -%}{%- endif -%}
+        {%- if ok -%}
+          {%- assign shown = shown | plus: 1 -%}
+          {%- render 'cb-product-tile', product: p -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- if shown > 0 -%}
+    <div class="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-cb-line">{{ tiles }}</div>
+  {%- else -%}
+    <p class="container-x py-10 text-[14px] text-cb-muted">New pieces are being strung. Check back soon.</p>
+  {%- endif -%}
+  <div class="text-center mt-8"><a href="{{ shop_url }}" class="inline-flex select-none items-center justify-center gap-2 font-medium uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cb-rose disabled:cursor-not-allowed disabled:opacity-50 border border-cb-ink bg-transparent text-cb-ink hover:bg-cb-ink hover:text-white h-11 px-6 text-[12px]">{{ section.settings.button | default: 'View all bracelets' }}</a></div>
+</section>
+{% schema %}
+{
+  "name": "Bestsellers",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Bestsellers" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Where most people start" },
+    { "type": "range", "id": "limit", "label": "Tiles", "min": 2, "max": 8, "step": 1, "default": 4 },
+    { "type": "text", "id": "button", "label": "Button", "default": "View all bracelets" }
+  ],
+  "presets": [{ "name": "Bestsellers" }]
+}
+{% endschema %}

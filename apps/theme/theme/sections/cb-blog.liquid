@@ -1,0 +1,23 @@
+{%- comment -%} Blog index (no blog yet; kept minimal and on-brand). {%- endcomment -%}
+<section class="container-x pt-12 md:pt-20 pb-20 max-w-3xl">
+  <p class="label-caps mb-3">Journal</p>
+  <h1 class="text-4xl md:text-[3rem] mb-8">{{ blog.title }}</h1>
+  {%- paginate blog.articles by 12 -%}
+    {%- if blog.articles.size == 0 -%}
+      <p class="text-cb-muted text-[14px]">Nothing written yet.</p>
+    {%- endif -%}
+    <ul class="border-t border-cb-line">
+      {%- for article in blog.articles -%}
+        <li class="border-b border-cb-line py-5">
+          <a href="{{ article.url }}" class="font-display text-2xl hover:text-cb-rose">{{ article.title }}</a>
+          <p class="text-[12px] text-cb-faint mt-1">{{ article.published_at | date: '%-d %B %Y' }}</p>
+          {%- if article.excerpt_or_content != blank -%}<p class="text-[14px] text-cb-muted mt-2">{{ article.excerpt_or_content | strip_html | truncate: 180 }}</p>{%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+    {%- if paginate.pages > 1 -%}<nav class="py-8 text-[13px] text-cb-muted" aria-label="Pagination">{{ paginate | default_pagination }}</nav>{%- endif -%}
+  {%- endpaginate -%}
+</section>
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

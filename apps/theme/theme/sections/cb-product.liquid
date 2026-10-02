@@ -1,0 +1,501 @@
+{%- comment -%}
+  Product page (mirror of apps/web products/[slug]/page.tsx). Product facts come from product.metafields.crystal.*,
+  stones and intentions are metaobjects, the stack is found among shop.metaobjects.stack.values.
+  Mobile order: photo, buy box, then the detail photo. Desktop: photos left, sticky buy box right.
+{%- endcomment -%}
+{%- liquid
+  assign shop_url = routes.all_products_collection_url
+  assign name = product.title
+  assign d_int = product.metafields.crystal.intention.value
+  assign stones = product.metafields.crystal.stones.value
+  assign secondary = product.metafields.crystal.secondary_intentions.value
+  assign gold = product.metafields.crystal.gold_accent.value
+  assign style = product.metafields.crystal.style.value | default: 'unisex'
+  assign leaving = product.metafields.crystal.leaving_soon.value
+  assign promise = product.metafields.crystal.promise.value
+  assign body = product.metafields.crystal.body.value
+  assign affirmation = product.metafields.crystal.affirmation.value
+  assign seo_title = product.metafields.crystal.seo_title.value | default: product.title
+  assign subtitle = product.metafields.crystal.subtitle.value | default: seo_title
+  assign triad = product.metafields.crystal.triad.value
+  assign includes = product.metafields.crystal.includes.value
+  if includes == blank
+    assign includes = 'Bracelet on premium 1mm stretch cord|Stone meaning & affirmation card|Cleanse & care card|Linen pouch' | split: '|'
+  endif
+  assign price_aed = product.price | divided_by: 100
+  assign compare_aed = 0
+  if product.compare_at_price > product.price
+    assign compare_aed = product.compare_at_price | divided_by: 100
+  endif
+  assign fee = settings.cb_delivery_fee | default: 25
+  assign free = settings.cb_free_delivery | default: 250
+  assign pct = settings.cb_stack_discount | default: 15
+  assign delivery_copy = settings.cb_delivery_copy | default: 'Next-day delivery across the UAE.'
+  assign seo_title_lc = seo_title | downcase
+
+  comment
+    Wrist sizes from the "Wrist size" option (values like "S · 16 cm"); S/M/L when the product has no such option.
+  endcomment
+  assign size_letters = ''
+  for opt in product.options_with_values
+    assign oname = opt.name | downcase
+    if oname contains 'wrist'
+      for v in opt.values
+        assign letter = v | slice: 0 | upcase
+        assign size_letters = size_letters | append: letter | append: ','
+      endfor
+    endif
+  endfor
+  if size_letters == blank
+    assign size_letters = 'S,M,L,'
+  endif
+  assign sizes = size_letters | split: ','
+  assign selected = sizes[0]
+  if size_letters contains 'M,'
+    assign selected = 'M'
+  endif
+
+  comment
+    Stone facts: handles, names, colours, water/sun care lists, chakra and zodiac unions.
+  endcomment
+  capture my_stones
+    for s in stones
+      echo '|' | append: s.system.handle | append: '|'
+    endfor
+  endcapture
+  capture stone_names
+    for s in stones
+      echo s.name.value
+      unless forloop.last
+        echo ', '
+      endunless
+    endfor
+  endcapture
+  capture stone_colors
+    for s in stones
+      echo s.color.value
+      unless forloop.last
+        echo ', '
+      endunless
+    endfor
+  endcapture
+  capture stone_list
+    for s in stones
+      echo s.name.value
+      if forloop.length > 1
+        if forloop.rindex == 2
+          echo ' and '
+        elsif forloop.last == false
+          echo ', '
+        endif
+      endif
+    endfor
+  endcapture
+  capture no_water_str
+    for s in stones
+      if s.water_safe.value == false
+        echo s.name.value | append: '|'
+      endif
+    endfor
+  endcapture
+  capture no_sun_str
+    for s in stones
+      if s.sun_safe.value == false
+        echo s.name.value | append: '|'
+      endif
+    endfor
+  endcapture
+  assign no_water = no_water_str | split: '|'
+  assign no_sun = no_sun_str | split: '|'
+  capture no_water_list
+    for n in no_water
+      echo n
+      if forloop.length > 1
+        if forloop.rindex == 2
+          echo ' and '
+        elsif forloop.last == false
+          echo ', '
+        endif
+      endif
+    endfor
+  endcapture
+  capture no_sun_list
+    for n in no_sun
+      echo n
+      if forloop.length > 1
+        if forloop.rindex == 2
+          echo ' and '
+        elsif forloop.last == false
+          echo ', '
+        endif
+      endif
+    endfor
+  endcapture
+  assign chakra_acc = ','
+  assign zodiac_acc = ','
+  assign all_signs = false
+  for s in stones
+    for c in s.chakra.value
+      assign probe = ',' | append: c | append: ','
+      unless chakra_acc contains probe
+        assign chakra_acc = chakra_acc | append: c | append: ','
+      endunless
+    endfor
+    for z in s.zodiac.value
+      if z == 'All signs'
+        assign all_signs = true
+      endif
+      assign probe = ',' | append: z | append: ','
+      unless zodiac_acc contains probe
+        assign zodiac_acc = zodiac_acc | append: z | append: ','
+      endunless
+    endfor
+  endfor
+  assign chakras = chakra_acc | remove_first: ',' | split: ','
+  if all_signs
+    assign zodiac_text = 'All signs'
+  else
+    assign zodiac_text = zodiac_acc | remove_first: ',' | split: ',' | join: ', '
+  endif
+  assign chakra_text = chakras | join: ', '
+
+  case d_int.wrist.value
+    when 'left'
+      assign wrist_text = 'the left wrist, the receiving side'
+    when 'right'
+      assign wrist_text = 'the right wrist, the projecting side'
+    else
+      assign wrist_text = 'either wrist, since its stones are traditionally worn on both sides'
+  endcase
+  assign short_lc = d_int.short.value | downcase
+  assign stone_list_lc = stone_list | downcase
+
+  comment
+    The curated stack this product belongs to, if any, and its other two pieces.
+  endcomment
+  assign stack = nil
+  for st in shop.metaobjects.stack.values
+    for sp in st.products.value
+      if sp.handle == product.handle
+        assign stack = st
+      endif
+    endfor
+  endfor
+  capture mates_list
+    if stack
+      assign mates_str = ''
+      for sp in stack.products.value
+        unless sp.handle == product.handle
+          assign mates_str = mates_str | append: sp.title | append: '|'
+        endunless
+      endfor
+      assign mates = mates_str | split: '|'
+      for m in mates
+        echo m
+        if forloop.length > 1
+          if forloop.rindex == 2
+            echo ' and '
+          elsif forloop.last == false
+            echo ', '
+          endif
+        endif
+      endfor
+    endif
+  endcapture
+
+  comment
+    Related pieces: same intention and a shared stone first, then same intention, shared stones, cross-linked
+    intentions, bestsellers, anything in stock; sold-out pieces last. Four tiles.
+  endcomment
+  assign my_int = d_int.system.handle
+  capture my_secondary
+    for sec in secondary
+      echo '|' | append: sec.system.handle | append: '|'
+    endfor
+  endcapture
+  assign candidates = collections.all.products | sort: 'handle'
+  assign chosen = ''
+  assign chosen_count = 0
+  assign rel1 = nil
+  assign rel2 = nil
+  capture related_tiles
+    for pass in (1..8)
+      for o in candidates
+        if chosen_count >= 4
+          break
+        endif
+        if o.handle == product.handle
+          continue
+        endif
+        unless o.metafields.crystal.intention.value
+          continue
+        endunless
+        assign key = '|' | append: o.handle | append: '|'
+        if chosen contains key
+          continue
+        endif
+        assign o_int = o.metafields.crystal.intention.value.system.handle
+        assign shares = false
+        for s in o.metafields.crystal.stones.value
+          assign sk = '|' | append: s.system.handle | append: '|'
+          if my_stones contains sk
+            assign shares = true
+          endif
+        endfor
+        assign cross = false
+        assign o_key = '|' | append: o_int | append: '|'
+        if my_secondary contains o_key
+          assign cross = true
+        endif
+        for sec in o.metafields.crystal.secondary_intentions.value
+          if sec.system.handle == my_int
+            assign cross = true
+          endif
+        endfor
+        assign ok = false
+        case pass
+          when 1
+            if o.available and o_int == my_int and shares
+              assign ok = true
+            endif
+          when 2
+            if o.available and o_int == my_int
+              assign ok = true
+            endif
+          when 3
+            if o.available and shares
+              assign ok = true
+            endif
+          when 4
+            if o.available and cross
+              assign ok = true
+            endif
+          when 5
+            if o.available and o.metafields.crystal.bestseller.value
+              assign ok = true
+            endif
+          when 6
+            if o.available
+              assign ok = true
+            endif
+          when 7
+            if o_int == my_int or shares
+              assign ok = true
+            endif
+          else
+            assign ok = true
+        endcase
+        if ok
+          assign chosen = chosen | append: key
+          assign chosen_count = chosen_count | plus: 1
+          if chosen_count == 1
+            assign rel1 = o.title
+          elsif chosen_count == 2
+            assign rel2 = o.title
+          endif
+          render 'cb-product-tile', product: o
+        endif
+      endfor
+    endfor
+  endcapture
+-%}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Product","@id":"{{ shop.url }}{{ product.url }}#product","name":{{ name | append: ' — ' | append: subtitle | json }},"description":{{ promise | append: ' ' | append: body | json }},"sku":{{ product.handle | json }},"brand":{"@type":"Brand","name":{{ shop.name | json }}},"material":{{ stone_names | json }},"color":{{ stone_colors | json }},"category":"Apparel & Accessories > Jewelry > Bracelets","audience":{"@type":"PeopleAudience","suggestedGender":"{% if style == 'men' %}male{% elsif style == 'women' %}female{% else %}unisex{% endif %}"},"url":"{{ shop.url }}{{ product.url }}","image":[{% for im in product.images limit: 2 %}{{ im | image_url: width: 1200 | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],"offers":{"@type":"Offer","url":"{{ shop.url }}{{ product.url }}","price":{{ price_aed }},"priceCurrency":"AED","availability":"{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}","itemCondition":"https://schema.org/NewCondition","seller":{"@id":"{{ shop.url }}/#organization","@type":"Organization","name":{{ shop.name | json }}},"shippingDetails":{% render 'cb-schema-shipping' %},"hasMerchantReturnPolicy":{% render 'cb-schema-returns' %}}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}/"},{"@type":"ListItem","position":2,"name":"Bracelets","item":"{{ shop.url }}{{ shop_url }}"},{"@type":"ListItem","position":3,"name":{{ d_int.name.value | json }},"item":"{{ shop.url }}{{ d_int.system.url }}"},{"@type":"ListItem","position":4,"name":{{ name | json }},"item":"{{ shop.url }}{{ product.url }}"}]}
+</script>
+<nav class="container-x pt-5 text-[13px] text-cb-muted" aria-label="Breadcrumb">
+  <ol class="flex flex-wrap items-center gap-x-2">
+    <li><a href="{{ routes.root_url }}" class="hover:text-cb-ink">Home</a></li>
+    <li class="flex gap-x-2"><span aria-hidden="true">|</span><a href="{{ shop_url }}" class="hover:text-cb-ink">Bracelets</a></li>
+    {%- if d_int -%}<li class="flex gap-x-2"><span aria-hidden="true">|</span><a href="{{ d_int.system.url | default: '#' }}" class="hover:text-cb-ink">{{ d_int.name.value }}</a></li>{%- endif -%}
+    <li class="flex gap-x-2"><span aria-hidden="true">|</span><span class="text-cb-ink" aria-current="page">{{ name }}</span></li>
+  </ol>
+</nav>
+
+<section class="container-x pt-6 pb-16 grid grid-cols-1 gap-8 lg:grid-cols-[1.15fr_1fr] lg:gap-x-16 lg:gap-y-2 [grid-template-areas:'main'_'info'_'more'] lg:[grid-template-areas:'main_info'_'more_info'] lg:grid-rows-[auto_1fr]">
+  <div class="[grid-area:main] aspect-square bg-white border border-cb-line overflow-hidden">
+    {%- if product.featured_image -%}
+      {%- assign main_alt = name | append: ', ' | append: seo_title_lc -%}
+      {{ product.featured_image | image_url: width: 1600 | image_tag: widths: '480, 800, 1200, 1600', sizes: '(min-width: 1024px) 55vw, 100vw', loading: 'eager', fetchpriority: 'high', alt: main_alt, class: 'block h-full w-full object-cover' }}
+    {%- else -%}
+      {%- render 'cb-bead-ring', palettes: stones, gold: gold -%}
+    {%- endif -%}
+  </div>
+  <div class="[grid-area:more] grid grid-cols-2 gap-2 self-start">
+    {%- if product.images.size > 1 -%}
+      {%- assign detail_alt = name | append: ' worn on the wrist' -%}
+      <div class="aspect-[3/4] bg-cb-band overflow-hidden">{{ product.images[1] | image_url: width: 1200 | image_tag: widths: '480, 800, 1200', sizes: '(min-width: 1024px) 28vw, 50vw', loading: 'lazy', alt: detail_alt, class: 'block h-full w-full object-cover' }}</div>
+    {%- else -%}
+      {%- comment -%} Shopify holds the main photo only; the on-wrist photo comes from the theme assets when one exists. {%- endcomment -%}
+      {%- assign detail_alt = name | append: ' worn on the wrist' -%}
+      {%- capture lifestyle -%}{%- render 'cb-product-lifestyle', handle: product.handle, alt: detail_alt, sizes: '(min-width: 1024px) 28vw, 50vw' -%}{%- endcapture -%}
+      {%- if lifestyle contains '<img' -%}
+        <div class="aspect-[3/4] bg-cb-band overflow-hidden">{{ lifestyle }}</div>
+      {%- elsif d_int -%}
+        {%- assign detail_alt = d_int.name.value | append: ' bracelets on the wrist' -%}
+        <div class="aspect-[3/4] bg-cb-band overflow-hidden">
+          {%- if d_int.image.value -%}
+            {{ d_int.image.value | image_url: width: 1200 | image_tag: widths: '480, 800, 1200', sizes: '(min-width: 1024px) 28vw, 50vw', loading: 'lazy', alt: detail_alt, class: 'block h-full w-full object-cover' }}
+          {%- else -%}
+            {%- assign int_src = '/images/intentions/' | append: d_int.system.handle | append: '.jpg' -%}
+            {%- render 'cb-img', src: int_src, alt: detail_alt, sizes: '(min-width: 1024px) 28vw, 50vw' -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+    <div class="aspect-[3/4] bg-cb-band p-6 flex flex-col justify-end">
+      <p class="label-caps mb-2">{{ triad | join: ' · ' }}</p>
+      <p class="font-display text-[1.5rem] leading-snug italic">“{{ affirmation }}”</p>
+    </div>
+  </div>
+
+  <div id="buy" class="[grid-area:info] lg:sticky lg:top-28 self-start">
+    <p class="label-caps mb-3">{{ d_int.name.value }}</p>
+    <h1 class="text-4xl md:text-[3rem]">{{ name }}<span class="block font-body text-[14px] text-cb-muted mt-2 tracking-normal leading-normal">{{ seo_title }}</span></h1>
+    {%- if promise != blank -%}<p class="font-display text-[1.35rem] mt-5 italic">{{ promise }}</p>{%- endif -%}
+    <div class="flex flex-wrap gap-1.5 mt-4">
+      {%- if leaving -%}<span class="inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] bg-cb-rose-soft text-cb-rose border-transparent">Leaving soon</span>{%- endif -%}
+      {%- if d_int -%}<span class="inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] bg-cb-ink text-white border-transparent">{{ d_int.short.value }}</span>{%- endif -%}
+      {%- for sec in secondary -%}<span class="inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] bg-white text-cb-muted border-cb-line">{{ sec.short.value }}</span>{%- endfor -%}
+      {%- if gold -%}<span class="inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] bg-white text-cb-muted border-cb-line">14k gold-filled accent</span>{%- endif -%}
+      <span class="inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] bg-white text-cb-muted border-cb-line">{{ style }}</span>
+    </div>
+    {%- if leaving -%}
+      <p class="mt-4 text-[13px] text-cb-rose">Leaving soon. A one-off piece from the studio, separate from our regular line: once these sell out we will not restring it.</p>
+    {%- endif -%}
+    {%- if stack -%}
+      <p class="mt-4 text-[13px] text-cb-muted">Part of <a href="/pages/stacks?stack={{ stack.system.handle }}#build" class="text-cb-ink underline underline-offset-4 hover:text-cb-rose">{{ stack.name.value }}</a>, {{ pct }}% off as a set of three.</p>
+    {%- endif -%}
+    <div class="hairline my-7"></div>
+
+    {%- capture buy_props -%}
+    { "id": {{ product.handle | json }}, "name": {{ name | json }}, "priceAED": {{ price_aed }}, {% if compare_aed > 0 %}"compareAtAED": {{ compare_aed }}, {% endif %}"sizes": [{% for k in sizes %}{{ k | json }}{% unless forloop.last %},{% endunless %}{% endfor %}], "inStock": {% if product.available %}true{% else %}false{% endif %}, "freeDeliveryAED": {{ free }}, "deliveryFeeAED": {{ fee }}, "deliveryCopy": {{ delivery_copy | json }} }
+    {%- endcapture -%}
+    {%- capture back_msg -%}Hi Crystal Basket! Please let me know when {{ name }} (size {{ selected }}) is back in stock.{%- endcapture -%}
+    {%- capture back_subject -%}Back in stock: {{ name }}{%- endcapture -%}
+    {%- capture buy_placeholder -%}
+    <div class="space-y-7">
+      <div class="flex items-baseline gap-3">
+        <span class="price text-[1.7rem]">{{ price_aed }} AED</span>
+        {%- if compare_aed > 0 -%}<span class="price text-cb-faint line-through text-base">{{ compare_aed }} AED</span>{%- endif -%}
+      </div>
+      <div>
+        <div class="flex justify-between mb-2">
+          <span class="label-caps">Wrist size</span>
+          <a href="/pages/size-guide" class="text-[12px] underline underline-offset-4 hover:text-cb-rose">Size guide</a>
+        </div>
+        <div class="flex gap-2">
+          {%- for k in sizes -%}
+            {%- case k -%}{%- when 'S' -%}{%- assign cm = 16 -%}{%- assign fits = '14–15.5 cm wrist' -%}{%- when 'L' -%}{%- assign cm = 20 -%}{%- assign fits = '17–18.5 cm wrist' -%}{%- else -%}{%- assign cm = 18 -%}{%- assign fits = '15.5–17 cm wrist' -%}{%- endcase -%}
+            {%- if k == selected -%}
+              <button type="button" aria-pressed="true" class="flex-1 border py-3 px-3 text-left text-[13px] transition-colors border-cb-ink bg-cb-ink text-white"><span class="block">{{ k }} · {{ cm }} cm</span><span class="block text-[11px] opacity-80">{{ fits }}</span></button>
+            {%- else -%}
+              <button type="button" aria-pressed="false" class="flex-1 border py-3 px-3 text-left text-[13px] transition-colors border-cb-line hover:border-cb-ink"><span class="block">{{ k }} · {{ cm }} cm</span><span class="block text-[11px] text-cb-muted">{{ fits }}</span></button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        <p class="text-[12px] text-cb-muted mt-2">8 mm beads on 1 mm stretch cord. Between sizes? Go up.</p>
+      </div>
+      <div class="grid gap-2.5">
+        {%- if product.available -%}
+          <button type="button" class="inline-flex h-13 items-center justify-center bg-cb-ink text-white text-[13px] uppercase tracking-[0.14em] hover:bg-black transition-colors disabled:opacity-60">Add to bag · {{ price_aed }} AED</button>
+        {%- else -%}
+          <button type="button" disabled aria-disabled="true" class="inline-flex select-none items-center justify-center gap-2 font-medium uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cb-rose disabled:cursor-not-allowed disabled:opacity-50 bg-cb-ink text-white hover:bg-black h-13 px-8 text-[13px]">Sold out</button>
+          <a href="mailto:{{ settings.cb_email }}?subject={{ back_subject | url_escape }}&body={{ back_msg | url_escape }}" class="inline-flex h-13 items-center justify-center gap-2 border border-cb-ink text-[13px] uppercase tracking-[0.14em] hover:bg-cb-ink hover:text-white transition-colors">Tell me when it’s back</a>
+          <p class="text-[12px] text-cb-muted text-center">This piece is between batches. Message us and we will hold one for you.</p>
+        {%- endif -%}
+        <div class="flex justify-center"><button type="button" aria-pressed="false" aria-label="Add to wishlist" class="inline-flex items-center gap-2 p-2 transition-colors text-cb-ink hover:text-cb-rose">{% render 'cb-icon', name: 'heart', class: 'h-5 w-5 transition-transform duration-300 active:scale-90', stroke: 1.4 %}<span class="text-[12px] uppercase tracking-[0.14em]">Save</span></button></div>
+      </div>
+      <ul class="text-[12px] text-cb-muted space-y-1.5 border-t border-cb-line pt-5">
+        <li>· {{ delivery_copy }} Delivery {{ fee }} AED, free over {{ free }} AED.</li>
+        <li>· Cash on delivery across the UAE</li>
+        <li>· Free re-string if the cord ever gives</li>
+      </ul>
+    </div>
+    {%- endcapture -%}
+    {%- render 'cb-island', name: 'BuyBox', props: buy_props, placeholder: buy_placeholder -%}
+
+    <div class="mt-8">
+      {%- capture acc -%}<p>{{ body }}</p>{%- endcapture -%}
+      {%- render 'cb-accordion', title: 'The piece', content: acc, open: true -%}
+
+      {%- capture acc -%}
+        <ul class="space-y-3">
+          {%- for s in stones -%}
+            <li class="flex gap-3">
+              {%- if s.image.value -%}
+                <img src="{{ s.image.value | image_url: width: 64 }}" alt="" class="mt-0.5 h-8 w-8 shrink-0 rounded-full object-cover ring-1 ring-black/5" loading="lazy" width="32" height="32">
+              {%- else -%}
+                <img src="{{ 'cb-stones-' | append: s.system.handle | append: '.jpg' | asset_url }}" alt="" class="mt-0.5 h-8 w-8 shrink-0 rounded-full object-cover ring-1 ring-black/5" loading="lazy" width="32" height="32">
+              {%- endif -%}
+              <span><a href="{{ s.system.url | default: '#' }}" class="text-cb-ink underline underline-offset-4 hover:text-cb-rose">{{ s.name.value }}</a>: {{ s.keywords.value | join: ', ' }}. {{ s.description.value }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endcapture -%}
+      {%- render 'cb-accordion', title: 'Stones in this bracelet', content: acc -%}
+
+      {%- capture acc -%}
+        <dl class="grid grid-cols-[130px_1fr] gap-y-1.5 gap-x-3">
+          <dt>Stones</dt><dd class="text-cb-ink">{{ stone_names }}. Natural and undyed.</dd>
+          <dt>Bead size</dt><dd class="text-cb-ink">8 mm, our classic size</dd>
+          <dt>Lengths</dt><dd class="text-cb-ink">{% for k in sizes %}{% case k %}{% when 'S' %}{{ k }} 16 cm{% when 'L' %}{{ k }} 20 cm{% else %}{{ k }} 18 cm{% endcase %}{% unless forloop.last %} · {% endunless %}{% endfor %}</dd>
+          <dt>Beads per piece</dt><dd class="text-cb-ink">approx. 20 (S) · 23 (M) · 25 (L)</dd>
+          <dt>Cord</dt><dd class="text-cb-ink">1 mm premium stretch cord, double-knotted</dd>
+          {%- if gold -%}<dt>Accent</dt><dd class="text-cb-ink">14k gold-filled bead or spacer</dd>{%- endif -%}
+          <dt>Chakra</dt><dd class="text-cb-ink">{{ chakra_text }}</dd>
+          <dt>Zodiac</dt><dd class="text-cb-ink">{{ zodiac_text }}</dd>
+        </dl>
+      {%- endcapture -%}
+      {%- render 'cb-accordion', title: 'Materials & dimensions', content: acc -%}
+
+      {%- capture acc -%}<ul class="space-y-1">{% for i in includes %}<li>· {{ i }}</li>{% endfor %}</ul>{%- endcapture -%}
+      {%- render 'cb-accordion', title: 'What’s in the box', content: acc -%}
+
+      {%- capture acc -%}
+        <ol class="space-y-1.5 mb-3 list-decimal list-inside text-cb-ink">
+          <li>Hold it in both hands and take three slow breaths.</li>
+          <li>Say the intention out loud, three times: “{{ affirmation }}”</li>
+          <li>Wear it on the wrist that feels right. Left to receive, right to project.</li>
+        </ol>
+        <p>Cleanse on arrival and about once a month: overnight in moonlight, on a selenite plate, or with smoke.{% if no_water.size > 0 %} Keep this one dry: {{ no_water_list }} {% if no_water.size > 1 %}do{% else %}does{% endif %} not like water.{% else %} A quick rinse in plain water is fine.{% endif %}{% if no_sun.size > 0 %} Avoid long sun: {{ no_sun_list }} fade{% if no_sun.size == 1 %}s{% endif %} in sunlight.{% endif %} <a href="/pages/care" class="underline underline-offset-4">Full care guide</a>.</p>
+      {%- endcapture -%}
+      {%- render 'cb-accordion', title: 'Activate, cleanse & care', content: acc -%}
+
+      {%- capture acc -%}
+        <p>{{ delivery_copy }} Delivery is {{ fee }} AED, free over {{ free }} AED, and cash on delivery is available. Wrong size? Exchange it within 14 days, unworn, and we cover the courier once. <a href="/pages/delivery" class="underline underline-offset-4">Delivery</a> · <a href="/pages/returns" class="underline underline-offset-4">Exchanges &amp; returns</a>.</p>
+      {%- endcapture -%}
+      {%- render 'cb-accordion', title: 'Delivery & returns', content: acc -%}
+    </div>
+    <p class="text-[11px] text-cb-faint mt-5">Natural stone varies: colour, banding and flash differ from the picture. Crystal meanings reflect traditional beliefs and are not medical advice. <a href="/pages/disclaimer" class="underline">Disclaimer</a>.</p>
+  </div>
+</section>
+
+{%- if chosen_count > 0 -%}
+<section class="pb-16 md:pb-24">
+  <div class="container-x">{% render 'cb-section-title', eyebrow: 'Complete the stack', title: 'Worn well together' %}</div>
+  <div class="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-cb-line">{{ related_tiles }}</div>
+</section>
+{%- endif -%}
+
+{%- capture faq_title -%}About {{ name }}{%- endcapture -%}
+{%- capture q1 -%}Which wrist do you wear {{ name }} on?{%- endcapture -%}
+{%- capture a1 -%}<p>{{ name }} is a {{ short_lc }} bracelet, and tradition puts {{ short_lc }} stones on {{ wrist_text }}. That is a custom, not a rule: wear {{ stone_list_lc }} wherever it feels comfortable, and keep it off the hand you write with if the beads catch on the desk.</p>{%- endcapture -%}
+{%- capture q2 -%}Can {{ name }} get wet or sit in the sun?{%- endcapture -%}
+{%- capture a2 -%}<p>Take it off before showers, swimming and the gym, because water and soap wear out stretch cord on every bracelet. {% if no_water.size > 0 %}{{ no_water_list }} should stay dry altogether.{% else %}A brief rinse in plain water is fine when you cleanse {{ stone_list_lc }}.{% endif %} {% if no_sun.size > 0 %}Keep it out of long direct sun too, which fades {{ no_sun_list | downcase }}.{% else %}Its stones are sun safe, so a spell on a bright windowsill does no harm.{% endif %}</p>{%- endcapture -%}
+{%- capture q3 -%}What does {{ name }} stack with?{%- endcapture -%}
+{%- capture a3 -%}<p>{% if stack %}{{ name }} is part of {{ stack.name.value }}, worn with {{ mates_list }}. All three are 8 mm, so they sit evenly on one wrist, and any three bracelets bought together are {{ pct }}% off at checkout. You can also swap in any other piece in the stack builder.{% else %}Every Crystal Basket bracelet is 8 mm, so {{ name }} sits evenly beside any of them. {% if rel1 and rel2 %}{{ rel1 }} and {{ rel2 }} are the closest match in stones and intention. {% endif %}Any three bracelets bought together are {{ pct }}% off at checkout, and the stack builder shows them side by side first.{% endif %}</p>{%- endcapture -%}
+<section class="container-x pb-16 md:pb-24 max-w-3xl">
+  {%- render 'cb-section-title', eyebrow: 'Questions', title: faq_title -%}
+  <div class="border-t border-cb-line">
+    {%- render 'cb-accordion', title: q1, content: a1, heading: 'h3' -%}
+    {%- render 'cb-accordion', title: q2, content: a2, heading: 'h3' -%}
+    {%- render 'cb-accordion', title: q3, content: a3, heading: 'h3' -%}
+  </div>
+  <p class="mt-5 text-[13px] text-cb-muted">Sizing, cleansing, delivery and exchanges: <a href="/pages/faq" class="text-cb-ink underline underline-offset-4 hover:text-cb-rose">all questions</a>.</p>
+</section>
+{% schema %}
+{ "name": "Product page", "settings": [] }
+{% endschema %}

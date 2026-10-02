@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-product", "settings": {} }
+  },
+  "order": ["main"]
+}

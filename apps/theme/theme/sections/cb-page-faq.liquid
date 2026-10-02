@@ -1,0 +1,72 @@
+{%- comment -%}
+  FAQ (mirror of apps/web faq/page.tsx + lib/faq.ts). Each answer is a self-contained 40–80 word passage; the same
+  text feeds the FAQPage JSON-LD and the accordions. Numbers come from theme settings.
+{%- endcomment -%}
+{%- liquid
+  assign pct = settings.cb_stack_discount | default: 15
+  assign fee = settings.cb_delivery_fee | default: 25
+  assign free = settings.cb_free_delivery | default: 250
+  assign code = settings.cb_welcome_code | default: 'WELCOME10'
+  if settings.cb_whatsapp_on
+    assign channel = 'WhatsApp'
+  else
+    assign channel = 'email'
+  endif
+  assign q1 = 'Which wrist do you wear a crystal bracelet on?'
+  assign a1 = "By tradition the left wrist receives energy and the right wrist projects it. Wear calming, love and abundance stones such as amethyst, rose quartz and citrine on the left, and protective or confidence stones such as black tourmaline and tiger's eye on the right. There is no rule worth stressing over: wear it on the wrist that feels right, and keep it off the hand you write with if it rubs."
+  assign q2 = 'How do you cleanse a crystal bracelet?'
+  assign a2 = 'Cleanse a crystal bracelet when it arrives and about once a month afterwards. Three gentle methods: leave it on a windowsill overnight in moonlight, rest it on a selenite plate for a few hours, or pass it through palo santo, sage or oud smoke. Keep hematite, lapis lazuli and pyrite out of water, and keep amethyst, citrine, carnelian and rose quartz out of long direct sun, which fades their colour.'
+  assign q3 = 'Can I shower or swim with a crystal bracelet?'
+  assign a3 = "Please don't. Water, soap and chlorine wear out stretch cord, and porous stones such as lapis lazuli, hematite and pyrite can dull or tarnish. Roll the bracelet off before showers, swimming, the gym and the beach, and put it back on once your skin is dry. A brief rinse in plain water is fine for quartz stones when you cleanse them."
+  assign q4 = 'Can I sleep in my crystal bracelet?'
+  assign a4 = 'Yes, if it is comfortable. Stretch cord is soft on the wrist and 8 mm beads are smooth. Calm stones such as amethyst and moonstone are traditionally kept close at night, while energising stones like carnelian and citrine are often left on the nightstand. If the bracelet leaves a mark in the morning, try the next size up.'
+  assign q5 = 'How do I know the stones are real?'
+  assign a5 = 'Real stone is cold to the touch, heavier than it looks, and no two beads match in colour or pattern. Glass is lighter, warms up quickly and often shows tiny round bubbles. Every Crystal Basket bracelet uses natural, undyed stone, the box card says so, and each strand is checked bead by bead before it is strung.'
+  assign q6 = 'How many crystal bracelets can I stack?'
+  assign a6 = 'Two to four looks best on most wrists. Group bracelets by intention, such as three calm pieces on the left wrist, or pair a dark stone with a pale one for contrast. Every Crystal Basket bracelet uses 8 mm beads, so any three sit evenly together, and any three bracelets are ' | append: pct | append: '% off as a stack.'
+  assign q7 = 'What if the cord breaks?'
+  assign a7 = 'Stretch cord is a wear part, and even well-made bracelets loosen over time. We restring any Crystal Basket bracelet on fresh 1 mm cord for free, for life; send us an ' | append: channel | append: ' with your order name and we will arrange it. Rolling the bracelet on and off over your hand, instead of stretching it wide, makes the cord last much longer.'
+  assign q8 = 'How do I pay?'
+  assign a8 = 'Pay by credit or debit card at the secure Shopify checkout, or choose cash on delivery anywhere in the UAE. Prices are in UAE dirhams and include the linen pouch and cards. The welcome code ' | append: code | append: ' and the automatic ' | append: pct | append: '% stack discount are both applied at checkout.'
+  assign q9 = 'How fast is delivery in the UAE?'
+  assign a9 = 'Most orders arrive the next working day, and all within one to two working days, anywhere in the UAE. Delivery costs ' | append: fee | append: ' AED and is free on orders over ' | append: free | append: ' AED. Cash on delivery is available, and Shopify emails your order confirmation as soon as the order is placed.'
+  assign q10 = 'Can I exchange the size?'
+  assign a10 = 'Yes. If your bracelet does not fit, exchange it for another size within 14 days of delivery, as long as it is unworn and in its pouch, and we cover the courier once. Not sure of your size? Measure your wrist with a strip of paper and check the size guide first, or send us your measurement and we will string it to fit.'
+  assign q11 = 'Do you gift-wrap?'
+  assign a11 = 'Every bracelet ships ready to give, in a linen pouch with a meaning card explaining what its stones are traditionally worn for. If it is a gift, tell us in the order note or in a message and we will include a handwritten card with your words.'
+-%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":{{ q1 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a1 | json }}}},{"@type":"Question","name":{{ q2 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a2 | json }}}},{"@type":"Question","name":{{ q3 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a3 | json }}}},{"@type":"Question","name":{{ q4 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a4 | json }}}},{"@type":"Question","name":{{ q5 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a5 | json }}}},{"@type":"Question","name":{{ q6 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a6 | json }}}},{"@type":"Question","name":{{ q7 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a7 | json }}}},{"@type":"Question","name":{{ q8 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a8 | json }}}},{"@type":"Question","name":{{ q9 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a9 | json }}}},{"@type":"Question","name":{{ q10 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a10 | json }}}},{"@type":"Question","name":{{ q11 | json }},"acceptedAnswer":{"@type":"Answer","text":{{ a11 | json }}}}]}</script>
+
+{%- render 'cb-page-intro', heading: 'Crystal bracelet FAQ', tagline: 'Things people ask us.', reviewed: section.settings.reviewed -%}
+
+<section class="container-x pb-10 max-w-3xl">
+  <h2 class="label-caps mb-2">Wearing &amp; caring</h2>
+  <div class="border-t border-cb-line">
+    {%- capture c -%}<p>{{ a1 }}</p>{%- endcapture -%}{%- render 'cb-accordion', title: q1, content: c, heading: 'h3' -%}
+    {%- capture c -%}<p>{{ a2 }}</p><p class="mt-2"><a href="/pages/care" class="text-cb-ink underline underline-offset-4 hover:text-cb-rose">Full cleanse and care guide</a></p>{%- endcapture -%}{%- render 'cb-accordion', title: q2, content: c, heading: 'h3' -%}
+    {%- capture c -%}<p>{{ a3 }}</p>{%- endcapture -%}{%- render 'cb-accordion', title: q3, content: c, heading: 'h3' -%}
+    {%- capture c -%}<p>{{ a4 }}</p>{%- endcapture -%}{%- render 'cb-accordion', title: q4, content: c, heading: 'h3' -%}
+    {%- capture c -%}<p>{{ a5 }}</p>{%- endcapture -%}{%- render 'cb-accordion', title: q5, content: c, heading: 'h3' -%}
+    {%- capture c -%}<p>{{ a6 }}</p><p class="mt-2"><a href="/pages/stacks" class="text-cb-ink underline underline-offset-4 hover:text-cb-rose">Build a stack</a></p>{%- endcapture -%}{%- render 'cb-accordion', title: q6, content: c, heading: 'h3' -%}
+    {%- capture c -%}<p>{{ a7 }}</p>{%- endcapture -%}{%- render 'cb-accordion', title: q7, content: c, heading: 'h3' -%}
+  </div>
+</section>
+<div class="pb-10">
+  <section class="container-x pb-10 max-w-3xl">
+    <h2 class="label-caps mb-2">Ordering &amp; delivery</h2>
+    <div class="border-t border-cb-line">
+      {%- capture c -%}<p>{{ a8 }}</p>{%- endcapture -%}{%- render 'cb-accordion', title: q8, content: c, heading: 'h3' -%}
+      {%- capture c -%}<p>{{ a9 }}</p><p class="mt-2"><a href="/pages/delivery" class="text-cb-ink underline underline-offset-4 hover:text-cb-rose">Delivery details</a></p>{%- endcapture -%}{%- render 'cb-accordion', title: q9, content: c, heading: 'h3' -%}
+      {%- capture c -%}<p>{{ a10 }}</p><p class="mt-2"><a href="/pages/returns" class="text-cb-ink underline underline-offset-4 hover:text-cb-rose">Exchanges and returns</a></p>{%- endcapture -%}{%- render 'cb-accordion', title: q10, content: c, heading: 'h3' -%}
+      {%- capture c -%}<p>{{ a11 }}</p>{%- endcapture -%}{%- render 'cb-accordion', title: q11, content: c, heading: 'h3' -%}
+    </div>
+  </section>
+</div>
+{% schema %}
+{
+  "name": "FAQ page",
+  "settings": [
+    { "type": "text", "id": "reviewed", "label": "Last reviewed", "default": "September 2026" }
+  ]
+}
+{% endschema %}

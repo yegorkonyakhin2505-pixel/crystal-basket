@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-page-faq", "settings": {} }
+  },
+  "order": ["main"]
+}

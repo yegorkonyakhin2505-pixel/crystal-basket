@@ -1,0 +1,39 @@
+{%- comment -%} Four trust facts (mirror of TrustStrip.tsx). Each fact is a block so the owner can edit the copy. {%- endcomment -%}
+<section class="border-y border-cb-line bg-white">
+  <div class="container-x grid grid-cols-2 lg:grid-cols-4 gap-px bg-cb-line">
+    {%- for block in section.blocks -%}
+      <div class="py-6 lg:px-8 first:pl-0 last:pr-0 text-center lg:text-left" {{ block.shopify_attributes }}>
+        <p class="text-[13px] font-medium tracking-wide">{{ block.settings.title }}</p>
+        <p class="text-[12px] text-cb-muted mt-1">{{ block.settings.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Trust strip",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Fact",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "100% natural stones" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Never dyed, never glass. Variation is proof." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Trust strip",
+      "blocks": [
+        { "type": "item", "settings": { "title": "100% natural stones", "text": "Never dyed, never glass. Variation is proof." } },
+        { "type": "item", "settings": { "title": "Cleansed & charged", "text": "48 hours on selenite before it ships." } },
+        { "type": "item", "settings": { "title": "Next-day delivery", "text": "Across the UAE. Cash on delivery available." } },
+        { "type": "item", "settings": { "title": "Free re-string, for life", "text": "If the cord ever gives, we fix it." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

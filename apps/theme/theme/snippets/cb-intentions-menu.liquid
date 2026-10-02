@@ -1,0 +1,19 @@
+{%- comment -%}
+  Intention links in sort order, for the mega-menu (name + tagline) and the mobile drawer (`compact: true`, short names).
+  Intentions are metaobjects of type `intention` with a numeric `sort_order` field (1..n).
+{%- endcomment -%}
+{%- for n in (1..12) -%}
+  {%- for i in shop.metaobjects.intention.values -%}
+    {%- assign order = i.sort_order.value | plus: 0 -%}
+    {%- if order == n -%}
+      {%- if compact -%}
+        <a href="{{ i.system.url | default: '#' }}" class="py-1.5 text-[14px] text-cb-muted">{{ i.short.value }}</a>
+      {%- else -%}
+        <a href="{{ i.system.url | default: '#' }}" class="block py-2 border-b border-cb-line/60 hover:text-cb-rose">
+          <span class="block text-[14px]">{{ i.name.value }}</span>
+          <span class="block text-[12px] text-cb-muted">{{ i.tagline.value }}</span>
+        </a>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}

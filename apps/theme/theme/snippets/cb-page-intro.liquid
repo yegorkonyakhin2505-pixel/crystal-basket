@@ -1,0 +1,10 @@
+{%- comment -%}
+  Header for guide and policy pages (mirror of PageIntro.tsx). `content` is optional HTML (capture it), `reviewed` an optional "Month YYYY".
+  {% render 'cb-page-intro', heading: 'How to cleanse a crystal bracelet', tagline: 'A monthly ritual, five minutes long.', content: html, reviewed: 'September 2026' %}
+{%- endcomment -%}
+<section class="container-x pt-12 md:pt-20 pb-10 max-w-3xl{% if class != blank %} {{ class }}{% endif %}">
+  <h1 class="label-caps mb-3">{{ heading }}</h1>
+  {%- if tagline != blank -%}<p class="font-display text-4xl md:text-[3.25rem] leading-[1.08]">{{ tagline }}</p>{%- endif -%}
+  {%- if content != blank -%}<div class="text-cb-muted mt-5 space-y-3">{{ content }}</div>{%- endif -%}
+  {%- if reviewed != blank -%}<p class="text-[12px] text-cb-faint mt-4">Last reviewed {{ reviewed }}</p>{%- endif -%}
+</section>

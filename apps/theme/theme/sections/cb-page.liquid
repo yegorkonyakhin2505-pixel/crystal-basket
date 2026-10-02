@@ -1,0 +1,9 @@
+{%- comment -%} Generic page: title and rich-text content in the PageIntro style, for pages written in the Shopify admin. {%- endcomment -%}
+<section class="container-x pt-12 md:pt-20 pb-20 max-w-3xl">
+  <p class="label-caps mb-3">{{ shop.name }}</p>
+  <h1 class="text-4xl md:text-[3rem]">{{ page.title }}</h1>
+  <div class="text-cb-muted mt-6 space-y-4 text-[14px] leading-relaxed [&_a]:underline [&_a]:underline-offset-4 [&_a]:text-cb-ink [&_h2]:text-cb-ink [&_h2]:text-2xl [&_h2]:mt-8 [&_h3]:text-cb-ink [&_h3]:text-xl [&_h3]:mt-6 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5">{{ page.content }}</div>
+</section>
+{% schema %}
+{ "name": "Page", "settings": [] }
+{% endschema %}

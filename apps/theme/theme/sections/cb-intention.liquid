@@ -1,0 +1,210 @@
+{%- comment -%}
+  Intention page (mirror of apps/web intentions/[slug]/page.tsx). `metaobject` is the intention entry (type `intention`).
+  Primary grid = products whose cb.intention is this intention; "Related pieces" = products that list it as a secondary
+  intention. An intention with no piece of its own (e.g. sleep) shows the secondary pieces as the main grid. In stock first.
+{%- endcomment -%}
+{%- liquid
+  assign name = metaobject.name.value
+  assign short = metaobject.short.value
+  assign short_lower = short | downcase
+  assign name_lower = name | downcase
+  assign h = metaobject.system.handle
+  assign intentions_url = pages['intentions'].url | default: '/pages/intentions'
+  assign heading = name | append: ' bracelets'
+  assign page_abs = shop.url | append: metaobject.system.url
+  assign pct = settings.cb_stack_discount | default: 15
+  assign crumbs = intentions_url | append: '|Intentions|||' | append: name
+  assign hero_alt = name | append: ' crystal bracelet on a wrist'
+  assign hero_text = metaobject.tagline.value | append: ' ' | append: metaobject.description.value
+  case metaobject.wrist.value
+    when 'left'
+      assign wrist_label = 'left wrist'
+    when 'right'
+      assign wrist_label = 'right wrist'
+    else
+      assign wrist_label = 'either wrist'
+  endcase
+  assign own_count = 0
+  assign also_count = 0
+  for p in collections.all.products
+    if p.metafields.crystal.intention.value
+      if p.metafields.crystal.intention.value.system.handle == h
+        assign own_count = own_count | plus: 1
+      else
+        capture sec
+          for s in p.metafields.crystal.secondary_intentions.value
+            echo s.system.handle
+            echo ' '
+          endfor
+        endcapture
+        assign secs = sec | split: ' '
+        if secs contains h
+          assign also_count = also_count | plus: 1
+        endif
+      endif
+    endif
+  endfor
+  if own_count > 0
+    assign primary_mode = 'own'
+    assign primary_count = own_count
+    assign secondary_count = also_count
+  else
+    assign primary_mode = 'also'
+    assign primary_count = also_count
+    assign secondary_count = 0
+  endif
+  assign stack = nil
+  for st in shop.metaobjects.stack.values
+    if st.intention.value.system.handle == h
+      assign stack = st
+    endif
+  endfor
+  assign n_ld = 0
+-%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}/"},{"@type":"ListItem","position":2,"name":"Intentions","item":"{{ shop.url }}{{ intentions_url }}"},{"@type":"ListItem","position":3,"name":{{ name | json }},"item":"{{ page_abs }}"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"{{ page_abs }}","url":"{{ page_abs }}","name":{{ heading | json }},"description":{{ metaobject.seo_description.value | json }},"isPartOf":{"@id":"{{ shop.url }}/#website"},"mainEntity":{"@type":"ItemList","name":{{ heading | json }},"numberOfItems":{{ primary_count }},"itemListElement":[
+{%- for pass in (1..2) -%}
+  {%- for p in collections.all.products -%}
+    {%- if p.metafields.crystal.intention.value -%}
+      {%- assign want = false -%}
+      {%- if pass == 1 -%}{%- if p.available -%}{%- assign want = true -%}{%- endif -%}{%- else -%}{%- unless p.available -%}{%- assign want = true -%}{%- endunless -%}{%- endif -%}
+      {%- if want -%}
+        {%- assign hit = false -%}
+        {%- if primary_mode == 'own' -%}
+          {%- if p.metafields.crystal.intention.value.system.handle == h -%}{%- assign hit = true -%}{%- endif -%}
+        {%- else -%}
+          {%- capture sec -%}{%- for s in p.metafields.crystal.secondary_intentions.value -%}{{ s.system.handle }} {% endfor -%}{%- endcapture -%}
+          {%- assign secs = sec | split: ' ' -%}
+          {%- if secs contains h -%}{%- assign hit = true -%}{%- endif -%}
+        {%- endif -%}
+        {%- if hit -%}
+          {%- if n_ld > 0 -%},{%- endif -%}{%- assign n_ld = n_ld | plus: 1 -%}
+          {"@type":"ListItem","position":{{ n_ld }},"name":{{ p.title | json }},"url":{{ shop.url | append: p.url | json }}{% if p.featured_image %},"image":{{ p.featured_image | image_url: width: 1200 | json }}{% endif %}}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+]}}</script>
+
+{%- render 'cb-listing-hero', image_obj: metaobject.image.value, alt: hero_alt, palette_1: metaobject.palette_1.value, palette_2: metaobject.palette_2.value, crumbs: crumbs, title: heading, text: hero_text -%}
+
+<div class="bg-cb-band">
+  <div class="container-x flex flex-wrap items-center gap-2 py-3 text-[13px]">
+    <span class="text-cb-muted mr-2">Stones:</span>
+    {%- for s in metaobject.stones.value -%}
+      <a href="{{ s.system.url | default: '#' }}" class="inline-flex items-center gap-2 bg-white border border-cb-line px-3 py-1 hover:border-cb-ink">{% if s.image.value %}<img src="{{ s.image.value | image_url: width: 48 }}" alt="" class="h-6 w-6 rounded-full object-cover ring-1 ring-black/5" loading="lazy" width="24" height="24">{% else %}<span class="h-2.5 w-2.5 rounded-full" style="background: radial-gradient(circle at 35% 30%, {{ s.palette_1.value }}, {{ s.palette_2.value }})"></span>{% endif %}{{ s.name.value }}</a>
+    {%- endfor -%}
+    <span class="ml-auto text-cb-muted">Chakra: {{ metaobject.chakra.value | join: ', ' }}</span>
+  </div>
+</div>
+
+{%- comment -%} Primary grid, in stock first, first two tiles eager {%- endcomment -%}
+{%- if primary_count == 0 -%}
+  <p class="container-x py-10 text-[14px] text-cb-muted">New pieces are being strung. Check back soon.</p>
+{%- else -%}
+  <div class="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-cb-line">
+    {%- assign shown = 0 -%}
+    {%- for pass in (1..2) -%}
+      {%- for p in collections.all.products -%}
+        {%- if p.metafields.crystal.intention.value -%}
+          {%- assign want = false -%}
+          {%- if pass == 1 -%}{%- if p.available -%}{%- assign want = true -%}{%- endif -%}{%- else -%}{%- unless p.available -%}{%- assign want = true -%}{%- endunless -%}{%- endif -%}
+          {%- if want -%}
+            {%- assign hit = false -%}
+            {%- if primary_mode == 'own' -%}
+              {%- if p.metafields.crystal.intention.value.system.handle == h -%}{%- assign hit = true -%}{%- endif -%}
+            {%- else -%}
+              {%- capture sec -%}{%- for s in p.metafields.crystal.secondary_intentions.value -%}{{ s.system.handle }} {% endfor -%}{%- endcapture -%}
+              {%- assign secs = sec | split: ' ' -%}
+              {%- if secs contains h -%}{%- assign hit = true -%}{%- endif -%}
+            {%- endif -%}
+            {%- if hit -%}
+              {%- if shown < 2 -%}{%- render 'cb-product-tile', product: p, eager: true -%}{%- else -%}{%- render 'cb-product-tile', product: p -%}{%- endif -%}
+              {%- assign shown = shown | plus: 1 -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
+{%- if secondary_count > 0 -%}
+  <section class="pt-16">
+    <div class="container-x">{% render 'cb-section-title', eyebrow: 'Also worn for this', title: 'Related pieces' %}</div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-cb-line">
+      {%- for pass in (1..2) -%}
+        {%- for p in collections.all.products -%}
+          {%- if p.metafields.crystal.intention.value -%}
+            {%- assign want = false -%}
+            {%- if pass == 1 -%}{%- if p.available -%}{%- assign want = true -%}{%- endif -%}{%- else -%}{%- unless p.available -%}{%- assign want = true -%}{%- endunless -%}{%- endif -%}
+            {%- if want -%}
+              {%- if p.metafields.crystal.intention.value.system.handle != h -%}
+                {%- capture sec -%}{%- for s in p.metafields.crystal.secondary_intentions.value -%}{{ s.system.handle }} {% endfor -%}{%- endcapture -%}
+                {%- assign secs = sec | split: ' ' -%}
+                {%- if secs contains h -%}{%- render 'cb-product-tile', product: p -%}{%- endif -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+<section class="container-x pt-16 md:pt-24 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16">
+  <div class="max-w-2xl">
+    <p class="label-caps mb-3">Guide</p>
+    <h2 class="text-3xl md:text-[2.5rem]">What is a {{ short_lower }} crystal bracelet?</h2>
+    <p class="text-cb-muted mt-4 leading-relaxed">{{ metaobject.definition.value }}</p>
+    <h3 class="font-display text-2xl mt-8">Which wrist?</h3>
+    <p class="text-cb-muted mt-2 leading-relaxed">Tradition puts {{ short_lower }} stones on the {{ wrist_label }}: the left side receives and the right side projects. Wear it wherever it feels comfortable; there is no rule worth stressing over.</p>
+    <div class="mt-8 flex flex-wrap gap-3 text-[13px]">
+      {%- if stack -%}<a href="/pages/stacks?stack={{ stack.system.handle }}#build" class="border border-cb-ink px-4 py-2.5 uppercase tracking-[0.12em] text-[11px] hover:bg-cb-ink hover:text-white transition-colors">Shop {{ stack.name.value }}, {{ pct }}% off</a>{%- endif -%}
+      <a href="/pages/size-guide" class="border border-cb-line px-4 py-2.5 uppercase tracking-[0.12em] text-[11px] hover:border-cb-ink">Size guide</a>
+      <a href="/pages/care" class="border border-cb-line px-4 py-2.5 uppercase tracking-[0.12em] text-[11px] hover:border-cb-ink">Cleanse &amp; care</a>
+    </div>
+  </div>
+  <div>
+    <div class="overflow-x-auto border border-cb-line">
+      <table class="w-full min-w-[440px] text-[14px]">
+        <caption class="sr-only">Stones traditionally worn for {{ name_lower }}</caption>
+        <thead class="bg-cb-band text-left"><tr><th scope="col" class="px-4 py-3 label-caps font-medium">Stone</th><th scope="col" class="px-4 py-3 label-caps font-medium">Traditionally worn for</th><th scope="col" class="px-4 py-3 label-caps font-medium">Water</th></tr></thead>
+        <tbody class="divide-y divide-cb-line">
+          {%- for s in metaobject.stones.value -%}
+            <tr>
+              <th scope="row" class="px-4 py-3 text-left font-normal"><a href="{{ s.system.url | default: '#' }}" class="underline underline-offset-4 hover:text-cb-rose">{{ s.name.value }}</a></th>
+              <td class="px-4 py-3">{{ s.keywords.value | join: ', ' }}</td>
+              <td class="px-4 py-3">{% if s.water_safe.value == false %}Keep dry{% else %}Brief rinse{% endif %}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-8 border-t border-cb-line">
+      {%- for f in metaobject.faq.value -%}
+        <div class="border-b border-cb-line py-5">
+          <h3 class="font-body text-[15px] font-medium">{{ f.q }}</h3>
+          <p class="text-[14px] text-cb-muted mt-2 leading-relaxed">{{ f.a }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+    <p class="text-[11px] text-cb-faint mt-4">Crystal meanings describe traditional beliefs, not medical advice. <a href="/pages/disclaimer" class="underline">Disclaimer</a>.</p>
+  </div>
+</section>
+
+<section class="container-x py-12 flex flex-wrap items-center gap-2 text-[13px]">
+  <span class="text-cb-muted mr-2">Other intentions:</span>
+  {%- for n in (1..12) -%}
+    {%- for i in shop.metaobjects.intention.values -%}
+      {%- assign order = i.sort_order.value | plus: 0 -%}
+      {%- if order == n and i.system.handle != h -%}
+        <a href="{{ i.system.url | default: '#' }}" class="border border-cb-line px-3 py-1.5 hover:border-cb-ink">{{ i.short.value }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+</section>
+{% schema %}
+{ "name": "Intention page", "settings": [] }
+{% endschema %}

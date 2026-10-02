@@ -1,0 +1,115 @@
+{%- comment -%}
+  Swarovski-style header: utility row, centred wordmark, nav row beneath (mirror of Header.tsx + HeaderClient.tsx).
+  Behaviour (compact on scroll, mega-menus, drawer, search trigger) lives in src/vanilla/header.ts; see its markup contract.
+{%- endcomment -%}
+{%- liquid
+  assign shop_url = routes.all_products_collection_url
+  assign intentions_page = pages['intentions']
+  assign stones_page = pages['stones']
+  assign intentions_url = intentions_page.url | default: '/pages/intentions'
+  assign stones_url = stones_page.url | default: '/pages/stones'
+  if settings.cb_whatsapp_on
+    assign contact_href = 'https://wa.me/' | append: settings.cb_whatsapp | append: '?text=' | append: 'Hi Crystal Basket! I have a question.' | url_encode
+    assign contact_label = 'WhatsApp us'
+    assign contact_new_tab = true
+  else
+    assign contact_href = 'mailto:' | append: settings.cb_email | append: '?subject=' | append: 'A question for Crystal Basket' | url_encode | append: '&body=' | append: 'Hi Crystal Basket! I have a question.' | url_encode
+    assign contact_label = 'Email us'
+    assign contact_new_tab = false
+  endif
+  assign path = request.path
+-%}
+<header class="sticky top-0 z-40 bg-white">
+<div class="border-b border-cb-line bg-white" data-header>
+  {%- comment -%} Utility row {%- endcomment -%}
+  <div class="container-x hidden lg:flex items-center justify-between text-[12px] text-cb-muted transition-all duration-300 overflow-hidden h-9 opacity-100" data-class-compact="h-0 opacity-0 invisible" data-class-open="h-9 opacity-100">
+    <div class="flex items-center gap-4">
+      <span>United Arab Emirates</span>
+      <span class="text-cb-line">|</span>
+      <span>Hand-strung in {{ settings.cb_city }}</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="{{ contact_href }}"{% if contact_new_tab %} target="_blank" rel="noopener"{% endif %} class="hover:text-cb-ink">{{ contact_label }}</a>
+      <span class="text-cb-line">|</span>
+      <a href="/pages/wishlist" class="inline-flex items-center gap-1.5 hover:text-cb-ink">{% render 'cb-icon', name: 'heart', class: 'h-3.5 w-3.5' %} Wishlist <span data-wishlist-count hidden class="rounded-full bg-cb-ink text-white text-[9px] px-1.5 py-0.5 leading-none">0</span></a>
+    </div>
+  </div>
+
+  {%- comment -%} Wordmark row {%- endcomment -%}
+  <div class="container-x relative flex items-center justify-between lg:justify-center transition-all duration-300 h-16 lg:h-24" data-class-compact="h-14" data-class-open="h-16 lg:h-24">
+    <button type="button" class="lg:hidden p-2 -ml-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-drawer-open>{% render 'cb-icon', name: 'menu', class: 'h-5 w-5' %}</button>
+    <a href="{{ routes.root_url }}" aria-label="{{ shop.name }} home" class="flex min-w-0 items-center gap-2.5 lg:gap-4 text-cb-ink">
+      {%- render 'cb-logo-badge', class: 'transition-all duration-300 shrink-0 h-10 w-10 lg:h-16 lg:w-16', attrs: 'data-class-compact="h-9 w-9 lg:h-10 lg:w-10" data-class-open="h-10 w-10 lg:h-16 lg:w-16"' -%}
+      {%- render 'cb-wordmark', class: 'transition-all duration-300 max-lg:tracking-[0.16em] text-[1rem] sm:text-[1.15rem] lg:text-[2.4rem]', attrs: 'data-class-compact="text-[0.95rem] sm:text-[1.05rem] lg:text-[1.6rem]" data-class-open="text-[1rem] sm:text-[1.15rem] lg:text-[2.4rem]"' -%}
+    </a>
+    <div class="flex items-center gap-1 lg:absolute lg:right-8 lg:top-1/2 lg:-translate-y-1/2">
+      <button type="button" class="inline-flex p-2 hover:text-cb-rose" aria-label="Search" data-search-open>{% render 'cb-icon', name: 'search', class: 'h-5 w-5', stroke: 1.5 %}</button>
+      <a href="/pages/wishlist" class="relative p-2 hover:text-cb-rose" aria-label="Wishlist">
+        {%- render 'cb-icon', name: 'heart', class: 'h-5 w-5', stroke: 1.5 -%}
+        <span data-wishlist-count hidden class="absolute -right-0.5 -top-0.5 rounded-full bg-cb-ink text-white text-[9px] px-1.5 py-0.5 leading-none">0</span>
+      </a>
+      {%- capture bag_placeholder -%}<button type="button" class="relative p-2 hover:text-cb-rose" aria-label="Open bag, 0 items">{% render 'cb-icon', name: 'shopping-bag', class: 'h-5 w-5', stroke: 1.5 %}</button>{%- endcapture -%}
+      {%- render 'cb-island', name: 'BagButton', placeholder: bag_placeholder, tag: 'span', class: 'contents' -%}
+    </div>
+  </div>
+
+  {%- comment -%} Nav row {%- endcomment -%}
+  <nav class="hidden lg:flex container-x items-center justify-center gap-10 transition-all duration-300 h-12" data-class-compact="h-10" data-class-open="h-12" aria-label="Primary">
+    {%- assign nav_hrefs = shop_url | append: '||' | append: intentions_url | append: '||' | append: stones_url | append: '||/pages/stacks||/pages/build||/pages/about' | split: '||' -%}
+    {%- assign nav_labels = 'All bracelets||By intention||By stone||Stacks & sets||Build your own||Our story' | split: '||' -%}
+    {%- for href in nav_hrefs -%}
+      {%- assign i = forloop.index0 -%}
+      {%- assign label = nav_labels[i] -%}
+      {%- assign menu = nil -%}
+      {%- if i == 1 -%}{%- assign menu = 'intentions' -%}{%- elsif i == 2 -%}{%- assign menu = 'stones' -%}{%- endif -%}
+      {%- assign base = href | remove: '/' | prepend: '/' -%}
+      {%- assign active = false -%}
+      {%- if path == href or path == base -%}{%- assign active = true -%}{%- elsif path contains href -%}{%- assign active = true -%}{%- endif -%}
+      <div data-menu-root class="relative h-full flex items-center">
+        <a href="{{ href }}" data-menu-link{% if menu %} aria-expanded="false"{% endif %} class="text-[14px] tracking-wide py-2 border-b border-transparent transition-colors hover:border-cb-ink{% if active %} border-cb-ink{% endif %}">{{ label }}</a>
+        {%- if menu -%}
+          <div data-menu-panel class="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 transition-all duration-200 opacity-0 translate-y-1 pointer-events-none invisible">
+            <div class="w-[640px] bg-white border border-cb-line shadow-xl shadow-black/5 p-6">
+              {%- if menu == 'intentions' -%}
+                <div class="grid grid-cols-2 gap-x-8 gap-y-1">
+                  {%- render 'cb-intentions-menu' -%}
+                </div>
+              {%- else -%}
+                <div class="grid grid-cols-3 gap-x-6 gap-y-1">
+                  {%- for s in shop.metaobjects.stone.values -%}
+                    <a href="{{ s.system.url | default: '#' }}" class="flex items-center gap-2.5 py-1.5 text-[13px] hover:text-cb-rose">
+                      {%- if s.image.value -%}<img src="{{ s.image.value | image_url: width: 56 }}" alt="" class="h-7 w-7 rounded-full object-cover ring-1 ring-black/5" loading="lazy" width="28" height="28">{%- else -%}<span class="h-3 w-3 rounded-full ring-1 ring-black/10" style="background: radial-gradient(circle at 35% 30%, {{ s.palette_1.value }}, {{ s.palette_2.value }})"></span>{%- endif -%}
+                      {{ s.name.value }}
+                    </a>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </nav>
+
+  {%- comment -%} Mobile drawer {%- endcomment -%}
+  <div class="fixed inset-0 z-50 lg:hidden" data-drawer-wrap hidden data-lenis-prevent>
+    <div class="absolute inset-0 bg-black/30" data-drawer-backdrop></div>
+    <div data-drawer id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" class="absolute inset-y-0 left-0 w-[86%] max-w-sm bg-white p-6 overflow-y-auto">
+      <div class="flex items-center justify-between mb-6">
+        <span class="flex items-center gap-2">{% render 'cb-logo-badge', class: 'h-8 w-8' %}{% render 'cb-wordmark', class: 'text-[1.05rem] tracking-[0.16em]' %}</span>
+        <button type="button" class="p-2 -mr-2" aria-label="Close menu" data-drawer-close>{% render 'cb-icon', name: 'x', class: 'h-5 w-5' %}</button>
+      </div>
+      <button type="button" class="mb-4 flex w-full items-center gap-2 border border-cb-line px-3 py-2.5 text-left text-[14px] text-cb-muted" data-search-open>{% render 'cb-icon', name: 'search', class: 'h-4 w-4', stroke: 1.5 %} Search bracelets, stones…</button>
+      <nav class="flex flex-col" aria-label="Primary">
+        {%- for href in nav_hrefs -%}<a href="{{ href }}" class="py-3 border-b border-cb-line text-[16px]">{{ nav_labels[forloop.index0] }}</a>{%- endfor -%}
+      </nav>
+      <p class="label-caps mt-6 mb-2">By intention</p>
+      <div class="grid grid-cols-2 gap-1">{% render 'cb-intentions-menu', compact: true %}</div>
+      <a href="{{ contact_href }}"{% if contact_new_tab %} target="_blank" rel="noopener"{% endif %} class="mt-6 block border border-cb-ink py-3 text-center text-[12px] uppercase tracking-[0.14em]">{{ contact_label }}</a>
+    </div>
+  </div>
+</div>
+</header>
+{% schema %}
+{ "name": "Header", "settings": [] }
+{% endschema %}

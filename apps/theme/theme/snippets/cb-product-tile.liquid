@@ -1,0 +1,83 @@
+{%- comment -%}
+  Swarovski-style product tile (mirror of ProductTile.tsx). Grid borders come from the parent.
+  {% render 'cb-product-tile', product: product, eager: true %}
+  data-* attributes feed the FilterBar island; product facts come from product.metafields.crystal.*.
+{%- endcomment -%}
+{%- liquid
+  assign d_int = product.metafields.crystal.intention.value
+  assign stones = product.metafields.crystal.stones.value
+  assign gold = product.metafields.crystal.gold_accent.value
+  assign is_new = product.metafields.crystal.is_new.value
+  assign bestseller = product.metafields.crystal.bestseller.value
+  assign leaving = product.metafields.crystal.leaving_soon.value
+  assign style = product.metafields.crystal.style.value | default: 'unisex'
+  assign subtitle = product.metafields.crystal.subtitle.value
+  assign in_stock = product.available
+  assign price_aed = product.price | divided_by: 100
+  assign badge = nil
+  assign tone = 'neutral'
+  if in_stock == false
+    assign badge = 'Sold out'
+    assign tone = 'ink'
+  elsif leaving
+    assign badge = 'Leaving soon'
+    assign tone = 'rose'
+  elsif is_new
+    assign badge = 'New'
+  elsif bestseller
+    assign badge = 'Bestseller'
+  endif
+  capture stone_handles
+    for s in stones
+      echo s.system.handle
+      unless forloop.last
+        echo ' '
+      endunless
+    endfor
+  endcapture
+  capture stone_line
+    if stones.size > 3
+      echo stones.size | append: ' stones'
+    else
+      for s in stones
+        echo s.name.value
+        unless forloop.last
+          echo ', '
+        endunless
+      endfor
+    endif
+  endcapture
+  assign spec = stone_line | append: ', 8mm'
+  if gold
+    assign spec = spec | append: ', 14k gold-filled accent'
+  endif
+  if eager
+    assign loading = 'eager'
+  else
+    assign loading = 'lazy'
+  endif
+-%}
+<div class="group relative h-full bg-white border-r border-b border-cb-line" data-intention="{{ d_int.system.handle }}" data-stones="{{ stone_handles | strip }}" data-style="{{ style }}" data-price="{{ price_aed }}" data-gold="{% if gold %}1{% else %}0{% endif %}" data-new="{% if is_new %}1{% else %}0{% endif %}" data-stock="{% if in_stock %}1{% else %}0{% endif %}" data-leaving="{% if leaving %}1{% else %}0{% endif %}">
+  <div class="absolute right-4 top-4 z-10">{% render 'cb-wishlist-button', id: product.handle %}</div>
+  {%- if badge -%}
+    <span class="inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] {% if tone == 'ink' %}bg-cb-ink text-white border-transparent{% elsif tone == 'rose' %}bg-cb-rose-soft text-cb-rose border-transparent{% else %}bg-white text-cb-muted border-cb-line{% endif %} absolute left-5 top-5 z-10">{{ badge }}</span>
+  {%- endif -%}
+  <a href="{{ product.url }}" class="block h-full p-5 md:p-7">
+    <div class="aspect-square overflow-hidden bg-white{% unless in_stock %} opacity-60{% endunless %}">
+      <div class="h-full w-full transition-transform duration-[900ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
+        {%- if product.featured_image -%}
+          {%- assign alt = product.title | append: ' — ' | append: subtitle -%}
+          {{ product.featured_image | image_url: width: 1200 | image_tag: widths: '480, 800, 1200', sizes: '(min-width: 1024px) 25vw, 50vw', loading: loading, alt: alt, class: 'block h-full w-full object-cover' }}
+        {%- else -%}
+          {%- render 'cb-bead-ring', palettes: stones, gold: gold -%}
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="pt-6 space-y-2">
+      <p class="font-display text-[1.35rem] leading-tight">{{ product.title }}</p>
+      <p class="text-[12px] text-cb-muted leading-snug line-clamp-1">{{ spec }}</p>
+      <p class="text-[11px] text-cb-rose uppercase tracking-[0.14em]">{{ d_int.short.value }}</p>
+      <p class="price pt-1">{{ price_aed }} AED</p>
+    </div>
+  </a>
+</div>

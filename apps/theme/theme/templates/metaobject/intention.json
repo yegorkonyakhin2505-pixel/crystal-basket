@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-intention", "settings": {} }
+  },
+  "order": ["main"]
+}

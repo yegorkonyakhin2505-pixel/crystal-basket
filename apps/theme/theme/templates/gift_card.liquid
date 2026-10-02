@@ -1,0 +1,29 @@
+{% layout none %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ shop.name }} gift card</title>
+  <link rel="icon" href="{{ 'cb-favicon.svg' | asset_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ 'cb-fonts.css' | asset_url }}">
+  <link rel="stylesheet" href="{{ 'cb-theme.css' | asset_url }}">
+  {{ content_for_header }}
+</head>
+<body class="min-h-screen flex flex-col">
+  <main class="flex-1">
+    <section class="container-x py-20 text-center max-w-md">
+      {% render 'cb-logo-badge', class: 'h-14 w-14 mx-auto mb-6' %}
+      <p class="label-caps mb-3">Gift card</p>
+      <h1 class="text-4xl">{{ gift_card.initial_value | divided_by: 100 }} AED</h1>
+      {%- if gift_card.enabled == false or gift_card.expired -%}
+        <p class="text-cb-muted mt-4 text-[14px]">This gift card is no longer valid.</p>
+      {%- else -%}
+        <p class="text-cb-muted mt-4 text-[14px]">Balance {{ gift_card.balance | divided_by: 100 }} AED. Enter this code at checkout.</p>
+      {%- endif -%}
+      <p class="font-display text-[1.6rem] tracking-[0.2em] mt-6 border border-dashed border-cb-ink px-5 py-4">{{ gift_card.code | format_code }}</p>
+      {%- if gift_card.expires_on -%}<p class="text-[12px] text-cb-faint mt-3">Expires {{ gift_card.expires_on | date: '%-d %B %Y' }}</p>{%- endif -%}
+      <a href="{{ shop.url }}" class="inline-flex select-none items-center justify-center gap-2 font-medium uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer bg-cb-ink text-white hover:bg-black h-11 px-6 text-[12px] mt-8">Start shopping</a>
+    </section>
+  </main>
+</body>
+</html>

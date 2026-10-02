@@ -1,0 +1,21 @@
+{%- comment -%} Our story (mirror of apps/web about/page.tsx). {%- endcomment -%}
+<section class="container-x pt-12 md:pt-20 grid lg:grid-cols-2 gap-10 items-center">
+  <div>
+    <h1 class="label-caps mb-3">About Crystal Basket, Dubai</h1>
+    <p class="font-display text-4xl md:text-[3.25rem] leading-[1.08]">A basket of stones on a kitchen table.</p>
+    <p class="text-cb-muted mt-6 text-[16px]">{{ shop.name }} started in {{ settings.cb_city }} with a bowl of loose beads and a few friends who kept asking for “the calm one”. It is still a small studio. Every bracelet is chosen, strung and cleansed by one pair of hands, and every stone is natural and undyed.</p>
+    <p class="text-cb-muted mt-4">We do not promise the stones will change your life. We promise they are real, they are strung to last, and they will remind you of the intention you set when you put them on.</p>
+  </div>
+  <div class="aspect-[4/3] overflow-hidden">{% render 'cb-img', src: '/images/about/studio.jpg', alt: 'Stringing gemstone beads at the studio table' %}</div>
+</section>
+<section class="container-x pt-16"><h2 class="text-3xl md:text-[2.25rem]">How is each bracelet made?</h2></section>
+<section class="container-x pt-6 pb-16 grid md:grid-cols-4 gap-px bg-cb-line border border-cb-line">
+  <div class="bg-white p-7"><span class="font-display text-3xl text-cb-gold">01</span><h3 class="font-display text-[1.4rem] mt-2">Sourced</h3><p class="text-[13px] text-cb-muted mt-2">Whole strands from graders we know, not marketplace lots. Every strand is checked bead by bead for dye, glass and glue.</p></div>
+  <div class="bg-white p-7"><span class="font-display text-3xl text-cb-gold">02</span><h3 class="font-display text-[1.4rem] mt-2">Strung</h3><p class="text-[13px] text-cb-muted mt-2">Each bracelet is strung by hand on 1mm premium stretch cord, double-knotted and hidden inside a bead.</p></div>
+  <div class="bg-white p-7"><span class="font-display text-3xl text-cb-gold">03</span><h3 class="font-display text-[1.4rem] mt-2">Cleansed</h3><p class="text-[13px] text-cb-muted mt-2">Finished pieces rest on a selenite slab for 48 hours before they are packed.</p></div>
+  <div class="bg-white p-7"><span class="font-display text-3xl text-cb-gold">04</span><h3 class="font-display text-[1.4rem] mt-2">Packed</h3><p class="text-[13px] text-cb-muted mt-2">Linen pouch, a printed meaning and affirmation card, and a cleanse-and-care card. Ready to gift.</p></div>
+</section>
+<section class="container-x pb-20 max-w-3xl"><h2 class="label-caps mb-3">What’s next</h2><p class="text-cb-muted">Bracelets first. Raw crystals, tumbled stones, clusters and towers are coming to the basket next, organised by the same eight intentions.</p></section>
+{% schema %}
+{ "name": "About page", "settings": [] }
+{% endschema %}

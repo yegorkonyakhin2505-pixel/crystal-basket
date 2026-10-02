@@ -1,0 +1,7 @@
+{%- comment -%} {% render 'cb-section-title', eyebrow: 'Bestsellers', title: 'Where most people start', text: '', align: 'center' | 'left', class: '' %} {%- endcomment -%}
+{%- assign cb_align = align | default: 'center' -%}
+<div class="mb-8 md:mb-10 {% if cb_align == 'center' %}text-center mx-auto max-w-2xl{% else %}max-w-2xl{% endif %}{% if class != blank %} {{ class }}{% endif %}">
+  {%- if eyebrow != blank -%}<p class="label-caps mb-3">{{ eyebrow }}</p>{%- endif -%}
+  <h2 class="text-3xl md:text-[2.5rem]">{{ title }}</h2>
+  {%- if text != blank -%}<p class="mt-3 text-cb-muted text-[15px]">{{ text }}</p>{%- endif -%}
+</div>

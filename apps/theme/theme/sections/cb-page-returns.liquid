@@ -1,0 +1,38 @@
+{%- comment -%} Exchanges and returns (mirror of apps/web returns/page.tsx). {%- endcomment -%}
+{%- liquid
+  assign page_abs = shop.url | append: page.url
+  if settings.cb_whatsapp_on
+    assign channel = 'WhatsApp'
+  else
+    assign channel = 'email'
+  endif
+-%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}/"},{"@type":"ListItem","position":2,"name":"Exchanges & returns","item":"{{ page_abs }}"}]}</script>
+{%- capture intro -%}<p>Exchange a Crystal Basket bracelet for another size within 14 days of delivery, unworn and in its pouch. We cover the courier once, and restring any bracelet free for life.</p>{%- endcapture -%}
+{%- render 'cb-page-intro', heading: 'Exchanges and returns', tagline: 'The wrong size is an easy fix.', content: intro, reviewed: section.settings.reviewed -%}
+<section class="container-x pb-12 max-w-5xl">
+  <h2 class="text-3xl md:text-[2.25rem] mb-5">How do I exchange a bracelet?</h2>
+  <ol class="grid md:grid-cols-3 gap-px bg-cb-line border border-cb-line">
+    <li class="bg-white p-6"><span class="font-display text-3xl text-cb-gold">01</span><h3 class="font-display text-[1.4rem] mt-2">Tell us</h3><p class="text-[13px] text-cb-muted mt-2">Send us an {{ channel }} within 14 days of delivery with your order name and the size you need.</p></li>
+    <li class="bg-white p-6"><span class="font-display text-3xl text-cb-gold">02</span><h3 class="font-display text-[1.4rem] mt-2">Send it back</h3><p class="text-[13px] text-cb-muted mt-2">Keep the bracelet unworn and in its linen pouch. We arrange the courier collection and cover it once.</p></li>
+    <li class="bg-white p-6"><span class="font-display text-3xl text-cb-gold">03</span><h3 class="font-display text-[1.4rem] mt-2">Get the new size</h3><p class="text-[13px] text-cb-muted mt-2">We string the new size and send it out as soon as the original arrives back with us.</p></li>
+  </ol>
+</section>
+<section class="container-x pb-20 max-w-3xl space-y-8">
+  <div>
+    <h2 class="text-3xl md:text-[2.25rem]">Can I return a bracelet for a refund?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">Our standard policy is an exchange for another size. If a bracelet arrives damaged or is not what you ordered, tell us straight away with a photo and we will put it right. Any other refund request is handled case by case, so <a href="/pages/contact" class="text-cb-ink underline underline-offset-4">get in touch</a> and we will talk it through.</p>
+  </div>
+  <div>
+    <h2 class="text-3xl md:text-[2.25rem]">What if the cord breaks later?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">Stretch cord is a wear part. We restring any {{ shop.name }} bracelet on fresh cord for free, for life. Send us your order name and we will arrange it.</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Returns page",
+  "settings": [
+    { "type": "text", "id": "reviewed", "label": "Last reviewed", "default": "September 2026" }
+  ]
+}
+{% endschema %}

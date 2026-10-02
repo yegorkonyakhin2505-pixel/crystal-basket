@@ -1,0 +1,15 @@
+{%- comment -%}
+  Four-up grid with hairline dividers (mirror of ProductGrid.tsx). `products` is an array of product objects;
+  `eager_first` tiles load their images eagerly; `id` for the FilterBar; `empty` is the fallback copy.
+{%- endcomment -%}
+{%- assign cb_empty = empty | default: 'New pieces are being strung. Check back soon.' -%}
+{%- assign cb_eager = eager_first | default: 0 -%}
+{%- if products.size == 0 -%}
+  <p class="container-x py-10 text-[14px] text-cb-muted">{{ cb_empty }}</p>
+{%- else -%}
+  <div{% if id != blank %} id="{{ id }}"{% endif %} class="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-cb-line">
+    {%- for p in products -%}
+      {%- if forloop.index <= cb_eager -%}{%- render 'cb-product-tile', product: p, eager: true -%}{%- else -%}{%- render 'cb-product-tile', product: p -%}{%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}

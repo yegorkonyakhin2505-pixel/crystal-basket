@@ -1,0 +1,27 @@
+{
+  "current": {
+    "cb_city": "Dubai",
+    "cb_email": "hello@crystalbasket.store",
+    "cb_instagram": "crystal.basket",
+    "cb_tiktok": "",
+    "cb_whatsapp": "971500000000",
+    "cb_whatsapp_on": false,
+    "cb_announcement": "Free UAE delivery over 250 AED · Every piece cleansed & charged before it ships",
+    "cb_delivery_fee": 25,
+    "cb_free_delivery": 250,
+    "cb_delivery_copy": "Next-day delivery across the UAE.",
+    "cb_stack_discount": 15,
+    "cb_custom_base": 75,
+    "cb_custom_select": 10,
+    "cb_custom_rare": 20,
+    "cb_custom_gold": 10,
+    "cb_custom_max_gold": 3,
+    "cb_custom_handle": "custom-bracelet",
+    "cb_offer_popup": true,
+    "cb_welcome_pct": 10,
+    "cb_welcome_code": "WELCOME10",
+    "cb_reviews": false,
+    "cb_reviews_average": "4.9",
+    "cb_reviews_count": 312
+  }
+}

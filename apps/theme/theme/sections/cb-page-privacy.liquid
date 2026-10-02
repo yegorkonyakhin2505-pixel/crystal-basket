@@ -1,0 +1,33 @@
+{%- comment -%} Privacy (mirror of apps/web privacy/page.tsx). Copy kept verbatim; revisit the checkout domain line when crystalbasket.store moves to Shopify. {%- endcomment -%}
+{%- liquid
+  assign page_abs = shop.url | append: page.url
+-%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}/"},{"@type":"ListItem","position":2,"name":"Privacy","item":"{{ page_abs }}"}]}</script>
+{%- capture intro -%}<p>What Crystal Basket collects when you browse and order: order details handled by Shopify, card payments processed by Stripe, and a wishlist and bag kept in your own browser.</p>{%- endcapture -%}
+{%- render 'cb-page-intro', heading: 'Privacy', tagline: 'Only what an order needs.', content: intro, reviewed: section.settings.reviewed -%}
+<section class="container-x pb-20 max-w-3xl space-y-8">
+  <div>
+    <h2 class="text-2xl md:text-[1.9rem]">What happens when I order?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">Checkout runs on Shopify, at shop.crystalbasket.store. The name, email, phone number and delivery address you enter there are used to deliver your order and contact you about it, and Shopify stores them for us under its own privacy policy. Card payments are processed by Stripe inside that checkout, so your card details never reach this website.</p>
+  </div>
+  <div>
+    <h2 class="text-2xl md:text-[1.9rem]">What does this website store?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">Your bag, wishlist and welcome-offer status are saved in your own browser's local storage, so they are still there when you come back. Shopify also sets two counting cookies so we can see how many people visit and which pages they read, and so a visit carries through to checkout. There are no advertising or social-media trackers.</p>
+  </div>
+  <div>
+    <h2 class="text-2xl md:text-[1.9rem]">Do you send marketing emails?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">Not yet. The welcome-offer form currently keeps your email in your own browser only, to show the code. Before we start sending emails we will update this page and ask for your consent.</p>
+  </div>
+  <div>
+    <h2 class="text-2xl md:text-[1.9rem]">How do I ask about my data?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">Email {{ settings.cb_email }} and we will tell you what we hold about you, correct it, or delete it, apart from what we must keep for order and tax records.</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Privacy page",
+  "settings": [
+    { "type": "text", "id": "reviewed", "label": "Last reviewed", "default": "September 2026" }
+  ]
+}
+{% endschema %}

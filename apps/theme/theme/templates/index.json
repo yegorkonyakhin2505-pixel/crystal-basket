@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "hero": { "type": "cb-hero", "settings": {} },
+    "intentions": { "type": "cb-intentions-grid", "settings": { "show_title": true } },
+    "bestsellers": { "type": "cb-featured-products", "settings": {} },
+    "trust": {
+      "type": "cb-trust-strip",
+      "blocks": {
+        "t1": { "type": "item", "settings": { "title": "100% natural stones", "text": "Never dyed, never glass. Variation is proof." } },
+        "t2": { "type": "item", "settings": { "title": "Cleansed & charged", "text": "48 hours on selenite before it ships." } },
+        "t3": { "type": "item", "settings": { "title": "Next-day delivery", "text": "Across the UAE. Cash on delivery available." } },
+        "t4": { "type": "item", "settings": { "title": "Free re-string, for life", "text": "If the cord ever gives, we fix it." } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
+      "settings": {}
+    },
+    "stacks": { "type": "cb-stacks-band", "settings": {} },
+    "leaving": { "type": "cb-leaving-soon", "settings": {} },
+    "build": { "type": "cb-build-teaser", "settings": {} },
+    "new": { "type": "cb-new-in", "settings": {} },
+    "story": { "type": "cb-story", "settings": {} },
+    "reviews": {
+      "type": "cb-testimonials",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "quote": "I bought The Still Mind for my exams and wore it every day. Whether it is the stone or the reminder, I felt calmer.", "name": "Mariam A.", "city": "Dubai" } },
+        "r2": { "type": "review", "settings": { "quote": "Gifted The Tender Heart to my sister. The card and the pouch made it feel like a real present.", "name": "Sara K.", "city": "Abu Dhabi" } },
+        "r3": { "type": "review", "settings": { "quote": "The sizing was right the first time and the beads are heavier than they look. Real stone.", "name": "Layla H.", "city": "Sharjah" } }
+      },
+      "block_order": ["r1", "r2", "r3"],
+      "settings": {}
+    }
+  },
+  "order": ["hero", "intentions", "bestsellers", "trust", "stacks", "leaving", "build", "new", "story", "reviews"]
+}

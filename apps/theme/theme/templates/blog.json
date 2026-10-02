@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "cb-blog", "settings": {} }
+  },
+  "order": ["main"]
+}

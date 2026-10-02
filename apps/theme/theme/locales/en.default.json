@@ -1,0 +1,13 @@
+{
+  "general": {
+    "search": { "search": "Search" },
+    "404": { "title": "Page not found" },
+    "accessibility": { "skip_to_text": "Skip to content" }
+  },
+  "products": {
+    "product": { "add_to_cart": "Add to bag", "sold_out": "Sold out" }
+  },
+  "cart": {
+    "general": { "title": "Your bag", "empty": "Your bag is empty.", "checkout": "Checkout" }
+  }
+}

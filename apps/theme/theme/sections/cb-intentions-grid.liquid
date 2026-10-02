@@ -1,0 +1,64 @@
+{%- comment -%}
+  Shop-by-intention photo tiles on the beige band (mirror of CategoryGrid.tsx inside the home page section).
+  Intentions are metaobjects in sort_order; the bracelet count includes secondary intentions.
+  `show_title` adds the SectionTitle used on the home page; `limit` caps the tiles.
+{%- endcomment -%}
+{%- liquid
+  assign limit = section.settings.limit | default: 0
+  assign bracelets = collections.all.products | sort: 'handle'
+  assign shown = 0
+-%}
+<section class="bg-cb-band py-10 md:py-14">
+  <div class="container-x">
+    {%- if section.settings.show_title -%}
+      {%- render 'cb-section-title', eyebrow: section.settings.eyebrow, title: section.settings.title -%}
+    {%- endif -%}
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
+      {%- for n in (1..12) -%}
+        {%- for i in shop.metaobjects.intention.values -%}
+          {%- assign order = i.sort_order.value | plus: 0 -%}
+          {%- if order != n -%}{%- continue -%}{%- endif -%}
+          {%- if limit > 0 and shown >= limit -%}{%- continue -%}{%- endif -%}
+          {%- assign handle = i.system.handle -%}
+          {%- assign count = 0 -%}
+          {%- for p in bracelets -%}
+            {%- if p.metafields.crystal.intention.value.system.handle == handle -%}
+              {%- assign count = count | plus: 1 -%}
+            {%- else -%}
+              {%- for sec in p.metafields.crystal.secondary_intentions.value -%}
+                {%- if sec.system.handle == handle -%}{%- assign count = count | plus: 1 -%}{%- break -%}{%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- assign delay = shown | modulo: 4 | times: 60 -%}
+          {%- assign alt = i.name.value | append: ' bracelets' -%}
+          <a href="{{ i.system.url | default: '#' }}" class="group block reveal" style="transition-delay: {{ delay }}ms">
+            <div class="aspect-[3/4] overflow-hidden bg-cb-band-2">
+              {%- if i.image.value -%}
+                {{ i.image.value | image_url: width: 1200 | image_tag: widths: '480, 800, 1200', sizes: '(min-width: 1024px) 25vw, 50vw', loading: 'lazy', alt: alt, class: 'block h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.05]' }}
+              {%- else -%}
+                {%- assign src = '/images/intentions/' | append: handle | append: '.jpg' -%}
+                {%- render 'cb-img', src: src, alt: alt, class: 'transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.05]' -%}
+              {%- endif -%}
+            </div>
+            <p class="py-3 text-center text-[15px] tracking-wide group-hover:text-cb-rose transition-colors">{{ i.short.value }}</p>
+            <p class="-mt-3 pb-3 text-center text-[11px] text-cb-muted">{{ count }} bracelets</p>
+          </a>
+          {%- assign shown = shown | plus: 1 -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Shop by intention",
+  "settings": [
+    { "type": "checkbox", "id": "show_title", "label": "Show the title", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by intention" },
+    { "type": "text", "id": "title", "label": "Title", "default": "What do you need more of?" },
+    { "type": "range", "id": "limit", "label": "Tiles (0 = all)", "min": 0, "max": 12, "step": 1, "default": 0 }
+  ],
+  "presets": [{ "name": "Shop by intention" }]
+}
+{% endschema %}

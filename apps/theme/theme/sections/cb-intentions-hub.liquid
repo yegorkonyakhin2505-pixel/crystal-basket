@@ -1,0 +1,72 @@
+{%- comment -%}
+  Intentions hub (mirror of apps/web intentions/page.tsx): listing hero + the CategoryGrid of intentions in sort order,
+  with a bracelet count per intention (primary or secondary intention, any stock).
+{%- endcomment -%}
+{%- liquid
+  assign hub_url = page.url | default: '/pages/intentions'
+  assign hub_abs = shop.url | append: hub_url
+  assign n_int = 0
+  assign n_total = 0
+  for i in shop.metaobjects.intention.values
+    assign n_total = n_total | plus: 1
+  endfor
+-%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}/"},{"@type":"ListItem","position":2,"name":"Intentions","item":"{{ hub_abs }}"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","@id":"{{ hub_abs }}","url":"{{ hub_abs }}","name":"Crystal bracelets by intention","description":"Eight intentions and the stones traditionally worn for each.","isPartOf":{"@id":"{{ shop.url }}/#website"},"mainEntity":{"@type":"ItemList","name":"Crystal bracelets by intention","numberOfItems":{{ n_total }},"itemListElement":[
+{%- for n in (1..12) -%}
+  {%- for i in shop.metaobjects.intention.values -%}
+    {%- assign order = i.sort_order.value | plus: 0 -%}
+    {%- if order == n -%}
+      {%- if n_int > 0 -%},{%- endif -%}{%- assign n_int = n_int | plus: 1 -%}
+      {"@type":"ListItem","position":{{ n_int }},"name":{{ i.name.value | json }},"url":{{ shop.url | append: i.system.url | json }}{% if i.image.value %},"image":{{ i.image.value | image_url: width: 1200 | json }}{% endif %}}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+]}}</script>
+
+{%- render 'cb-listing-hero', image: '/images/intentions/calm.jpg', alt: 'Amethyst bracelet on a wrist', crumbs: '|Intentions', title: 'Crystal bracelets by intention', text: 'Eight intentions, each with a small family of stones traditionally worn for it. Pick the feeling, and the bracelet follows.' -%}
+
+<section class="bg-cb-band py-10 md:py-14">
+  <div class="container-x">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3">
+      {%- assign idx = 0 -%}
+      {%- for n in (1..12) -%}
+        {%- for i in shop.metaobjects.intention.values -%}
+          {%- assign order = i.sort_order.value | plus: 0 -%}
+          {%- if order == n -%}
+            {%- assign ih = i.system.handle -%}
+            {%- assign count = 0 -%}
+            {%- for p in collections.all.products -%}
+              {%- if p.metafields.crystal.intention.value -%}
+                {%- if p.metafields.crystal.intention.value.system.handle == ih -%}
+                  {%- assign count = count | plus: 1 -%}
+                {%- else -%}
+                  {%- capture sec -%}{%- for s in p.metafields.crystal.secondary_intentions.value -%}{{ s.system.handle }} {% endfor -%}{%- endcapture -%}
+                  {%- assign secs = sec | split: ' ' -%}
+                  {%- if secs contains ih -%}{%- assign count = count | plus: 1 -%}{%- endif -%}
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- assign delay = idx | modulo: 4 | times: 60 -%}
+            <a href="{{ i.system.url | default: '#' }}" class="group block reveal" style="transition-delay: {{ delay }}ms">
+              <div class="aspect-[3/4] overflow-hidden bg-cb-band-2">
+                {%- if i.image.value -%}
+                  {%- assign alt = i.name.value | append: ' bracelets' -%}
+                  {{ i.image.value | image_url: width: 1200 | image_tag: widths: '480, 800, 1200', sizes: '(min-width: 1024px) 25vw, 50vw', loading: 'lazy', alt: alt, class: 'block h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.05]' }}
+                {%- else -%}
+                  <div class="h-full w-full" style="background: radial-gradient(80% 60% at 70% 20%, {{ i.palette_1.value }}66, transparent 70%), radial-gradient(70% 50% at 20% 90%, {{ i.palette_2.value }}44, transparent 70%)"></div>
+                {%- endif -%}
+              </div>
+              <p class="py-3 text-center text-[15px] tracking-wide group-hover:text-cb-rose transition-colors">{{ i.short.value }}</p>
+              <p class="-mt-3 pb-3 text-center text-[11px] text-cb-muted">{{ count }} bracelets</p>
+            </a>
+            {%- assign idx = idx | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Intentions hub", "settings": [] }
+{% endschema %}

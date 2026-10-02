@@ -1,0 +1,48 @@
+{%- comment -%}
+  Reviews (mirror of Testimonials.tsx). Hidden until the "Show the reviews section" theme setting is on, because the
+  default quotes are samples. Each quote is a block.
+{%- endcomment -%}
+{%- if settings.cb_reviews -%}
+<section class="container-x py-16 md:py-24">
+  <div class="text-center mb-10 reveal">
+    <p class="text-cb-gold tracking-[0.3em] text-sm">★★★★★</p>
+    <h2 class="text-3xl md:text-[2.5rem] mt-3">{{ settings.cb_reviews_average | default: '4.9' }} from {{ settings.cb_reviews_count | default: 312 }} wrists</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-px bg-cb-line border border-cb-line">
+    {%- for block in section.blocks -%}
+      {%- assign delay = forloop.index0 | times: 70 -%}
+      <figure class="bg-white p-8 reveal" style="transition-delay: {{ delay }}ms" {{ block.shopify_attributes }}>
+        <blockquote class="font-display text-[1.35rem] leading-snug italic">“{{ block.settings.quote }}”</blockquote>
+        <figcaption class="mt-5 text-[12px] text-cb-muted uppercase tracking-[0.12em]">{{ block.settings.name }} · {{ block.settings.city }}</figcaption>
+      </figure>
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "city", "label": "City" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Reviews",
+      "blocks": [
+        { "type": "review", "settings": { "quote": "I bought The Still Mind for my exams and wore it every day. Whether it is the stone or the reminder, I felt calmer.", "name": "Mariam A.", "city": "Dubai" } },
+        { "type": "review", "settings": { "quote": "Gifted The Tender Heart to my sister. The card and the pouch made it feel like a real present.", "name": "Sara K.", "city": "Abu Dhabi" } },
+        { "type": "review", "settings": { "quote": "The sizing was right the first time and the beads are heavier than they look. Real stone.", "name": "Layla H.", "city": "Sharjah" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

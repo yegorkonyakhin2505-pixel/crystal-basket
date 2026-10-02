@@ -1,0 +1,46 @@
+{%- comment -%}
+  Full-bleed photo hero (mirror of Hero.tsx as used on the home page: align left, the eyebrow is the H1).
+  The photo is the theme asset unless an image is picked in the editor.
+{%- endcomment -%}
+{%- liquid
+  assign shop_url = routes.all_products_collection_url
+  assign intentions_url = pages['intentions'].url | default: '/pages/intentions'
+  assign eyebrow = section.settings.eyebrow | default: 'Crystal bracelets, hand-strung in Dubai'
+  assign alt = section.settings.alt | default: 'Natural crystal bracelet on a wrist, hand-strung by Crystal Basket in Dubai'
+-%}
+<section class="relative h-[72vh] min-h-[520px] max-h-[820px] overflow-hidden bg-cb-band">
+  <div class="absolute inset-0">
+    {%- if section.settings.image -%}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: widths: '480, 800, 1200, 1600, 2000', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: alt, class: 'block h-full w-full object-cover object-[65%_center]' }}
+    {%- else -%}
+      {%- render 'cb-img', src: '/images/hero/hero-1.jpg', alt: alt, sizes: '100vw', loading: 'eager', fetchpriority: 'high', class: 'object-[65%_center]' -%}
+    {%- endif -%}
+  </div>
+  <div class="absolute inset-0 bg-gradient-to-r from-white/85 via-white/40 to-transparent"></div>
+  <div class="container-x relative flex h-full flex-col justify-center items-start text-left">
+    <div class="flex flex-col items-start max-w-[52rem]">
+      <h1 class="label-caps mb-4">{{ eyebrow }}</h1>
+      <p class="font-display text-cb-ink text-[2.75rem] leading-[1] sm:text-6xl lg:text-[4.75rem]">{{ section.settings.title | default: 'Energy you can wear.' }}</p>
+      {%- if section.settings.subtitle != blank -%}<p class="mt-4 text-cb-ink/80 text-[17px] md:text-[19px] max-w-xl">{{ section.settings.subtitle }}</p>{%- endif -%}
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="{{ shop_url }}" class="inline-flex select-none items-center justify-center gap-2 font-medium uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cb-rose disabled:cursor-not-allowed disabled:opacity-50 bg-cb-ink text-white hover:bg-black h-13 px-8 text-[13px]">{{ section.settings.primary_label | default: 'Shop bracelets' }}</a>
+        <a href="{{ intentions_url }}" class="inline-flex select-none items-center justify-center gap-2 font-medium uppercase tracking-[0.14em] transition-colors duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cb-rose disabled:cursor-not-allowed disabled:opacity-50 border border-cb-ink text-cb-ink hover:bg-cb-ink hover:text-white h-13 px-8 text-[13px] bg-white/70">{{ section.settings.secondary_label | default: 'Find your intention' }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Photo", "info": "Leave empty to use the studio hero photo." },
+    { "type": "text", "id": "alt", "label": "Photo description", "default": "Natural crystal bracelet on a wrist, hand-strung by Crystal Basket in Dubai" },
+    { "type": "text", "id": "eyebrow", "label": "Small line (page heading)", "default": "Crystal bracelets, hand-strung in Dubai" },
+    { "type": "text", "id": "title", "label": "Large line", "default": "Energy you can wear." },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Natural crystal bracelets, chosen by intention." },
+    { "type": "text", "id": "primary_label", "label": "Primary button", "default": "Shop bracelets" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "Find your intention" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

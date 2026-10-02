@@ -1,0 +1,32 @@
+{%- comment -%} "New in" row: up to four pieces flagged cb.is_new. Hidden until there are at least two. {%- endcomment -%}
+{%- liquid
+  assign bracelets = collections.all.products | sort: 'handle'
+  assign shown = 0
+  capture tiles
+    for p in bracelets
+      if shown >= 4
+        break
+      endif
+      unless p.metafields.crystal.intention.value
+        continue
+      endunless
+      if p.metafields.crystal.is_new.value
+        assign shown = shown | plus: 1
+        render 'cb-product-tile', product: p
+      endif
+    endfor
+  endcapture
+-%}
+{%- if shown >= 2 -%}
+<section class="container-x py-16 md:py-24">
+  {%- render 'cb-section-title', eyebrow: 'New in', title: section.settings.title -%}
+  <div class="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-cb-line">{{ tiles }}</div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "New in",
+  "settings": [{ "type": "text", "id": "title", "label": "Title", "default": "Just strung" }],
+  "presets": [{ "name": "New in" }]
+}
+{% endschema %}

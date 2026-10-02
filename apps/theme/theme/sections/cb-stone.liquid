@@ -1,0 +1,195 @@
+{%- comment -%}
+  Stone guide page (mirror of apps/web stones/[slug]/page.tsx). `metaobject` is the stone entry (type `stone`).
+  Facts table, question-headed sections, pairings, and the bracelets that contain the stone (in stock first).
+{%- endcomment -%}
+{%- liquid
+  assign name = metaobject.name.value
+  assign lower = name | downcase
+  assign h = metaobject.system.handle
+  assign heading = name | append: ' bracelet meaning'
+  assign stones_url = pages['stones'].url | default: '/pages/stones'
+  assign care_url = '/pages/care'
+  assign disclaimer_url = '/pages/disclaimer'
+  assign page_abs = shop.url | append: metaobject.system.url
+  assign kw_lower = metaobject.keywords.value | join: ', ' | downcase
+  assign describe = name | append: ' bracelet meaning: traditionally worn for ' | append: kw_lower | append: '. Chakra, which wrist, how to cleanse it, and ' | append: lower | append: ' bracelets hand-strung in Dubai.' | truncate: 155
+  assign crumbs = stones_url | append: '|Stones|||' | append: name
+  assign water_safe = true
+  if metaobject.water_safe.value == false
+    assign water_safe = false
+  endif
+  assign sun_safe = true
+  if metaobject.sun_safe.value == false
+    assign sun_safe = false
+  endif
+  case metaobject.wrist.value
+    when 'left'
+      assign wrist_label = 'Left wrist'
+    when 'right'
+      assign wrist_label = 'Right wrist'
+    else
+      assign wrist_label = 'Either wrist'
+  endcase
+  assign c1 = 'Cleanse ' | append: lower | append: ' when it arrives and about once a month: overnight in moonlight, on a selenite plate for a few hours, or in palo santo, sage or oud smoke.'
+  if water_safe
+    assign c2 = 'A brief rinse in plain water is fine; dry it straight away so the cord lasts.'
+  elsif metaobject.water_note.value != blank
+    assign c2 = metaobject.water_note.value
+  else
+    assign c2 = 'Keep ' | append: lower | append: ' out of water.'
+  endif
+  if sun_safe
+    assign c3 = 'It is sun safe, so a short spell on a bright windowsill does no harm.'
+  else
+    assign c3 = 'Keep it out of long direct sun, which fades the colour of ' | append: lower | append: '.'
+  endif
+  assign cleanse = c1 | append: ' ' | append: c2 | append: ' ' | append: c3
+  assign match_count = 0
+  for p in collections.all.products
+    if p.metafields.crystal.intention.value
+      capture ph
+        for ps in p.metafields.crystal.stones.value
+          echo ps.system.handle
+          echo ' '
+        endfor
+      endcapture
+      assign phs = ph | split: ' '
+      if phs contains h
+        assign match_count = match_count | plus: 1
+      endif
+    endif
+  endfor
+  assign int_count = 0
+  for i in shop.metaobjects.intention.values
+    capture ih
+      for s in i.stones.value
+        echo s.system.handle
+        echo ' '
+      endfor
+    endcapture
+    assign ihs = ih | split: ' '
+    if ihs contains h
+      assign int_count = int_count | plus: 1
+    endif
+  endfor
+  assign pairs = metaobject.pairs_with.value
+  assign n_ld = 0
+-%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{ shop.url }}/"},{"@type":"ListItem","position":2,"name":"Stones","item":"{{ shop.url }}{{ stones_url }}"},{"@type":"ListItem","position":3,"name":{{ name | json }},"item":"{{ page_abs }}"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"{{ page_abs }}","url":"{{ page_abs }}","name":{{ heading | json }},"description":{{ describe | json }},"inLanguage":"en","isPartOf":{"@id":"{{ shop.url }}/#website"},"about":{"@type":"Thing","name":{{ name | json }},"alternateName":{{ name | append: ' crystal' | json }}{% if metaobject.image.value %},"image":{{ metaobject.image.value | image_url: width: 1200 | json }}{% endif %}}{% if metaobject.image.value %},"primaryImageOfPage":{"@type":"ImageObject","url":{{ metaobject.image.value | image_url: width: 1200 | json }}}{% endif %}{% if match_count > 0 %},"mainEntity":{"@type":"ItemList","name":{{ 'Bracelets with ' | append: name | json }},"numberOfItems":{{ match_count }},"itemListElement":[
+{%- for pass in (1..2) -%}
+  {%- for p in collections.all.products -%}
+    {%- if p.metafields.crystal.intention.value -%}
+      {%- assign want = false -%}
+      {%- if pass == 1 -%}{%- if p.available -%}{%- assign want = true -%}{%- endif -%}{%- else -%}{%- unless p.available -%}{%- assign want = true -%}{%- endunless -%}{%- endif -%}
+      {%- if want -%}
+        {%- capture ph -%}{%- for ps in p.metafields.crystal.stones.value -%}{{ ps.system.handle }} {% endfor -%}{%- endcapture -%}
+        {%- assign phs = ph | split: ' ' -%}
+        {%- if phs contains h -%}
+          {%- if n_ld > 0 -%},{%- endif -%}{%- assign n_ld = n_ld | plus: 1 -%}
+          {"@type":"ListItem","position":{{ n_ld }},"name":{{ p.title | json }},"url":{{ shop.url | append: p.url | json }}{% if p.featured_image %},"image":{{ p.featured_image | image_url: width: 1200 | json }}{% endif %}}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+]}{% endif %}}</script>
+
+{%- render 'cb-listing-hero', palette_1: metaobject.palette_1.value, palette_2: metaobject.palette_2.value, crumbs: crumbs, title: heading, text: metaobject.description.value -%}
+
+<section class="container-x py-12 md:py-16 grid grid-cols-1 md:grid-cols-[minmax(0,280px)_1fr] gap-8 md:gap-14 items-start">
+  {%- if metaobject.image.value -%}
+    {%- assign img_alt = name | append: ' tumbled stone' -%}
+    <div class="aspect-square w-48 md:w-full max-w-[280px]">{{ metaobject.image.value | image_url: width: 560 | image_tag: widths: '280, 560', sizes: '280px', loading: 'eager', alt: img_alt, class: 'block h-full w-full object-cover' }}</div>
+  {%- else -%}
+    <div aria-hidden="true" class="aspect-square rounded-full ring-1 ring-black/5 w-40 md:w-full max-w-[280px]" style="background: radial-gradient(circle at 38% 32%, rgb(255 255 255 / 0.67) 0%, transparent 18%), radial-gradient(circle at 40% 35%, {{ metaobject.palette_1.value }}, {{ metaobject.palette_2.value }})"></div>
+  {%- endif -%}
+  <div class="overflow-x-auto border border-cb-line">
+    <table class="w-full text-[14px]">
+      <caption class="sr-only">{{ name }} at a glance</caption>
+      <tbody class="divide-y divide-cb-line">
+        <tr><th scope="row" class="w-[42%] md:w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Traditionally worn for</th><td class="px-4 py-3">{{ metaobject.keywords.value | join: ', ' }}</td></tr>
+        <tr><th scope="row" class="w-[42%] md:w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Chakra</th><td class="px-4 py-3">{{ metaobject.chakra.value | join: ', ' }}</td></tr>
+        <tr><th scope="row" class="w-[42%] md:w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Zodiac</th><td class="px-4 py-3">{{ metaobject.zodiac.value | join: ', ' }}</td></tr>
+        <tr><th scope="row" class="w-[42%] md:w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Colour</th><td class="px-4 py-3">{{ metaobject.color.value }}</td></tr>
+        <tr><th scope="row" class="w-[42%] md:w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Hardness (Mohs)</th><td class="px-4 py-3">{{ metaobject.mohs.value }}</td></tr>
+        <tr><th scope="row" class="w-[42%] md:w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Commonly found in</th><td class="px-4 py-3">{{ metaobject.found_in.value }}</td></tr>
+        <tr><th scope="row" class="w-[42%] md:w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Best worn on</th><td class="px-4 py-3">{{ wrist_label }}</td></tr>
+        <tr><th scope="row" class="w-[42%] md:w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Water</th><td class="px-4 py-3">{% if water_safe %}Brief rinse is fine{% else %}Keep dry{% endif %}</td></tr>
+        <tr><th scope="row" class="w-[42%] md:w-[34%] px-4 py-3 text-left font-normal text-cb-muted align-top">Sun</th><td class="px-4 py-3">{% if sun_safe %}Short sun is fine{% else %}Fades in long sun{% endif %}</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<article class="container-x pb-12 max-w-3xl space-y-10">
+  <section>
+    <h2 class="text-3xl md:text-[2.25rem]">What is a {{ lower }} bracelet worn for?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">{{ metaobject.worn_for.value }}</p>
+    {%- if int_count > 0 -%}
+      <p class="mt-4 flex flex-wrap items-center gap-2 text-[13px]">
+        <span class="text-cb-muted">Shop by intention:</span>
+        {%- for n in (1..12) -%}
+          {%- for i in shop.metaobjects.intention.values -%}
+            {%- assign order = i.sort_order.value | plus: 0 -%}
+            {%- if order == n -%}
+              {%- capture ih -%}{%- for s in i.stones.value -%}{{ s.system.handle }} {% endfor -%}{%- endcapture -%}
+              {%- assign ihs = ih | split: ' ' -%}
+              {%- if ihs contains h -%}<a href="{{ i.system.url | default: '#' }}" class="border border-cb-line px-3 py-1 hover:border-cb-ink">{{ i.short.value }}</a>{%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      </p>
+    {%- endif -%}
+  </section>
+  <section>
+    <h2 class="text-3xl md:text-[2.25rem]">What is {{ lower }}?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">{{ metaobject.mineral.value }} It measures {{ metaobject.mohs.value }} on the Mohs hardness scale and is commonly found in {{ metaobject.found_in.value }}. Every Crystal Basket bead is natural and undyed, so colour and pattern vary from bead to bead.</p>
+  </section>
+  <section>
+    <h2 class="text-3xl md:text-[2.25rem]">Which wrist do you wear {{ lower }} on?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">{{ metaobject.wrist_why.value }}</p>
+  </section>
+  <section>
+    <h2 class="text-3xl md:text-[2.25rem]">How do you cleanse a {{ lower }} bracelet?</h2>
+    <p class="text-cb-muted mt-3 leading-relaxed">{{ cleanse }} <a href="{{ care_url }}" class="underline underline-offset-4 hover:text-cb-rose">Full cleanse and care guide</a>.</p>
+  </section>
+  {%- if pairs.size > 0 -%}
+    <section>
+      <h2 class="text-3xl md:text-[2.25rem]">What does {{ lower }} pair well with?</h2>
+      <p class="text-cb-muted mt-3 leading-relaxed">{{ name }} is often worn beside {% for p in pairs %}{% if forloop.first %}{% elsif forloop.last %} and {% else %}, {% endif %}{{ p.name.value | downcase }}{% endfor %}. Every bracelet is 8 mm, so any of them stack evenly on the same wrist.</p>
+      <p class="mt-4 flex flex-wrap gap-2 text-[13px]">
+        {%- for p in pairs -%}
+          <a href="{{ p.system.url | default: '#' }}" class="inline-flex items-center gap-2 border border-cb-line px-3 py-1 hover:border-cb-ink">{% if p.image.value %}<img src="{{ p.image.value | image_url: width: 48 }}" alt="" class="h-6 w-6 rounded-full object-cover ring-1 ring-black/5" loading="lazy" width="24" height="24">{% else %}<span class="h-2.5 w-2.5 rounded-full" style="background: radial-gradient(circle at 35% 30%, {{ p.palette_1.value }}, {{ p.palette_2.value }})"></span>{% endif %}{{ p.name.value }}</a>
+        {%- endfor -%}
+      </p>
+    </section>
+  {%- endif -%}
+  <p class="text-[11px] text-cb-faint">Crystal meanings describe traditional beliefs, not medical advice. <a href="{{ disclaimer_url }}" class="underline">Disclaimer</a>.</p>
+</article>
+
+<section class="pb-16">
+  <div class="container-x">{% assign grid_title = 'Bracelets with ' | append: name %}{% render 'cb-section-title', eyebrow: 'Bracelets', title: grid_title %}</div>
+  {%- if match_count == 0 -%}
+    <p class="container-x py-10 text-[14px] text-cb-muted">No bracelet uses {{ name }} on its own yet. It appears in our chakra and mixed pieces.</p>
+  {%- else -%}
+    <div class="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-cb-line">
+      {%- for pass in (1..2) -%}
+        {%- for p in collections.all.products -%}
+          {%- if p.metafields.crystal.intention.value -%}
+            {%- assign want = false -%}
+            {%- if pass == 1 -%}{%- if p.available -%}{%- assign want = true -%}{%- endif -%}{%- else -%}{%- unless p.available -%}{%- assign want = true -%}{%- endunless -%}{%- endif -%}
+            {%- if want -%}
+              {%- capture ph -%}{%- for ps in p.metafields.crystal.stones.value -%}{{ ps.system.handle }} {% endfor -%}{%- endcapture -%}
+              {%- assign phs = ph | split: ' ' -%}
+              {%- if phs contains h -%}{%- render 'cb-product-tile', product: p -%}{%- endif -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+{% schema %}
+{ "name": "Stone page", "settings": [] }
+{% endschema %}
