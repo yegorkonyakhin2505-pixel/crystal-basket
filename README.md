@@ -2,7 +2,7 @@
 
 Storefront for **Crystal Basket**, a Dubai crystal bracelet brand. Next.js 15 static export served from GitHub Pages, content as validated JSON, orders via WhatsApp and payment links.
 
-**Live:** https://crystalbasket.store. Since 2026-10-02 the storefront is the Shopify theme in `apps/theme` (store `utx8rj-t3.myshopify.com`); `apps/web` is the previous GitHub Pages site, kept for rollback until the domain move settles.
+**Live:** https://crystalbasket.store. Since 2026-10-02 the storefront is the Shopify theme in `apps/theme` (store `utx8rj-t3.myshopify.com`); `apps/web` is the previous GitHub Pages site, kept for rollback (manual deploy only).
 
 ## Quick start
 
@@ -32,7 +32,7 @@ Node 22+, pnpm 10.
 | M10 | Shopify commerce | ✅ | Storefront API cart, Shopify checkout, 12 products / 36 variants imported. |
 | M10 | Real photography | ⏳ | AI placeholders in place (N05). |
 | M11 | ~~API + admin (phase 2)~~ | ✖ | Superseded by M12 (ADR 0003). |
-| M12 | Shopify theme (`apps/theme`) | ✅ | The storefront rebuilt as a Shopify Online Store 2.0 theme: Liquid pages + React islands, same tokens, copy and images. Live theme "Crystal Basket (new)" (id 155126235315) since 2026-10-02; content migrated with `apps/theme/scripts/sync-shopify.ts`. Remaining: point crystalbasket.store at Shopify (N24). See ADR 0003 and `apps/theme/ARCHITECTURE.md`. |
+| M12 | Shopify theme (`apps/theme`) | ✅ | The storefront rebuilt as a Shopify Online Store 2.0 theme: Liquid pages + React islands, same tokens, copy and images. Live theme "Crystal Basket (new)" (id 155126235315) since 2026-10-02; content migrated with `apps/theme/scripts/sync-shopify.ts`. crystalbasket.store points at Shopify since 2026-10-02 (N24 done). See ADR 0003 and `apps/theme/ARCHITECTURE.md`. |
 
 ## How the owner edits products
 
