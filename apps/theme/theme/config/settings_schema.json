@@ -27,10 +27,10 @@
       { "type": "text", "id": "cb_delivery_copy", "label": "Delivery promise", "default": "Next-day delivery across the UAE." },
       { "type": "number", "id": "cb_stack_discount", "label": "Stack discount (%)", "default": 15 },
       { "type": "number", "id": "cb_custom_base", "label": "Build-your-own base price (AED)", "default": 75 },
-      { "type": "number", "id": "cb_custom_select", "label": "Build-your-own: Select stones add (AED)", "default": 10 },
-      { "type": "number", "id": "cb_custom_rare", "label": "Build-your-own: Rare stones add (AED)", "default": 20 },
+      { "type": "number", "id": "cb_custom_select", "label": "Build-your-own: Select stones add (AED)", "default": 3 },
+      { "type": "number", "id": "cb_custom_rare", "label": "Build-your-own: Rare stones add (AED)", "default": 3 },
       { "type": "number", "id": "cb_custom_gold", "label": "Build-your-own: gold bead adds (AED)", "default": 10 },
-      { "type": "number", "id": "cb_custom_max_gold", "label": "Build-your-own: max gold beads", "default": 3 },
+      { "type": "number", "id": "cb_custom_max_gold", "label": "Build-your-own: max gold beads", "default": 6 },
       { "type": "text", "id": "cb_custom_handle", "label": "Build-your-own product handle", "default": "custom-bracelet" }
     ]
   },

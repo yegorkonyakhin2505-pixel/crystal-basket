@@ -40,7 +40,7 @@ def image_url(slug, filename):
 
 # Build-your-own bracelet (/build/): one Shopify product whose variants cover every price the builder can produce.
 # Keep in step with site.custom in apps/web/src/lib/site.ts.
-CUSTOM = {"handle": "custom-bracelet", "base": 75, "tiers": [("Classic", 0), ("Select", 10), ("Rare", 20)], "gold": 10}
+CUSTOM = {"handle": "custom-bracelet", "base": 75, "tiers": [("Classic", 0), ("Select", 3), ("Rare", 3)], "gold": 10}
 
 
 def custom_rows():

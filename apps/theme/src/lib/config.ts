@@ -25,7 +25,7 @@ const FALLBACK: SiteConfig = {
   name: "Crystal Basket", city: "Dubai", currency: "AED", email: "hello@crystalbasket.store", instagram: "crystal.basket",
   whatsapp: "971500000000", whatsappGreeting: "Hi Crystal Basket! I'd like to order:", deliveryFeeAED: 25, freeDeliveryAED: 250,
   deliveryCopy: "Next-day delivery across the UAE.", stackDiscountPct: 15, welcome: { pct: 10, code: "WELCOME10" },
-  custom: { handle: "custom-bracelet", baseAED: 75, tierAED: { classic: 0, select: 10, rare: 20 }, goldAED: 10, maxGold: 3 },
+  custom: { handle: "custom-bracelet", baseAED: 75, tierAED: { classic: 0, select: 3, rare: 3 }, goldAED: 10, maxGold: 6 },
   flags: { whatsapp: false, offerPopup: true, reviews: false, wishlist: true },
   routes: { home: "/", shop: "/collections/all", stacks: "/pages/stacks", build: "/pages/build", intentions: "/pages/intentions", stones: "/pages/stones", about: "/pages/about", sizeGuide: "/pages/size-guide", care: "/pages/care", faq: "/pages/faq", disclaimer: "/pages/disclaimer", delivery: "/pages/delivery", returns: "/pages/returns", contact: "/pages/contact", privacy: "/pages/privacy", wishlist: "/pages/wishlist", cart: "/cart", checkout: "/checkout" },
   offerImage: "", cartEnabled: true,
